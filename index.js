@@ -182,9 +182,9 @@ const stopTyping = () => {
 const initialize = () => {
   wait(INITIALIZE_DELAY)
     .then(() => type(INITIALIZE_TEXT))
+    .then(() => wait(ANIMATIONS_DURATION))
     .then(() => {
       timeline([
-        ANIMATIONS_DURATION,
         {
           track: "descriptions",
           from: 0,
