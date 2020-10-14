@@ -205,9 +205,9 @@ const initialize = () => {
 };
 
 const showForm = () => {
-  clear().then(() => {
-    inputEl.focus();
+  inputEl.focus();
 
+  clear().then(() => {
     signUpButtonStyler.set({ display: "block" });
     tween({ from: 0, to: 1, duration: ANIMATIONS_DURATION }).start((v) => {
       inputStyler.set({ opacity: v });
