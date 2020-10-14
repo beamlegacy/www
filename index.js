@@ -6,13 +6,13 @@ const SUCCESS_TEXT = "Thank you";
 const ERROR_TEXT = "Something went wrong...";
 
 const TYPING_SPEED_MIN = 50;
-const TYPING_SPEED_MAX = 120;
+const TYPING_SPEED_MAX = 150;
 
 const ERASING_SPEED_MIN = 20;
 const ERASING_SPEED_MAX = 60;
 
 const INITIALIZE_DELAY = 1000;
-const ANIMATIONS_DURATION = 400;
+const ANIMATIONS_DURATION = 500;
 
 const CAMPAIGN_MONITOR_CM = "cm-ykdjjuh-ykdjjuh";
 const CAMPAIGN_MONITOR_ID =
@@ -263,6 +263,8 @@ joinButtonEl.addEventListener("click", (e) => {
 });
 
 const campaignMotitorSignUp = (email) => {
+  return wait(2000);
+
   return fetch("https://createsend.com//t/getsecuresubscribelink", {
     method: "POST",
     body: new URLSearchParams({

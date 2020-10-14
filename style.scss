@@ -2,9 +2,13 @@ $color-blue: #1a5bff;
 $color-light-blue: #d1deff;
 $color-black: #000;
 $color-grey: #666;
-$color-light-grey: #ccc;
+$color-light-grey: #999;
+$color-lighter-grey: #ccc;
 
-$page-width: 400px;
+$transition-duration-m: 300ms;
+$transition-duration-l: 500ms;
+
+$page-width: 387px;
 $mobile-breakpoint: 500px;
 
 * {
@@ -32,7 +36,9 @@ button {
 }
 
 a {
+  color: inherit;
   text-decoration: none;
+  transition: color ease $transition-duration-m;
 }
 
 button {
@@ -40,7 +46,7 @@ button {
   background: 0;
   color: $color-blue;
   font-weight: bold;
-  transition: transform 100ms ease;
+  transition: transform $transition-duration-m ease;
 
   &:hover {
     transform: translateY(-2px);
@@ -62,7 +68,7 @@ body,
   flex-direction: column;
   width: $page-width;
   margin: 0 auto;
-  padding: 16px;
+  padding: 32px 16px;
 }
 
 .content {
@@ -101,7 +107,7 @@ body,
   background: $color-light-blue;
 
   &.is-blinking {
-    animation: blink 400ms linear infinite alternate;
+    animation: blink $transition-duration-l linear infinite alternate;
   }
 }
 
@@ -118,7 +124,7 @@ body,
   caret-color: $color-light-blue;
 
   &::placeholder {
-    color: $color-light-grey;
+    color: $color-lighter-grey;
   }
 }
 
@@ -138,6 +144,17 @@ body,
 
 .footer {
   flex-shrink: 0;
+  color: $color-light-grey;
+
+  a {
+    &:hover {
+      color: $color-grey;
+    }
+  }
+
+  .links {
+    margin-bottom: 4px;
+  }
 }
 
 .headinng {
