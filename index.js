@@ -1,4 +1,4 @@
-import { timeline, styler, tween } from "popmotion";
+import { timeline, styler, tween, easing } from "popmotion";
 import { random, wait } from "./helpers";
 
 const INITIALIZE_TEXT = "Beam is where ideas take shape";
@@ -11,8 +11,12 @@ const TYPING_SPEED_MAX = 150;
 const ERASING_SPEED_MIN = 20;
 const ERASING_SPEED_MAX = 60;
 
-const INITIALIZE_DELAY = 1000;
-const ANIMATIONS_DURATION = 500;
+const INITIALIZE_DELAY = 2500;
+
+const ANIMATIONS_DURATION = 800;
+// https://cubic-bezier.com/
+const ANIMATIONS_Y = 30;
+const ANIMATIONS_EASING = easing.cubicBezier(0.25, 0.1, 0.19, 1.2);
 
 const CAMPAIGN_MONITOR_CM = "cm-ykdjjuh-ykdjjuh";
 const CAMPAIGN_MONITOR_ID =
@@ -211,13 +215,29 @@ const initialize = () => {
           from: 0,
           to: 1,
           duration: ANIMATIONS_DURATION,
+          ease: ANIMATIONS_EASING,
         },
-        { track: "join", from: 0, to: 1, duration: ANIMATIONS_DURATION },
-        { track: "footer", from: 0, to: 1, duration: ANIMATIONS_DURATION },
+        {
+          track: "join",
+          from: 0,
+          to: 1,
+          duration: ANIMATIONS_DURATION,
+          ease: ANIMATIONS_EASING,
+        },
+        {
+          track: "footer",
+          from: 0,
+          to: 1,
+          duration: ANIMATIONS_DURATION,
+          ease: ANIMATIONS_EASING,
+        },
       ]).start((v) => {
-        joinButtonStyler.set({ y: (1 - v.join) * 20, opacity: v.join });
+        joinButtonStyler.set({
+          y: (1 - v.join) * ANIMATIONS_Y,
+          opacity: v.join,
+        });
         descriptionStyler.set({
-          y: (1 - v.descriptions) * 20,
+          y: (1 - v.descriptions) * ANIMATIONS_Y,
           opacity: v.descriptions,
         });
         footerStyler.set({ opacity: v.footer });
@@ -228,7 +248,11 @@ const initialize = () => {
 const showForm = () => {
   inputEl.focus();
 
-  tween({ from: 1, to: 0, duration: ANIMATIONS_DURATION }).start({
+  tween({
+    from: 1,
+    to: 0,
+    duration: ANIMATIONS_DURATION,
+  }).start({
     update: (v) => {
       descriptionStyler.set({ opacity: v });
       joinButtonStyler.set({ opacity: v });
@@ -241,9 +265,14 @@ const showForm = () => {
   clear().then(() => {
     signUpButtonStyler.set({ display: "block" });
 
-    tween({ from: 0, to: 1, duration: ANIMATIONS_DURATION }).start((v) => {
+    tween({
+      from: 0,
+      to: 1,
+      duration: ANIMATIONS_DURATION,
+      ease: ANIMATIONS_EASING,
+    }).start((v) => {
       inputStyler.set({ opacity: v });
-      signUpButtonStyler.set({ y: (1 - v) * 20, opacity: v });
+      signUpButtonStyler.set({ y: (1 - v) * ANIMATIONS_Y, opacity: v });
     });
 
     tween({ from: 1, to: 0, duration: ANIMATIONS_DURATION }).start((v) =>
