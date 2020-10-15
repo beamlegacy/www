@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "scripts": {
     "development": "parcel index.html",
-    "build": "parcel build index.html"
+    "build": "./scripts/build.sh"
   },
   "devDependencies": {
     "@parcel/transformer-css": "^2.0.0-alpha.3",
