@@ -14,8 +14,8 @@ const ERASING_SPEED_MAX = 60;
 const INITIALIZE_DELAY = 2500;
 
 const ANIMATIONS_DURATION = 800;
-// https://cubic-bezier.com/
 const ANIMATIONS_Y = 30;
+// https://cubic-bezier.com/
 const ANIMATIONS_EASING = easing.cubicBezier(0.25, 0.1, 0.19, 1.2);
 
 const CAMPAIGN_MONITOR_CM = "cm-ykdjjuh-ykdjjuh";

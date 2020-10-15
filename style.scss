@@ -5,7 +5,10 @@ $color-grey: #666;
 $color-light-grey: #999;
 $color-lighter-grey: #ccc;
 
-$rainbow-colors: $color-blue, #14d484, #fdd821, #ff5b3e, #561aff;
+// $rainbow-colors: $color-blue, #14d484, #fdd821, #ff5b3e, #561aff;
+
+$rainbow-colors: #fcd720, #fdad1a, #fc913f, #fd745b, #e37d91, #b68fad, #39a2c3,
+  #19ad91, #6ec264, #98d658;
 
 $transition-duration-m: 300ms;
 $transition-duration-l: 500ms;
@@ -25,6 +28,8 @@ body {
   color: $color-grey;
   overflow: hidden;
   -webkit-font-smoothing: antialiased;
+  background: url("./assets/logo.png") no-repeat 32px 32px;
+  background-size: 56px auto;
 }
 
 input,
@@ -177,11 +182,15 @@ body,
   display: none;
 
   button:hover {
-    animation: rainbow 3s ease infinite alternate;
+    animation: rainbow 10s ease infinite alternate;
   }
 }
 
 @media only screen and (max-width: $mobile-breakpoint) {
+  body {
+    background-position: 16px 32px;
+  }
+
   .page {
     width: 100%;
   }
@@ -202,18 +211,36 @@ body,
 
 @keyframes rainbow {
   0% {
+    color: $color-blue;
+  }
+  10% {
     color: nth($rainbow-colors, 1);
   }
-  25% {
+  20% {
     color: nth($rainbow-colors, 2);
   }
-  50% {
+  30% {
     color: nth($rainbow-colors, 3);
   }
-  75% {
+  40% {
     color: nth($rainbow-colors, 4);
   }
-  100% {
+  50% {
     color: nth($rainbow-colors, 5);
+  }
+  60% {
+    color: nth($rainbow-colors, 6);
+  }
+  70% {
+    color: nth($rainbow-colors, 7);
+  }
+  80% {
+    color: nth($rainbow-colors, 8);
+  }
+  90% {
+    color: nth($rainbow-colors, 9);
+  }
+  100% {
+    color: nth($rainbow-colors, 10);
   }
 }
