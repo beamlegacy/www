@@ -1,1 +1,18 @@
-{}
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "X87W5M786F.com.beamApp.BeamApp",
+        "paths": [
+          "*"
+        ]
+      }
+    ]
+  },
+  "webcredentials": {
+    "apps": [
+      "X87W5M786F.com.beamApp.BeamApp"
+    ]
+  }
+}
