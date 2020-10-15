@@ -39,17 +39,19 @@ const headingStyler = styler(headingEl);
 
 const cloneEl = titleEl.cloneNode(true);
 cloneEl.style.whiteSpace = "pre";
-
 const measureLine = (value) => {
   cloneEl.innerHTML = value;
+  return measureNode(cloneEl);
+};
 
+const measureNode = (node) => {
   const container = document.createElement("div");
   container.style.display = "inline-block";
   container.style.position = "absolute";
   container.style.zIndex = -1;
   container.style.visibility = "hidden";
 
-  container.appendChild(cloneEl);
+  container.appendChild(node);
 
   document.body.appendChild(container);
   const rect = container.getBoundingClientRect();
@@ -57,6 +59,25 @@ const measureLine = (value) => {
   container.parentNode.removeChild(container);
 
   return rect;
+};
+
+const maxFontSize = parseFloat(getComputedStyle(inputEl).fontSize);
+const fitInputEl = titleEl.cloneNode(true);
+fitInputEl.style.whiteSpace = "pre";
+const fitFontSize = () => {
+  fitInputEl.style.fontSize = `${maxFontSize}px`;
+  // Add "M" to add some padding as it most of the time the widest letter.
+  fitInputEl.innerHTML = inputEl.value + "M";
+
+  const rect = measureNode(fitInputEl);
+
+  if (rect.width < maxWidth) {
+    inputEl.style.fontSize = `${maxFontSize}px`;
+    return;
+  }
+
+  const ratio = maxWidth / rect.width;
+  inputEl.style.fontSize = `${Math.floor(maxFontSize * ratio)}px`;
 };
 
 // Fix header height to prevent sibling elements from overlapping.
@@ -207,22 +228,27 @@ const initialize = () => {
 const showForm = () => {
   inputEl.focus();
 
+  tween({ from: 1, to: 0, duration: ANIMATIONS_DURATION }).start({
+    update: (v) => {
+      descriptionStyler.set({ opacity: v });
+      joinButtonStyler.set({ opacity: v });
+    },
+    complete: () => {
+      joinButtonStyler.set({ display: "none" });
+    },
+  });
+
   clear().then(() => {
     signUpButtonStyler.set({ display: "block" });
+
     tween({ from: 0, to: 1, duration: ANIMATIONS_DURATION }).start((v) => {
       inputStyler.set({ opacity: v });
-      signUpButtonStyler.set({ opacity: v });
+      signUpButtonStyler.set({ y: (1 - v) * 20, opacity: v });
     });
 
-    tween({ from: 1, to: 0, duration: ANIMATIONS_DURATION }).start({
-      update: (v) => {
-        headingStyler.set({ opacity: v });
-        joinButtonStyler.set({ opacity: v });
-      },
-      complete: () => {
-        joinButtonStyler.set({ display: "none" });
-      },
-    });
+    tween({ from: 1, to: 0, duration: ANIMATIONS_DURATION }).start((v) =>
+      headingStyler.set({ opacity: v })
+    );
   });
 };
 
@@ -230,41 +256,31 @@ const submitForm = () => {
   const signUpPromise = campaignMotitorSignUp(inputEl.value);
   inputEl.blur();
 
-  tween({ from: 1, to: 0, duration: ANIMATIONS_DURATION }).start((v) => {
-    inputStyler.set({ opacity: v });
-    signUpButtonStyler.set({ opacity: v });
-    joinButtonStyler.set({ opacity: v });
-    descriptionStyler.set({ opacity: v });
-  });
-
-  tween({ from: 0, to: 1, duration: ANIMATIONS_DURATION }).start({
+  tween({ from: 1, to: 0, duration: ANIMATIONS_DURATION }).start({
     update: (v) => {
-      headingStyler.set({ opacity: v });
+      inputStyler.set({ opacity: v });
+      signUpButtonStyler.set({ opacity: v });
     },
     complete: () => {
-      signUpPromise.then(
-        () => type(SUCCESS_TEXT),
-        () => type(ERROR_TEXT)
-      );
+      inputStyler.set({ display: "none" });
+      signUpButtonStyler.set({ display: "none" });
+
+      tween({ from: 0, to: 1, duration: ANIMATIONS_DURATION }).start({
+        update: (v) => {
+          headingStyler.set({ opacity: v });
+        },
+        complete: () => {
+          signUpPromise.then(
+            () => type(SUCCESS_TEXT),
+            () => type(ERROR_TEXT)
+          );
+        },
+      });
     },
   });
 };
 
-initialize();
-
-formEl.addEventListener("submit", (e) => {
-  e.preventDefault();
-  submitForm();
-});
-
-joinButtonEl.addEventListener("click", (e) => {
-  e.preventDefault();
-  showForm();
-});
-
 const campaignMotitorSignUp = (email) => {
-  return wait(2000);
-
   return fetch("https://createsend.com//t/getsecuresubscribelink", {
     method: "POST",
     body: new URLSearchParams({
@@ -288,3 +304,17 @@ const campaignMotitorSignUp = (email) => {
       });
     });
 };
+
+initialize();
+
+formEl.addEventListener("submit", (e) => {
+  e.preventDefault();
+  submitForm();
+});
+
+joinButtonEl.addEventListener("click", (e) => {
+  e.preventDefault();
+  showForm();
+});
+
+inputEl.addEventListener("keyup", () => fitFontSize());
