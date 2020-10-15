@@ -5,7 +5,7 @@ $color-grey: #666;
 $color-light-grey: #999;
 $color-lighter-grey: #ccc;
 
-$rainbow-colors: #fdd821, #ff5b3e, #561aff, $color-blue, #14d484;
+$rainbow-colors: $color-blue, #14d484, #fdd821, #ff5b3e, #561aff;
 
 $transition-duration-m: 300ms;
 $transition-duration-l: 500ms;
@@ -177,7 +177,7 @@ body,
   display: none;
 
   button:hover {
-    animation: rainbow 1s ease infinite alternate;
+    animation: rainbow 3s ease infinite alternate;
   }
 }
 
