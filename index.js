@@ -205,6 +205,8 @@ const stopTyping = () => {
 };
 
 const initialize = () => {
+  inputStyler.set({ display: "none" });
+
   wait(INITIALIZE_DELAY)
     .then(() => type(INITIALIZE_TEXT))
     .then(() => wait(ANIMATIONS_DURATION))
@@ -246,6 +248,8 @@ const initialize = () => {
 };
 
 const showForm = () => {
+  inputStyler.set({ display: "block" });
+
   inputEl.focus();
 
   tween({
