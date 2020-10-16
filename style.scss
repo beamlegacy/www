@@ -5,16 +5,14 @@ $color-grey: #666;
 $color-light-grey: #999;
 $color-lighter-grey: #ccc;
 
-// $rainbow-colors: $color-blue, #14d484, #fdd821, #ff5b3e, #561aff;
-
 $rainbow-colors: #fcd720, #fdad1a, #fc913f, #fd745b, #e37d91, #b68fad, #39a2c3,
   #19ad91, #6ec264, #98d658;
 
 $transition-duration-m: 300ms;
 $transition-duration-l: 500ms;
 
-$page-width: 400px;
-$mobile-breakpoint: 500px;
+$page-width: 380px;
+$mobile-breakpoint: 600px;
 
 * {
   margin: 0;
@@ -23,13 +21,32 @@ $mobile-breakpoint: 500px;
 }
 
 body {
+  position: relative;
   font: 16px/1.6 -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial,
     sans-serif;
   color: $color-grey;
   overflow: hidden;
   -webkit-font-smoothing: antialiased;
-  background: url("./assets/logo.svg") no-repeat 32px 32px;
-  background-size: 56px auto;
+
+  &::before {
+    content: " ";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1000;
+    opacity: 0;
+    background: url("./assets/logo.png") no-repeat -350px 50%;
+    background-size: 700px auto;
+    transition: opacity $transition-duration-l ease;
+  }
+}
+
+.loaded {
+  &::before {
+    opacity: 1;
+  }
 }
 
 input,
@@ -45,7 +62,7 @@ button {
 a {
   color: inherit;
   text-decoration: none;
-  transition: color ease $transition-duration-m;
+  transition: color $transition-duration-m ease;
 }
 
 button {
@@ -74,7 +91,7 @@ body,
   display: flex;
   flex-direction: column;
   width: $page-width;
-  margin: 0 auto;
+  margin-left: 400px;
   padding: 32px 16px;
 }
 
@@ -101,7 +118,7 @@ body,
 .heading-title {
   font-size: 38px;
   line-height: 1.2;
-  font-weight: 800;
+  font-weight: 700;
   color: $color-black;
 }
 
@@ -188,11 +205,20 @@ body,
 
 @media only screen and (max-width: $mobile-breakpoint) {
   body {
-    background-position: 16px 32px;
+    &::before {
+      display: none;
+
+      // Remove the line above and uncomment this part to show the logo above
+      // the text on mobile.
+      // opacity: 1;
+      // background-position: center -360px;
+      // background-size: 360px auto;
+    }
   }
 
   .page {
     width: 100%;
+    margin: 0;
   }
 
   .heading-title {

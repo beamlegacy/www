@@ -1,8 +1,9 @@
 import { timeline, styler, tween, easing } from "popmotion";
 import { random, wait } from "./helpers";
+import logoUrl from "url:./assets/logo.png";
 
 const INITIALIZE_TEXT = "Beam is where ideas take shape";
-const SUCCESS_TEXT = "Thank you";
+const SUCCESS_TEXT = "You’re in! We’ll be in touch soon.";
 const ERROR_TEXT = "Something went wrong...";
 
 const TYPING_SPEED_MIN = 50;
@@ -40,6 +41,16 @@ const signUpButtonStyler = styler(signUpButtonEl);
 const footerStyler = styler(footerEl);
 const inputStyler = styler(inputEl);
 const headingStyler = styler(headingEl);
+
+const loadLogo = () => {
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.onload = resolve;
+    img.src = logoUrl;
+  });
+};
+// Start loading logo as soon as possible.
+const loadLogoPromise = loadLogo();
 
 const cloneEl = titleEl.cloneNode(true);
 cloneEl.style.whiteSpace = "pre";
@@ -205,10 +216,17 @@ const stopTyping = () => {
 };
 
 const initialize = () => {
-  inputStyler.set({ display: "none" });
+  inputStyler.set({ zIndex: -100 });
 
-  wait(INITIALIZE_DELAY)
-    .then(() => type(INITIALIZE_TEXT))
+  Promise.all([
+    loadLogoPromise.then(() => {
+      document.body.classList.add("loaded");
+    }),
+    wait(INITIALIZE_DELAY),
+  ])
+    .then(() => {
+      return type(INITIALIZE_TEXT);
+    })
     .then(() => wait(ANIMATIONS_DURATION))
     .then(() => {
       timeline([
@@ -248,8 +266,7 @@ const initialize = () => {
 };
 
 const showForm = () => {
-  inputStyler.set({ display: "block" });
-
+  inputStyler.set({ zIndex: 100 });
   inputEl.focus();
 
   tween({
@@ -314,6 +331,7 @@ const submitForm = () => {
 };
 
 const campaignMotitorSignUp = (email) => {
+  return wait(2000);
   return fetch("https://createsend.com//t/getsecuresubscribelink", {
     method: "POST",
     body: new URLSearchParams({
