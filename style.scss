@@ -14,6 +14,9 @@ $transition-duration-l: 500ms;
 $page-width: 380px;
 $mobile-breakpoint: 600px;
 
+$button-click-area: 8px;
+$button-hover-y: 2px;
+
 * {
   margin: 0;
   padding: 0;
@@ -71,9 +74,11 @@ button {
   color: $color-blue;
   font-weight: bold;
   transition: transform $transition-duration-m ease;
+  padding: $button-click-area 0;
+  margin: -$button-click-area 0;
 
   &:hover {
-    transform: translateY(-2px);
+    transform: translateY($button-hover-y);
   }
 
   &:active {
