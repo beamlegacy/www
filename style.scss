@@ -217,13 +217,14 @@ body,
   }
 
   .page {
-    width: 100%;
+    width: auto;
+    max-width: $page-width;
     margin: 0;
   }
 
-  .heading-title {
-    font-size: 32px;
-  }
+  // .heading-title {
+  //   font-size: 32px;
+  // }
 }
 
 @keyframes blink {
