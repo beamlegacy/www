@@ -78,7 +78,7 @@ button {
   margin: -$button-click-area 0;
 
   &:hover {
-    transform: translateY($button-hover-y);
+    transform: translateY(-$button-hover-y);
   }
 
   &:active {
