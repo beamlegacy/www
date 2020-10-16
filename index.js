@@ -331,7 +331,6 @@ const submitForm = () => {
 };
 
 const campaignMotitorSignUp = (email) => {
-  return wait(2000);
   return fetch("https://createsend.com//t/getsecuresubscribelink", {
     method: "POST",
     body: new URLSearchParams({
