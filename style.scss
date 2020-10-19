@@ -28,7 +28,6 @@ body {
   font: 16px/1.6 -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial,
     sans-serif;
   color: $color-grey;
-  overflow: hidden;
   -webkit-font-smoothing: antialiased;
 
   &::before {
@@ -98,6 +97,47 @@ body,
   width: $page-width;
   margin-left: 400px;
   padding: 32px 16px;
+	overflow: hidden;
+}
+
+.page_bright_paper {
+  width: $page-width + 200;
+  margin-left: 400px;
+  padding: 32px 16px;
+  overflow: visible !important;
+}
+
+.content_bright_paper {
+	margin-bottom: 2em;
+}
+
+h1 {
+	margin-bottom: 1em;
+}
+
+table {
+	width: 100%;
+	min-width: 100%;
+	border-spacing: 0;
+	border-collapse: collapse;
+	border: 1px solid #c1c7cd;
+	border-radius: 5px;
+	word-break: break-word;
+	background-color: #fff;
+	margin-top: 2em;
+	margin-bottom: 2em;
+}
+
+table tr td {
+	position: relative;
+	border: 1px solid #c1c7cd;
+	border-right-width: 0;
+	border-bottom-width: 0;
+	min-width: 64px;
+	min-height: 32px;
+	vertical-align: top;
+	background-clip: padding-box;
+	padding: 5px 8px;
 }
 
 .content {
@@ -226,6 +266,12 @@ body,
     max-width: $page-width;
     margin: 0;
   }
+
+	.page_bright_paper {
+		width: auto;
+		max-width: $page-width;
+		margin: 0;
+	}
 
   // .heading-title {
   //   font-size: 32px;
