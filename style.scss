@@ -228,7 +228,7 @@ table tr td {
   position: relative;
 
   .button {
-    position: relative;
+    position: absolute;
     top: 0;
     left: 0;
   }
@@ -261,7 +261,6 @@ table tr td {
 .header-input,
 .description,
 .join-button,
-.read-button,
 .footer {
   opacity: 0;
 }
