@@ -143,6 +143,10 @@ table {
 	margin-bottom: 2em;
 }
 
+table tr td.last {
+	font-weight: 500 !important;
+}
+
 table tr td {
 	position: relative;
 	border: 1px solid #c1c7cd;
