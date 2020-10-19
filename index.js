@@ -237,15 +237,18 @@ const initialize = () => {
           duration: ANIMATIONS_DURATION,
           ease: ANIMATIONS_EASING,
         },
+      ]).start((v) => {
+        descriptionStyler.set({
+          y: (1 - v.descriptions) * ANIMATIONS_Y,
+          opacity: v.descriptions,
+        });
+      });
+		})
+		.then(() => wait(ANIMATIONS_DURATION * 3))
+    .then(() => {
+      timeline([
         {
           track: "join",
-          from: 0,
-          to: 1,
-          duration: ANIMATIONS_DURATION,
-          ease: ANIMATIONS_EASING,
-        },
-        {
-          track: "footer",
           from: 0,
           to: 1,
           duration: ANIMATIONS_DURATION,
@@ -256,13 +259,22 @@ const initialize = () => {
           y: (1 - v.join) * ANIMATIONS_Y,
           opacity: v.join,
         });
-        descriptionStyler.set({
-          y: (1 - v.descriptions) * ANIMATIONS_Y,
-          opacity: v.descriptions,
-        });
+      });
+		})
+		.then(() => wait(ANIMATIONS_DURATION))
+		.then(() => {
+      timeline([
+        {
+          track: "footer",
+          from: 0,
+          to: 1,
+          duration: ANIMATIONS_DURATION,
+          ease: ANIMATIONS_EASING,
+        },
+      ]).start((v) => {
         footerStyler.set({ opacity: v.footer });
       });
-    });
+		})
 };
 
 const showForm = () => {
