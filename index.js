@@ -339,8 +339,10 @@ const submitForm = () => {
           signUpPromise.then(
             () => type(SUCCESS_TEXT),
             () => type(ERROR_TEXT)
-					).then(() => wait(ANIMATIONS_DURATION))
+          ).then(() => wait(ANIMATIONS_DURATION))
           .then(() => {
+            joinButtonStyler.set({visibility: "hidden"});
+            descriptionStyler.set({visibility: "hidden"});
             timeline([
               {
                 track: "read",
@@ -353,7 +355,7 @@ const submitForm = () => {
               readButtonStyler.set({
                 y: (1 - v.read) * ANIMATIONS_Y,
                 opacity: v.read,
-								visibility: "visible",
+                visibility: "visible",
               });
             });
           })
