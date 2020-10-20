@@ -320,6 +320,7 @@ const showForm = () => {
 
 const submitForm = () => {
   const signUpPromise = campaignMotitorSignUp(inputEl.value);
+  const slackSignUpPromise = slackSignUp(inputEl.value);
   inputEl.blur();
 
   tween({ from: 1, to: 0, duration: ANIMATIONS_DURATION }).start({
@@ -336,6 +337,9 @@ const submitForm = () => {
           headingStyler.set({ opacity: v });
         },
         complete: () => {
+
+          slackSignUpPromise;
+
           signUpPromise.then(
             () => type(SUCCESS_TEXT),
             () => type(ERROR_TEXT)
@@ -387,7 +391,19 @@ const campaignMotitorSignUp = (email) => {
           "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
         },
       });
-    });
+    })
+};
+
+const slackSignUp = (email) => {
+  return fetch('REDACTED_SLACK_WEBHOOK', {
+    method: 'post',
+    headers: {
+      'Accept': 'application/json, text/plain, */*',
+    },
+    body: JSON.stringify({text: email})
+  })
+    .then(response => console.log)
+    .catch(error => console.error);
 };
 
 initialize();
