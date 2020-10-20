@@ -31,6 +31,7 @@ const titleEl = document.querySelector(".heading-title");
 const caretEl = document.querySelector(".heading-caret");
 const joinButtonEl = document.querySelector(".join-button");
 const readButtonEl = document.querySelector(".read-button");
+const readDivEl = document.querySelector(".readbuttons");
 const signUpButtonEl = document.querySelector(".sign-up-button");
 const descriptionEl = document.querySelector(".description");
 const footerEl = document.querySelector(".footer");
@@ -39,6 +40,7 @@ const inputEl = document.querySelector(".header-input");
 const descriptionStyler = styler(descriptionEl);
 const joinButtonStyler = styler(joinButtonEl);
 const readButtonStyler = styler(readButtonEl);
+const readDivStyler = styler(readDivEl);
 const signUpButtonStyler = styler(signUpButtonEl);
 const footerStyler = styler(footerEl);
 const inputStyler = styler(inputEl);
@@ -337,7 +339,8 @@ const submitForm = () => {
           signUpPromise.then(
             () => type(SUCCESS_TEXT),
             () => type(ERROR_TEXT)
-          ).then(() => {
+					).then(() => wait(ANIMATIONS_DURATION))
+          .then(() => {
             timeline([
               {
                 track: "read",
@@ -350,6 +353,7 @@ const submitForm = () => {
               readButtonStyler.set({
                 y: (1 - v.read) * ANIMATIONS_Y,
                 opacity: v.read,
+								visibility: "visible",
               });
             });
           })

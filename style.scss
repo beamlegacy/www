@@ -225,13 +225,27 @@ table tr td {
 }
 
 .buttons {
-  position: relative;
+  position: absolute;
 
   .button {
     position: relative;
     top: 0;
     left: 0;
   }
+}
+
+.readbuttons {
+  position: absolute;
+	visibility: hidden;
+
+  .button {
+    position: relative;
+    top: 0;
+    left: 0;
+  }
+}
+
+.read-button {
 }
 
 .footer_bright_paper {
