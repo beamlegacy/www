@@ -30,6 +30,7 @@ const headingEl = document.querySelector(".heading");
 const titleEl = document.querySelector(".heading-title");
 const caretEl = document.querySelector(".heading-caret");
 const joinButtonEl = document.querySelector(".join-button");
+const readButtonEl = document.querySelector(".read-button");
 const signUpButtonEl = document.querySelector(".sign-up-button");
 const descriptionEl = document.querySelector(".description");
 const footerEl = document.querySelector(".footer");
@@ -37,6 +38,7 @@ const formEl = document.querySelector("form");
 const inputEl = document.querySelector(".header-input");
 const descriptionStyler = styler(descriptionEl);
 const joinButtonStyler = styler(joinButtonEl);
+const readButtonStyler = styler(readButtonEl);
 const signUpButtonStyler = styler(signUpButtonEl);
 const footerStyler = styler(footerEl);
 const inputStyler = styler(inputEl);
@@ -335,7 +337,22 @@ const submitForm = () => {
           signUpPromise.then(
             () => type(SUCCESS_TEXT),
             () => type(ERROR_TEXT)
-          );
+          ).then(() => {
+            timeline([
+              {
+                track: "read",
+                from: 0,
+                to: 1,
+                duration: ANIMATIONS_DURATION,
+                ease: ANIMATIONS_EASING,
+              },
+            ]).start((v) => {
+              readButtonStyler.set({
+                y: (1 - v.read) * ANIMATIONS_Y,
+                opacity: v.read,
+              });
+            });
+          })
         },
       });
     },
@@ -377,6 +394,11 @@ formEl.addEventListener("submit", (e) => {
 joinButtonEl.addEventListener("click", (e) => {
   e.preventDefault();
   showForm();
+});
+
+readButtonEl.addEventListener("click", (e) => {
+  e.preventDefault();
+  window.location.href = "bright_paper.html"
 });
 
 inputEl.addEventListener("keyup", () => fitFontSize());
