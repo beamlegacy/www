@@ -395,12 +395,13 @@ const campaignMotitorSignUp = (email) => {
 };
 
 const slackSignUp = (email) => {
-  return fetch('REDACTED_SLACK_WEBHOOK', {
+  return fetch('https://api.beamapp.co/api/v1/emails', {
     method: 'post',
     headers: {
+			'Content-Type': 'application/json',
       'Accept': 'application/json, text/plain, */*',
     },
-    body: JSON.stringify({text: email})
+    body: JSON.stringify({email: email})
   })
     .then(response => console.log)
     .catch(error => console.error);
