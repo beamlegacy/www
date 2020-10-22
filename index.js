@@ -421,7 +421,7 @@ joinButtonEl.addEventListener("click", (e) => {
 
 readButtonEl.addEventListener("click", (e) => {
   e.preventDefault();
-  window.location.href = "bright_paper.html"
+  window.location.href = "https://getonbeam.medium.com/beam-bright-paper-1ca4ae41ae0b"
 });
 
 inputEl.addEventListener("keyup", () => fitFontSize());
