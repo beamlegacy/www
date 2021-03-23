@@ -3,7 +3,7 @@
     "apps": [],
     "details": [
       {
-        "appID": "X87W5M786F.com.beamApp.BeamApp",
+        "appID": [ "X87W5M786F.co.beamapp.macos", "X87W5M786F.co.beamapp.macos.dev" ],
         "paths": [
           "*"
         ]
@@ -11,8 +11,6 @@
     ]
   },
   "webcredentials": {
-    "apps": [
-      "X87W5M786F.com.beamApp.BeamApp"
-    ]
+		"apps": [ "X87W5M786F.co.beamapp.macos", "X87W5M786F.co.beamapp.macos.dev" ]
   }
 }
