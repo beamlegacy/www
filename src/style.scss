@@ -39,7 +39,7 @@ body {
     left: 0;
     z-index: -1000;
     opacity: 0;
-    background: url("./assets/logo.png") no-repeat -350px 50%;
+    background: url("assets/logo.png") no-repeat -350px 50%;
     background-size: 700px auto;
     transition: opacity $transition-duration-l ease;
   }
@@ -67,7 +67,7 @@ a {
   transition: color $transition-duration-m ease;
 }
 
-button {
+button, .button {
   cursor: pointer;
   background: 0;
   color: $color-blue;

@@ -1,16 +1,16 @@
-import { timeline, styler, tween, easing } from "popmotion";
-import { random, wait } from "./helpers";
-import logoUrl from "url:./assets/logo.png";
+import {easing, styler, timeline, tween} from "popmotion"
+import {random, wait} from "./helpers"
+import logoUrl from "url:./assets/logo.png"
 
-const INITIALIZE_TEXT = "Beam is where ideas take shape";
-const SUCCESS_TEXT = "You’re in! We’ll be in touch soon.";
-const ERROR_TEXT = "Something went wrong...";
+const INITIALIZE_TEXT = "Beam is where ideas take shape"
+const SUCCESS_TEXT = "You’re in! We’ll be in touch soon."
+const ERROR_TEXT = "Something went wrong..."
 
-const TYPING_SPEED_MIN = 50;
-const TYPING_SPEED_MAX = 150;
+const TYPING_SPEED_MIN = 50
+const TYPING_SPEED_MAX = 150
 
-const ERASING_SPEED_MIN = 20;
-const ERASING_SPEED_MAX = 60;
+const ERASING_SPEED_MIN = 20
+const ERASING_SPEED_MAX = 60
 
 const INITIALIZE_DELAY = 2500;
 

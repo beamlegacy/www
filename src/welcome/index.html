@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+
+  <link href="../assets/favicon-16.png" rel="shortcut icon"/>
+  <link href="../assets/favicon-32.png" rel="shortcut icon"/>
+
+  <title>{{ title }}</title>
+  <meta content="{{ description }}" name="description"/>
+
+  <meta content="{{ title }}" property="og:title"/>
+  <meta content="website" property="og:type"/>
+  <meta content="{{ url }}" property="og:url"/>
+  <meta content="../assets/logo.png" property="og:image"/>
+  <meta content="{{ description }}" property="og:description"/>
+
+  <meta content="summary_large_image" name="twitter:card"/>
+  <meta content="{{ twitter }}" name="twitter:site"/>
+  <meta content="{{ title }}" name="twitter:title"/>
+  <meta content="{{ description }}" name="twitter:description"/>
+  <meta content="../assets/logo.png" name="twitter:image"/>
+</head>
+<style>
+    @import "../style.scss";
+</style>
+<body>
+<div class="page">
+  <div class="content">
+    <form action="#" class="content-inner">
+      <div class="header">
+        <div class="heading">
+          <h1 class="heading-title"></h1>
+          <span class="heading-caret"></span>
+        </div>
+
+        <input
+          autocapitalize="off"
+          autocomplete="off"
+          autocorrect="off"
+          autofocus="on"
+          class="header-input heading-title"
+          name="email"
+          placeholder="john@gmail.com"
+          required
+          spellcheck="false"
+          type="email"
+        />
+      </div>
+
+      <div class="button sign-up-button">
+        <button type="submit">Beam me up!</button>
+      </div>
+
+      <p class="description">
+        A new way to collect your thoughts
+        <br/>
+        and experience the internet.
+      </p>
+
+      <div class="buttons">
+        <div class="button join-button">
+          <a class="button" href="https://app.beamapp.co">Connect</a>
+        </div>
+      </div>
+
+      <div class="readbuttons">
+        <div class="button read-button">
+          <button type="button">Read the manifesto.</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="footer">
+    <p class="links">
+      <a
+        href="https://twitter.com/{{ twitter }}"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        Twitter
+      </a>
+
+      /
+
+      <a
+        href="https://angel.co/company/beam-app-1"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        About
+      </a>
+
+      /
+
+      <a
+        href="https://angel.co/company/beam-app-1/jobs"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        Jobs
+      </a>
+
+      /
+
+      <a
+        href="https://getonbeam.medium.com/beam-bright-paper-1ca4ae41ae0b"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        Why beam?
+      </a>
+    </p>
+    <p>© {{ year }} Beam.</p>
+  </div>
+</div>
+
+<script type="module">
+  import x from "./index.js"
+</script>
+</body>
+</html>
