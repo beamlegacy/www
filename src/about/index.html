@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+  <meta charset="UTF-8"/>
+
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+
+  <link href="../assets/favicon-16.png" rel="shortcut icon"/>
+  <link href="../assets/favicon-32.png" rel="shortcut icon"/>
+
+  <title>Google OAuth homepage</title>
+  <meta content="{{ description }}" name="description"/>
+
+  <meta content="Google OAuth homepage" property="og:title"/>
+  <meta content="website" property="og:type"/>
+  <meta content="{{ url }}" property="og:url"/>
+  <meta content="../assets/logo.png" property="og:image"/>
+  <meta content="{{ description }}" property="og:description"/>
+
+  <meta content="summary_large_image" name="twitter:card"/>
+  <meta content="{{ twitter }}" name="twitter:site"/>
+  <meta content="{{ title }}" name="twitter:title"/>
+  <meta content="{{ description }}" name="twitter:description"/>
+  <meta content="../assets/logo.png" name="twitter:image"/>
+</head>
+<style>
+  @import "../style.scss";
+
+  a {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  body {
+    padding: 1em;
+  }
+
+  h1 {
+    text-align: center;
+    font-weight: 600;
+  }
+
+  h2 {
+    font-weight: 500;
+  }
+
+  section {
+    margin: 1em 0;
+  }
+
+  .oauth {
+    max-width: 70em;
+    margin: 0 auto;
+  }
+
+  .footer {
+    opacity: 1;
+    text-align: center;
+  }
+</style>
+<body>
+<div class="oauth">
+  <h1>About the Beam app</h1>
+  <p>Beam is a new generation browser allowing you to browse the web, capture the content you like, write down your
+    thoughts and publish them. The Beam company is based in Paris, France.</p>
+  <section>
+    <h2>What will this app do with user data?</h2>
+    <p>The only user data received is: email and optionally calendar data. Email will be used to identify the user. It
+      will be saved and re-displayed to the user. Calendar data is used only by the macOS application if the user agrees
+      to it.</p>
+  </section>
+  <section>
+    <h2>How does this app enhance user functionality?</h2>
+    <p>This app is a new generation browser turning a pure read web experience into a read/write one.</p>
+  </section>
+  <section>
+    <h2>Privacy Policy</h2>
+    <p><a href="https://public.beamapp.co/beam/note/1085ef50-2df0-4ac6-b8af-9c0b10d82b34/Privacy-Policy">Click here</a>.
+    </p>
+  </section>
+  <section>
+    <h2>Content, context, or connection to the app</h2>
+    <p>beam is both a web and a desktop macOS app. It's also a platform where you can create a user account to
+      synchronize your notes. You can choose to connect with your Google account and benefit from calendar sync as
+      well.</p>
+  </section>
+  <section>
+    <h2>Google OAuth2 Limited Use Disclosure</h2>
+    <p>This app doesn't request restricted scopes. It can request one
+      sensitive scope to read Google calendars with the agreement of the end user. In any case the use of information
+      received from Google APIs will adhere to the Google API Services User Data Policy, including
+      the Limited Use requirements.</p>
+  </section>
+  <section>
+    <h2>Copyright</h2>
+    If you have a copyright complaint, please <a href="mailto:help@beamapp.co>">tell us</a> and include the beam
+    page that contains the alleged content, identification of the work claimed to have been infringed including the name
+    and reply email address of the copyright holder/representative, an assertion that the use of the material is not
+    authorized and an assertion that you are the copyright holder/representative.
+  </section>
+  <footer class="footer">
+    <p class="links">
+      <a
+        href="https://public.beamapp.co/beam/note/e2a2291f-37d5-443b-aa88-af6b04520fee/Terms-of-Services"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        Terms of services
+      </a>
+      -
+      © {{ year }} <a href="https://beamapp.co/welcome">Beam</a>.
+    </p>
+  </footer>
+</div>
+</body>
+</html>
