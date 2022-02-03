@@ -1,0 +1,34 @@
+{
+  "global": {
+    "replacements": {
+      "url": {
+        "css": "assets/css/style.css",
+        "js": "assets/js/script.js"
+      }
+    }
+  },
+  "production": {
+    "path": "www",
+    "replacements": {
+      "config": {
+        "url": "https://beamapp.co"
+      }
+    }
+  },
+  "staging": {
+    "path": "www",
+    "replacements": {
+      "config": {
+        "url": "https://beam.developing.live"
+      }
+    }
+  },
+  "development": {
+    "path": "www",
+    "replacements": {
+      "config": {
+        "url": "https://beam.localhost"
+      }
+    }
+  }
+}

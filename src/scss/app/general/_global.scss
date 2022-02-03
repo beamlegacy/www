@@ -1,0 +1,49 @@
+.table {
+  display: table;
+  width: 100%;
+  height: 100%;
+  &.auto {
+    width: auto;
+  }
+  &.auto-height {
+    height: auto;
+  }
+  &.auto-center {
+    width: auto;
+    margin: 0 auto;
+  }
+  &.auto-right {
+    width: auto;
+    margin: 0 0 0 auto;
+  }
+
+  .table-row {
+    display: table-row;
+    width: 100%;
+  }
+
+  .table-cell {
+    display: table-cell;
+    &.top {
+      vertical-align: top;
+    }
+    &.middle {
+      vertical-align: middle;
+    }
+    &.bottom {
+      vertical-align: bottom;
+    }
+  }
+}
+
+.full-width {
+  width: 100%;
+}
+
+.full-height {
+  height: 100%;
+}
+
+.nowrap {
+  white-space: nowrap;
+}

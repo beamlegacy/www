@@ -1,0 +1,14 @@
+@include keyframes(spin) {
+  to {
+    @include transform(rotate(359deg));
+  }
+}
+
+@include keyframes(blinkOpacity) {
+  0%, 50% {
+    opacity: 0;
+  }
+  60%, 90% {
+    opacity: 1;
+  }
+}

@@ -1,0 +1,13 @@
+.loading {
+  height: 14px;
+  width: 14px;
+  border: 1px solid $color-gray;
+  border-right-color: transparent;
+  border-radius: 50%;
+  margin: 0 auto;
+  @include animation(spin 0.5s infinite linear);
+  @include darkmode() {
+    border-color: $color-darkmode-accent;
+    border-right-color: transparent;
+  }
+}
