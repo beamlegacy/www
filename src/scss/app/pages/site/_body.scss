@@ -1,0 +1,14 @@
+.row-body {
+  height: 100%;
+
+  .cell-body {
+    @include breakpoint($break-mini) {
+      padding: 0 $padding-largest;
+    }
+    @include breakpoint($break-mobile) {
+      padding: 0 $padding-large;
+    }
+
+    @import "../modules/carousel";
+  }
+}

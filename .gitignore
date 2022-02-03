@@ -1,3 +1,25 @@
+# General
+*.DS_Store
+Thumbs.db
+
+# Public
+/www
+
+# Configuration
+/conf
+.env
+.env.*
+!.env.example
+
+# Development
+/data
+.sass-cache
+.tmp
+dev-app-update.yml
+
+# Packages
 node_modules
-dist
-.parcel-cache
+npm-debug.log
+
+# Build
+/dist
