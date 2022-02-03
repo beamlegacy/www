@@ -23,9 +23,8 @@
   //  }
 
   // comment out the following should we want the sign in button to be inlined
-  .cta {
-    margin-top: 0;
-    margin-bottom: 0.9em;
+  .cta + .signin {
+    margin-top: 0.9em;
   }
 }
 
