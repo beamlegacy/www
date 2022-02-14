@@ -13,10 +13,15 @@ yarn
 ```
 
 ## Building for dev
-This will launch a dev build and watch for changes
+This will launch a dev build, watch for changes, and serve the dev build:
 
 ```sh
 yarn start
+```
+
+If you want to run the tasks separately, you can start webpack with watch mode to create the dev build:
+```sh
+yarn watch
 ```
 
 To serve the dev build, you can then run:
