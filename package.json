@@ -2,7 +2,7 @@
   "name": "beam-www",
   "private": true,
   "description": "Beta signup page for Beam app (2022 - Q1).",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "contributors": [
     {
       "name": "Matthew Govaere",
@@ -14,7 +14,7 @@
     }
   ],
   "scripts": {
-    "start": "yarn watch",
+    "start": "yarn watch & yarn serve:dev",
     "watch": "webpack --mode=development --watch",
     "build": "webpack --mode=production",
     "serve:dev": "yarn serve www -l 8000"
