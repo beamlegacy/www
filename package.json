@@ -2,7 +2,7 @@
   "name": "beam-www",
   "private": true,
   "description": "Beta signup page for Beam app (2022 - Q1).",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "contributors": [
     {
       "name": "Matthew Govaere",
