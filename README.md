@@ -13,8 +13,9 @@
 - run `cp .env.example .env`
 - run `yarn start`
 
-You will now have a dev server running with hot reloading enabled for js by default (see CSS Hot Reload remark)
-the url to access it will be displayed in the console.
+You will now have a dev server running with hot reloading, always enabled for js, and for styles, based on you preferred env setting
+
+The url to access the dev server will be displayed in the console.
 
 ## Pages
 
