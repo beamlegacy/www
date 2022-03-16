@@ -1,0 +1,53 @@
+kbd {
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.03) 1.92%, rgba(0, 0, 0, 0) 78.85%), var(--color-kbd-background);
+  border: 0.5px solid rgba(0, 0, 0, 0.15);
+  border-radius: 5px;
+  box-shadow: 0 0.5px 1px rgba(0, 0, 0, 0.15), inset 0px -1px 0.5px rgba(0, 0, 0, 0.08), inset 0px 1px 0.5px var(--color-kbd-inset);
+  color: var(--color-kbd-color);
+  display: inline-block;
+  line-height: 1;
+  padding: 0.2em 0.35em 0.1em;
+  transition: transform 0.15s cubic-bezier(0.42, 0, 0.32, 1.72);
+  will-change: transform;
+
+  &[data-key=meta] {
+    font-weight: bold;
+  }
+
+  &.letter {
+    color: transparent;
+    position: relative;
+
+    &::after {
+      align-items: center;
+      color: var(--color-kbd-color);
+      content: attr(data-key);
+      display: flex;
+      font-family: "Inter", -apple-system, sans-serif;
+      font-variant: all-small-caps;
+      font-weight: 600;
+      inset: 0 0 0.2em 0;
+      justify-content: center;
+      position: absolute;
+    }
+  }
+
+  &.pressed {
+    transform: scale(0.95);
+  }
+}
+
+*:not(h1, h2, h3) > kbd {
+  font-size: 18px;
+  font-weight: bold;
+  vertical-align: middle;
+}
+
+[data-key=enter] {
+  display: inline-block;
+  transition: transform 0.2s cubic-bezier(0.42, 0, 0.32, 1.72);
+
+  &.pressed {
+    transform: translateY(0.5em);
+  }
+}

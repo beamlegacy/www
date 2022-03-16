@@ -1,0 +1,17 @@
+@use "mixins";
+
+.welcome {
+  .intro {
+    br {
+      display: none;
+    }
+  }
+
+  @include mixins.above-small {
+    .intro {
+      br {
+        display: initial;
+      }
+    }
+  }
+}

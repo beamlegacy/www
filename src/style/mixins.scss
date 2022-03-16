@@ -1,0 +1,55 @@
+/**
+ * Make an element visually hidden while keeping it available for screen readers or keyboard events
+ */
+@mixin visually-hidden() {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+@keyframes glow {
+  from {
+    background-color: transparent;
+  }
+
+  to {
+    background-color: var(--color-empty);
+  }
+}
+
+@mixin loading-animation() {
+  animation: glow 1s infinite alternate;
+
+  > *:not(iframe) {
+    display: none !important;
+  }
+
+  &::before,
+  &::after {
+    display: none !important;
+  }
+}
+
+@mixin above-small() {
+  @media (min-width: 500px) {
+    @content;
+  }
+}
+
+@mixin above-medium() {
+  @media (min-width: 769px) {
+    @content;
+  }
+}
+
+@mixin height-below-default() {
+  @media (max-height: 650px) {
+    @content;
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "extends": "stylelint-config-sass-guidelines",
+
+  "rules": {
+    "max-nesting-depth": "false",
+    "string-quotes": ["double", { "avoidEscape" : "false" }],
+    "scss/at-extend-no-missing-placeholder": "false",
+    "selector-max-compound-selectors": "5",
+    "length-zero-no-unit": ["true", { "ignore": ["custom-properties"] }],
+    "declaration-block-semicolon-space-before": "always-single-line",
+    "order/order": ["custom-properties", "declarations"],
+    "selector-no-qualifying-type": ["true", { "ignore": ["attribute", "class", "id"]}],
+    "function-parentheses-space-inside": "never-single-line"
+  }
+}

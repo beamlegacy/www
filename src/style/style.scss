@@ -1,0 +1,22 @@
+@use "reset";
+@use "colors";
+@use "keyframes";
+@use "mixins";
+@use "responsive";
+@use "layout";
+@use "text";
+@use "link";
+@use "a11y";
+@use "media";
+@use "animations";
+@use "keyboard";
+@use "footer";
+@use "pages";
+
+
+p {
+  > svg {
+    display: inline-block;
+    vertical-align: middle;
+  }
+}

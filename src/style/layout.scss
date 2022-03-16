@@ -1,0 +1,114 @@
+@use "mixins";
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+html {
+  padding-left: calc(100vw - 100%); // https://css-tricks.com/elegant-fix-jumping-scrollbar-issue/
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-text);
+
+  &::before {
+    background-image:
+      radial-gradient(circle at 0% 60%, var(--color-background-gradient1-start), var(--color-background-gradient1-end) 30%),
+      radial-gradient(circle at 20% 100%, var(--color-background-gradient2-start) 10%, var(--color-background-gradient2-end) 50%),
+      radial-gradient(circle at 70% 100%, var(--color-background-gradient3-start), var(--color-background-gradient3-end) 45%),
+      radial-gradient(circle at 100% 60%, var(--color-background-gradient4-start), var(--color-background-gradient4-end) 35%)
+  ;
+    content: "";
+    inset: 0;
+    opacity: 0.2;
+    position: fixed;
+  }
+}
+
+.beam-site {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100%;
+  padding: 2em;
+
+  main {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: center;
+    margin: auto;
+    max-width: 1300px;
+    padding: 40px 0 50px;
+    text-align: center;
+    transition: padding 0.2s ease-in-out;
+    width: 100%;
+
+    &.col-2 {
+      flex-direction: column;
+      justify-content: space-evenly;
+
+      > * {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+      }
+
+      > *:last-child {
+        text-align: initial;
+
+        > p {
+          width: 100%;
+        }
+      }
+    }
+
+    .intro {
+      max-width: initial;
+      text-align: center;
+    }
+
+    .sample {
+      margin-top: 2.5em;
+      transition: margin-top 0.2s ease-in-out;
+
+      @include mixins.height-below-default {
+        margin-top: 1em;
+      }
+    }
+
+    @include mixins.height-below-default {
+      padding: 0 0 20px;
+    }
+
+    @include mixins.above-medium {
+      max-height: 800px;
+
+      &.col-2 {
+        flex-direction: row;
+
+        > * {
+          width: 45vw;
+
+          &:first-child {
+            margin-right: 3vw;
+          }
+
+          &:last-child {
+            align-items: flex-start;
+
+            > p {
+              max-width: 29em;
+              width: 95%;
+            }
+          }
+        }
+      }
+    }
+  }
+}

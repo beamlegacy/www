@@ -1,0 +1,117 @@
+@use "palette";
+
+
+@mixin light-mode {
+  --color-background: #{ rgba(palette.$light-mercury, 0.8) };
+  --color-text: #{ palette.$light-niobium };
+  --color-text-secondary: #{ palette.$light-corduroy };
+
+  --color-link: #{ palette.$light-beam };
+
+  --color-kbd-background: #{ palette.$white };
+  --color-kbd-inset: #{ palette.$white };
+  --color-kbd-color: #{ palette.$light-corduroy };
+
+  --color-img-background: #{ palette.$white };
+  --color-img-shadow: rgba(0, 0, 0, 0.07);
+
+  --color-empty: #{ palette.$light-mercury };
+
+  $gradient-opacity: 1;
+  --color-background-gradient1-start: #{ rgba(palette.$dark-charmed-green, $gradient-opacity * 0.75) };
+  --color-background-gradient1-end: #{ rgba(palette.$dark-charmed-green, 0) };
+  --color-background-gradient2-start: #{ rgb(palette.$dark-beam, $gradient-opacity) };
+  --color-background-gradient2-end: #{ rgba(palette.$dark-beam, 0) };
+  --color-background-gradient3-start: #{ rgba(palette.$dark-sanskrit, $gradient-opacity * 0.3) };
+  --color-background-gradient3-end: #{ rgba(palette.$dark-sanskrit, 0) };
+  --color-background-gradient4-start: #{ rgba(palette.$dark-shiraz, $gradient-opacity * 0.75) };
+  --color-background-gradient4-end: #{ rgba(palette.$dark-shiraz, 0) };
+
+  --color-text-snippet-background-hover: #{ rgba(palette.$white, 0.25)};
+  --color-text-snippet-border: #{ rgba(palette.$light-alpha-gray, 0.48) };
+  --color-text-snippet-border-hover: #{ rgba(palette.$light-alpha-gray, 1) };
+  --color-text-snippet-color: #{ palette.$light-corduroy };
+  --color-text-snippet-color-hover: #{ rgba(palette.$light-niobium, 0.8) };
+
+  --color-text-selection-background: #{ rgba(#3700ff, 0.14) };
+  --color-text-selection-color: #{ palette.$light-niobium };
+  --color-text-caret-color: #{ rgba(#3700ff, 0.7) };
+}
+
+@mixin dark-mode {
+  --color-background: #{ palette.$dark-mercury };
+  --color-text: #{ palette.$dark-niobium };
+  --color-text-secondary: #{ palette.$dark-corduroy };
+
+  --color-link: #{ palette.$dark-beam };
+
+  --color-kbd-background: #{ rgba(palette.$white, 0.5) };
+  --color-kbd-inset: #{ rgba(palette.$white, 0.4) };
+  --color-kbd-color: #{ rgba(palette.$dark-mercury, 0.85) };
+
+  --color-img-background: #{ palette.$dark-niobium };
+  --color-img-shadow: rgba(0, 0, 0, 0.45);
+
+  --color-empty: #{ rgba(palette.$dark-corduroy, 0.25) };
+
+  $gradient-opacity: 0.5;
+  --color-background-gradient1-start: #{ rgba(palette.$dark-charmed-green, $gradient-opacity * 0.75) };
+  --color-background-gradient1-end: #{ rgba(palette.$dark-charmed-green, 0) };
+  --color-background-gradient2-start: #{ rgb(palette.$dark-beam, $gradient-opacity) };
+  --color-background-gradient2-end: #{ rgba(palette.$dark-beam, 0) };
+  --color-background-gradient3-start: #{ rgba(palette.$dark-sanskrit, $gradient-opacity * 0.25) };
+  --color-background-gradient3-end: #{ rgba(palette.$dark-sanskrit, 0) };
+  --color-background-gradient4-start: #{ rgba(palette.$dark-shiraz, $gradient-opacity * 0.75) };
+  --color-background-gradient4-end: #{ rgba(palette.$dark-shiraz, 0) };
+
+  --color-text-snippet-background-hover: #{ rgba(palette.$white, 0.05)};
+  --color-text-snippet-border: #{ rgba(palette.$dark-alpha-gray, 0.48) };
+  --color-text-snippet-border-hover: #{ rgba(palette.$dark-alpha-gray, 1) };
+  --color-text-snippet-color: #{ palette.$dark-corduroy };
+  --color-text-snippet-color-hover: #{ rgba(palette.$dark-niobium, 0.8) };
+
+  --color-text-selection-background: #{ rgba(#7373ff, 0.32) };
+  --color-text-selection-color: #{ palette.$dark-niobium };
+  --color-text-caret-color: #{ rgba(#7373ff, 0.9) };
+}
+
+html,
+body {
+  @include light-mode();
+}
+
+@media (prefers-color-scheme: light) {
+  html,
+  body {
+    .dark-only {
+      display: none !important;
+    }
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  html,
+  body {
+    @include dark-mode();
+
+    .light-only {
+      display: none !important;
+    }
+  }
+}
+
+body.dark {
+  @include dark-mode();
+
+  .light-only {
+    display: none !important;
+  }
+}
+
+body.light {
+  @include light-mode();
+
+  .dark-only {
+    display: none !important;
+  }
+}
