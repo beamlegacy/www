@@ -16,4 +16,7 @@ node_modules
 /.env.beam
 /.env.mat
 
+# Pages
+pages.js
+
 .DS_Store
