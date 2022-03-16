@@ -39,7 +39,6 @@ function createHtmlPlugins(pages, mode) {
       ...rest,
       title: `${title}${mode !== "production" ? ` [${mode}]` : ""}`,
       template: `src/${srcPath}`,
-      filename: srcPath,
       minify: minifyOptions,
       js: ["[chunkhash].js"],
       chunks: template.chunks ?? ["index"]
