@@ -13,7 +13,7 @@
 - run `cp .env.example .env`
 - run `yarn start`
 
-You will now have a dev server running with hot reloading, always enabled for js, and for styles, based on you preferred env setting
+You will now have a dev server running with hot reloading, always enabled for js, and for styles, based on your preferred env setting
 
 The url to access the dev server will be displayed in the console.
 
