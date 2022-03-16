@@ -1,9 +1,4 @@
-# Welcome Tour
-
-Web welcome tour for the beam Mac App.  
-This project consist of a set of separate html files, sharing minimal style and js to provide
-a quick welcome tour
-
+# Beam website
 
 | Env       | Url                                  | Status                                                                                                                                                                |
 |-----------|--------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
