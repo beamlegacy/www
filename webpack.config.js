@@ -38,8 +38,6 @@ function createHtmlPlugins(pages, mode) {
     return new HtmlWebpackPlugin({
       ...rest,
       title: `${title}${mode !== "production" ? ` [${mode}]` : ""}`,
-      prev: normalize(`${!isRootIndex ? "../" : ""}${prev.srcPath}`),
-      next: normalize(`${!isRootIndex ? "../" : ""}${next.srcPath}`),
       template: `src/${srcPath}`,
       filename: srcPath,
       minify: minifyOptions,

@@ -1,7 +1,10 @@
-interface Page {
+type Page = {
   messages: {
-    title: string,
-    description: string
+    metas: {
+      title: string,
+      description: string
+    },
+    title: string
   }
   srcPath: string
 }
@@ -9,8 +12,11 @@ interface Page {
 const pages: Page[] = [
   {
     messages: {
-      title: "Welcome to beam",
-      description: "",
+      metas: {
+        title: "Welcome to beam",
+        description: "",
+      },
+      title: "Welcome to beam"
     },
     srcPath: "index.html",
   }
