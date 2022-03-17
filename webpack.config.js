@@ -11,7 +11,9 @@ const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPl
 
 const packageJson = require("./package.json")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const {pages} = require("./pages");
+const pages = require("./pages.js")
+
+console.log(pages)
 const version = packageJson.version
 
 // Initialize dotenv support, the earlier the better
@@ -29,17 +31,24 @@ const minifyOptions = {
 
 function createHtmlPlugins(pages, mode) {
   return pages.map((template, i) => {
-    const {title, srcPath, ...rest} = template
-    const numTemplates = pages.length
-    const isRootIndex = srcPath === "index.html"
-    const prev = pages[i === 0 ? numTemplates - 1 : (i - 1)]
-    const next = pages[i === numTemplates - 1 ? 0 : (i + 1)]
+    const {title, srcPath, messages, filename, ...rest} = template
     const normalize = (url) => url && url.replace(/\/index\.html$/, "")
-    return new HtmlWebpackPlugin({
-      ...rest,
+    console.log({
+      rest,
+      filename,
       title: `${title}${mode !== "production" ? ` [${mode}]` : ""}`,
       template: `src/${srcPath}`,
       minify: minifyOptions,
+      js: ["[chunkhash].js"],
+      chunks: template.chunks ?? ["index"]
+    })
+    return new HtmlWebpackPlugin({
+      ...rest,
+      messages,
+      title: `${title}${mode !== "production" ? ` [${mode}]` : ""}`,
+      template: `src/${srcPath}`,
+      minify: minifyOptions,
+      filename,
       js: ["[chunkhash].js"],
       chunks: template.chunks ?? ["index"]
     })

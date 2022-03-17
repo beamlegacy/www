@@ -1,6 +1,10 @@
 import "./index.scss"
 import {Cookie} from "util/cookie/Cookie"
-import {LocalizedPage, pages} from "../pages"
+const pages = require("../pages.js")
+
+interface LocalizedPage {
+  url: string
+}
 
 class App {
   supportedLang = ["en", "fr"]
@@ -43,8 +47,10 @@ class App {
     )
   }
 
-  private getCurrentPage(): LocalizedPage<any> | undefined {
+  private getCurrentPage(): LocalizedPage | undefined {
     // Try to find page with current url and lang
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     let page = pages.find(p => {
       const pSlug = this.removeUrlPrefix(p.url)
       const url = location.pathname.replace(/\/$/, "")
@@ -54,8 +60,12 @@ class App {
 
     if (!page) {
       // Try to get the page using url only and then finding its lang equivalent
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       const currentPage = pages.find(p => p.url === location.pathname.replace(/\/$/, ""))
       if (currentPage) {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
         page = pages.find(p => p.lang === this.lang && p.page === currentPage.page)
       }
     }
