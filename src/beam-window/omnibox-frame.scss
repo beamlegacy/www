@@ -15,28 +15,36 @@
     .omnibox {
       background-color: var(--color-beam-window-omnibox-background);
       border: 0.5px solid var(--color-beam-window-omnibox-border);
-      border-radius: 10px;
+      border-radius: 0.625em;
       box-shadow: 0 10px 30px var(--color-beam-window-omnibox-shadow);
-      margin-top: 1.75em;
-      max-width: 300px;
-      padding: 0.25em;
+      margin: 1.75em;
+      max-width: 42.5em;
+      padding: 0.36363636em;
       position: relative;
       transform: scale(0.8) translateY(1em);
       transition: transform var(--omnibox-transition-duration) ease-in-out;
-      width: 100%;
+      width: calc(100% - 1.75em * 2);
 
       .row {
         display: flex;
         flex-direction: row;
-        font-size: 10px;
+        font-size: 0.875em;
+        gap: 0.85714286em;
+        padding: 0.71428571em 0.85714286em;
 
         .icon {
           align-items: center;
           color: var(--color-beam-window-omnibox-icon);
           display: flex;
-          height: 2.8em;
           justify-content: center;
-          width: 2.6em;
+          min-width: var(--size);
+
+          img,
+          svg {
+            --size: 1.14285714em;
+            height: var(--size);
+            width: var(--size);
+          }
         }
 
         .content {
@@ -45,6 +53,7 @@
           flex-direction: row;
           flex-grow: 1;
           justify-content: flex-start;
+          text-align: left;
         }
 
         &.result {
@@ -52,12 +61,11 @@
           appearance: none;
           background-color: transparent;
           border: 0;
-          border-radius: 3px;
+          border-radius: 0.42857143em;
           color: inherit;
           display: flex;
           flex-direction: row;
           flex-grow: 1;
-          padding: 0;
           width: 100%;
 
           &:hover,
@@ -68,7 +76,7 @@
         }
 
         &:not(.result) + .result:first-of-type {
-          margin-top: 7px;
+          margin-top: 0.75em;
 
           &::before {
             background-color: var(--color-beam-window-omnibox-border);
@@ -78,7 +86,7 @@
             opacity: 0.5;
             position: absolute;
             right: 0;
-            top: 34px;
+            top: 3.65em;
           }
         }
       }
@@ -88,7 +96,7 @@
         background-color: transparent;
         border: 0;
         color: inherit;
-        font-size: 12px;
+        font-size: 1.21428571em;
         width: 100%;
 
         &:focus {

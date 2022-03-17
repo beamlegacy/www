@@ -13,6 +13,7 @@
       color: currentColor;
       display: flex;
       flex-direction: row;
+      font-size: 1em;
       justify-content: center;
       margin: 0;
       padding: 0.125em;
@@ -35,6 +36,8 @@
       svg {
         --size: 1.5em;
         height: var(--size);
+        min-width: var(--size);
+        max-width: var(--size);
         width: var(--size);
       }
     }
