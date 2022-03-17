@@ -6,20 +6,20 @@
 
     .journal {
       .view {
-        font-size: 10px;
+        font-size: 0.875em;
         list-style-type: none;
         margin: 45px auto 0;
-        max-width: 310px;
+        max-width: 28.18181818em;
         padding: 0 20px 0 25px;
         text-align: left;
 
         h1 {
-          font-size: 14px;
-          margin: 1.5em 0 0.5em;
+          font-size: 1.27272727em;
+          margin: 2.18181818em 0 0.72727273em;
         }
 
         > li {
-          margin: 0 0 3em;
+          margin: 0 0 4.36363636em;
         }
 
         ul {
@@ -35,11 +35,11 @@
               border-radius: 50%;
               content: "";
               display: inline-block;
-              height: 0.35em;
-              left: -1em;
+              height: 0.3125em;
+              left: -1.25454545em;
               position: absolute;
               top: 0.65em;
-              width: 0.35em;
+              width: 0.3125em;
             }
           }
         }
@@ -62,24 +62,24 @@
         display: flex;
         flex-direction: column;
         margin: 0 auto;
-        max-width: 300px;
+        max-width: 27.27272727em;
         min-height: 100%;
-        padding: 0 1em;
+        padding: 0 1.45454545em;
         width: 100%;
 
         .header {
           border-bottom: 1px solid var(--color-beam-window-placeholder-background);
           flex-grow: 0;
-          margin-top: 2em;
-          padding-bottom: 0.5em;
+          margin-top: 2.90909091em;
+          padding-bottom: 0.72727273em;
           text-align: left;
 
           .placeholder {
             display: inline-block;
-            height: 0.75em;
+            height: 1.09090909em;
 
             &.small {
-              width: 3.5em;
+              width: 5.09090909em;
             }
           }
         }
@@ -92,12 +92,12 @@
           .row {
             display: flex;
             flex-direction: row;
-            height: 1.25em;
+            height: 1.81818182em;
 
             > * {
               flex-grow: 0;
               text-align: right;
-              width: 3em;
+              width: 4.36363636em;
 
               &:first-child {
                 flex-grow: 1;
@@ -108,7 +108,7 @@
 
           .placeholder {
             display: inline-block;
-            height: 0.5em;
+            height: 0.72727273em;
 
             &.large {
               width: 60%;
@@ -130,7 +130,7 @@
       .note-content {
         li {
           &.media {
-            margin-top: 0.25em;
+            margin-top: 0.36363636em;
 
             &::before {
               display: none;
@@ -139,14 +139,14 @@
         }
 
         .placeholder {
-          --height: 1em;
+          --height: 1.45454545em;
           display: inline-block;
           height: var(--height);
           transition: background-color 0.2s ease-in-out;
 
           &.img {
             &.large {
-              --height: 100px;
+              --height: 9.09090909em;
             }
           }
 
