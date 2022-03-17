@@ -46,7 +46,10 @@ class HomeMessages_en {
 
   tabs = {
     journal: "Journal",
-    allNotes: "All notes"
+    allNotes: "All notes",
+    bmail: "Welcome to beam! - bmail",
+    beamTimes: "The beam Times - Breaking News",
+    youtube: "You On Kazoo! - YouTube"
   }
 
   journal = {
@@ -76,7 +79,10 @@ class HomeMessages_fr {
 
   tabs = {
     journal: "Journal",
-    allNotes: "Toutes les notes"
+    allNotes: "Toutes les notes",
+    bmail: "Bienvenue sur beam ! - bmail",
+    beamTimes: "The beam Times - Actualités",
+    youtube: "You On Kazoo! - YouTube"
   }
 
   journal = {
