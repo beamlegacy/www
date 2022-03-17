@@ -1,9 +1,9 @@
 @mixin html-doc {
   .html-doc {
-    padding: 1em;
+    padding: 1.45454545em;
 
     .circle {
-      --size: 2em;
+      --size: 2.90909091em;
 
       background-color: var(--color-beam-window-placeholder-background);
       border-radius: 50%;
@@ -14,7 +14,7 @@
 
     .img,
     p {
-      margin: 0 0 0.43em;
+      margin: 0 0 0.62545455em;
     }
 
     p {
@@ -29,16 +29,16 @@
 
     .img {
       &.large {
-        height: 133px;
+        height: 13.55em;
       }
 
       &.medium {
-        height: 133px;
+        height: 12.09090909em;
         width: 60%;
       }
 
       &.small {
-        height: 56px;
+        height: 5.09090909em;
       }
     }
 
@@ -49,24 +49,29 @@
 
 
       .header {
-        margin: 0 0 0.75em;
+        margin: 0.5em 0 1.09090909em;
+
+        svg {
+          height: 2em;
+          width: 15.54545455em;
+        }
       }
 
       .menu {
         display: flex;
         gap: 16px;
-        margin-bottom: 1em;
+        margin-bottom: 1.45454545em;
 
         .placeholder {
           flex-grow: 1;
-          height: 1em;
+          height: 1.45454545em;
         }
       }
 
       .main {
         display: flex;
         flex-direction: row;
-        gap: 16px;
+        gap: 1.45454545em;
 
         > * {
           display: flex;
@@ -89,13 +94,18 @@
 
     &.bmail {
       .header {
-        padding-bottom: 0.75em;
+        padding-bottom: 1.09090909em;
         text-align: left;
+
+        svg {
+          height: 1.81818182em;
+          width: 5.36363636em;
+        }
       }
 
       .main {
         display: flex;
-        gap: 0.5em;
+        gap: 0.72727273em;
         width: 100%;
 
         > * {
@@ -111,14 +121,14 @@
 
           &:first-child {
             max-width: 20%;
-            min-width: 5em;
+            min-width: 7.27272727em;
           }
 
           &:nth-child(2) {
             display: flex;
             flex-direction: row;
-            gap: 0.5em;
-            margin-right: 1em;
+            gap: 0.72727273em;
+            margin-right: 1.45454545em;
 
             > div {
               display: flex;
@@ -127,94 +137,10 @@
 
               &:first-child {
                 align-items: flex-end;
-                max-width: 3em;
+                max-width: 4.36363636em;
               }
             }
           }
-        }
-      }
-    }
-
-    &.pitch {
-      display: flex;
-      flex-direction: column;
-      flex-grow: 1;
-
-      .header {
-        display: flex;
-        flex-direction: row;
-
-        > * {
-          display: flex;
-
-          &:first-child {
-            flex-grow: 1;
-          }
-
-          &:nth-child(2) {
-            align-items: center;
-            display: flex;
-            flex-basis: 25%;
-            flex-direction: row;
-            gap: 0.5em;
-
-            .placeholder {
-              height: 1em;
-              margin-top: 0.5em;
-            }
-          }
-        }
-      }
-
-      .main {
-        display: flex;
-        flex-direction: row;
-        flex-grow: 1;
-        gap: 0.5em;
-        margin: 1em auto 0;
-        max-width: 22em;
-        width: 100%;
-
-        > * {
-          align-items: center;
-          display: flex;
-          flex-direction: column;
-          max-width: 20%;
-          min-width: 4em;
-
-          .circle {
-            height: 3em;
-            width: 3em;
-          }
-
-          .img {
-            margin-top: 1em;
-          }
-
-          &:nth-child(1) {
-            .circle {
-              margin-top: 1em;
-            }
-          }
-
-          &:nth-child(2) {
-            flex-grow: 1;
-            max-width: initial;
-
-            > div {
-              width: 100%;
-            }
-          }
-
-          &:nth-child(3) {
-            .circle {
-              margin-top: 2em;
-            }
-          }
-        }
-
-        p.placeholder {
-          height: 1em;
         }
       }
     }
@@ -225,11 +151,16 @@
         display: flex;
         flex-direction: row;
         justify-content: flex-start;
-        padding-bottom: 0.5em;
+        padding-bottom: 0.72727273em;
+
+        svg {
+          height: 2.54545455em;
+          width: 2.54545455em;
+        }
 
         .circle {
-          --size: 1.35em;
-          margin-left: 0.4em;
+          --size: 2.1em;
+          margin-left: 0.58181818em;
         }
 
         > div {
@@ -244,14 +175,14 @@
         display: flex;
         flex-direction: row;
         flex-wrap: nowrap;
-        gap: 1em;
+        gap: 1.45454545em;
 
         > div {
           &:first-of-type {
             flex-grow: 1;
 
             .img.large {
-              height: 150px;
+              height: 17em;
             }
 
             p.medium {
@@ -266,16 +197,16 @@
           }
 
           &:last-of-type {
-            min-width: 6em;
-            width: 26%;
+            min-width: 8.72727273em;
+            width: 28%;
 
             .img.small {
               height: auto;
-              padding-top: 56%;
+              padding-top: 50%;
             }
 
-            > div {
-              margin-bottom: 0.75em;
+            > div:not(:last-of-type) {
+              margin-bottom: 1.09090909em;
             }
           }
 
@@ -285,7 +216,7 @@
             flex-direction: column;
             justify-content: flex-start;
             .placeholder.img {
-              margin-bottom: 0.5em;
+              margin-bottom: 0.72727273em;
             }
           }
         }
