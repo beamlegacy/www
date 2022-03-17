@@ -1,5 +1,21 @@
-class Page<M> {
+export class Page<M> {
   constructor(public messages: Record<string, M>, public srcPath: string) {
+  }
+}
+
+export class LocalizedPage<M> {
+  constructor(public page: Page<M>, public lang: string) {
+  }
+
+  get messages(): M {
+    return this.page.messages[this.lang]
+  }
+
+  get url(): string {
+    const path = this.page.srcPath
+      .replace(/^index\.html$/, "")
+      .replace(/\/index\.html$/, "")
+    return `/${this.lang}/${path}`.replace(/\/$/, "")
   }
 }
 
@@ -44,12 +60,11 @@ class HomePage extends Page<HomeMessages> {
 const pages: Page<any>[] = [
   new HomePage()
 ]
-const exported: Record<string, any>[] = []
-pages.forEach(page => {
-  const {messages, srcPath, ...rest} = page
-  exported.push({messages: messages.en, srcPath, ...rest})
-  exported.push({messages: messages.fr || messages.en, srcPath, ...rest, filename: `fr/${srcPath}`})
-})
-console.log(exported)
 
-module.exports = {pages: exported}
+const exported: LocalizedPage<any>[] = []
+pages.forEach(page => {
+  exported.push(new LocalizedPage(page, "en"))
+  exported.push(new LocalizedPage(page, "fr"))
+})
+
+export {exported as pages}
