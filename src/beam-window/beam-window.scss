@@ -13,8 +13,8 @@
 @use "content";
 
 beam-window {
-  height: 340px;
-  max-width: 528px;
+  height: 33.125em;
+  max-width: 58.75em;
   opacity: var(--opacity, 1);
   transform-style: preserve-3d;
   transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
@@ -23,7 +23,7 @@ beam-window {
 
 .beam-window {
   background-color: var(--color-beam-window-background);
-  border-radius: 6px;
+  border-radius: 0.625em;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3), 0 0 0 1px var(--color-beam-window-outer-border);
   display: flex;
   flex-direction: column;
