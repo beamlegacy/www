@@ -1,0 +1,33 @@
+@mixin header {
+  header {
+    align-items: center;
+    background-color: var(--color-beam-window-header-background);
+    box-shadow: inset 0px -0.5px 0px var(--color-beam-window-header-border);
+    display: flex;
+    flex-grow: 0;
+    gap: 10px;
+    padding: 9px 10px 9px 12px;
+    transition: background-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    -webkit-user-select: none; // stylelint-disable-line
+    user-select: none;
+
+    .traffic-lights,
+    .tabs,
+    .controls {
+      align-items: center;
+      display: inline-flex;
+    }
+
+    *:focus {
+      outline: none;
+    }
+
+  }
+
+  &.writing {
+    header {
+      background-color: var(--color-beam-window-background);
+      box-shadow: inset 0px -0.5px 0px transparent;
+    }
+  }
+}

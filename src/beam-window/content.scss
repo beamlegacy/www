@@ -1,0 +1,18 @@
+@mixin content {
+  .content {
+    flex-grow: 1;
+    position: relative;
+
+    > * {
+      transition: opacity 0.3s ease-in-out, transform 0.15s ease-in-out;
+    }
+  }
+
+  .placeholder {
+    background-color: var(--color-beam-window-placeholder-background);
+    border-radius: 2.5px;
+    display: inline-block;
+    height: 0.5em;
+    width: 100%;
+  }
+}

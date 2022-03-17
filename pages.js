@@ -43,6 +43,27 @@ class HomeMessages_en {
   }
 
   title = "Welcome to beam"
+
+  tabs = {
+    journal: "Journal",
+    allNotes: "All notes"
+  }
+
+  journal = {
+    today: {
+      title: "Today",
+      line1: "Markdown support",
+      line2: "Backlinks",
+      line3: "Encrypted end-to-end",
+      line4: "Organized around your Journal",
+    },
+    yesterday: {
+      title: "Yesterday",
+      line1: "⌘K to search the web & your notes",
+      line2: "⌘D to toggle between the web & your notes",
+      line3: "Hold ⌥ & click to capture everything on the web"
+    }
+  }
 }
 
 class HomeMessages_fr {
@@ -52,6 +73,27 @@ class HomeMessages_fr {
   }
 
   title = "Bienvenue sur beam"
+
+  tabs = {
+    journal: "Journal",
+    allNotes: "Toutes les notes"
+  }
+
+  journal = {
+    today: {
+      title: "Aujourd'hui",
+      line1: "Support du markdown",
+      line2: "Liens bidirectionnels",
+      line3: "Chiffré de bout en bout",
+      line4: "Organisé autour de votre journal",
+    },
+    yesterday: {
+      title: "Hier",
+      line1: "⌘K pour chercher sur le web et dans vos notes",
+      line2: "⌘D pour basculer entre le web et vos notes",
+      line3: "Appuyez sur ⌥ & cliquez pour capturer du contenu web"
+    }
+  }
 }
 
 class HomePage extends Page {

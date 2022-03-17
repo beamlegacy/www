@@ -1,0 +1,86 @@
+@use "/src/style/reset";
+@use "colors";
+@use "animations";
+@use "text";
+@use "header";
+@use "traffic-lights";
+@use "tabs";
+@use "controls";
+@use "capture-frame";
+@use "omnibox-frame";
+@use "web/html-doc";
+@use "writing/writing";
+@use "content";
+
+beam-window {
+  height: 340px;
+  max-width: 528px;
+  opacity: var(--opacity, 1);
+  transform-style: preserve-3d;
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  width: 100%;
+}
+
+.beam-window {
+  background-color: var(--color-beam-window-background);
+  border-radius: 6px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3), 0 0 0 1px var(--color-beam-window-outer-border);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+
+  &::after {
+    background-image: linear-gradient(to bottom, var(--color-beam-window-top-gradient-start), var(--color-beam-window-top-gradient-end) 6px);
+    border-radius: inherit;
+    box-shadow: inset 0 0 0 1px var(--color-beam-window-border), inset 0 0 0 1px var(--color-beam-window-background);
+    content: "";
+    inset: 0;
+    pointer-events: none;
+    position: absolute;
+  }
+
+  @include header.header;
+  @include traffic-lights.traffic-lights;
+  @include tabs.tabs;
+  @include controls.controls;
+  @include content.content;
+  @include writing.writing;
+  @include html-doc.html-doc;
+  @include capture-frame.capture-frame;
+  @include omnibox-frame.omnibox-frame;
+
+  button {
+    > * {
+      pointer-events: none;
+    }
+  }
+
+  &.web {
+    .writing {
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(0.25em) scale(0.95);
+    }
+  }
+
+  &.writing {
+    .writing {
+      opacity: 1;
+    }
+
+    .html-doc {
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(0.5em) scale(0.95);
+    }
+  }
+
+  // hide any non current page
+  > .content > *:not(.current, .writing, .capture-frame, .omnibox-frame),
+  > .content > .writing > *:not(.current) {
+    display: none;
+  }
+}

@@ -1,0 +1,33 @@
+@mixin controls {
+  .controls {
+    color: var(--color-beam-window-controls-color);
+
+    button {
+      align-items: center;
+      background-color: transparent;
+      border: 0;
+      border-radius: 4px;
+      color: currentColor;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      margin: 0;
+      padding: 2px;
+
+      &:hover {
+        color: var(--color-beam-window-controls-color-hover);
+      }
+
+      &:focus {
+        &:not(.clicked) {
+          color: var(--color-beam-window-controls-color-hover);
+        }
+      }
+
+      &:active {
+        background-color: var(--color-beam-window-controls-background-active);
+        color: var(--color-beam-window-controls-color-active);
+      }
+    }
+  }
+}

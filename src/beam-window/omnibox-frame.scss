@@ -1,0 +1,115 @@
+@mixin omnibox-frame {
+  .omnibox-frame {
+    --omnibox-transition-duration: 0.1s;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    inset: 0;
+    justify-content: flex-start;
+    opacity: 0;
+    padding: 1em;
+    pointer-events: none;
+    position: absolute;
+    transition: opacity var(--omnibox-transition-duration) ease-in-out;
+
+    .omnibox {
+      background-color: var(--color-beam-window-omnibox-background);
+      border: 0.5px solid var(--color-beam-window-omnibox-border);
+      border-radius: 10px;
+      box-shadow: 0 10px 30px var(--color-beam-window-omnibox-shadow);
+      margin-top: 1.75em;
+      max-width: 300px;
+      padding: 0.25em;
+      position: relative;
+      transform: scale(0.8) translateY(1em);
+      transition: transform var(--omnibox-transition-duration) ease-in-out;
+      width: 100%;
+
+      .row {
+        display: flex;
+        flex-direction: row;
+        font-size: 10px;
+
+        .icon {
+          align-items: center;
+          color: var(--color-beam-window-omnibox-icon);
+          display: flex;
+          height: 2.8em;
+          justify-content: center;
+          width: 2.6em;
+        }
+
+        .content {
+          align-items: center;
+          display: flex;
+          flex-direction: row;
+          flex-grow: 1;
+          justify-content: flex-start;
+        }
+
+        &.result {
+          align-items: center;
+          appearance: none;
+          background-color: transparent;
+          border: 0;
+          border-radius: 3px;
+          color: inherit;
+          display: flex;
+          flex-direction: row;
+          flex-grow: 1;
+          padding: 0;
+          width: 100%;
+
+          &:hover,
+          &:focus {
+            background-color: var(--color-beam-window-omnibox-selected);
+            outline: none;
+          }
+        }
+
+        &:not(.result) + .result:first-of-type {
+          margin-top: 7px;
+
+          &::before {
+            background-color: var(--color-beam-window-omnibox-border);
+            content: "";
+            height: 0.5px;
+            left: 0;
+            opacity: 0.5;
+            position: absolute;
+            right: 0;
+            top: 34px;
+          }
+        }
+      }
+
+      input {
+        appearance: none;
+        background-color: transparent;
+        border: 0;
+        color: inherit;
+        font-size: 12px;
+        width: 100%;
+
+        &:focus {
+          outline: 0;
+        }
+
+        &::placeholder {
+          color: var(--color-beam-window-omnibox-placeholder);
+        }
+      }
+    }
+  }
+
+  &:not(.capturing).open-omnibox {
+    .omnibox-frame {
+      opacity: 1;
+      pointer-events: all;
+
+      .omnibox {
+        transform: none;
+      }
+    }
+  }
+}
