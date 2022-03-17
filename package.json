@@ -19,8 +19,9 @@
     "test": "jest --passWithNoTests",
     "test-watch": "jest --watchAll --passWithNoTests",
     "test-ci": "jest --ci --reporters=default --reporters=jest-junit --coverage --passWithNoTests",
-    "release-patch": "yarn version --patch && git push --follow-tags",
-    "release-feature": "yarn version --minor && git push --follow-tags"
+    "release:patch": "yarn version --patch && git push --follow-tags",
+    "release:feature": "yarn version --minor && git push --follow-tags",
+    "release:major": "yarn version --major && git push --follow-tags"
   },
   "pre-commit": [
     "lint",
