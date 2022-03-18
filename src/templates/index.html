@@ -27,7 +27,7 @@
   </head>
 
   <body>
-    
+
     <div class="beam">
       <div class="table">
         <div class="table-row row-header">
@@ -169,7 +169,7 @@
                         </div>
 
                         <div class="table-cell middle cell-caret">
-                          
+
                         </div>
                       </div>
                     </div>
@@ -185,7 +185,7 @@
                         </div>
 
                         <div class="table-cell middle cell-caret">
-                          
+
                         </div>
                       </div>
                     </div>
@@ -205,7 +205,7 @@
             <div class="footer">
               <div class="table auto-right table-footer">
                 <div class="table-cell middle cell-legal">
-                  &copy; 2021 beam.
+                  &copy; <span class="year">2022</span> beam.
                 </div>
 
                 <div class="table-cell middle cell-links">
@@ -227,5 +227,12 @@
     </div>
 
     <script src="/@@url.js?ver=@@config.version"></script>
+    <script>
+      let currentYear = new Date().getFullYear()
+      let years = document.querySelectorAll(".year")
+      for (let year of years) {
+        year.textContent = currentYear
+      }
+    </script>
   </body>
 </html>
