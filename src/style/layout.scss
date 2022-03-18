@@ -85,30 +85,5 @@ body {
     @include mixins.height-below-default {
       padding: 0 0 20px;
     }
-
-    @include mixins.above-medium {
-      max-height: 800px;
-
-      &.col-2 {
-        flex-direction: row;
-
-        > * {
-          width: 45vw;
-
-          &:first-child {
-            margin-right: 3vw;
-          }
-
-          &:last-child {
-            align-items: flex-start;
-
-            > p {
-              max-width: 29em;
-              width: 95%;
-            }
-          }
-        }
-      }
-    }
   }
 }
