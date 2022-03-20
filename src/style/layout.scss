@@ -60,11 +60,12 @@ body {
     justify-content: flex-start;
     width: 100%;
   }
+
   .beam-logo {
     align-items: center;
-    background-color: white;
+    background-color: var(--color-logo-spotlight);
     border-radius: 100px;
-    box-shadow: 0 0 20vw 20vw white;
+    box-shadow: 0 0 20vw 20vw var(--color-logo-spotlight);
     display: flex;
     flex-direction: row;
     gap: 0.2em;

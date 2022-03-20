@@ -19,6 +19,8 @@
 
   --color-pill: #{ palette.$light-mercury };
 
+  --color-logo-spotlight: #{ rgba(palette.$white, 1)};
+
   $gradient-opacity: 1;
   --color-background-gradient1-start: #{ rgba(palette.$dark-charmed-green, $gradient-opacity * 0.75) };
   --color-background-gradient1-end: #{ rgba(palette.$dark-charmed-green, 0) };
@@ -57,6 +59,8 @@
   --color-empty: #{ rgba(palette.$dark-corduroy, 0.25) };
 
   --color-pill: #{ palette.$dark-mercury };
+
+  --color-logo-spotlight: #{ rgba(palette.$white, 0)};
 
   $gradient-opacity: 0.5;
   --color-background-gradient1-start: #{ rgba(palette.$dark-charmed-green, $gradient-opacity * 0.75) };
