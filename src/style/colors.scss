@@ -17,6 +17,8 @@
 
   --color-empty: #{ palette.$light-mercury };
 
+  --color-pill: #{ palette.$light-mercury };
+
   $gradient-opacity: 1;
   --color-background-gradient1-start: #{ rgba(palette.$dark-charmed-green, $gradient-opacity * 0.75) };
   --color-background-gradient1-end: #{ rgba(palette.$dark-charmed-green, 0) };
@@ -53,6 +55,8 @@
   --color-img-shadow: rgba(0, 0, 0, 0.45);
 
   --color-empty: #{ rgba(palette.$dark-corduroy, 0.25) };
+
+  --color-pill: #{ palette.$dark-mercury };
 
   $gradient-opacity: 0.5;
   --color-background-gradient1-start: #{ rgba(palette.$dark-charmed-green, $gradient-opacity * 0.75) };

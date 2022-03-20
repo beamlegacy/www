@@ -27,6 +27,7 @@ beam-window {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3), 0 0 0 1px var(--color-beam-window-outer-border);
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
   height: 100%;
   overflow: hidden;
   position: relative;
