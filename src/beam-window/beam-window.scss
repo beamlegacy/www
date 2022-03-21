@@ -13,8 +13,8 @@
 @use "content";
 
 beam-window {
-  height: 36.25em;
-  max-width: 58.75em;
+  height: var(--height, 36.25em);
+  max-width: var(--width, 58.75em);
   opacity: var(--opacity, 1);
   transform-style: preserve-3d;
   transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;

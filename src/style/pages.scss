@@ -59,8 +59,11 @@
 
   //noinspection CssInvalidFunction
   .beam-window-container {
-    height: 36.25em;
-    max-width: 58.75em;
+    --height: 31.25em;
+    --width: 47.5em;
+
+    height: var(--height);
+    max-width: var(--width);
     transform: translate3d(var(--tX, 0), var(--tY, 0), var(--tZ, 0)) rotateY(var(--rotate, 0)) scale(var(--scale, 1)) translateX(calc(var(--tX, 0) * -1.85));
     transform-style: preserve-3d;
     transition: transform 0.5s cubic-bezier(0.37, 1.51, 0.61, 0.99);
