@@ -1,6 +1,7 @@
 import "./index.scss"
 import {Cookie} from "util/cookie/Cookie"
-import {BeamWindow} from "beam-window/BeamWindow"
+import {BeamWindow} from "home/beam-window/BeamWindow"
+import {BeamWindowAnimation} from "home/BeamWindowAnimation"
 const pages = require("../pages.js")
 
 interface LocalizedPage {
@@ -15,6 +16,7 @@ class App {
   constructor() {
     this.initLang()
     window.customElements.define("beam-window", BeamWindow)
+    new BeamWindowAnimation()
   }
 
   private initLang(): void {
