@@ -42,7 +42,7 @@ class HomeMessages_en {
     description: "",
   }
 
-  title = "Welcome to beam"
+  title = "Beneath your <strong>browser</strong>…"
 
   tabs = {
     journal: "Journal",
@@ -75,7 +75,7 @@ class HomeMessages_fr {
     description: "",
   }
 
-  title = "Bienvenue sur beam"
+  title = "Sous votre <strong>navigateur</strong>…"
 
   tabs = {
     journal: "Journal",
