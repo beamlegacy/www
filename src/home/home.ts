@@ -18,18 +18,18 @@ export class Homepage {
       if (ratio >= min && ratio <= max) {
         const mappedRatio = map(ratio, min, max, 0, 1)
         title?.style.setProperty("opacity", `${mappedRatio}`)
-        title?.style.setProperty("transform", `translateY(${3 * (1 - mappedRatio)}em)`)
+        title?.style.setProperty("transform", `translateY(${4 * (1 - mappedRatio)}em)`)
         hero?.style.setProperty("opacity", `${1 - mappedRatio}`)
         hero?.style.setProperty("transform", `scale(${1 - mappedRatio})`)
       } else {
         title?.style.setProperty("opacity", ratio < max ? "0" : "1")
-        title?.style.setProperty("transform", `translateY(${ratio < max ? "3" : "0"}em)`)
+        title?.style.setProperty("transform", `translateY(${ratio < max ? "4" : "0"}em)`)
         hero?.style.setProperty("opacity", ratio < max ? "1" : "0")
         hero?.style.setProperty("transform", `scale(${ratio < max ? "1" : "0"})`)
 
         const window = document.querySelector("beam-window") as BeamWindow
         if (ratio >= 1 && window.url.startsWith("web/")) {
-          window?.toggleMode()
+          setTimeout(() => window?.toggleMode(), 500)
         }
       }
     }, {
