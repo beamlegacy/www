@@ -1,0 +1,23 @@
+@mixin hero {
+  .hero {
+    display: flex;
+    flex-direction: column;
+    height: var(--hero-height);
+    text-align: center;
+    margin: var(--hero-margin-top) 0 var(--hero-margin-bottom);
+    position: fixed;
+    top: calc(var(--site-padding) * 2 + var(--header-height));
+
+    h1 {
+      font-size: 3.125em;
+      margin: 0;
+      text-align: inherit;
+    }
+    p {
+      color: var(--color-text-secondary);
+      font-size: 1.875em;
+      margin: 0;
+      text-align: inherit;
+    }
+  }
+}

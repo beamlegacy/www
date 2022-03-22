@@ -29,15 +29,21 @@ body {
 }
 
 .beam-site {
+  --header-height: 2em;
+  --hero-height: 7.5em;
+  --hero-margin-top: 20vh;
+  --hero-margin-bottom: 20vh;
+  --site-padding: 2em;
+
   align-items: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
   min-height: 100%;
-  padding: 2em;
+  padding: var(--site-padding);
   overflow: hidden;
 
-  main {
+  > main {
     align-items: center;
     display: flex;
     flex-direction: column;
@@ -45,7 +51,7 @@ body {
     justify-content: center;
     margin: auto;
     max-width: 1300px;
-    padding: 40px 0 50px;
+    padding: calc(40px + var(--hero-height) + var(--hero-margin-top) + var(--hero-margin-bottom)) 0 50px;
     text-align: center;
     transition: padding 0.2s ease-in-out;
     width: 100%;
@@ -55,10 +61,15 @@ body {
     }
   }
 
-  header {
+  > header {
     display: flex;
+    height: var(--header-height);
     flex-direction: row;
     justify-content: flex-start;
+    left: var(--site-padding);
+    position: fixed;
+    right: var(--site-padding);
+    top: var(--site-padding);
     width: 100%;
   }
 

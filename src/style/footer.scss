@@ -7,7 +7,7 @@ footer {
   transition: padding-bottom 0.2s ease-in-out;
 
   @include mixins.height-below-default {
-    padding-bottom: 0.5em;
+    margin-bottom: 0.5em;
   }
 
   strong {

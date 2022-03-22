@@ -42,7 +42,8 @@ class HomeMessages_en {
     description: "",
   }
 
-  title = "Beneath your <strong>browser</strong>…"
+  title = "Meet the bright web"
+  subtitle = "Browse.  Capture.  Write.  Publish."
 
   tabs = {
     journal: "Journal",
@@ -75,7 +76,8 @@ class HomeMessages_fr {
     description: "",
   }
 
-  title = "Sous votre <strong>navigateur</strong>…"
+  title = "Meet the bright web"
+  subtitle = "Browse.  Capture.  Write.  Publish."
 
   tabs = {
     journal: "Journal",
