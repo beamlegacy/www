@@ -19,14 +19,65 @@
     top: var(--site-padding);
   }
 
-
-
   .demo,
   .perspective-container {
     align-items: center;
     display: flex;
     justify-content: center;
     width: 100%;
+  }
+
+  .demo {
+    flex-direction: column;
+    h1 {
+      --animation-slide-out-transform: translateY(40px);
+
+      color: var(--color-text-secondary);
+      font-size: 26px;
+      font-weight: 400;
+      margin: 0 -1em 6vh;
+
+
+      @include mixins.above-small {
+        font-size: 28px;
+
+        br {
+          display: none;
+        }
+      }
+
+      strong {
+        color: var(--color-text);
+        display: inline-block;
+        font-weight: 600;
+
+        &.in,
+        &.out {
+          --animation-slide-easing: cubic-bezier(0, 1.05, 0.52, 1.5);
+          --animation-slide-in-transform: translateY(30px);
+
+          animation:
+            slide-in var(--animation-slide-duration) var(--animation-slide-easing) both,
+            fade-in var(--animation-fade-duration) var(--animation-fade-easing) both
+        ;
+          animation-delay: 0.05s;
+        }
+
+        &.out {
+          animation-name: slide-out, fade-out;
+        }
+      }
+
+      &.in,
+      &.out {
+        animation: fade-in var(--animation-fade-duration) var(--animation-fade-easing) both;
+        animation-delay: 0.05s;
+      }
+
+      &.out {
+        animation-name: fade-out;
+      }
+    }
   }
 
   .perspective-container {
