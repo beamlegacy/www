@@ -4,14 +4,18 @@
 .home {
   @include hero.hero;
 
+  .demo,
   .perspective-container {
     align-items: center;
     display: flex;
     justify-content: center;
+    width: 100%;
+  }
+
+  .perspective-container {
     perspective: 150vw;
     perspective-origin: center;
     position: relative;
-    width: 100%;
   }
 
   //noinspection CssInvalidFunction
