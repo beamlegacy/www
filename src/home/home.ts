@@ -28,7 +28,7 @@ export class Homepage {
         hero?.style.setProperty("transform", `scale(${ratio < max ? "1" : "0"})`)
 
         const window = document.querySelector("beam-window") as BeamWindow
-        if (ratio >= 1 && window.url.startsWith("web/")) {
+        if (ratio >= .99 && window.url.startsWith("web/")) {
           setTimeout(() => window?.toggleMode(), 500)
         }
       }
