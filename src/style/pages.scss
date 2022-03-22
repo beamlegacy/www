@@ -29,7 +29,7 @@
 
   .demo {
     flex-direction: column;
-    h1 {
+    .title {
       --animation-slide-out-transform: translateY(40px);
 
       color: var(--color-text-secondary);
@@ -103,5 +103,10 @@
     width: 100%;
   }
 
+  @include mixins.above-small {
+    br {
+      display: none;
+    }
+  }
 }
 
