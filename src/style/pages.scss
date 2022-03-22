@@ -85,7 +85,6 @@
   .perspective-container {
     perspective: 150vw;
     perspective-origin: center;
-    position: relative;
   }
 
   //noinspection CssInvalidFunction
@@ -99,6 +98,7 @@
     max-height: var(--max-height, var(--height, initial));
     min-height: var(--min-height, var(--height, initial));
     max-width: var(--width);
+    position: relative;
     transform: translate3d(var(--tX, 0), var(--tY, 0), var(--tZ, 0)) rotateY(var(--rotate, 0)) scale(var(--scale, 1)) translateX(calc(var(--tX, 0) * -1.85));
     transform-style: preserve-3d;
     transition: transform 0.5s cubic-bezier(0.37, 1.51, 0.61, 0.99);
