@@ -11,19 +11,25 @@ html {
 }
 
 body {
+  --gradient-opacity: 0.2;
+
   background-color: var(--color-background);
   color: var(--color-text);
 
   &::before {
+    --gradient1: calc(30% + var(--gradient-grow, 0%));
+    --gradient2: calc(50% + var(--gradient-grow, 0%));
+    --gradient3: calc(45% + var(--gradient-grow, 0%));
+    --gradient4: calc(35% + var(--gradient-grow, 0%));
     background-image:
-      radial-gradient(circle at 0% 60%, var(--color-background-gradient1-start), var(--color-background-gradient1-end) 30%),
-      radial-gradient(circle at 20% 100%, var(--color-background-gradient2-start) 10%, var(--color-background-gradient2-end) 50%),
-      radial-gradient(circle at 70% 100%, var(--color-background-gradient3-start), var(--color-background-gradient3-end) 45%),
-      radial-gradient(circle at 100% 60%, var(--color-background-gradient4-start), var(--color-background-gradient4-end) 35%)
+      radial-gradient(circle at 0% 60%, var(--color-background-gradient1-start), var(--color-background-gradient1-end) var(--gradient1)),
+      radial-gradient(circle at 20% 100%, var(--color-background-gradient2-start) 10%, var(--color-background-gradient2-end) var(--gradient2)),
+      radial-gradient(circle at 70% 100%, var(--color-background-gradient3-start), var(--color-background-gradient3-end) var(--gradient3)),
+      radial-gradient(circle at 100% 60%, var(--color-background-gradient4-start), var(--color-background-gradient4-end) var(--gradient4))
   ;
     content: "";
     inset: 0;
-    opacity: 0.2;
+    opacity: var(--gradient-opacity);
     position: fixed;
   }
 }

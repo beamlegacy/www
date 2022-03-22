@@ -32,8 +32,21 @@ export class Homepage {
           setTimeout(() => window?.toggleMode(), 500)
         }
       }
+
+      const ratio2 = entries[0].intersectionRatio
+      const min2 = 0.4
+      const max2 = 1
+      if (ratio2 >= min2 && ratio2 <= max2) {
+        const mappedRatio = map(ratio2, min2, max2, 0, 1)
+        const adjusted = (mappedRatio <= 0.5 ? mappedRatio : 1 - mappedRatio) * 2
+        document.body.style.setProperty("--gradient-opacity", `${0.2 + adjusted * 0.2}`)
+        document.body.style.setProperty("--gradient-grow", `${(adjusted)* 0.2 * 100}%`)
+      } else {
+        document.body.style.setProperty("--gradient-opacity", "")
+        document.body.style.setProperty("--gradient-grow", "")
+      }
     }, {
-      rootMargin: "0px 0px 32px 0px",
+      rootMargin: "-64px 0px -64px 0px",
       threshold: new Array(100).fill(0).map((v, i) => (i + 1) / 100)
     })
     if (demo) {
