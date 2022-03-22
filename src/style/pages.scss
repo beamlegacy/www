@@ -30,7 +30,7 @@
   .demo {
     flex-direction: column;
     position: relative;
-    
+
     .title {
       --animation-slide-out-transform: translateY(40px);
 
@@ -72,7 +72,7 @@
 
       &.in,
       &.out {
-        animation: fade-in var(--animation-fade-duration) var(--animation-fade-easing) both;
+        animation: fade-in var(--animation-fade-duration) var(--animation-fade-easing) backwards;
         animation-delay: 0.05s;
       }
 
