@@ -29,6 +29,8 @@
 
   .demo {
     flex-direction: column;
+    position: relative;
+    
     .title {
       --animation-slide-out-transform: translateY(40px);
 
