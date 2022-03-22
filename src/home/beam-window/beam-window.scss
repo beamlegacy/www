@@ -14,6 +14,8 @@
 
 beam-window {
   height: var(--height, 36.25em);
+  max-height: var(--max-height, var(--height, initial));
+  min-height: var(--min-height, var(--height, initial));
   max-width: var(--width, 58.75em);
   opacity: var(--opacity, 1);
   transform-style: preserve-3d;

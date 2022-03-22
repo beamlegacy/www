@@ -17,9 +17,13 @@
   //noinspection CssInvalidFunction
   .beam-window-container {
     --height: 31.25em;
+    --max-height: calc(100vh - var(--site-padding) * 2 - var(--header-height) - 10em);
+    --min-height: 15em;
     --width: 47.5em;
 
     height: var(--height);
+    max-height: var(--max-height, var(--height, initial));
+    min-height: var(--min-height, var(--height, initial));
     max-width: var(--width);
     transform: translate3d(var(--tX, 0), var(--tY, 0), var(--tZ, 0)) rotateY(var(--rotate, 0)) scale(var(--scale, 1)) translateX(calc(var(--tX, 0) * -1.85));
     transform-style: preserve-3d;
