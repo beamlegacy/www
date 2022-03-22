@@ -97,6 +97,9 @@ function config(mode, env) {
       index: {
         import: "./src/index.ts"
         // dependOn: "service_worker"
+      },
+      home: {
+        import: "./src/home/home"
       }
       //   service_worker: "./src/service-worker.js"
     },

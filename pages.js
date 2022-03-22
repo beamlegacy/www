@@ -1,7 +1,8 @@
 class Page {
-  constructor(messages, srcPath) {
+  constructor(messages, srcPath, chunks = ["index"]) {
     this.messages = messages
     this.srcPath = srcPath
+    this.chunks = chunks
   }
 }
 
@@ -13,6 +14,10 @@ class LocalizedPage {
 
   get title() {
     return this.messages.metas.title
+  }
+
+  get chunks() {
+    return this.page.chunks
   }
 
   get messages() {
@@ -119,7 +124,8 @@ class HomePage extends Page {
         en: new HomeMessages_en(),
         fr: new HomeMessages_fr()
       },
-      "index.html"
+      "index.html",
+      ["index", "home"]
     )
   }
 }
