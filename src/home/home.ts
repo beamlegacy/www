@@ -16,10 +16,12 @@ export class Homepage {
       if (ratio >= min && ratio <= max) {
         const mappedRatio = map(ratio, min, max, 0, 1)
         title?.style.setProperty("opacity", `${mappedRatio}`)
+        title?.style.setProperty("transform", `translateY(${2 * (1 - mappedRatio)}em)`)
         hero?.style.setProperty("opacity", `${1 - mappedRatio}`)
         hero?.style.setProperty("transform", `scale(${1 - mappedRatio})`)
       } else {
         title?.style.setProperty("opacity", ratio < max ? "0" : "1")
+        title?.style.setProperty("transform", `translateY(${ratio < max ? "2" : "0"}em)`)
         hero?.style.setProperty("opacity", ratio < max ? "1" : "0")
         hero?.style.setProperty("transform", `scale(${ratio < max ? "1" : "0"})`)
       }
