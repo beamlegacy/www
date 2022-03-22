@@ -46,7 +46,7 @@ export class Homepage {
         document.body.style.setProperty("--gradient-grow", "")
       }
     }, {
-      rootMargin: "-64px 0px -64px 0px",
+      rootMargin: "-84px 0px -84px 0px",
       threshold: new Array(100).fill(0).map((v, i) => (i + 1) / 100)
     })
     if (demo) {
