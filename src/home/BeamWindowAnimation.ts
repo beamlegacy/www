@@ -159,6 +159,12 @@ export class BeamWindowAnimation {
     this.disableContentEditable()
     clone.style.setProperty("position", "absolute")
     clone.style.setProperty("left", "0")
+    clone.style.setProperty("right", "0")
+    clone.style.setProperty("top", "0")
+    clone.style.setProperty("bottom", "0")
+    clone.style.setProperty("width", "initial")
+    clone.style.setProperty("height", "initial")
+
     clone.style.setProperty("transform", "translate3d(var(--tX, 0), var(--tY, 0), var(--tZ, 0)) rotateY(var(--rotate, 0)) scale(var(--scale, 1))")
     this.rotateBack()
     win.parentElement?.insertBefore(clone, win)
