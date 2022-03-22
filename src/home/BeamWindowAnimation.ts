@@ -227,7 +227,7 @@ export class BeamWindowAnimation {
    * @param newInnerHtml
    */
   changeTitle = (newInnerHtml: string = this.titles[Math.min(this.switches - 1, this.titles.length - 1)]): void => {
-    const oldH1 = document.querySelector(".beam-site > main > h1") as HTMLElement
+    const oldH1 = document.querySelector(".beam-site .demo > h1") as HTMLElement
     const newH1 = document.createElement(oldH1.tagName)
     newH1.innerHTML = newInnerHtml
     newH1.classList.add("in")

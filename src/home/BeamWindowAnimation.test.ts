@@ -31,6 +31,7 @@ describe("BeamWindowAnimation", () => {
     const container = document.createElement("div")
     container.classList.add("beam-site")
     const main = document.createElement("main")
+    main.classList.add("demo")
     container.appendChild(main)
     const h1 = document.createElement("h1")
     h1.innerHTML = "Start title"
