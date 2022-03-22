@@ -51,13 +51,13 @@ body {
     justify-content: center;
     margin: auto;
     max-width: 1300px;
-    padding: calc(40px + var(--hero-height) + var(--hero-margin-top) + var(--hero-margin-bottom)) 0 50px;
+    padding: calc(40px + var(--header-height) + var(--hero-height) + var(--hero-margin-top) + var(--hero-margin-bottom)) 0 50px;
     text-align: center;
     transition: padding 0.2s ease-in-out;
     width: 100%;
 
     @include mixins.height-below-default {
-      padding: 0 0 20px;
+      padding: calc(40px + var(--header-height) + var(--hero-height) + var(--hero-margin-top) + var(--hero-margin-bottom)) 0 20px;
     }
   }
 
