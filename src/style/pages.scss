@@ -4,6 +4,23 @@
 .home {
   @include hero.hero;
 
+  > main {
+    padding: calc(40px + var(--header-height) + var(--hero-height) + var(--hero-margin-top) + var(--hero-margin-bottom)) 0 50px;
+
+    @include mixins.height-below-default {
+      padding: calc(40px + var(--header-height) + var(--hero-height) + var(--hero-margin-top) + var(--hero-margin-bottom)) 0 20px;
+    }
+  }
+
+  > header {
+    left: var(--site-padding);
+    position: fixed;
+    right: var(--site-padding);
+    top: var(--site-padding);
+  }
+
+
+
   .demo,
   .perspective-container {
     align-items: center;
