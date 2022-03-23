@@ -48,6 +48,12 @@
   }
 }
 
+@mixin above-large() {
+  @media (min-width: 1500px) {
+    @content;
+  }
+}
+
 @mixin height-below-default() {
   @media (max-height: 650px) {
     @content;
