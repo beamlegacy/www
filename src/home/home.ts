@@ -135,7 +135,9 @@ export class Homepage {
 
   updateWin(t: number): void {
     const w = this.win?.querySelector(".beam-window") as HTMLElement
-    w?.style.setProperty("transform", `scale(${0.8 + t * 0.2})`)
+    w?.style.setProperty("--transform", `scale(${0.8 + t * 0.2})`)
+    console.log(t)
+    w?.style.setProperty("animation", t <= 0.75 ? "bump 1s ease-in-out" : "")
   }
 
 }

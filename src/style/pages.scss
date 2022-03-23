@@ -1,8 +1,31 @@
 @use "mixins";
 @use "/src/home/hero";
 
+@keyframes bump {
+  0% {
+    transform: translateY(0) var(--transform);
+  }
+  25% {
+    transform: translateY(-2em) var(--transform);
+  }
+  50% {
+    transform: translateY(0) var(--transform);
+  }
+  75% {
+    transform: translateY(-0.5em) var(--transform);
+  }
+  100% {
+    transform: translateY(0) var(--transform);
+  }
+}
+
 .home {
   @include hero.hero;
+
+  .win .beam-window {
+    --transform: scale(1);
+    transform: var(--transform);
+  }
 
   > main {
     --margin-top: calc(50vh - var(--header-height));
