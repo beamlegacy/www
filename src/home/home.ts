@@ -77,6 +77,7 @@ export class Homepage {
           this.animation.changeTitle(msg, true)
           title = demo?.querySelector(".title") as HTMLElement
           title.classList.remove("in")
+          title.style.setProperty("--animation-slide-in-transform", "translateY(4em)")
           const strong = title?.querySelector("strong")
           strong?.classList.remove("in")
           title.style.setProperty("opacity", "0")
@@ -92,7 +93,7 @@ export class Homepage {
       document.body.style.setProperty("--gradient-opacity", `${0.2 + adjusted * 0.2}`)
       document.body.style.setProperty("--gradient-grow", `${adjusted * 0.2 * 100}%`)
     }, {
-      rootMargin: "-84px 0px -200px 0px",
+      rootMargin: "0px 0px -100px 0px",
       threshold: new Array(100).fill(0).map((v, i) => (i + 1) / 100)
     })
     if (demo) {
