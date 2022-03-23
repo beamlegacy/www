@@ -86,7 +86,7 @@ export class Homepage {
       const mappedRatio2 = NumberUtil.map(ratio, titleMin, max, 0, 1)
       this.updateTitleContainer(mappedRatio2)
 
-      const mappedRatio3 = NumberUtil.map(entries[0].intersectionRatio, 0, 1)
+      const mappedRatio3 = entries[0].intersectionRatio
       const r = (mappedRatio3 <= 0.5 ? mappedRatio3 : 1 - mappedRatio3) * 2
       const adjusted = Math.sqrt(r < 0.5 ? (r * 2) ** 2 * 0.5 : r)
       document.body.style.setProperty("--gradient-opacity", `${0.2 + adjusted * 0.2}`)
@@ -134,7 +134,7 @@ export class Homepage {
 
   updateWin(t: number): void {
     const w = this.win?.querySelector(".beam-window") as HTMLElement
-    w?.style.setProperty("transform", `scale(${0.8 + t * 0.2})`)
+    w?.style.setProperty("transform", `scale(${0.8 + Math.sqrt(t) * 0.2})`)
   }
 
 }
