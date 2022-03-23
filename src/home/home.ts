@@ -26,20 +26,25 @@ export class Homepage {
   private observer: IntersectionObserver
   private animation: BeamWindowAnimation
   private timeout: ReturnType<typeof setTimeout> | undefined
+  private win: BeamWindow
 
   constructor() {
     this.animation = new BeamWindowAnimation()
     const demo = this.demo
-    const win = document.querySelector("beam-window") as BeamWindow
+    this.win = document.querySelector("beam-window") as BeamWindow
 
     this.observer = new IntersectionObserver((entries: IntersectionObserverEntry[]) => {
+      const {win} = this
       const ratio = entries[0].intersectionRatio
       const min = 0.4
       const max = 0.8
       const titleMin = 0.5
 
-      const mappedRatio = NumberUtil.map(ratio, min, max, 0, 1)
+      const mappedRatio = NumberUtil.map(ratio, min, max)
       this.updateHero(1 - mappedRatio)
+
+      const mappedRatio4 = NumberUtil.map(ratio, 0, 0.35)
+      this.updateWin(mappedRatio4)
 
       if (ratio >= titleMin) {
         this.clearTimeout()
@@ -81,8 +86,9 @@ export class Homepage {
       const mappedRatio2 = NumberUtil.map(ratio, titleMin, max, 0, 1)
       this.updateTitleContainer(mappedRatio2)
 
-      const mappedRatio3 = NumberUtil.map(entries[0].intersectionRatio, 0.4, 1)
-      const adjusted = Math.sqrt((mappedRatio3 <= 0.5 ? mappedRatio3 : 1 - mappedRatio3) * 2)
+      const mappedRatio3 = NumberUtil.map(entries[0].intersectionRatio, 0, 1)
+      const r = (mappedRatio3 <= 0.5 ? mappedRatio3 : 1 - mappedRatio3) * 2
+      const adjusted = Math.sqrt(r < 0.5 ? (r * 2) ** 2 * 0.5 : r)
       document.body.style.setProperty("--gradient-opacity", `${0.2 + adjusted * 0.2}`)
       document.body.style.setProperty("--gradient-grow", `${adjusted * 0.2 * 100}%`)
     }, {
@@ -124,6 +130,11 @@ export class Homepage {
     const titleContainer = this.titleContainer
     titleContainer?.style.setProperty("opacity", `${t}`)
     titleContainer?.style.setProperty("transform", `translateY(${10 * (1 - t)}em)`)
+  }
+
+  updateWin(t: number): void {
+    const w = this.win?.querySelector(".beam-window") as HTMLElement
+    w?.style.setProperty("transform", `scale(${0.8 + t * 0.2})`)
   }
 
 }
