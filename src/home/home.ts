@@ -14,13 +14,14 @@ export class Homepage {
       (num: number, inputMin: number, inputMax: number, outputMin: number, outputMax: number): number => (
         (num - inputMin) * (outputMax - outputMin)
       ) / (inputMax - inputMin) + outputMin
+    const win = document.querySelector("beam-window") as BeamWindow
+
     this.observer = new IntersectionObserver((entries: IntersectionObserverEntry[]) => {
       const ratio = entries[0].intersectionRatio
       const min = 0.4
       const max = 0.8
       const titleMin = 0.5
       let title = demo?.querySelector(".title") as HTMLElement
-      const win = document.querySelector("beam-window") as BeamWindow
 
       const titleContainer = document.querySelector(".title-container") as HTMLElement
 
