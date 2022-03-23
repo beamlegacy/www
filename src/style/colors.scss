@@ -19,7 +19,7 @@
 
   --color-pill: #{ palette.$light-mercury };
 
-  --color-logo-spotlight: #{ rgba(palette.$white, 0.75)};
+  --color-logo-spotlight: #{ rgba(palette.$white, 0.5)};
 
   $gradient-opacity: 1;
   --color-background-gradient1-start: #{ rgba(palette.$dark-charmed-green, $gradient-opacity * 0.75) };
