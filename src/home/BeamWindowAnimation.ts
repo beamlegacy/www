@@ -3,7 +3,7 @@ import {BeamWindow, BeamWindowMode} from "./beam-window/BeamWindow"
 export class BeamWindowAnimation {
   private win: BeamWindow
   private clone: BeamWindow | undefined
-  private switches = 0
+  switches = 0
   private timeout: ReturnType<typeof setTimeout> | undefined
   private lastReturn?: number
   titles = [
@@ -25,7 +25,7 @@ export class BeamWindowAnimation {
         const now = new Date().getTime()
         let delta = this.lastReturn ? delay - (now - this.lastReturn): delay
         delta = delta > 0 ? delta : delay
-        this.timeout && clearTimeout(this.timeout)
+        this.cancelAnimation()
         this.timeout = setTimeout(() => {
           this.win.toggleMode()
         }, delta)
@@ -54,9 +54,13 @@ export class BeamWindowAnimation {
     }
   }
 
+  cancelAnimation = (): void => {
+    this.timeout && clearTimeout(this.timeout)
+  }
+
   onNewMode = (mode: BeamWindowMode): void => {
     this.switches++
-    this.timeout && clearTimeout(this.timeout)
+    this.cancelAnimation()
     if (mode === BeamWindowMode.writing) {
       this.onWritingMode()
     } else {
@@ -77,7 +81,7 @@ export class BeamWindowAnimation {
     const {win} = this
     this.rotateBack()
     this.changeTitle()
-    this.timeout && clearTimeout(this.timeout) // cancel previous animation if any
+    this.cancelAnimation() // cancel previous animation if any
     this.timeout = setTimeout(() => {
       if (win.url.indexOf("web/") >= 0) {
         win.url = "writing/journal"
@@ -177,13 +181,13 @@ export class BeamWindowAnimation {
     if (selector) {
       win.captureTarget(selector)
       if (selector.endsWith(".capture-last")) {
-        this.timeout && clearTimeout(this.timeout)
+        this.cancelAnimation()
         this.timeout = setTimeout(() => {
           const selector = win.captureTargetSelector
           if (selector && selector.endsWith(".capture-last")) {
             win.shoot()
             this.updateClonedJournal()
-            this.timeout && clearTimeout(this.timeout)
+            this.cancelAnimation()
             this.timeout = setTimeout(() => {
               win.captureTarget()
               this.timeout = setTimeout(() => {
@@ -236,8 +240,8 @@ export class BeamWindowAnimation {
     const oldH1 = document.querySelector(".beam-site .demo .title") as HTMLElement
     const newH1 = document.createElement(oldH1.tagName)
     newH1.classList.add("title")
-    newH1.innerHTML = newInnerHtml
     newH1.classList.add("in")
+    newH1.innerHTML = newInnerHtml
     if (oldH1.innerHTML !== newH1.innerHTML) {
       const h1 = oldH1.cloneNode(true) as HTMLElement // make a clone to cancel previous events
       if (h1) {
