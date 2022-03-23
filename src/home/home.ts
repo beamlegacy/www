@@ -91,7 +91,7 @@ export class Homepage {
       const r = (mappedRatio3 <= 0.5 ? mappedRatio3 : 1 - mappedRatio3) * 2
       const adjusted = Math.sqrt(r < 0.5 ? (r * 2) ** 2 * 0.5 : r)
       document.body.style.setProperty("--gradient-opacity", `${0.2 + adjusted * 0.2}`)
-      document.body.style.setProperty("--gradient-grow", `${adjusted * 0.2 * 100}%`)
+      document.body.style.setProperty("--gradient-grow", `${adjusted * 0.35 * 100}%`)
     }, {
       rootMargin: "0px 0px -100px 0px",
       threshold: new Array(100).fill(0).map((v, i) => (i + 1) / 100)
