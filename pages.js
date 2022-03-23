@@ -97,7 +97,7 @@ class HomeMessages_fr {
   }
 
   demo = {
-    title: "Beneath your&nbsp;<br/><strong class=\"in\">browser</strong>…"
+    title: "Beneath your&nbsp;<br/><strong>browser</strong>…"
   }
 
   journal = {
