@@ -16,7 +16,6 @@ class App {
   constructor() {
     this.initLang()
     window.customElements.define("beam-window", BeamWindow)
-    new BeamWindowAnimation()
   }
 
   private initLang(): void {

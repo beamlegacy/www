@@ -4,6 +4,7 @@ export class Homepage {
   private observer: IntersectionObserver
 
   constructor() {
+    this.animation = new BeamWindowAnimation()
     const demo = document.querySelector(".demo")
     const hero = document.querySelector(".hero") as HTMLElement
     const map =
