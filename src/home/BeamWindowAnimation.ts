@@ -236,7 +236,7 @@ export class BeamWindowAnimation {
    * Update page title when new inner html is different from previous one
    * @param newInnerHtml
    */
-  changeTitle = (newInnerHtml: string = this.titles[Math.min(this.switches - 1, this.titles.length - 1)]): void => {
+  changeTitle = (newInnerHtml: string = this.titles[Math.min(this.switches - 1, this.titles.length - 1)], immediate = false): void => {
     const oldH1 = document.querySelector(".beam-site .demo .title") as HTMLElement
     const newH1 = document.createElement(oldH1.tagName)
     newH1.classList.add("title")
@@ -254,7 +254,7 @@ export class BeamWindowAnimation {
         h1.classList.remove("in")
         h1.classList.add("out")
         h1.addEventListener("animationend", newTitle)
-        oldH1.replaceWith(h1)
+        immediate ? oldH1.replaceWith(newH1) : oldH1.replaceWith(h1)
       }
     }
   }
