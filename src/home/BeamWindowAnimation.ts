@@ -126,31 +126,33 @@ export class BeamWindowAnimation {
   onWebMode = (): void => {
     let {clone} = this
     const {win} = this
-    this.changeTitle()
-    this.timeout = setTimeout (() => {
-      if (win) {
-        clone = this.initClone()
-        clone.url = "writing/journal"
-        win.querySelector(".capture-frame .highlight")?.classList.remove("shoot")
+    if (this.switches > 1) {
+      this.changeTitle()
+      this.timeout = setTimeout(() => {
+        if (win) {
+          clone = this.initClone()
+          clone.url = "writing/journal"
+          win.querySelector(".capture-frame .highlight")?.classList.remove("shoot")
 
-        this.capturePage(win.url, () => {
-          this.timeout = setTimeout(() => {
+          this.capturePage(win.url, () => {
+            this.timeout = setTimeout(() => {
 
-            this.capturePage(this.getAnotherWebPage(), () => {
-              this.timeout = setTimeout(() => {
-                win.captureTarget()
+              this.capturePage(this.getAnotherWebPage(), () => {
                 this.timeout = setTimeout(() => {
-                  this.switches++
-                  this.returnToJournal()
-                }, 250)
-              }, 500)
-            })
+                  win.captureTarget()
+                  this.timeout = setTimeout(() => {
+                    this.switches++
+                    this.returnToJournal()
+                  }, 250)
+                }, 500)
+              })
 
-          }, 1000)
-        })
+            }, 1000)
+          })
 
-      }
-    }, 250)
+        }
+      }, 250)
+    }
   }
 
   private initClone() {
