@@ -34,7 +34,7 @@ export class Homepage {
           this.clearTimeout()
           this.animation.cancelAnimation()
           this.animation.switches = 0
-          const mappedRatio = map(ratio, .4, max, 0, 1)
+          const mappedRatio = NumberUtil.map(ratio, .4, max, 0, 1)
           this.updateTitleContainer(mappedRatio)
         }
 
