@@ -43,7 +43,7 @@ export class Homepage {
       const mappedRatio = NumberUtil.map(ratio, min, max)
       this.updateHero(1 - mappedRatio)
 
-      const mappedRatio4 = NumberUtil.map(ratio, 0, 0.35)
+      const mappedRatio4 = NumberUtil.map(ratio, 0, 0.45)
       this.updateWin(mappedRatio4)
 
       if (ratio >= titleMin) {
@@ -135,7 +135,7 @@ export class Homepage {
 
   updateWin(t: number): void {
     const w = this.win?.querySelector(".beam-window") as HTMLElement
-    w?.style.setProperty("transform", `scale(${0.8 + Math.sqrt(t) * 0.2})`)
+    w?.style.setProperty("transform", `scale(${0.8 + t * 0.2})`)
   }
 
 }
