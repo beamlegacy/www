@@ -1,6 +1,16 @@
 import {BeamWindow, BeamWindowMode} from "home/beam-window/BeamWindow"
 import {BeamWindowAnimation} from "home/BeamWindowAnimation"
 
+class NumberUtil {
+  static map =
+    (num: number, inputMin: number, inputMax: number, outputMin = 0, outputMax = 1): number => (
+      outputMin + (
+        (num - inputMin) * (outputMax - outputMin)
+      ) / (
+        inputMax - inputMin
+      )
+    )
+}
 export class Homepage {
   private observer: IntersectionObserver
   private animation: BeamWindowAnimation
@@ -8,12 +18,7 @@ export class Homepage {
 
   constructor() {
     this.animation = new BeamWindowAnimation()
-    const demo = document.querySelector(".demo")
-    const hero = document.querySelector(".hero") as HTMLElement
-    const map =
-      (num: number, inputMin: number, inputMax: number, outputMin: number, outputMax: number): number => (
-        (num - inputMin) * (outputMax - outputMin)
-      ) / (inputMax - inputMin) + outputMin
+    const demo = this.demo
     const win = document.querySelector("beam-window") as BeamWindow
 
     this.observer = new IntersectionObserver((entries: IntersectionObserverEntry[]) => {
@@ -21,30 +26,23 @@ export class Homepage {
       const min = 0.4
       const max = 0.8
       const titleMin = 0.5
-      let title = demo?.querySelector(".title") as HTMLElement
-
-      const titleContainer = document.querySelector(".title-container") as HTMLElement
-
       if (ratio >= min && ratio <= max) {
-        const mappedRatio = map(ratio, min, max, 0, 1)
-        hero?.style.setProperty("opacity", `${1 - mappedRatio}`)
-        hero?.style.setProperty("transform", `scale(${1 - mappedRatio})`)
+        const mappedRatio = NumberUtil.map(ratio, min, max, 0, 1)
+        this.updateHero(1 - mappedRatio)
 
         if (ratio >= titleMin) {
           this.clearTimeout()
           this.animation.cancelAnimation()
           this.animation.switches = 0
           const mappedRatio = map(ratio, .4, max, 0, 1)
-          titleContainer?.style.setProperty("opacity", ratio < max ? `${mappedRatio}` : "1")
-          titleContainer?.style.setProperty("transform", `translateY(${ratio < max ? 10 * (1 - mappedRatio) : 0}em)`)
+          this.updateTitleContainer(mappedRatio)
         }
 
       } else {
-        hero?.style.setProperty("opacity", ratio < max ? "1" : "0")
-        hero?.style.setProperty("transform", `scale(${ratio < max ? "1" : "0"})`)
-        titleContainer?.style.setProperty("opacity", ratio < max ? "0" : "1")
-        titleContainer?.style.setProperty("transform", `translateY(${ratio < max ? 10 : 0}em)`)
+        this.updateHero(ratio < max ? 1 : 0)
+        this.updateTitleContainer(ratio < max ? 0 : 1)
         if (ratio >= .99) {
+          const title = this.title
           title?.style.setProperty("opacity", "1")
           title?.classList.add("in")
           const strong = title?.querySelector("strong")
@@ -61,6 +59,7 @@ export class Homepage {
           this.animation.cancelAnimation()
           this.animation.switches = 0
           win.mode = BeamWindowMode.web
+          let title = this.title
           if (title) {
             const messages = (window as any).messages
             const msg = messages.demo.title
@@ -78,10 +77,10 @@ export class Homepage {
       const min2 = 0.4
       const max2 = 1
       if (ratio2 >= min2 && ratio2 <= max2) {
-        const mappedRatio = map(ratio2, min2, max2, 0, 1)
+        const mappedRatio = NumberUtil.map(ratio2, min2, max2, 0, 1)
         const adjusted = (mappedRatio <= 0.5 ? mappedRatio : 1 - mappedRatio) * 2
         document.body.style.setProperty("--gradient-opacity", `${0.2 + adjusted * 0.2}`)
-        document.body.style.setProperty("--gradient-grow", `${(adjusted)* 0.2 * 100}%`)
+        document.body.style.setProperty("--gradient-grow", `${adjusted * 0.2 * 100}%`)
       } else {
         document.body.style.setProperty("--gradient-opacity", "")
         document.body.style.setProperty("--gradient-grow", "")
@@ -97,6 +96,34 @@ export class Homepage {
 
   clearTimeout = (): void => {
     this.timeout && clearTimeout(this.timeout)
+  }
+
+  get demo(): HTMLElement | null {
+    return document.querySelector(".demo")
+  }
+
+  get title(): HTMLElement | null {
+    return document.querySelector(".demo .title")
+  }
+
+  get hero(): HTMLElement | null {
+    return document.querySelector(".hero")
+  }
+
+  get titleContainer(): HTMLElement {
+    return document.querySelector(".title-container") as HTMLElement
+  }
+
+  updateHero(t: number): void {
+    const hero = this.hero
+    hero?.style.setProperty("opacity", `${t}`)
+    hero?.style.setProperty("transform", `scale(${t})`)
+  }
+
+  updateTitleContainer(t: number): void {
+    const titleContainer = this.titleContainer
+    titleContainer?.style.setProperty("opacity", `${t}`)
+    titleContainer?.style.setProperty("transform", `translateY(${10 * (1 - t)}em)`)
   }
 
 }
