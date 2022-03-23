@@ -18,17 +18,31 @@ export class Homepage {
       const ratio = entries[0].intersectionRatio
       const min = 0.4
       const max = 0.8
+      const titleMin = 0.5
       let title = demo?.querySelector(".title") as HTMLElement
+      const win = document.querySelector("beam-window") as BeamWindow
+
+      const titleContainer = document.querySelector(".title-container") as HTMLElement
 
       if (ratio >= min && ratio <= max) {
         const mappedRatio = map(ratio, min, max, 0, 1)
         hero?.style.setProperty("opacity", `${1 - mappedRatio}`)
         hero?.style.setProperty("transform", `scale(${1 - mappedRatio})`)
+
+        if (ratio >= titleMin) {
+          this.clearTimeout()
+          this.animation.cancelAnimation()
+          this.animation.switches = 0
+          const mappedRatio = map(ratio, .4, max, 0, 1)
+          titleContainer?.style.setProperty("opacity", ratio < max ? `${mappedRatio}` : "1")
+          titleContainer?.style.setProperty("transform", `translateY(${ratio < max ? 10 * (1 - mappedRatio) : 0}em)`)
+        }
+
       } else {
         hero?.style.setProperty("opacity", ratio < max ? "1" : "0")
         hero?.style.setProperty("transform", `scale(${ratio < max ? "1" : "0"})`)
-
-        const win = document.querySelector("beam-window") as BeamWindow
+        titleContainer?.style.setProperty("opacity", ratio < max ? "0" : "1")
+        titleContainer?.style.setProperty("transform", `translateY(${ratio < max ? 10 : 0}em)`)
         if (ratio >= .99) {
           title?.style.setProperty("opacity", "1")
           title?.classList.add("in")
@@ -42,13 +56,10 @@ export class Homepage {
               }, 1000)
             }, 500)
           }
-        } else if (ratio < .4) {
-          this.clearTimeout()
+        } else if (ratio < min) {
           this.animation.cancelAnimation()
           this.animation.switches = 0
           win.mode = BeamWindowMode.web
-          this.animation.cancelAnimation()
-          this.animation.switches = 0
           if (title) {
             const messages = (window as any).messages
             const msg = messages.demo.title
@@ -59,11 +70,6 @@ export class Homepage {
             strong?.classList.remove("in")
             title.style.setProperty("opacity", "0")
           }
-        } else {
-          // const mappedRatio = map(ratio, .4, max, 0, 1)
-          // console.log(mappedRatio, title)
-          // title?.style.setProperty("opacity", ratio < max ? `${mappedRatio}` : "1")
-          // title?.style.setProperty("transform", `translateY(${ratio < max ? 4 * mappedRatio : 0}em)`)
         }
       }
 
