@@ -2,15 +2,26 @@ import {BeamWindow, BeamWindowMode} from "home/beam-window/BeamWindow"
 import {BeamWindowAnimation} from "home/BeamWindowAnimation"
 
 class NumberUtil {
+  static clamp(input: number, min: number, max: number): number {
+    return input < min ? min : input > max ? max : input
+  }
+
   static map =
-    (num: number, inputMin: number, inputMax: number, outputMin = 0, outputMax = 1): number => (
+    (
+      num: number,
+      inputMin: number, inputMax: number,
+      outputMin = 0, outputMax = 1
+    ): number => NumberUtil.clamp(
       outputMin + (
         (num - inputMin) * (outputMax - outputMin)
       ) / (
         inputMax - inputMin
-      )
+      ),
+      outputMin,
+      outputMax
     )
 }
+
 export class Homepage {
   private observer: IntersectionObserver
   private animation: BeamWindowAnimation
@@ -26,65 +37,54 @@ export class Homepage {
       const min = 0.4
       const max = 0.8
       const titleMin = 0.5
-      if (ratio >= min && ratio <= max) {
-        const mappedRatio = NumberUtil.map(ratio, min, max, 0, 1)
-        this.updateHero(1 - mappedRatio)
 
-        if (ratio >= titleMin) {
+      const mappedRatio = NumberUtil.map(ratio, min, max, 0, 1)
+      this.updateHero(1 - mappedRatio)
+
+      if (ratio >= titleMin) {
+        this.clearTimeout()
+        this.animation.cancelAnimation()
+        this.animation.switches = 0
+      }
+
+      if (mappedRatio === 1) {
+        const title = this.title
+        title?.style.setProperty("opacity", "1")
+        title?.classList.add("in")
+        const strong = title?.querySelector("strong")
+        strong?.classList.add("in")
+        if (win && win.mode === BeamWindowMode.web) {
           this.clearTimeout()
-          this.animation.cancelAnimation()
-          this.animation.switches = 0
-          const mappedRatio = NumberUtil.map(ratio, .4, max, 0, 1)
-          this.updateTitleContainer(mappedRatio)
-        }
-
-      } else {
-        this.updateHero(ratio < max ? 1 : 0)
-        this.updateTitleContainer(ratio < max ? 0 : 1)
-        if (ratio >= .99) {
-          const title = this.title
-          title?.style.setProperty("opacity", "1")
-          title?.classList.add("in")
-          const strong = title?.querySelector("strong")
-          strong?.classList.add("in")
-          if (win && win.mode === BeamWindowMode.web) {
-            this.clearTimeout()
+          this.timeout = setTimeout(() => {
             this.timeout = setTimeout(() => {
-              this.timeout = setTimeout(() => {
-                win.mode = BeamWindowMode.writing
-              }, 1000)
-            }, 500)
-          }
-        } else if (ratio < min) {
-          this.animation.cancelAnimation()
-          this.animation.switches = 0
-          win.mode = BeamWindowMode.web
-          let title = this.title
-          if (title) {
-            const messages = (window as any).messages
-            const msg = messages.demo.title
-            this.animation.changeTitle(msg, true)
-            title = demo?.querySelector(".title") as HTMLElement
-            title.classList.remove("in")
-            const strong = title?.querySelector("strong")
-            strong?.classList.remove("in")
-            title.style.setProperty("opacity", "0")
-          }
+              win.mode = BeamWindowMode.writing
+            }, 1000)
+          }, 500)
+        }
+      } else if (mappedRatio === 0) {
+        this.animation.cancelAnimation()
+        this.animation.switches = 0
+        win.mode = BeamWindowMode.web
+        let title = this.title
+        if (title) {
+          const messages = (window as any).messages
+          const msg = messages.demo.title
+          this.animation.changeTitle(msg, true)
+          title = demo?.querySelector(".title") as HTMLElement
+          title.classList.remove("in")
+          const strong = title?.querySelector("strong")
+          strong?.classList.remove("in")
+          title.style.setProperty("opacity", "0")
         }
       }
 
-      const ratio2 = entries[0].intersectionRatio
-      const min2 = 0.4
-      const max2 = 1
-      if (ratio2 >= min2 && ratio2 <= max2) {
-        const mappedRatio = NumberUtil.map(ratio2, min2, max2, 0, 1)
-        const adjusted = (mappedRatio <= 0.5 ? mappedRatio : 1 - mappedRatio) * 2
-        document.body.style.setProperty("--gradient-opacity", `${0.2 + adjusted * 0.2}`)
-        document.body.style.setProperty("--gradient-grow", `${adjusted * 0.2 * 100}%`)
-      } else {
-        document.body.style.setProperty("--gradient-opacity", "")
-        document.body.style.setProperty("--gradient-grow", "")
-      }
+      const mappedRatio2 = NumberUtil.map(ratio, titleMin, max, 0, 1)
+      this.updateTitleContainer(mappedRatio2)
+
+      const mappedRatio3 = NumberUtil.map(entries[0].intersectionRatio, 0.4, 1)
+      const adjusted = (mappedRatio3 <= 0.5 ? mappedRatio3 : 1 - mappedRatio3) * 2
+      document.body.style.setProperty("--gradient-opacity", `${0.2 + adjusted * 0.2}`)
+      document.body.style.setProperty("--gradient-grow", `${adjusted * 0.2 * 100}%`)
     }, {
       rootMargin: "-84px 0px -84px 0px",
       threshold: new Array(100).fill(0).map((v, i) => (i + 1) / 100)
