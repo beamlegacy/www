@@ -43,7 +43,7 @@ export class Homepage {
       const mappedRatio = NumberUtil.map(ratio, min, max)
       this.updateHero(1 - mappedRatio)
 
-      const mappedRatio4 = NumberUtil.map(ratio, 0, 0.45)
+      const mappedRatio4 = NumberUtil.map(ratio, 0, 0.65)
       this.updateWin(mappedRatio4)
 
       if (ratio >= titleMin) {
