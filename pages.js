@@ -48,7 +48,8 @@ class HomeMessages_en {
   }
 
   header = {
-    betaSignup: "Sign up for beta"
+    betaSignup: "Sign up for beta",
+    betaSignupPlaceholder: "Enter your e-mail address..."
   }
 
   title = "Meet the bright web"
@@ -90,7 +91,8 @@ class HomeMessages_fr {
   }
 
   header = {
-    betaSignup: "Sign up for beta"
+    betaSignup: "Sign up for beta",
+    betaSignupPlaceholder: "Enter your e-mail address..."
   }
 
   title = "Meet the bright web"

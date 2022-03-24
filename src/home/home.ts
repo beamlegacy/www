@@ -33,6 +33,24 @@ export class Homepage {
     const demo = this.demo
     this.win = document.querySelector("beam-window") as BeamWindow
 
+    const betaSignup = document.querySelector(".beta-signup") as HTMLElement
+    const betaSignupButton = betaSignup?.querySelector(":scope > button") as HTMLButtonElement
+    const actionButton = betaSignup?.querySelector(":scope .input > button") as HTMLButtonElement
+    const betaSignupInputContainer = betaSignup?.querySelector(":scope .input") as HTMLButtonElement
+    betaSignupButton?.addEventListener("click", () => {
+      betaSignup?.classList.add("show-input")
+      const input = betaSignupInputContainer.querySelector("input") as HTMLInputElement
+      input?.focus()
+    })
+    actionButton?.addEventListener("click", () => {
+      betaSignup?.classList.remove("show-input")
+    })
+    betaSignupInputContainer?.addEventListener("blur", (e: FocusEvent) => {
+      if (!e.relatedTarget || !betaSignupInputContainer.contains(e.relatedTarget as Node)) {
+        betaSignup?.classList.remove("show-input")
+      }
+    }, true)
+
     this.observer = new IntersectionObserver((entries: IntersectionObserverEntry[]) => {
       const {win} = this
       const ratio = entries[0].intersectionRatio

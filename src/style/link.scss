@@ -7,6 +7,7 @@ a {
 .underline {
   display: inline-block;
   position: relative;
+  transition: color 0.2s ease-in-out;
 
   &::after {
     background-color: currentColor;
@@ -18,12 +19,13 @@ a {
     right: 0;
     transform: scaleX(0);
     transform-origin: 0 center;
-    transition: transform 0.4s cubic-bezier(1, 0, 0, 1), color 0.2s ease-in-out;
+    transition: transform 0.4s cubic-bezier(1, 0, 0, 1), color 0.2s ease-in-out, background-color 0.2s ease-in-out;
   }
 
   &:hover,
   &:focus {
     outline: none;
+
     &::after {
       transform: scaleX(1);
     }

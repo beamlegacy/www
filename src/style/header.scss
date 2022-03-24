@@ -5,6 +5,7 @@
     height: var(--header-height);
     justify-content: flex-start;
     width: 100%;
+    z-index: 1;
   }
 
   .beam-logo {
@@ -42,14 +43,78 @@
     display: flex;
     flex-direction: row;
 
-    button, a {
+    button,
+    a {
       appearance: none;
       background-color: transparent;
       border: 0;
-      color: inherit;
+      color: var(--color-text-secondary);
       font-size: 1em;
       margin: 0;
       padding: 0.25em 0;
+
+      &:focus {
+        outline: none;
+      }
+
+      &:hover,
+      &:focus {
+        color: var(--color-text);
+      }
+    }
+
+    .beta-signup {
+      --transform-easing: cubic-bezier(0.68, -0.59, 0.06, 1.64);
+
+      position: relative;
+
+      > button {
+        transition: transform 0.4s var(--transform-easing), opacity 0.4s ease-in-out;
+      }
+
+      .input {
+        display: flex;
+        flex-direction: row;
+        gap: 0.25em;
+        opacity: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+        transform: translateY(100%);
+        transition: transform 0.4s var(--transform-easing), opacity 0.4s ease-in-out;
+
+        input {
+          appearance: none;
+          background-color: transparent;
+          border: 0;
+          color: inherit;
+          font-size: 1em;
+          padding: 0.25em 0;
+          text-align: left;
+          width: 13em;
+
+          &:focus {
+            outline: none;
+          }
+        }
+
+        button {
+          font-size: 1.5em;
+          font-weight: 400;
+        }
+      }
+
+      &.show-input {
+        > button {
+          opacity: 0;
+          transform: translateY(-100%);
+        }
+
+        .input {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
     }
   }
 }
