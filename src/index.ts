@@ -16,14 +16,13 @@ class App {
   constructor() {
     this.initLang()
     window.customElements.define("beam-window", BeamWindow)
-
     const betaSignup = document.querySelector(".beta-signup") as HTMLElement
     const betaSignupButton = betaSignup?.querySelector(":scope > button") as HTMLButtonElement
     const closeButton = betaSignup?.querySelector(":scope .input button.button-close") as HTMLButtonElement
     const betaSignupInputContainer = betaSignup?.querySelector(":scope .input") as HTMLButtonElement
+    const input = betaSignupInputContainer.querySelector("input") as HTMLInputElement
     betaSignupButton?.addEventListener("click", () => {
       betaSignup?.classList.add("show-input")
-      const input = betaSignupInputContainer.querySelector("input") as HTMLInputElement
       input?.focus()
     })
     closeButton?.addEventListener("click", () => {
@@ -41,6 +40,15 @@ class App {
         }
       }
     }, true)
+    input.addEventListener("input", (e: Event) => {
+      const target = e.target as HTMLInputElement
+      const actionContainer = document.querySelector(".action-container") as HTMLElement
+      if (target.checkValidity()) {
+        actionContainer.classList.add("valid")
+      } else {
+        actionContainer.classList.remove("valid")
+      }
+    })
   }
 
   private sendEmailToBeamApi = (email: string): Promise<void> => {

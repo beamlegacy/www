@@ -99,18 +99,44 @@
         }
 
         .action-container {
+          align-items: center;
           display: flex;
           flex-direction: column;
           height: 1.25em;
+          justify-content: center;
           overflow: hidden;
+          position: relative;
           width: 1.25em;
+
+          > * {
+            transition: transform 0.2s ease-in-out;
+          }
+
+          .button-close {
+            font-size: 1.5em;
+          }
+
+          > *:not(.button-close) {
+            position: absolute;
+            top: 0;
+            transform: translateY(2em);
+          }
+
+          &.valid {
+            .button-close {
+              transform: translateY(-2em);
+            }
+
+            > *:not(.button-close) {
+              transform: translateY(0);
+            }
+          }
         }
 
         button {
           font-family: inherit;
-          font-size: 1.5em;
           font-weight: 400;
-          line-height: 1em;
+          line-height: 1.5rem;
           padding: 0;
           white-space: nowrap;
         }
