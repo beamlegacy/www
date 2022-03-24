@@ -62,12 +62,23 @@ export class Homepage {
           this.clearTimeout()
           this.timeout = setTimeout(() => {
             this.timeout = setTimeout(() => {
-              win.mode = BeamWindowMode.writing
+              this.animation.changeTitle(this.animation.titles[Math.min(this.animation.switches, this.animation.titles.length - 1)])
+              this.timeout = setTimeout(() => {
+                win.mode = BeamWindowMode.writing
+                this.timeout = setTimeout(() => {
+                  this.animation.changeTitle(this.animation.titles[Math.min(this.animation.switches, this.animation.titles.length - 1)])
+                  this.timeout = setTimeout(() => {
+                    win.mode = BeamWindowMode.web
+                  }, 1500)
+                }, 2000)
+              }, 1500)
             }, 1000)
           }, 500)
         }
       } else if (mappedRatio === 0) {
         this.animation.cancelAnimation()
+        this.animation.rotateBack()
+        win.captureTarget()
         this.animation.switches = 0
         win.mode = BeamWindowMode.web
         let title = this.title

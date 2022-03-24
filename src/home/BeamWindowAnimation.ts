@@ -93,7 +93,7 @@ export class BeamWindowAnimation {
     }, 1500)
   }
 
-  private rotateBack = () => {
+  rotateBack = () => {
     const {win, clone} = this
     clone?.style.setProperty("--tZ", "-1px")
     clone?.style.setProperty("--rotate", "0")
