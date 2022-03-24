@@ -1,15 +1,27 @@
+@use "/src/style/mixins";
+
 @mixin hero {
   .hero {
     align-items: center;
     display: flex;
     flex-direction: column;
+    font-size: 0.55em;
     height: var(--hero-height);
     justify-content: center;
     margin-top: -4em;
-    text-align: center;
     padding-bottom: 100px;
     position: fixed;
+    text-align: center;
     top: calc(var(--site-padding) * 2 + var(--header-height));
+    transition: font-size 0.2s ease-in-out;
+
+    @include mixins.above-small {
+      font-size: 0.875em;
+    }
+
+    @include mixins.above-medium {
+      font-size: 1em;
+    }
 
     h1 {
       font-size: 3.125em;
