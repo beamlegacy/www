@@ -65,9 +65,9 @@ export class Homepage {
                   this.animation.changeTitle(this.animation.titles[Math.min(this.animation.switches, this.animation.titles.length - 1)])
                   this.timeout = setTimeout(() => {
                     win.mode = BeamWindowMode.web
-                  }, 1500)
+                  }, 1350)
                 }, 2000)
-              }, 1500)
+              }, 1350)
             }, 1000)
           }, 500)
         }
