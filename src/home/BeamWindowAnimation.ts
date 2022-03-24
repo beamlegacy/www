@@ -87,7 +87,7 @@ export class BeamWindowAnimation {
         win.url = "writing/journal"
       }
       if (this.switches > 1) {
-        this.updateFooter(" to learn how to beam")
+        // this.updateFooter(" to learn how to beam")
         win.captureTarget()
       }
     }, 1500)

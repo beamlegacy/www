@@ -28,8 +28,8 @@
   }
 
   > main {
-    --margin-top: calc(50vh - var(--header-height));
-    height: 100vh;
+    --margin-top: calc(56vh - var(--header-height));
+    height: calc(90vh - var(--header-height));
     margin-top: var(--margin-top);
     padding: 0;
 
@@ -123,12 +123,12 @@
     font-size: 12px;
     height: var(--height);
     max-height: var(--max-height, var(--height, initial));
-    min-height: var(--min-height, var(--height, initial));
     max-width: var(--width);
+    min-height: var(--min-height, var(--height, initial));
     position: relative;
     transform: translate3d(var(--tX, 0), var(--tY, 0), var(--tZ, 0)) rotateY(var(--rotate, 0)) scale(var(--scale, 1)) translateX(calc(var(--tX, 0) * -1.85));
     transform-style: preserve-3d;
-    transition: transform 0.5s cubic-bezier(0.37, 1.51, 0.61, 0.99);
+    transition: transform 0.5s cubic-bezier(0.37, 1.51, 0.61, 0.99), font-size 0.2s ease-in-out;
     width: 100%;
 
     @include mixins.above-medium {
