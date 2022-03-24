@@ -18,4 +18,14 @@ footer {
   strong {
     color: var(--color-text);
   }
+
+  a {
+    color: inherit;
+    font-size: inherit;
+
+    &:hover,
+    &:focus {
+      color: var(--color-text);
+    }
+  }
 }
