@@ -3,3 +3,27 @@ a {
   font-size: 16px;
   text-decoration: none;
 }
+
+.underline {
+  display: inline-block;
+  position: relative;
+
+  &::after {
+    background-color: var(--color-text);
+    bottom: 0;
+    content: "";
+    height: 0.0625em;
+    left: 0;
+    position: absolute;
+    right: 0;
+    transform: scaleX(0);
+    transform-origin: 0 center;
+    transition: transform 0.4s cubic-bezier(1, 0, 0, 1);
+  }
+
+  &:hover {
+    &::after {
+      transform: scaleX(1);
+    }
+  }
+}
