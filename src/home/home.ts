@@ -43,13 +43,9 @@ export class Homepage {
       const mappedRatio = NumberUtil.map(ratio, min, max)
       this.updateHero(1 - mappedRatio)
 
-      const mappedRatio4 = NumberUtil.map(ratio, 0.25, 0.65)
-      this.updateWin(mappedRatio4)
-
-      if (ratio >= titleMin) {
+      if (ratio <= 0.95) {
         this.clearTimeout()
-        this.animation.cancelAnimation()
-        this.animation.switches = 0
+        this.resetAnimation()
       }
 
       if (mappedRatio === 1) {
@@ -76,10 +72,7 @@ export class Homepage {
           }, 500)
         }
       } else if (mappedRatio === 0) {
-        this.animation.cancelAnimation()
-        this.animation.rotateBack()
-        win.captureTarget()
-        this.animation.switches = 0
+        this.resetAnimation()
         win.mode = BeamWindowMode.web
         let title = this.title
         if (title) {
@@ -103,6 +96,9 @@ export class Homepage {
       const adjusted = Math.sqrt(r < 0.5 ? (r * 2) ** 2 * 0.5 : r)
       document.body.style.setProperty("--gradient-opacity", `${0.2 + adjusted * 0.2}`)
       document.body.style.setProperty("--gradient-grow", `${adjusted * 0.35 * 100}%`)
+
+      const mappedRatio4 = NumberUtil.map(ratio, 0.25, 0.65)
+      this.updateWin(mappedRatio4)
     }, {
       rootMargin: "0px 0px -100px 0px",
       threshold: new Array(100).fill(0).map((v, i) => (i + 1) / 100)
@@ -150,6 +146,12 @@ export class Homepage {
     w?.style.setProperty("animation", t <= 0.35 ? "bump 0.5s ease-in-out" : "")
   }
 
+  resetAnimation(): void {
+    this.animation.cancelAnimation()
+    this.animation.rotateBack()
+    this.win.captureTarget()
+    this.animation.switches = 0
+  }
 }
 
 new Homepage()
