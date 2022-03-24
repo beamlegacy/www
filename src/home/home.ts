@@ -43,7 +43,7 @@ export class Homepage {
       const mappedRatio = NumberUtil.map(ratio, min, max)
       this.updateHero(1 - mappedRatio)
 
-      if (ratio <= 0.95) {
+      if (ratio <= 0.9) {
         this.clearTimeout()
         this.resetAnimation()
       }

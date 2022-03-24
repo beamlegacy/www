@@ -111,7 +111,7 @@
 
   //noinspection CssInvalidFunction
   .beam-window-container {
-    --height: 31.25em;
+    --height: 24.25em;
     --max-height: calc(100vh - var(--site-padding) * 2 - var(--header-height) - 10em);
     --min-height: 15em;
     --width: 47.5em;
@@ -126,6 +126,10 @@
     transform-style: preserve-3d;
     transition: transform 0.5s cubic-bezier(0.37, 1.51, 0.61, 0.99), font-size 0.2s ease-in-out;
     width: 100%;
+
+    @include mixins.above-small {
+      --height: 31.25em;
+    }
 
     @include mixins.above-medium {
       font-size: 14px;
