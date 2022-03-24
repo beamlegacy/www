@@ -1,0 +1,55 @@
+@mixin header {
+  > header {
+    display: flex;
+    flex-direction: row;
+    height: var(--header-height);
+    justify-content: flex-start;
+    width: 100%;
+  }
+
+  .beam-logo {
+    align-items: center;
+    background-color: var(--color-logo-spotlight);
+    border-radius: 100px;
+    box-shadow: 0 0 20vw 20vw var(--color-logo-spotlight);
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    font-size: 1.875em;
+    font-weight: 600;
+    gap: 0.2em;
+    line-height: 1;
+
+    svg {
+      --size: 1.06666667em;
+      height: var(--size);
+      min-width: var(--size);
+      width: var(--size);
+    }
+
+    .beta {
+      align-self: flex-start;
+      background-color: var(--color-pill);
+      border-radius: 0.81818182em;
+      font-size: 0.36666667em;
+      margin-top: 0.25em;
+      padding: 0.18181818em 0.54545455em 0.27272727em;
+    }
+  }
+
+  .nav {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+
+    button, a {
+      appearance: none;
+      background-color: transparent;
+      border: 0;
+      color: inherit;
+      font-size: 1em;
+      margin: 0;
+      padding: 0.25em 0;
+    }
+  }
+}
