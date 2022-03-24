@@ -5,15 +5,11 @@
   0% {
     transform: translateY(0) var(--transform);
   }
-  25% {
-    transform: translateY(-2em) var(--transform);
-  }
+
   50% {
-    transform: translateY(0) var(--transform);
+    transform: translateY(-1em) var(--transform);
   }
-  75% {
-    transform: translateY(-0.5em) var(--transform);
-  }
+
   100% {
     transform: translateY(0) var(--transform);
   }
