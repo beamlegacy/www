@@ -44,8 +44,8 @@ body {
   flex-direction: column;
   justify-content: center;
   min-height: 100%;
-  padding: var(--site-padding);
   overflow: hidden;
+  padding: var(--site-padding);
 
   > main {
     align-items: center;
@@ -67,8 +67,8 @@ body {
 
   > header {
     display: flex;
-    height: var(--header-height);
     flex-direction: row;
+    height: var(--header-height);
     justify-content: flex-start;
     width: 100%;
   }
@@ -80,9 +80,10 @@ body {
     box-shadow: 0 0 20vw 20vw var(--color-logo-spotlight);
     display: flex;
     flex-direction: row;
-    gap: 0.2em;
+    flex-grow: 1;
     font-size: 1.875em;
     font-weight: 600;
+    gap: 0.2em;
     line-height: 1;
 
     svg {
@@ -100,5 +101,11 @@ body {
       margin-top: 0.25em;
       padding: 0.18181818em 0.54545455em 0.27272727em;
     }
+  }
+
+  .nav {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
   }
 }

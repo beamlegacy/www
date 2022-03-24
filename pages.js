@@ -47,6 +47,10 @@ class HomeMessages_en {
     description: "",
   }
 
+  header = {
+    betaSignup: "Sign up for beta"
+  }
+
   title = "Meet the bright web"
   subtitle = "Browse.  Capture.  Write.  Publish."
 
@@ -83,6 +87,10 @@ class HomeMessages_fr {
   metas = {
     title: "Bienvenue sur beam",
     description: "",
+  }
+
+  header = {
+    betaSignup: "Sign up for beta"
   }
 
   title = "Meet the bright web"
