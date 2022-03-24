@@ -181,7 +181,11 @@
           <button class="underline"><%= htmlWebpackPlugin.options.messages.header.betaSignup %></button>
           <div class="input">
             <input type="email" name="zXmAeBqfd" autocomplte="off" placeholder="<%= htmlWebpackPlugin.options.messages.header.betaSignupPlaceholder %>">
-            <button>×</button>
+            <div class="action-container">
+              <button class="button-close">×</button>
+              <button class="button-arrow">-></button>
+              <span class="loading"></span>
+            </div>
           </div>
         </div>
       </div>

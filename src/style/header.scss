@@ -98,9 +98,21 @@
           }
         }
 
+        .action-container {
+          display: flex;
+          flex-direction: column;
+          height: 1.25em;
+          overflow: hidden;
+          width: 1.25em;
+        }
+
         button {
+          font-family: inherit;
           font-size: 1.5em;
           font-weight: 400;
+          line-height: 1em;
+          padding: 0;
+          white-space: nowrap;
         }
       }
 

@@ -19,14 +19,14 @@ class App {
 
     const betaSignup = document.querySelector(".beta-signup") as HTMLElement
     const betaSignupButton = betaSignup?.querySelector(":scope > button") as HTMLButtonElement
-    const actionButton = betaSignup?.querySelector(":scope .input > button") as HTMLButtonElement
+    const closeButton = betaSignup?.querySelector(":scope .input button.button-close") as HTMLButtonElement
     const betaSignupInputContainer = betaSignup?.querySelector(":scope .input") as HTMLButtonElement
     betaSignupButton?.addEventListener("click", () => {
       betaSignup?.classList.add("show-input")
       const input = betaSignupInputContainer.querySelector("input") as HTMLInputElement
       input?.focus()
     })
-    actionButton?.addEventListener("click", () => {
+    closeButton?.addEventListener("click", () => {
       betaSignup?.classList.remove("show-input")
     })
     betaSignupInputContainer?.addEventListener("blur", (e: FocusEvent) => {
