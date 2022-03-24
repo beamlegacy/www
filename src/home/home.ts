@@ -46,10 +46,11 @@ export class Homepage {
       betaSignup?.classList.remove("show-input")
     })
     betaSignupInputContainer?.addEventListener("blur", (e: FocusEvent) => {
-      if (!e.relatedTarget || !betaSignupInputContainer.contains(e.relatedTarget as Node)) {
+      const related = e.relatedTarget as HTMLElement
+      if (!e.relatedTarget || !betaSignupInputContainer.contains(related)) {
         const windows = document.querySelectorAll("beam-window") as NodeListOf<BeamWindow>
-        const inWindow = Array.from(windows).some(w => w.contains(e.relatedTarget as Node))
-        if (inWindow) {
+        const inWindow = Array.from(windows).some(w => w.contains(related))
+        if (inWindow && related.tagName.toLowerCase() !== "input") {
           betaSignupButton.click()
         } else {
           betaSignup?.classList.remove("show-input")
