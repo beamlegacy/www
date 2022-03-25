@@ -61,7 +61,9 @@ class App {
   }
 
   private sendEmailToBeamApi = (email: string): Promise<void> => {
-    return fetch("https://api.beamapp.co/api/v1/emails", {
+    const url = process.env.API_HOST || ""
+    console.assert(url, "No API_HOST found in env")
+    return fetch(`${url}/api/v1/emails`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -77,7 +79,9 @@ class App {
   }
 
   private generateSecureSubscribeLink = (email: string): Promise<string | void> => {
-    return fetch("https://createsend.com//t/getsecuresubscribelink", {
+    const url = process.env.SUBSCRIBE_LINK_URL || ""
+    console.assert(url, "No SUBSCRIBE_LINK_URL found in env")
+    return fetch(url, {
       method: "POST",
       body: new URLSearchParams({
         email: email,

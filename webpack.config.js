@@ -58,9 +58,14 @@ function createHtmlPlugins(pages, mode) {
 function config(mode, env) {
   console.log("Building for", mode)
   const analyzeBundle = false
-  console.log("Env is", env)
+  console.log("Env is", env, process.env.API_HOST, process.env.SUBSCRIBE_LINK_URL)
   const isDevelopment = mode === "development"
   const plugins = [
+    new webpack.DefinePlugin({
+      "process.env.API_HOST": JSON.stringify(process.env.API_HOST),
+      "process.env.SUBSCRIBE_LINK_URL": JSON.stringify(process.env.SUBSCRIBE_LINK_URL),
+
+    }),
     new FaviconsWebpackPlugin({
       logo: `./src/favicon${isDevelopment ? "-dev" : ""}-32x32.png`,
       mode: "light",
