@@ -59,6 +59,10 @@ class HomeMessages_en {
     title: "Beneath your&nbsp;<br/><strong class=\"in\">browser</strong>…"
   }
 
+  footer = {
+    year: new Date().getFullYear()
+  }
+
   tabs = {
     journal: "Journal",
     allNotes: "All notes",
@@ -98,16 +102,20 @@ class HomeMessages_fr {
   title = "Meet the bright web"
   subtitle = "Browse.  Capture.  Write.  Publish."
 
+  demo = {
+    title: "Beneath your&nbsp;<br/><strong>browser</strong>…"
+  }
+
+  footer = {
+    year: new Date().getFullYear()
+  }
+
   tabs = {
     journal: "Journal",
     allNotes: "Toutes les notes",
     bmail: "Bienvenue sur beam ! - bmail",
     beamTimes: "The beam Times - Actualités",
     youtube: "You On Kazoo! - YouTube"
-  }
-
-  demo = {
-    title: "Beneath your&nbsp;<br/><strong>browser</strong>…"
   }
 
   journal = {
