@@ -142,7 +142,7 @@
         font-size: 18px;
       }
 
-      @include mixins.height-below-default {
+      @include mixins.height-below-normal {
         --height: 24.25em;
         --width: 47.5em;
         font-size: 12px;

@@ -59,3 +59,9 @@
     @content;
   }
 }
+
+@mixin height-below-normal() {
+  @media (max-height: 720px) {
+    @content;
+  }
+}
