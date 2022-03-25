@@ -73,7 +73,6 @@
         align-items: center;
         display: flex;
         flex-direction: row;
-        gap: 0.25em;
         justify-content: center;
         opacity: 0;
         position: absolute;
@@ -108,6 +107,14 @@
           }
         }
 
+        form {
+          align-items: center;
+          display: flex;
+          flex-direction: row;
+          gap: 0.25em;
+          justify-content: center;
+        }
+        
         input {
           appearance: none;
           background-color: transparent;
