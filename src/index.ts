@@ -48,6 +48,7 @@ class App {
         betaSignup.classList.remove("valid")
       }
     })
+    input.addEventListener("keydown", this.handleBetaSignupKeydown)
 
     this.sizeVh()
     window.addEventListener("resize", this.sizeVh)
@@ -174,6 +175,16 @@ class App {
     }
     console.assert(page)
     return page
+  }
+
+  private handleBetaSignupKeydown = (e: Event): void => {
+    const ev = e as KeyboardEvent
+    if (ev.key.toLowerCase() === "escape") {
+      const betaSignup = document.querySelector(".beta-signup") as HTMLElement
+      const betaSignupInputContainer = betaSignup?.querySelector(":scope .input") as HTMLButtonElement
+      const input = betaSignupInputContainer.querySelector("input") as HTMLInputElement
+      input?.blur()
+    }
   }
 }
 
