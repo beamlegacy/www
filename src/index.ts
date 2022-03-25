@@ -49,6 +49,16 @@ class App {
         actionContainer.classList.remove("valid")
       }
     })
+
+    this.sizeVh()
+    window.addEventListener("resize", this.sizeVh)
+    window.addEventListener("scroll", this.sizeVh)
+    window.visualViewport.addEventListener("resize", this.sizeVh)
+  }
+
+  private sizeVh() {
+    const vh = window.innerHeight * 0.01
+    document.documentElement.style.setProperty("--vh", `${vh}px`)
   }
 
   private sendEmailToBeamApi = (email: string): Promise<void> => {

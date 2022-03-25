@@ -25,8 +25,8 @@
     }
 
     > main {
-      --margin-top: calc(56vh - var(--header-height));
-      height: calc(90vh - var(--header-height));
+      --margin-top: calc(56 * var(--vh) - var(--header-height));
+      height: calc(90 * var(--vh) - var(--header-height));
       margin-top: var(--margin-top);
       padding: 0;
 
@@ -60,7 +60,7 @@
         color: var(--color-text-secondary);
         font-size: 26px;
         font-weight: 400;
-        margin: 0 -1em 6vh;
+        margin: 0 -1em calc(6 * var(--vh));
 
 
         @include mixins.above-small {
@@ -113,7 +113,7 @@
     //noinspection CssInvalidFunction
     .beam-window-container {
       --height: 24.25em;
-      --max-height: calc(100vh - var(--site-padding) * 2 - var(--header-height) - 10em);
+      --max-height: calc(100 * var(--vh) - var(--site-padding) * 2 - var(--header-height) - 10em);
       --min-height: 15em;
       --width: 47.5em;
 

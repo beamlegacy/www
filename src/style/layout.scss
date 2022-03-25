@@ -30,6 +30,7 @@ body {
       radial-gradient(circle at 100% 60%, var(--color-background-gradient4-start), var(--color-background-gradient4-end) var(--gradient4))
   ;
     content: "";
+    height: 100vh;
     inset: 0;
     opacity: var(--gradient-opacity);
     position: fixed;
@@ -38,7 +39,7 @@ body {
 
 .beam-site {
   --header-height: 2em;
-  --hero-height: calc(100vh - var(--header-height));
+  --hero-height: calc(100 * var(--vh) - var(--header-height));
   --site-padding: 2em;
 
   align-items: center;
