@@ -73,6 +73,7 @@
         align-items: center;
         display: flex;
         flex-direction: row;
+        gap: 0.25em;
         justify-content: center;
         opacity: 0;
         position: absolute;
@@ -105,14 +106,6 @@
           &::before {
             transform: scaleX(1);
           }
-        }
-
-        form {
-          align-items: center;
-          display: flex;
-          flex-direction: row;
-          gap: 0.25em;
-          justify-content: center;
         }
 
         input {
