@@ -194,9 +194,11 @@ class App {
     const form = e.target as HTMLFormElement
     const betaSignup = document.querySelector(".beta-signup") as HTMLElement
     if (form.checkValidity()) {
-      /**/
+      betaSignup?.classList.remove("error")
+      betaSignup.classList.add("pending")
     } else {
       betaSignup?.classList.remove("error")
+      betaSignup?.classList.remove("pending")
       betaSignup?.offsetTop
       betaSignup?.classList.add("error")
     }

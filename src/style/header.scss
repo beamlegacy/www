@@ -1,3 +1,24 @@
+@keyframes pending {
+  0% {
+    opacity: 0.5;
+    transform: scaleX(1) translateX(-5%) scaleX(0.05);
+  }
+
+  40% {
+    opacity: 0.5;
+    transform: scaleX(1) translateX(40%) scaleX(0.6);
+  }
+
+  70% {
+    opacity: 0.5;
+    transform: scaleX(1) translateX(100%) scaleX(0);
+  }
+  100% {
+    opacity: 0.5;
+    transform: scaleX(1) translateX(100%) scaleX(0);
+  }
+}
+
 @mixin header {
   > header {
     display: flex;
@@ -76,6 +97,7 @@
         gap: 0.25em;
         justify-content: center;
         opacity: 0;
+        overflow: hidden;
         position: absolute;
         right: 0;
         top: 0;
@@ -195,6 +217,15 @@
       &.error {
         .input {
           animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+        }
+      }
+
+      &.pending {
+        .input {
+          &::after {
+            animation: pending 1.2s linear infinite both;
+            transition: none;
+          }
         }
       }
     }
