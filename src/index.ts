@@ -191,6 +191,15 @@ class App {
 
   private handleBetaSignupFormSubmit = (e: Event): void => {
     e.preventDefault()
+    const form = e.target as HTMLFormElement
+    const betaSignup = document.querySelector(".beta-signup") as HTMLElement
+    if (form.checkValidity()) {
+      /**/
+    } else {
+      betaSignup?.classList.remove("error")
+      betaSignup?.offsetTop
+      betaSignup?.classList.add("error")
+    }
   }
 }
 
