@@ -17,6 +17,7 @@ class App {
     this.initLang()
     window.customElements.define("beam-window", BeamWindow)
     const betaSignup = document.querySelector(".beta-signup") as HTMLElement
+    const form = betaSignup?.querySelector("form") as HTMLFormElement
     const betaSignupButton = betaSignup?.querySelector(":scope > button") as HTMLButtonElement
     const closeButton = betaSignup?.querySelector(":scope .input button.button-close") as HTMLButtonElement
     const betaSignupInputContainer = betaSignup?.querySelector(":scope .input") as HTMLButtonElement
@@ -49,6 +50,7 @@ class App {
       }
     })
     input.addEventListener("keydown", this.handleBetaSignupKeydown)
+    form.addEventListener("submit", this.handleBetaSignupFormSubmit)
 
     this.sizeVh()
     window.addEventListener("resize", this.sizeVh)
@@ -185,6 +187,10 @@ class App {
       const input = betaSignupInputContainer.querySelector("input") as HTMLInputElement
       input?.blur()
     }
+  }
+
+  private handleBetaSignupFormSubmit = (e: Event): void => {
+    e.preventDefault()
   }
 }
 
