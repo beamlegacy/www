@@ -206,6 +206,8 @@ class App {
         console.assert(url)
         if (url) {
           await this.sendEmailToCreateSend(url, email.value)
+          betaSignup?.classList.remove("pending")
+          betaSignup?.classList.remove("show-input")
         }
       }
     } else {
