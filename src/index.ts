@@ -191,7 +191,7 @@ class App {
     }
   }
 
-  private handleBetaSignupFormSubmit = (e: Event): void => {
+  private handleBetaSignupFormSubmit = async (e: Event): Promise<void> => {
     e.preventDefault()
     const form = e.target as HTMLFormElement
     const betaSignup = document.querySelector(".beta-signup") as HTMLElement
@@ -202,6 +202,11 @@ class App {
       console.assert(email)
       if (email) {
         this.sendEmailToBeamApi(email.value)
+        const url = await this.generateSecureSubscribeLink(email.value)
+        console.assert(url)
+        if (url) {
+          await this.sendEmailToCreateSend(url, email.value)
+        }
       }
     } else {
       betaSignup?.classList.remove("error")
