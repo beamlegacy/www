@@ -64,7 +64,9 @@ class HomeMessages_en {
     twitterUrl: "https://twitter.com/getonbeam",
     twitter: "Twitter",
     aboutUrl: "https://angel.co/company/beam-app-1",
-    about: "About"
+    about: "About",
+    jobsUrl: "https://angel.co/company/beam-app-1/jobs",
+    jobs: "Jobs"
   }
 
   tabs = {
@@ -115,7 +117,9 @@ class HomeMessages_fr {
     twitterUrl: "https://twitter.com/getonbeam",
     twitter: "Twitter",
     aboutUrl: "https://angel.co/company/beam-app-1",
-    about: "About"
+    about: "About",
+    jobsUrl: "https://angel.co/company/beam-app-1/jobs",
+    jobs: "Jobs"
   }
 
   tabs = {
