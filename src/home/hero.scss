@@ -13,7 +13,7 @@
     position: fixed;
     text-align: center;
     top: calc(var(--site-padding) * 2 + var(--header-height));
-    transition: font-size 0.2s ease-in-out;
+    //transition: font-size 0.2s ease-in-out;
 
     @include mixins.above-small {
       font-size: 0.875em;
