@@ -60,7 +60,9 @@ class HomeMessages_en {
   }
 
   footer = {
-    year: new Date().getFullYear()
+    year: new Date().getFullYear(),
+    twitterUrl: "https://twitter.com/getonbeam",
+    twitter: "Twitter"
   }
 
   tabs = {
@@ -107,7 +109,9 @@ class HomeMessages_fr {
   }
 
   footer = {
-    year: new Date().getFullYear()
+    year: new Date().getFullYear(),
+    twitterUrl: "https://twitter.com/getonbeam",
+    twitter: "Twitter"
   }
 
   tabs = {
