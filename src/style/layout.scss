@@ -28,12 +28,15 @@ body {
       radial-gradient(circle at 20% 100%, var(--color-background-gradient2-start) 10%, var(--color-background-gradient2-end) var(--gradient2)),
       radial-gradient(circle at 70% 100%, var(--color-background-gradient3-start), var(--color-background-gradient3-end) var(--gradient3)),
       radial-gradient(circle at 100% 60%, var(--color-background-gradient4-start), var(--color-background-gradient4-end) var(--gradient4))
-  ;
+    ;
+    bottom: 0;
     content: "";
     height: 100vh;
-    inset: 0;
+    left: 0;
     opacity: var(--gradient-opacity);
     position: fixed;
+    width: 100%;
+    will-change: height;
   }
 }
 
