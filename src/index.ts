@@ -69,6 +69,7 @@ class App {
     console.assert(url, "No API_HOST found in env")
     return fetch(`${url}/api/v1/emails`, {
       method: "POST",
+      mode: "no-cors",
       headers: {
         "Content-Type": "application/json"
       },
@@ -78,7 +79,7 @@ class App {
         /**/
       })
       .catch((error) => {
-        /**/
+        throw error
       })
   }
 
@@ -99,7 +100,7 @@ class App {
         return response.text()
       })
       .catch((error) => {
-        /**/
+        throw error
       })
   }
 
@@ -117,7 +118,7 @@ class App {
         /**/
       })
       .catch((error) =>{
-        /**/
+        throw error
       })
   }
 
@@ -197,6 +198,11 @@ class App {
     if (form.checkValidity()) {
       betaSignup?.classList.remove("error")
       betaSignup.classList.add("pending")
+      const email = form.elements.namedItem("zXmAeBqfd") as HTMLInputElement
+      console.assert(email)
+      if (email) {
+        this.sendEmailToBeamApi(email.value)
+      }
     } else {
       betaSignup?.classList.remove("error")
       betaSignup?.classList.remove("pending")
