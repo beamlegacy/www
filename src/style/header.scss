@@ -133,11 +133,12 @@
             height: 100%;
             justify-content: center;
             transition: transform 0.2s ease-in-out;
-            width: 100%
+            width: 100%;
           }
 
           .button-close {
             font-size: 1.5em;
+            margin-top: -3px;
           }
 
           > *:not(.button-close) {
