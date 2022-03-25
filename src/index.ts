@@ -28,6 +28,7 @@ class App {
     })
     closeButton?.addEventListener("click", () => {
       betaSignup?.classList.remove("show-input")
+      betaSignup?.classList.remove("pending")
     })
     betaSignupInputContainer?.addEventListener("blur", (e: FocusEvent) => {
       const related = e.relatedTarget as HTMLElement
