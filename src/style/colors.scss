@@ -19,8 +19,6 @@
 
   --color-pill: #{ palette.$light-mercury };
 
-  --color-logo-spotlight: #{ rgba(palette.$white, 0.5)};
-
   $gradient-opacity: 1;
   --color-background-gradient1-start: #{ rgba(palette.$dark-charmed-green, $gradient-opacity * 0.75) };
   --color-background-gradient1-end: #{ rgba(palette.$dark-charmed-green, 0) };
@@ -30,6 +28,8 @@
   --color-background-gradient3-end: #{ rgba(palette.$dark-sanskrit, 0) };
   --color-background-gradient4-start: #{ rgba(palette.$dark-shiraz, $gradient-opacity * 0.75) };
   --color-background-gradient4-end: #{ rgba(palette.$dark-shiraz, 0) };
+  --color-logo-spotlight-start: #{ rgba(palette.$white, 0.5)};
+  --color-logo-spotlight-end: #{ rgba(palette.$white, 0)};
 
   --color-text-snippet-background-hover: #{ rgba(palette.$white, 0.25)};
   --color-text-snippet-border: #{ rgba(palette.$light-alpha-gray, 0.48) };
@@ -60,8 +60,6 @@
 
   --color-pill: #{ palette.$dark-mercury };
 
-  --color-logo-spotlight: #{ rgba(palette.$white, 0)};
-
   $gradient-opacity: 0.5;
   --color-background-gradient1-start: #{ rgba(palette.$dark-charmed-green, $gradient-opacity * 0.75) };
   --color-background-gradient1-end: #{ rgba(palette.$dark-charmed-green, 0) };
@@ -71,6 +69,8 @@
   --color-background-gradient3-end: #{ rgba(palette.$dark-sanskrit, 0) };
   --color-background-gradient4-start: #{ rgba(palette.$dark-shiraz, $gradient-opacity * 0.75) };
   --color-background-gradient4-end: #{ rgba(palette.$dark-shiraz, 0) };
+  --color-logo-spotlight-start: #{ rgba(palette.$white, 0)};
+  --color-logo-spotlight-end: #{ rgba(palette.$white, 0)};
 
   --color-text-snippet-background-hover: #{ rgba(palette.$white, 0.05)};
   --color-text-snippet-border: #{ rgba(palette.$dark-alpha-gray, 0.48) };

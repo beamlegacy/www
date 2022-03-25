@@ -23,6 +23,7 @@ body {
     --gradient3: calc(45% + var(--gradient-grow, 0%));
     --gradient4: calc(35% + var(--gradient-grow, 0%));
     background-image:
+      radial-gradient(circle at 0% 0%, var(--color-logo-spotlight-start) 10%, var(--color-logo-spotlight-end) 40%),
       radial-gradient(circle at 0% 60%, var(--color-background-gradient1-start), var(--color-background-gradient1-end) var(--gradient1)),
       radial-gradient(circle at 20% 100%, var(--color-background-gradient2-start) 10%, var(--color-background-gradient2-end) var(--gradient2)),
       radial-gradient(circle at 70% 100%, var(--color-background-gradient3-start), var(--color-background-gradient3-end) var(--gradient3)),
