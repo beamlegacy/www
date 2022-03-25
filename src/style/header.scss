@@ -99,7 +99,13 @@
 
         &::before {
           opacity: 0.25;
-          transform: scaleX(1);
+          transition-delay: 0.15s;
+        }
+
+        &:focus-within {
+          &::before {
+            transform: scaleX(1);
+          }
         }
 
         input {
