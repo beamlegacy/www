@@ -101,7 +101,7 @@ export class Homepage {
       this.updateWin(mappedRatio4)
     }, {
       rootMargin: "0px 0px -100px 0px",
-      threshold: new Array(100).fill(0).map((v, i) => (i + 1) / 100)
+      threshold: new Array(1000).fill(0).map((v, i) => (i + 1) / 1000)
     })
     if (demo) {
       this.observer.observe(demo)
