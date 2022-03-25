@@ -42,11 +42,10 @@ class App {
     }, true)
     input.addEventListener("input", (e: Event) => {
       const target = e.target as HTMLInputElement
-      const actionContainer = document.querySelector(".action-container") as HTMLElement
       if (target.checkValidity()) {
-        actionContainer.classList.add("valid")
+        betaSignup.classList.add("valid")
       } else {
-        actionContainer.classList.remove("valid")
+        betaSignup.classList.remove("valid")
       }
     })
 
