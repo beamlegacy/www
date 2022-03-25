@@ -45,7 +45,7 @@ export class Homepage {
 
       if (ratio <= 0.9) {
         this.clearTimeout()
-        this.resetAnimation()
+        this.resetAnimation(false)
       }
 
       if (mappedRatio === 1) {
@@ -54,23 +54,20 @@ export class Homepage {
         title?.classList.add("in")
         const strong = title?.querySelector("strong")
         strong?.classList.add("in")
-        if (win && win.mode === BeamWindowMode.web) {
-          this.clearTimeout()
-          this.timeout = setTimeout(() => {
-            this.timeout = setTimeout(() => {
-              this.animation.changeTitle(this.animation.titles[Math.min(this.animation.switches, this.animation.titles.length - 1)])
-              this.timeout = setTimeout(() => {
-                win.mode = BeamWindowMode.writing
-                this.timeout = setTimeout(() => {
-                  this.animation.changeTitle(this.animation.titles[Math.min(this.animation.switches, this.animation.titles.length - 1)])
-                  this.timeout = setTimeout(() => {
-                    win.mode = BeamWindowMode.web
-                  }, 1350)
-                }, 2000)
-              }, 1350)
-            }, 1000)
-          }, 500)
+        this.clearTimeout()
+        switch (this.animation.switches) {
+          case 0:
+            this.timeout = setTimeout(this.step2, 1350)
+            break
+          case 1:
+            this.timeout = setTimeout(this.step3, 1350)
+            break
+          default:
+            this.timeout = setTimeout(this.step4, 1350)
+            break
         }
+
+
       } else if (mappedRatio === 0) {
         this.resetAnimation()
         win.mode = BeamWindowMode.web
@@ -106,6 +103,32 @@ export class Homepage {
     if (demo) {
       this.observer.observe(demo)
     }
+  }
+
+  step2 = () => {
+    const win = this.win
+    this.animation.changeTitle(this.animation.titles[Math.min(this.animation.switches, this.animation.titles.length - 1)])
+    this.timeout = setTimeout(() => {
+      win.mode = BeamWindowMode.writing
+      this.timeout = setTimeout(this.step3, 2000)
+    }, 1350)
+  }
+
+  step3 = () => {
+    const win = this.win
+    if (win.mode === BeamWindowMode.writing) {
+      this.animation.changeTitle(this.animation.titles[Math.min(this.animation.switches, this.animation.titles.length - 1)])
+    }
+    this.timeout = setTimeout(() => {
+      win.mode = BeamWindowMode.web
+    }, 1350)
+  }
+
+  step4 = () => {
+    const win = this.win
+    this.timeout = setTimeout(() => {
+      win.mode = BeamWindowMode.writing
+    }, 1350)
   }
 
   clearTimeout = (): void => {
@@ -146,11 +169,13 @@ export class Homepage {
     w?.style.setProperty("animation", t <= 0.35 ? "bump 0.5s ease-in-out" : "")
   }
 
-  resetAnimation(): void {
+  resetAnimation(resetSwitches = true): void {
     this.animation.cancelAnimation()
     this.animation.rotateBack()
     this.win.captureTarget()
-    this.animation.switches = 0
+    if (resetSwitches) {
+      this.animation.switches = 0
+    }
   }
 }
 
