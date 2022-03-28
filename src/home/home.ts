@@ -26,7 +26,7 @@ export class Homepage {
   private observer: IntersectionObserver
   private animation: BeamWindowAnimation
   private timeout: ReturnType<typeof setTimeout> | undefined
-  private win: BeamWindow
+  private readonly win: BeamWindow
 
   constructor() {
     this.animation = new BeamWindowAnimation()
@@ -103,6 +103,22 @@ export class Homepage {
     }
   }
 
+  get demo(): HTMLElement | null {
+    return document.querySelector(".demo")
+  }
+
+  get title(): HTMLElement | null {
+    return document.querySelector(".demo .title")
+  }
+
+  get hero(): HTMLElement | null {
+    return document.querySelector(".hero")
+  }
+
+  get titleContainer(): HTMLElement | null {
+    return document.querySelector(".title-container")
+  }
+
   private step2 = (): void => {
     const win = this.win
     this.animation.changeTitle(this.animation.titles[Math.min(this.animation.switches, this.animation.titles.length - 1)])
@@ -131,22 +147,6 @@ export class Homepage {
 
   private clearTimeout = (): void => {
     this.timeout && clearTimeout(this.timeout)
-  }
-
-  get demo(): HTMLElement | null {
-    return document.querySelector(".demo")
-  }
-
-  get title(): HTMLElement | null {
-    return document.querySelector(".demo .title")
-  }
-
-  get hero(): HTMLElement | null {
-    return document.querySelector(".hero")
-  }
-
-  get titleContainer(): HTMLElement | null {
-    return document.querySelector(".title-container")
   }
 
   private updateHero(t: number): void {
