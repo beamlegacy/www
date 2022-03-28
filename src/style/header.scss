@@ -61,6 +61,7 @@
     align-items: center;
     display: flex;
     flex-direction: row;
+    margin-top: 0.25em;
 
     button,
     a {
@@ -184,6 +185,18 @@
         }
       }
 
+      .output {
+        opacity: 0;
+        padding: 0.25em 0;
+        position: absolute;
+        right: 0;
+        text-align: right;
+        top: 0;
+        transform: translateY(100%);
+        transition: transform 0.5s var(--transform-easing), opacity 0.5s ease-in-out;
+        width: 25em;
+      }
+
       &.show-input {
         > button {
           opacity: 0;
@@ -191,6 +204,23 @@
         }
 
         .input {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      &.show-output {
+        > button {
+          opacity: 0;
+          transform: translateY(-100%);
+        }
+
+        .input {
+          opacity: 0;
+          transform: translateY(-100%);
+        }
+
+        .output {
           opacity: 1;
           transform: translateY(0);
         }

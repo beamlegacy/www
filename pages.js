@@ -49,7 +49,9 @@ class HomeMessages_en {
 
   header = {
     betaSignup: "Sign up for beta",
-    betaSignupPlaceholder: "Enter your e-mail address..."
+    betaSignupPlaceholder: "Enter your e-mail address...",
+    betaSignupError: "We couldn't save your email, please try again",
+    betaSignupSuccess: "Got it! We'll be in touch shortly",
   }
 
   title = "Meet the bright web"
@@ -104,7 +106,9 @@ class HomeMessages_fr {
 
   header = {
     betaSignup: "Sign up for beta",
-    betaSignupPlaceholder: "Enter your e-mail address..."
+    betaSignupPlaceholder: "Enter your e-mail address...",
+    betaSignupError: "We couldn't save your email, please try again",
+    betaSignupSuccess: "Got it! We'll be in touch shortly",
   }
 
   title = "Meet the bright web"

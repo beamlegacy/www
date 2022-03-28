@@ -12,8 +12,10 @@ class App {
   supportedLang = ["en", "fr"]
   defaultLang = "en"
   lang = "en"
+  private messages: any
 
   constructor() {
+    this.messages = (window as any).messages
     this.initLang()
     this.sizeVh()
     window.customElements.define("beam-window", BeamWindow)
@@ -46,6 +48,10 @@ class App {
 
   get betaSignupInput(): Element | null {
     return document.querySelector(".beta-signup input")
+  }
+
+  get betaSignupOutput(): Element | null {
+    return document.querySelector(".beta-signup .output")
   }
 
   private sizeVh(): void {
@@ -213,20 +219,29 @@ class App {
       betaSignup?.classList.remove("error")
       betaSignup.classList.add("pending")
       const email = form.elements.namedItem("zXmAeBqfd") as HTMLInputElement
+      const output = this.betaSignupOutput as HTMLElement
       console.assert(email)
       if (email) {
         this.sendEmailToBeamApi(email.value) // this one can fail without it being an issue
         try {
           const url = await this.generateSecureSubscribeLink(email.value)
-          console.assert(url)
+          console.log(this.messages)
           if (url) {
             await this.sendEmailToCreateSend(url, email.value)
+            output.innerHTML = this.messages.header.betaSignupSuccess
+          } else {
+            throw new Error("No secure subscribe url was returned")
           }
         } catch (e) {
-          // error
+          output.innerHTML = this.messages.header.betaSignupError
         } finally {
           betaSignup?.classList.remove("pending")
           betaSignup?.classList.remove("show-input")
+          betaSignup?.classList.add("show-output")
+
+          setTimeout(() => {
+            betaSignup?.classList.remove("show-output")
+          }, 2500)
         }
       }
     } else {
