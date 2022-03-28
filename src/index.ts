@@ -179,17 +179,38 @@ class App {
     }
   }
 
+  get betaSignup(): Element | null {
+    return document.querySelector(".beta-signup")
+  }
+
+  get betaSignupForm(): Element | null {
+    return document.querySelector(".beta-signup form")
+  }
+
+  get betaSignupButton(): Element | null {
+    return document.querySelector(".beta-signup > button")
+  }
+
+  get betaSignupCloseButton(): Element | null {
+    return document.querySelector(".beta-signup .input button.button-close")
+  }
+
+  get betaSignupInputContainer(): Element | null {
+    return document.querySelector(".beta-signup .input")
+  }
+
+  get betaSignupInput(): Element | null {
+    return document.querySelector(".beta-signup input")
+  }
+
   private initEventListeners = (): void => {
-    const betaSignup = document.querySelector(".beta-signup") as HTMLElement
-    const form = betaSignup?.querySelector("form") as HTMLFormElement
-    const betaSignupButton = betaSignup?.querySelector(":scope > button") as HTMLButtonElement
-    const closeButton = betaSignup?.querySelector(":scope .input button.button-close") as HTMLButtonElement
-    const betaSignupInputContainer = betaSignup?.querySelector(":scope .input") as HTMLButtonElement
-    const input = betaSignupInputContainer.querySelector("input") as HTMLInputElement
-    betaSignupButton?.addEventListener("click", () => {
-      betaSignup?.classList.add("show-input")
-      input?.focus()
-    })
+    const betaSignup = this.betaSignup
+    const form = this.betaSignupForm as HTMLFormElement
+    const betaSignupButton = this.betaSignupButton as HTMLButtonElement
+    const closeButton = this.betaSignupCloseButton as HTMLButtonElement
+    const betaSignupInputContainer = this.betaSignupInputContainer as HTMLButtonElement
+    const input = this.betaSignupInput as HTMLInputElement
+    betaSignupButton?.addEventListener("click", this.handleSignupButtonClick)
     closeButton?.addEventListener("click", () => {
       betaSignup?.classList.remove("show-input")
       betaSignup?.classList.remove("pending")
@@ -206,20 +227,27 @@ class App {
         }
       }
     }, true)
-    input.addEventListener("input", (e: Event) => {
+    input?.addEventListener("input", (e: Event) => {
       const target = e.target as HTMLInputElement
       if (target.checkValidity()) {
-        betaSignup.classList.add("valid")
+        betaSignup?.classList.add("valid")
       } else {
-        betaSignup.classList.remove("valid")
+        betaSignup?.classList.remove("valid")
       }
     })
-    input.addEventListener("keydown", this.handleBetaSignupKeydown)
+    input?.addEventListener("keydown", this.handleBetaSignupKeydown)
     form.addEventListener("submit", this.handleBetaSignupFormSubmit)
 
     window.addEventListener("resize", this.sizeVh)
     window.addEventListener("scroll", this.sizeVh)
     window.visualViewport.addEventListener("resize", this.sizeVh)
+  }
+
+  private handleSignupButtonClick = (_e: Event): void => {
+    const betaSignup = this.betaSignup as HTMLElement
+    const input = this.betaSignupInput as HTMLInputElement
+    betaSignup?.classList.add("show-input")
+    input?.focus()
   }
 }
 
