@@ -13,7 +13,6 @@ const packageJson = require("./package.json")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const pages = require("./pages.js")
 
-console.log(pages)
 const version = packageJson.version
 
 // Initialize dotenv support, the earlier the better
@@ -32,16 +31,6 @@ const minifyOptions = {
 function createHtmlPlugins(pages, mode) {
   return pages.map((template, i) => {
     const {title, srcPath, messages, filename, ...rest} = template
-    const normalize = (url) => url && url.replace(/\/index\.html$/, "")
-    console.log({
-      rest,
-      filename,
-      title: `${title}${mode !== "production" ? ` [${mode}]` : ""}`,
-      template: `src/${srcPath}`,
-      minify: minifyOptions,
-      js: ["[chunkhash].js"],
-      chunks: template.chunks ?? ["index"]
-    })
     return new HtmlWebpackPlugin({
       ...rest,
       messages,
