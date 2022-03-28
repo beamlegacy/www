@@ -195,6 +195,10 @@
         transform: translateY(2em);
         transition: transform 0.5s var(--transform-easing), opacity 0.5s ease-in-out;
         width: 25em;
+
+        small {
+          font-size: 0.875em;
+        }
       }
 
       &.show-input {
