@@ -1,7 +1,7 @@
 [build]
   base = "./"
   publish = "dist/"
-  command = "yarn build"
+  command = "yarn dist"
 
 [build.environment]
   NODE_VERSION = "16.13.0"
