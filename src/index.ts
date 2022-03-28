@@ -15,48 +15,9 @@ class App {
 
   constructor() {
     this.initLang()
-    window.customElements.define("beam-window", BeamWindow)
-    const betaSignup = document.querySelector(".beta-signup") as HTMLElement
-    const form = betaSignup?.querySelector("form") as HTMLFormElement
-    const betaSignupButton = betaSignup?.querySelector(":scope > button") as HTMLButtonElement
-    const closeButton = betaSignup?.querySelector(":scope .input button.button-close") as HTMLButtonElement
-    const betaSignupInputContainer = betaSignup?.querySelector(":scope .input") as HTMLButtonElement
-    const input = betaSignupInputContainer.querySelector("input") as HTMLInputElement
-    betaSignupButton?.addEventListener("click", () => {
-      betaSignup?.classList.add("show-input")
-      input?.focus()
-    })
-    closeButton?.addEventListener("click", () => {
-      betaSignup?.classList.remove("show-input")
-      betaSignup?.classList.remove("pending")
-    })
-    betaSignupInputContainer?.addEventListener("blur", (e: FocusEvent) => {
-      const related = e.relatedTarget as HTMLElement
-      if (!e.relatedTarget || !betaSignupInputContainer.contains(related)) {
-        const windows = document.querySelectorAll("beam-window") as NodeListOf<BeamWindow>
-        const inWindow = Array.from(windows).some(w => w.contains(related))
-        if (inWindow && related.tagName.toLowerCase() !== "input") {
-          betaSignupButton.click()
-        } else {
-          betaSignup?.classList.remove("show-input")
-        }
-      }
-    }, true)
-    input.addEventListener("input", (e: Event) => {
-      const target = e.target as HTMLInputElement
-      if (target.checkValidity()) {
-        betaSignup.classList.add("valid")
-      } else {
-        betaSignup.classList.remove("valid")
-      }
-    })
-    input.addEventListener("keydown", this.handleBetaSignupKeydown)
-    form.addEventListener("submit", this.handleBetaSignupFormSubmit)
-
     this.sizeVh()
-    window.addEventListener("resize", this.sizeVh)
-    window.addEventListener("scroll", this.sizeVh)
-    window.visualViewport.addEventListener("resize", this.sizeVh)
+    window.customElements.define("beam-window", BeamWindow)
+    this.initEventListeners()
   }
 
   private sizeVh() {
@@ -216,6 +177,49 @@ class App {
       betaSignup?.offsetTop
       betaSignup?.classList.add("error")
     }
+  }
+
+  private initEventListeners = (): void => {
+    const betaSignup = document.querySelector(".beta-signup") as HTMLElement
+    const form = betaSignup?.querySelector("form") as HTMLFormElement
+    const betaSignupButton = betaSignup?.querySelector(":scope > button") as HTMLButtonElement
+    const closeButton = betaSignup?.querySelector(":scope .input button.button-close") as HTMLButtonElement
+    const betaSignupInputContainer = betaSignup?.querySelector(":scope .input") as HTMLButtonElement
+    const input = betaSignupInputContainer.querySelector("input") as HTMLInputElement
+    betaSignupButton?.addEventListener("click", () => {
+      betaSignup?.classList.add("show-input")
+      input?.focus()
+    })
+    closeButton?.addEventListener("click", () => {
+      betaSignup?.classList.remove("show-input")
+      betaSignup?.classList.remove("pending")
+    })
+    betaSignupInputContainer?.addEventListener("blur", (e: FocusEvent) => {
+      const related = e.relatedTarget as HTMLElement
+      if (!e.relatedTarget || !betaSignupInputContainer.contains(related)) {
+        const windows = document.querySelectorAll("beam-window") as NodeListOf<BeamWindow>
+        const inWindow = Array.from(windows).some(w => w.contains(related))
+        if (inWindow && related.tagName.toLowerCase() !== "input") {
+          betaSignupButton.click()
+        } else {
+          betaSignup?.classList.remove("show-input")
+        }
+      }
+    }, true)
+    input.addEventListener("input", (e: Event) => {
+      const target = e.target as HTMLInputElement
+      if (target.checkValidity()) {
+        betaSignup.classList.add("valid")
+      } else {
+        betaSignup.classList.remove("valid")
+      }
+    })
+    input.addEventListener("keydown", this.handleBetaSignupKeydown)
+    form.addEventListener("submit", this.handleBetaSignupFormSubmit)
+
+    window.addEventListener("resize", this.sizeVh)
+    window.addEventListener("scroll", this.sizeVh)
+    window.visualViewport.addEventListener("resize", this.sizeVh)
   }
 }
 
