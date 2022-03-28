@@ -13,12 +13,43 @@
     opacity: 0.5;
     transform: scaleX(1) translateX(100%) scaleX(0);
   }
+
   100% {
     opacity: 0.5;
     transform: scaleX(1) translateX(100%) scaleX(0);
   }
 }
 
+@keyframes drawCheckbox {
+  0% {
+    opacity: 0.05;
+    stroke-dashoffset: 130%;
+    stroke-width: 0;
+  }
+
+  50% {
+    opacity: 0.4;
+    stroke-dashoffset: 95%;
+  }
+
+  100% {
+    opacity: 1;
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes drawError {
+  0% {
+    opacity: 0.05;
+    stroke-dashoffset: 130%;
+    stroke-width: 0;
+  }
+
+  100% {
+    opacity: 1;
+    stroke-dashoffset: 0;
+  }
+}
 @mixin header {
   > header {
     display: flex;
@@ -201,11 +232,32 @@
         }
 
         .icn {
+          color: var(--color-text-secondary);
           display: inline-block;
           height: 1em;
           margin-right: 0.25em;
+          transform: scale(0);
+          transition: transform 0.15s ease-in-out;
           vertical-align: middle;
           width: 1em;
+
+          &.checkmark {
+            > path {
+              animation: drawCheckbox 0.25s ease-in-out 0.25s both;
+              stroke-dasharray: 130%;
+            }
+          }
+
+          &.error {
+            > path {
+              animation: drawError 0.3s ease-in-out both;
+              stroke-dasharray: 130%;
+            }
+
+            > path:nth-child(2) {
+              animation-delay: calc(0.2s + 0.025s);
+            }
+          }
         }
       }
 
@@ -235,6 +287,10 @@
         .output {
           opacity: 1;
           transform: translateY(0);
+        }
+
+        .icn {
+          transform: scale(1);
         }
       }
 
