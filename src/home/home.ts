@@ -14,7 +14,6 @@ export class Homepage {
     this.win = document.querySelector("beam-window") as BeamWindow
 
     this.observer = new IntersectionObserver((entries: IntersectionObserverEntry[]) => {
-      const {win} = this
       const ratio = entries[0].intersectionRatio
       const min = 0.4
       const max = 0.8
@@ -31,20 +30,7 @@ export class Homepage {
       if (mappedRatio === 1) {
         this.handleFullyVisible()
       } else if (mappedRatio === 0) {
-        this.resetAnimation()
-        win.mode = BeamWindowMode.web
-        let title = this.title
-        if (title) {
-          const messages = (window as any).messages
-          const msg = messages.demo.title
-          this.animation.changeTitle(msg, true)
-          title = demo?.querySelector(".title") as HTMLElement
-          title.classList.remove("in")
-          title.style.setProperty("--animation-slide-in-transform", "translateY(4em)")
-          const strong = title?.querySelector("strong")
-          strong?.classList.remove("in")
-          title.style.setProperty("opacity", "0")
-        }
+        this.handleFullyOut()
       }
 
       const mappedRatio2 = NumberUtil.map(ratio, titleMin, max, 0, 1)
@@ -67,7 +53,7 @@ export class Homepage {
     }
   }
 
-  private handleFullyVisible(): void {
+  private handleFullyVisible = (): void => {
     const title = this.title
     title?.style.setProperty("opacity", "1")
     title?.classList.add("in")
@@ -84,6 +70,24 @@ export class Homepage {
       default:
         this.timeout = setTimeout(this.step4, 1350)
         break
+    }
+  }
+  
+  private handleFullyOut = (): void => {
+    const {win, demo} = this
+    this.resetAnimation()
+    win.mode = BeamWindowMode.web
+    let title = this.title
+    if (title) {
+      const messages = (window as any).messages
+      const msg = messages.demo.title
+      this.animation.changeTitle(msg, true)
+      title = demo?.querySelector(".title") as HTMLElement
+      title.classList.remove("in")
+      title.style.setProperty("--animation-slide-in-transform", "translateY(4em)")
+      const strong = title?.querySelector("strong")
+      strong?.classList.remove("in")
+      title.style.setProperty("opacity", "0")
     }
   }
 
