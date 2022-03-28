@@ -13,6 +13,7 @@ class App {
   defaultLang = "en"
   lang = "en"
   private messages: any
+  private requestPending = false
 
   constructor() {
     this.messages = (window as any).messages
@@ -170,6 +171,7 @@ class App {
     const betaSignup = this.betaSignup as HTMLElement
     const input = this.betaSignupInput as HTMLInputElement
     betaSignup?.classList.add("show-input")
+    betaSignup?.classList.remove("show-output")
     input?.focus()
   }
 
@@ -226,40 +228,45 @@ class App {
     e.preventDefault()
     const form = e.currentTarget as HTMLFormElement
     const betaSignup = document.querySelector(".beta-signup") as HTMLElement
-    if (form.checkValidity()) {
-      betaSignup?.classList.remove("error")
-      betaSignup.classList.add("pending")
-      const email = form.elements.namedItem("zXmAeBqfd") as HTMLInputElement
-      const output = this.betaSignupOutput as HTMLElement
-      console.assert(email)
-      if (email) {
-        this.sendEmailToBeamApi(email.value) // this one can fail without it being an issue
-        try {
-          const url = await this.generateSecureSubscribeLink(email.value)
-          console.log(this.messages)
-          if (url) {
-            await this.sendEmailToCreateSend(url, email.value)
-            output.innerHTML = this.messages.header.betaSignupSuccess
-          } else {
-            throw new Error("No secure subscribe url was returned")
-          }
-        } catch (e) {
-          output.innerHTML = this.messages.header.betaSignupError
-        } finally {
-          betaSignup?.classList.remove("pending")
-          betaSignup?.classList.remove("show-input")
-          betaSignup?.classList.add("show-output")
+    if (!this.requestPending) {
+      if (form.checkValidity()) {
+        this.requestPending = true
+        betaSignup?.classList.remove("error")
+        betaSignup.classList.add("pending")
+        const email = form.elements.namedItem("zXmAeBqfd") as HTMLInputElement
+        const output = this.betaSignupOutput as HTMLElement
+        console.assert(email)
+        if (email) {
+          this.sendEmailToBeamApi(email.value) // this one can fail without it being an issue
+          try {
+            const url = await this.generateSecureSubscribeLink(email.value)
+            if (url) {
+              await this.sendEmailToCreateSend(url, email.value)
+              output.innerHTML = `<small>${this.messages.header.betaSignupSuccess}</small>`
+            } else {
+              throw new Error("No secure subscribe url was returned")
+            }
+          } catch (e) {
+            output.innerHTML = `<small>${this.messages.header.betaSignupError}</small>`
+          } finally {
+            betaSignup?.classList.remove("pending", "show-input")
+            betaSignup?.classList.add("show-output")
 
-          setTimeout(() => {
-            betaSignup?.classList.remove("show-output")
-          }, 2500)
+            setTimeout(() => {
+              betaSignup?.classList.remove("show-output")
+              this.requestPending = false
+              const active = document.activeElement as HTMLElement
+              if (form && form.contains(active)) {
+                active.blur()
+              }
+            }, 2500)
+          }
         }
+      } else {
+        betaSignup?.classList.remove("error", "pending")
+        betaSignup?.offsetTop
+        betaSignup?.classList.add("error")
       }
-    } else {
-      betaSignup?.classList.remove("error")
-      betaSignup?.classList.remove("pending")
-      betaSignup?.offsetTop
-      betaSignup?.classList.add("error")
     }
   }
 
