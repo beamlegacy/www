@@ -1,7 +1,7 @@
 import "./index.scss"
 import {Cookie} from "util/cookie/Cookie"
 import {BeamWindow} from "home/beam-window/BeamWindow"
-import {BeamWindowAnimation} from "home/BeamWindowAnimation"
+
 const pages = require("../pages.js")
 
 interface LocalizedPage {
@@ -20,6 +20,34 @@ class App {
     this.initEventListeners()
   }
 
+  get langUrlPrefix(): string {
+    return `/${this.lang}`
+  }
+
+  get betaSignup(): Element | null {
+    return document.querySelector(".beta-signup")
+  }
+
+  get betaSignupForm(): Element | null {
+    return document.querySelector(".beta-signup form")
+  }
+
+  get betaSignupButton(): Element | null {
+    return document.querySelector(".beta-signup > button")
+  }
+
+  get betaSignupCloseButton(): Element | null {
+    return document.querySelector(".beta-signup .input button.button-close")
+  }
+
+  get betaSignupInputContainer(): Element | null {
+    return document.querySelector(".beta-signup .input")
+  }
+
+  get betaSignupInput(): Element | null {
+    return document.querySelector(".beta-signup input")
+  }
+
   private sizeVh(): void {
     const vh = window.innerHeight * 0.01
     document.documentElement.style.setProperty("--vh", `${vh}px`)
@@ -36,7 +64,7 @@ class App {
       },
       body: JSON.stringify({email})
     })
-      .then((response: Response) => {
+      .then((_response: Response) => {
         /**/
       })
       .catch((error) => {
@@ -75,15 +103,23 @@ class App {
         "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
       }
     })
-      .then((response) => {
+      .then((_response) => {
         /**/
       })
-      .catch((error) =>{
+      .catch((error) => {
         throw error
       })
   }
 
-  
+  private removeUrlPrefix(url: string): string {
+    return url.replace(
+      new RegExp(
+        `^${this.langUrlPrefix.replace(/([/])/, "\\$1")}`, "g"
+      ),
+      ""
+    )
+  }
+
   private initLang(): void {
     const lang = Cookie.get("nf_lang")
     if (lang) {
@@ -102,107 +138,7 @@ class App {
       }
     }
   }
-
-  get langUrlPrefix(): string {
-    return `/${this.lang}`
-  }
-
-  removeUrlPrefix(url: string): string {
-    return url.replace(
-      new RegExp(
-        `^${this.langUrlPrefix.replace(/([/])/, "\\$1")}`, "g"
-      ),
-      ""
-    )
-  }
-
-  private getCurrentPage(): LocalizedPage | undefined {
-    // Try to find page with current url and lang
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    let page = pages.find(p => {
-      const pSlug = this.removeUrlPrefix(p.url)
-      const url = location.pathname.replace(/\/$/, "")
-      console.log({pUrl: p.url, pSlug, url})
-      return p.lang === this.lang && pSlug === url
-    })
-
-    if (!page) {
-      // Try to get the page using url only and then finding its lang equivalent
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      const currentPage = pages.find(p => p.url === location.pathname.replace(/\/$/, ""))
-      if (currentPage) {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        page = pages.find(p => p.lang === this.lang && p.page === currentPage.page)
-      }
-    }
-    console.assert(page)
-    return page
-  }
-
-  private handleBetaSignupKeydown = (e: Event): void => {
-    const ev = e as KeyboardEvent
-    if (ev.key.toLowerCase() === "escape") {
-      const betaSignup = document.querySelector(".beta-signup") as HTMLElement
-      const betaSignupInputContainer = betaSignup?.querySelector(":scope .input") as HTMLButtonElement
-      const input = betaSignupInputContainer.querySelector("input") as HTMLInputElement
-      input?.blur()
-    }
-  }
-
-  private handleBetaSignupFormSubmit = async (e: Event): Promise<void> => {
-    e.preventDefault()
-    const form = e.target as HTMLFormElement
-    const betaSignup = document.querySelector(".beta-signup") as HTMLElement
-    if (form.checkValidity()) {
-      betaSignup?.classList.remove("error")
-      betaSignup.classList.add("pending")
-      const email = form.elements.namedItem("zXmAeBqfd") as HTMLInputElement
-      console.assert(email)
-      if (email) {
-        this.sendEmailToBeamApi(email.value)
-        const url = await this.generateSecureSubscribeLink(email.value)
-        console.assert(url)
-        if (url) {
-          await this.sendEmailToCreateSend(url, email.value)
-          betaSignup?.classList.remove("pending")
-          betaSignup?.classList.remove("show-input")
-        }
-      }
-    } else {
-      betaSignup?.classList.remove("error")
-      betaSignup?.classList.remove("pending")
-      betaSignup?.offsetTop
-      betaSignup?.classList.add("error")
-    }
-  }
-
-  get betaSignup(): Element | null {
-    return document.querySelector(".beta-signup")
-  }
-
-  get betaSignupForm(): Element | null {
-    return document.querySelector(".beta-signup form")
-  }
-
-  get betaSignupButton(): Element | null {
-    return document.querySelector(".beta-signup > button")
-  }
-
-  get betaSignupCloseButton(): Element | null {
-    return document.querySelector(".beta-signup .input button.button-close")
-  }
-
-  get betaSignupInputContainer(): Element | null {
-    return document.querySelector(".beta-signup .input")
-  }
-
-  get betaSignupInput(): Element | null {
-    return document.querySelector(".beta-signup input")
-  }
-
+  
   private initEventListeners = (): void => {
     const betaSignupButton = this.betaSignupButton as HTMLButtonElement
     const closeButton = this.betaSignupCloseButton as HTMLButtonElement
@@ -257,6 +193,69 @@ class App {
     } else {
       betaSignup?.classList.remove("valid")
     }
+  }
+
+  private handleBetaSignupKeydown = (e: Event): void => {
+    const ev = e as KeyboardEvent
+    if (ev.key.toLowerCase() === "escape") {
+      const betaSignup = document.querySelector(".beta-signup") as HTMLElement
+      const betaSignupInputContainer = betaSignup?.querySelector(":scope .input") as HTMLButtonElement
+      const input = betaSignupInputContainer.querySelector("input") as HTMLInputElement
+      input?.blur()
+    }
+  }
+
+  private handleBetaSignupFormSubmit = async (e: Event): Promise<void> => {
+    e.preventDefault()
+    const form = e.target as HTMLFormElement
+    const betaSignup = document.querySelector(".beta-signup") as HTMLElement
+    if (form.checkValidity()) {
+      betaSignup?.classList.remove("error")
+      betaSignup.classList.add("pending")
+      const email = form.elements.namedItem("zXmAeBqfd") as HTMLInputElement
+      console.assert(email)
+      if (email) {
+        this.sendEmailToBeamApi(email.value)
+        const url = await this.generateSecureSubscribeLink(email.value)
+        console.assert(url)
+        if (url) {
+          await this.sendEmailToCreateSend(url, email.value)
+          betaSignup?.classList.remove("pending")
+          betaSignup?.classList.remove("show-input")
+        }
+      }
+    } else {
+      betaSignup?.classList.remove("error")
+      betaSignup?.classList.remove("pending")
+      betaSignup?.offsetTop
+      betaSignup?.classList.add("error")
+    }
+  }
+
+  private getCurrentPage(): LocalizedPage | undefined {
+    // Try to find page with current url and lang
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    let page = pages.find(p => {
+      const pSlug = this.removeUrlPrefix(p.url)
+      const url = location.pathname.replace(/\/$/, "")
+      console.log({pUrl: p.url, pSlug, url})
+      return p.lang === this.lang && pSlug === url
+    })
+
+    if (!page) {
+      // Try to get the page using url only and then finding its lang equivalent
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      const currentPage = pages.find(p => p.url === location.pathname.replace(/\/$/, ""))
+      if (currentPage) {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        page = pages.find(p => p.lang === this.lang && p.page === currentPage.page)
+      }
+    }
+    console.assert(page)
+    return page
   }
 }
 
