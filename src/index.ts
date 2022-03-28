@@ -42,6 +42,10 @@ class App {
     return document.querySelector(".beta-signup .input button.button-close")
   }
 
+  get betaSignupSubmitButton(): Element | null {
+    return document.querySelector(".beta-signup .input button[type=submit]")
+  }
+
   get betaSignupInputContainer(): Element | null {
     return document.querySelector(".beta-signup .input")
   }
@@ -195,10 +199,16 @@ class App {
   private handleSignupInput = (e: Event): void => {
     const target = e.target as HTMLInputElement
     const betaSignup = this.betaSignup
+    const betaSubmit = this.betaSignupSubmitButton as HTMLButtonElement
+    const betaClose = this.betaSignupCloseButton as HTMLButtonElement
     if (target.checkValidity()) {
       betaSignup?.classList.add("valid")
+      betaSubmit.disabled = false
+      betaClose.disabled = true
     } else {
       betaSignup?.classList.remove("valid")
+      betaSubmit.disabled = true
+      betaClose.disabled = false
     }
   }
 
@@ -214,7 +224,7 @@ class App {
 
   private handleBetaSignupFormSubmit = async (e: Event): Promise<void> => {
     e.preventDefault()
-    const form = e.target as HTMLFormElement
+    const form = e.currentTarget as HTMLFormElement
     const betaSignup = document.querySelector(".beta-signup") as HTMLElement
     if (form.checkValidity()) {
       betaSignup?.classList.remove("error")
