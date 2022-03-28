@@ -66,8 +66,6 @@ export class Homepage {
             this.timeout = setTimeout(this.step4, 1350)
             break
         }
-
-
       } else if (mappedRatio === 0) {
         this.resetAnimation()
         win.mode = BeamWindowMode.web
@@ -105,7 +103,7 @@ export class Homepage {
     }
   }
 
-  step2 = () => {
+  private step2 = (): void => {
     const win = this.win
     this.animation.changeTitle(this.animation.titles[Math.min(this.animation.switches, this.animation.titles.length - 1)])
     this.timeout = setTimeout(() => {
@@ -114,7 +112,7 @@ export class Homepage {
     }, 1350)
   }
 
-  step3 = () => {
+  private step3 = (): void => {
     const win = this.win
     if (win.mode === BeamWindowMode.writing) {
       this.animation.changeTitle(this.animation.titles[Math.min(this.animation.switches, this.animation.titles.length - 1)])
@@ -124,14 +122,14 @@ export class Homepage {
     }, 1350)
   }
 
-  step4 = () => {
+  private step4 = (): void => {
     const win = this.win
     this.timeout = setTimeout(() => {
       win.mode = BeamWindowMode.writing
     }, 1350)
   }
 
-  clearTimeout = (): void => {
+  private clearTimeout = (): void => {
     this.timeout && clearTimeout(this.timeout)
   }
 
@@ -147,29 +145,29 @@ export class Homepage {
     return document.querySelector(".hero")
   }
 
-  get titleContainer(): HTMLElement {
-    return document.querySelector(".title-container") as HTMLElement
+  get titleContainer(): HTMLElement | null {
+    return document.querySelector(".title-container")
   }
 
-  updateHero(t: number): void {
+  private updateHero(t: number): void {
     const hero = this.hero
     hero?.style.setProperty("opacity", `${t}`)
     hero?.style.setProperty("transform", `scale(${t})`)
   }
 
-  updateTitleContainer(t: number): void {
+  private updateTitleContainer(t: number): void {
     const titleContainer = this.titleContainer
     titleContainer?.style.setProperty("opacity", `${t}`)
     titleContainer?.style.setProperty("transform", `translateY(${10 * (1 - t)}em)`)
   }
 
-  updateWin(t: number): void {
+  private updateWin(t: number): void {
     const w = this.win?.querySelector(".beam-window") as HTMLElement
     w?.style.setProperty("--transform", `scale(${0.9 + NumberUtil.map(t, 0.375, 1) * 0.1})`)
     w?.style.setProperty("animation", t <= 0.35 ? "bump 0.5s ease-in-out" : "")
   }
 
-  resetAnimation(resetSwitches = true): void {
+  private resetAnimation(resetSwitches = true): void {
     this.animation.cancelAnimation()
     this.animation.rotateBack()
     this.win.captureTarget()

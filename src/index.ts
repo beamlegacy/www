@@ -138,7 +138,7 @@ class App {
       }
     }
   }
-  
+
   private initEventListeners = (): void => {
     const betaSignupButton = this.betaSignupButton as HTMLButtonElement
     const closeButton = this.betaSignupCloseButton as HTMLButtonElement
