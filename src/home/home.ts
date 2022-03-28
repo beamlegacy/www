@@ -46,7 +46,7 @@ export class Homepage {
         const mappedRatio4 = NumberUtil.map(ratio, 0.25, 0.65)
         this.updateWin(mappedRatio4)
       }, {
-        rootMargin: "0px 0px -100px 0px",
+        rootMargin: "0px 0px -25px 0px",
         threshold: new Array(1000).fill(0).map((v, i) => (i + 1) / 1000)
       })
       this.observer.observe(demo)
