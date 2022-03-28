@@ -199,6 +199,14 @@
         small {
           font-size: 0.875em;
         }
+
+        .icn {
+          display: inline-block;
+          height: 1em;
+          margin-right: 0.25em;
+          vertical-align: middle;
+          width: 1em;
+        }
       }
 
       &.show-input {
