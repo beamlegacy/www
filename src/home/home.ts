@@ -53,6 +53,22 @@ export class Homepage {
     }
   }
 
+  get demo(): HTMLElement | null {
+    return document.querySelector(".demo")
+  }
+
+  get title(): HTMLElement | null {
+    return document.querySelector(".demo .title")
+  }
+
+  get hero(): HTMLElement | null {
+    return document.querySelector(".hero")
+  }
+
+  get titleContainer(): HTMLElement | null {
+    return document.querySelector(".title-container")
+  }
+
   private handleFullyVisible = (): void => {
     const title = this.title
     title?.style.setProperty("opacity", "1")
@@ -72,7 +88,7 @@ export class Homepage {
         break
     }
   }
-  
+
   private handleFullyOut = (): void => {
     const {win, demo} = this
     this.resetAnimation()
@@ -89,22 +105,6 @@ export class Homepage {
       strong?.classList.remove("in")
       title.style.setProperty("opacity", "0")
     }
-  }
-
-  get demo(): HTMLElement | null {
-    return document.querySelector(".demo")
-  }
-
-  get title(): HTMLElement | null {
-    return document.querySelector(".demo .title")
-  }
-
-  get hero(): HTMLElement | null {
-    return document.querySelector(".hero")
-  }
-
-  get titleContainer(): HTMLElement | null {
-    return document.querySelector(".title-container")
   }
 
   private step2 = (): void => {
