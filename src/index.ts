@@ -187,6 +187,7 @@ class App {
       } else {
         const betaSignup = this.betaSignup
         betaSignup?.classList.remove("show-input")
+        betaSignup?.classList.remove("show-output")
       }
     }
   }
