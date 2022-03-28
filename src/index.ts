@@ -215,11 +215,16 @@ class App {
       const email = form.elements.namedItem("zXmAeBqfd") as HTMLInputElement
       console.assert(email)
       if (email) {
-        this.sendEmailToBeamApi(email.value)
-        const url = await this.generateSecureSubscribeLink(email.value)
-        console.assert(url)
-        if (url) {
-          await this.sendEmailToCreateSend(url, email.value)
+        this.sendEmailToBeamApi(email.value) // this one can fail without it being an issue
+        try {
+          const url = await this.generateSecureSubscribeLink(email.value)
+          console.assert(url)
+          if (url) {
+            await this.sendEmailToCreateSend(url, email.value)
+          }
+        } catch (e) {
+          // error
+        } finally {
           betaSignup?.classList.remove("pending")
           betaSignup?.classList.remove("show-input")
         }
