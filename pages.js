@@ -44,7 +44,7 @@ class LocalizedPage {
 class HomeMessages_en {
   metas = {
     title: "Welcome to beam",
-    description: "",
+    description: "Browse. Capture. Write. Publish – Meet the bright web",
   }
 
   header = {
@@ -101,7 +101,7 @@ class HomeMessages_en {
 class HomeMessages_fr {
   metas = {
     title: "Bienvenue sur beam",
-    description: "",
+    description: "Browse. Capture. Write. Publish – Meet the bright web",
   }
 
   header = {
