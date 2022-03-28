@@ -44,7 +44,7 @@ class App {
   }
 
   get betaSignupSubmitButton(): Element | null {
-    return document.querySelector(".beta-signup .input button[type=submit]")
+    return document.querySelector(".beta-signup .input button.button-arrow")
   }
 
   get betaSignupInputContainer(): Element | null {
@@ -216,18 +216,21 @@ class App {
 
   private handleBetaSignupKeydown = (e: Event): void => {
     const ev = e as KeyboardEvent
+    const input = this.betaSignupInput as HTMLInputElement
     if (ev.key.toLowerCase() === "escape") {
-      const betaSignup = document.querySelector(".beta-signup") as HTMLElement
-      const betaSignupInputContainer = betaSignup?.querySelector(":scope .input") as HTMLButtonElement
-      const input = betaSignupInputContainer.querySelector("input") as HTMLInputElement
       input?.blur()
+    } else if (ev.key.toLowerCase() === "enter" && !input.checkValidity()) {
+      const betaSignup = this.betaSignup as HTMLElement
+      betaSignup?.classList.remove("error", "pending")
+      betaSignup?.offsetTop
+      betaSignup?.classList.add("error")
     }
   }
 
   private handleBetaSignupFormSubmit = async (e: Event): Promise<void> => {
     e.preventDefault()
     const form = e.currentTarget as HTMLFormElement
-    const betaSignup = document.querySelector(".beta-signup") as HTMLElement
+    const betaSignup = this.betaSignup as HTMLElement
     if (!this.requestPending) {
       if (form.checkValidity()) {
         this.requestPending = true
@@ -236,7 +239,7 @@ class App {
         const email = form.elements.namedItem("zXmAeBqfd") as HTMLInputElement
         const output = this.betaSignupOutput as HTMLElement
         console.assert(email)
-        if (email) {
+        if (email.checkValidity()) {
           this.sendEmailToBeamApi(email.value) // this one can fail without it being an issue
           try {
             const url = await this.generateSecureSubscribeLink(email.value)
