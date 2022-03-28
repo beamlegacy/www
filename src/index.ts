@@ -20,7 +20,7 @@ class App {
     this.initEventListeners()
   }
 
-  private sizeVh() {
+  private sizeVh(): void {
     const vh = window.innerHeight * 0.01
     document.documentElement.style.setProperty("--vh", `${vh}px`)
   }
@@ -204,40 +204,17 @@ class App {
   }
 
   private initEventListeners = (): void => {
-    const betaSignup = this.betaSignup
-    const form = this.betaSignupForm as HTMLFormElement
     const betaSignupButton = this.betaSignupButton as HTMLButtonElement
     const closeButton = this.betaSignupCloseButton as HTMLButtonElement
-    const betaSignupInputContainer = this.betaSignupInputContainer as HTMLButtonElement
+    const betaSignupInputContainer = this.betaSignupInputContainer as HTMLElement
     const input = this.betaSignupInput as HTMLInputElement
+    const form = this.betaSignupForm as HTMLFormElement
     betaSignupButton?.addEventListener("click", this.handleSignupButtonClick)
-    closeButton?.addEventListener("click", () => {
-      betaSignup?.classList.remove("show-input")
-      betaSignup?.classList.remove("pending")
-    })
-    betaSignupInputContainer?.addEventListener("blur", (e: FocusEvent) => {
-      const related = e.relatedTarget as HTMLElement
-      if (!e.relatedTarget || !betaSignupInputContainer.contains(related)) {
-        const windows = document.querySelectorAll("beam-window") as NodeListOf<BeamWindow>
-        const inWindow = Array.from(windows).some(w => w.contains(related))
-        if (inWindow && related.tagName.toLowerCase() !== "input") {
-          betaSignupButton.click()
-        } else {
-          betaSignup?.classList.remove("show-input")
-        }
-      }
-    }, true)
-    input?.addEventListener("input", (e: Event) => {
-      const target = e.target as HTMLInputElement
-      if (target.checkValidity()) {
-        betaSignup?.classList.add("valid")
-      } else {
-        betaSignup?.classList.remove("valid")
-      }
-    })
+    closeButton?.addEventListener("click", this.handleSignupCloseButtonClick)
+    betaSignupInputContainer?.addEventListener("blur", this.handleSignupInputContainerBlur, true)
+    input?.addEventListener("input", this.handleSignupInput)
     input?.addEventListener("keydown", this.handleBetaSignupKeydown)
     form.addEventListener("submit", this.handleBetaSignupFormSubmit)
-
     window.addEventListener("resize", this.sizeVh)
     window.addEventListener("scroll", this.sizeVh)
     window.visualViewport.addEventListener("resize", this.sizeVh)
@@ -248,6 +225,38 @@ class App {
     const input = this.betaSignupInput as HTMLInputElement
     betaSignup?.classList.add("show-input")
     input?.focus()
+  }
+
+  private handleSignupCloseButtonClick = (_e: Event): void => {
+    const betaSignup = this.betaSignup as HTMLElement
+    betaSignup?.classList.remove("show-input")
+    betaSignup?.classList.remove("pending")
+  }
+
+  private handleSignupInputContainerBlur = (e: FocusEvent): void => {
+    const related = e.relatedTarget as HTMLElement
+    const betaSignupInputContainer = this.betaSignupInputContainer as HTMLButtonElement
+    if (!e.relatedTarget || !betaSignupInputContainer.contains(related)) {
+      const windows = document.querySelectorAll("beam-window") as NodeListOf<BeamWindow>
+      const inWindow = Array.from(windows).some(w => w.contains(related))
+      if (inWindow && related.tagName.toLowerCase() !== "input") {
+        const betaSignupButton = this.betaSignupButton as HTMLButtonElement
+        betaSignupButton.click()
+      } else {
+        const betaSignup = this.betaSignup
+        betaSignup?.classList.remove("show-input")
+      }
+    }
+  }
+
+  private handleSignupInput = (e: Event): void => {
+    const target = e.target as HTMLInputElement
+    const betaSignup = this.betaSignup
+    if (target.checkValidity()) {
+      betaSignup?.classList.add("valid")
+    } else {
+      betaSignup?.classList.remove("valid")
+    }
   }
 }
 
