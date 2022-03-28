@@ -3,7 +3,7 @@
 footer {
   color: var(--color-text-secondary);
   font-size: 0.75em;
-  margin-bottom: 0.25em;
+  padding-bottom: 0.75em;
   text-align: center;
   transition: padding-bottom 0.2s ease-in-out;
 
@@ -12,7 +12,7 @@ footer {
   }
 
   @include mixins.height-below-default {
-    margin-bottom: 0.5em;
+    padding-bottom: 0.5em;
   }
 
   strong {
