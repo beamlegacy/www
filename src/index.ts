@@ -277,7 +277,6 @@ class App {
     let page = pages.find(p => {
       const pSlug = this.removeUrlPrefix(p.url)
       const url = location.pathname.replace(/\/$/, "")
-      console.log({pUrl: p.url, pSlug, url})
       return p.lang === this.lang && pSlug === url
     })
 
