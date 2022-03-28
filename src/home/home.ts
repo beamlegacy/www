@@ -29,23 +29,7 @@ export class Homepage {
       }
 
       if (mappedRatio === 1) {
-        const title = this.title
-        title?.style.setProperty("opacity", "1")
-        title?.classList.add("in")
-        const strong = title?.querySelector("strong")
-        strong?.classList.add("in")
-        this.clearTimeout()
-        switch (this.animation.switches) {
-          case 0:
-            this.timeout = setTimeout(this.step2, 1350)
-            break
-          case 1:
-            this.timeout = setTimeout(this.step3, 1350)
-            break
-          default:
-            this.timeout = setTimeout(this.step4, 1350)
-            break
-        }
+        this.handleFullyVisible()
       } else if (mappedRatio === 0) {
         this.resetAnimation()
         win.mode = BeamWindowMode.web
@@ -80,6 +64,26 @@ export class Homepage {
     })
     if (demo) {
       this.observer.observe(demo)
+    }
+  }
+
+  private handleFullyVisible(): void {
+    const title = this.title
+    title?.style.setProperty("opacity", "1")
+    title?.classList.add("in")
+    const strong = title?.querySelector("strong")
+    strong?.classList.add("in")
+    this.clearTimeout()
+    switch (this.animation.switches) {
+      case 0:
+        this.timeout = setTimeout(this.step2, 1350)
+        break
+      case 1:
+        this.timeout = setTimeout(this.step3, 1350)
+        break
+      default:
+        this.timeout = setTimeout(this.step4, 1350)
+        break
     }
   }
 
