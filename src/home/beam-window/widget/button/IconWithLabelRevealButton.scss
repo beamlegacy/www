@@ -95,7 +95,7 @@
 
   &:is(:hover, :focus, .active) {
     @include label-hover;
-    background-color: var(--color-menu-open) !important;
+    background-color: var(--color-beam-window-menu-open) !important;
   }
 
   &:not(:hover, :focus) {

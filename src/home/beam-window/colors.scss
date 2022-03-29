@@ -36,6 +36,16 @@
   --color-beam-window-omnibox-placeholder: #{ palette.$light-alpha-gray };
   --color-beam-window-omnibox-selected: #{ rgba(palette.$light-bluetiful, 0.1) };
 
+  --color-beam-window-menu-background: var(--color-background);
+  --color-beam-window-menu-icon: #{ palette.$light-stone-gray };
+  --color-beam-window-menu-open: #{ palette.$light-mercury };
+  --color-beam-window-menu-open-text-color: var(--color-text);
+  --color-beam-window-menu-hover: #{ palette.$light-mercury };
+  --color-beam-window-menu-hover-text-color: var(--color-text);
+  --color-beam-window-menu-shadow: rgba(0, 0, 0, 0.1);
+  --color-beam-window-menu-header: #{ palette.$light-alpha-gray };
+  --color-beam-window-menu-divider: #{ palette.$light-mercury };
+
   --color-text-selection-background: #{ rgba(#3700ff, 0.14) };
   --color-text-selection-color: #{ palette.$light-niobium };
   --color-text-caret-color: #{ rgba(#3700ff, 0.7) };
@@ -78,6 +88,16 @@
   --color-beam-window-omnibox-icon: #{ palette.$dark-stone-gray };
   --color-beam-window-omnibox-placeholder: #{ palette.$dark-alpha-gray };
   --color-beam-window-omnibox-selected: #{ rgba(palette.$dark-bluetiful, 0.14) };
+
+  --color-beam-window-menu-background: #{ palette.$dark-nero };
+  --color-beam-window-menu-icon: #{ palette.$dark-stone-gray };
+  --color-beam-window-menu-open: #{ palette.$dark-mercury };
+  --color-beam-window-menu-open-text-color: var(--color-text);
+  --color-beam-window-menu-hover: #{ palette.$dark-mercury };
+  --color-beam-window-menu-hover-text-color: var(--color-text);
+  --color-beam-window-menu-shadow: rgba(0, 0, 0, 0.35);
+  --color-beam-window-menu-header: #{ palette.$dark-alpha-gray };
+  --color-beam-window-menu-divider: #{ palette.$dark-mercury };
 
   --color-text-selection-background: #{ rgba(#7373ff, 0.32) };
   --color-text-selection-color: #{ palette.$dark-niobium };
