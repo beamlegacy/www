@@ -163,7 +163,7 @@ export class IconWithLabelRevealButton extends window.HTMLButtonElement implemen
   }
 
   private measureLabel(): void {
-    const span = html`<span>&nbsp;${this.label}</span>` as HTMLElement
+    const span = html`<span class="icon-with-label-reveal-button-label">&nbsp;${this.label}</span>` as HTMLElement
     const dimensions = HtmlUtils.measureHtmlElement(span)
     this.labelWidth = dimensions.width + 1 // + 1 for safari, of course...
   }
