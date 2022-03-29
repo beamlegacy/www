@@ -84,6 +84,7 @@ export class BeamWindowAnimation {
     this.changeTitle()
     this.cancelAnimation() // cancel previous animation if any
     this.timeout = setTimeout(() => {
+      const prevSwitches = this.switches
       if (win.mode === BeamWindowMode.web) {
         win.url = "writing/journal"
       }
@@ -92,18 +93,20 @@ export class BeamWindowAnimation {
         // this.updateFooter(" to learn how to beam")
         win.captureTarget()
       }
-      this.timeout = setTimeout(() => {
-        win.url = "writing/note"
+
+      if (this.switches !== prevSwitches) {
         this.timeout = setTimeout(() => {
-          win.url = "writing/note"
-          const button = win.querySelector("[is=beam-button-reveal]") as RevealButton
-          if (button) {
-            button.open = !button.open
-            button.dispatchEvent(new FocusEvent("focus"))
-            this.timeout = setTimeout(() => button.click(), 1000)
-          }
-        }, 1350)
-      }, 1350)
+          this.forceCurrentWritingPage("note")
+          this.timeout = setTimeout(() => {
+            const button = win.querySelector("[is=beam-button-reveal]") as RevealButton
+            if (button) {
+              button.open = !button.open
+              button.dispatchEvent(new FocusEvent("focus"))
+              this.timeout = setTimeout(() => button.click(), 1000)
+            }
+          }, 1350)
+        }, 2000)
+      }
     }, 1500)
   }
 
