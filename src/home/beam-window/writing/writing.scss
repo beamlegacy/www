@@ -140,6 +140,52 @@
           margin: 2.18181818em 0 0.72727273em;
         }
 
+        .header {
+          display: flex;
+          flex-direction: row;
+          font-size: 1.27272727em;
+          margin: 2.7768595em 0 0.92561984em;
+
+          h1 {
+            flex-grow: 1;
+            margin: 0;
+          }
+
+          button {
+            align-items: center;
+            background-color: transparent;
+            border: 0;
+            border-radius: 4px;
+            color: currentColor;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            margin: 0;
+            padding: 0.125em;
+
+            &:hover {
+              color: var(--color-beam-window-controls-color-hover);
+            }
+
+            &:focus {
+              outline: none;
+
+              &:not(.clicked) {
+                color: var(--color-beam-window-controls-color-hover);
+              }
+            }
+
+            &:active {
+              background-color: var(--color-beam-window-controls-background-active);
+              color: var(--color-beam-window-controls-color-active);
+            }
+
+            svg {
+              vertical-align: middle;
+            }
+          }
+        }
+
         > li {
           margin: 0 0 4.36363636em;
         }

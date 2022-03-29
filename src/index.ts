@@ -1,6 +1,7 @@
 import "./index.scss"
 import {Cookie} from "util/cookie/Cookie"
 import {BeamWindow} from "home/beam-window/BeamWindow"
+import {IconWithLabelRevealButton} from "home/beam-window/widget/button/IconWithLabelRevealButton"
 
 const pages = require("../pages.js")
 
@@ -20,6 +21,7 @@ class App {
     this.initLang()
     this.sizeVh()
     window.customElements.define("beam-window", BeamWindow)
+    window.customElements.define("beam-button-reveal", IconWithLabelRevealButton, {extends: "button"})
     this.initEventListeners()
   }
 

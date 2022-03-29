@@ -111,7 +111,17 @@ class HomeMessages_en {
   }
 
   note = {
-    title: "Note"
+    title: "Note",
+    publish: {
+      error: "Error",
+      publish: "Publish",
+      publishing: "Publishing...",
+      published: "Published!",
+      unpublish: "Unpublish",
+      unpublishing: "Unpublishing...",
+      unpublished: "Unpublished",
+      url_copied: "URL copied"
+    }
   }
 }
 
@@ -180,7 +190,17 @@ class HomeMessages_fr {
   }
 
   note = {
-    title: "Note"
+    title: "Note",
+    publish: {
+      error: "Error",
+      publish: "Publish",
+      publishing: "Publishing...",
+      published: "Published!",
+      unpublish: "Unpublish",
+      unpublishing: "Unpublishing...",
+      unpublished: "Unpublished",
+      url_copied: "URL copied"
+    }
   }
 }
 

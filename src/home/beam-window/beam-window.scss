@@ -11,6 +11,8 @@
 @use "web/html-doc";
 @use "writing/writing";
 @use "content";
+@use "widget/button/IconWithLabelRevealButton";
+@use "widget/icons/Icon";
 
 beam-window {
   height: var(--height, 36.25em);
