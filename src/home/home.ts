@@ -1,6 +1,7 @@
 import {BeamWindow, BeamWindowMode} from "home/beam-window/BeamWindow"
 import {BeamWindowAnimation} from "home/BeamWindowAnimation"
 import {NumberUtil} from "util/NumberUtil"
+import {RevealButton} from "home/beam-window/widget/button/IconWithLabelRevealButton"
 
 export class Homepage {
   private observer: IntersectionObserver | undefined
@@ -130,7 +131,7 @@ export class Homepage {
     const win = this.win
     this.animation.changeTitle(this.animation.titles[Math.min(this.animation.switches, this.animation.titles.length - 1)])
     this.timeout = setTimeout(() => {
-      win.mode = BeamWindowMode.writing
+      win.url = "writing/journal"
       this.timeout = setTimeout(this.step3, 2000)
     }, 1350)
   }
@@ -148,7 +149,7 @@ export class Homepage {
   private step4 = (): void => {
     const win = this.win
     this.timeout = setTimeout(() => {
-      win.mode = BeamWindowMode.writing
+      win.url = "writing/journal"
     }, 1350)
   }
 

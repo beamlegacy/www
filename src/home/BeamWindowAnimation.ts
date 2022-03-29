@@ -1,4 +1,5 @@
 import {BeamWindow, BeamWindowMode} from "./beam-window/BeamWindow"
+import {RevealButton} from "home/beam-window/widget/button/IconWithLabelRevealButton"
 
 export class BeamWindowAnimation {
   private win: BeamWindow
@@ -83,13 +84,26 @@ export class BeamWindowAnimation {
     this.changeTitle()
     this.cancelAnimation() // cancel previous animation if any
     this.timeout = setTimeout(() => {
-      if (win.url.indexOf("web/") >= 0) {
+      if (win.mode === BeamWindowMode.web) {
         win.url = "writing/journal"
       }
+
       if (this.switches > 1) {
         // this.updateFooter(" to learn how to beam")
         win.captureTarget()
       }
+      this.timeout = setTimeout(() => {
+        win.url = "writing/note"
+        this.timeout = setTimeout(() => {
+          win.url = "writing/note"
+          const button = win.querySelector("[is=beam-button-reveal]") as RevealButton
+          if (button) {
+            button.open = !button.open
+            button.dispatchEvent(new FocusEvent("focus"))
+            this.timeout = setTimeout(() => button.click(), 1000)
+          }
+        }, 1350)
+      }, 1350)
     }, 1500)
   }
 
