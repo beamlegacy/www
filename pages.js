@@ -52,11 +52,11 @@ class HomeMessages_en {
     description: "Browse. Capture. Write. Publish – Coming soon to macOS. Join the beta now.",
     ogTitle: "Meet the bright web – beam",
     ogUrl: process.env.CANONICAL_HOST,
-    ogImage: `${process.env.CANONICAL_HOST}/static/social/beam.gif`,
+    ogImage: `${process.env.CANONICAL_HOST}/social/beam.gif`,
     ogDescription: "Browse. Capture. Write. Publish – Coming soon to macOS. Join the beta now.",
     twitterSite: "getonbeam",
     twitterTitle: "Meet the bright web – beam",
-    twitterImage: `${process.env.CANONICAL_HOST}/static/social/beam.gif`,
+    twitterImage: `${process.env.CANONICAL_HOST}/social/beam.gif`,
   }
 
   header = {
