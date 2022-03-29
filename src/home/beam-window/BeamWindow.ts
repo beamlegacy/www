@@ -301,7 +301,7 @@ export class BeamWindow extends HTMLElement {
       const entry = this.tabFromElement(tab)
       return this.omniboxTabMatcher(entry, query) ? entry : undefined
     }).filter(Boolean) as BeamTab[]
-    if (query === "beam me up, scotty") {
+    if (query.replace(/[^a-z]/g, "") === "beammeupscotty") {
       result.push({label: "Download beam beta 😎", beamUrl: "https://s3.eu-west-3.amazonaws.com/downloads.beamapp.co/beta/Beam.dmg", icon: defaultOmnbiboxIcon})
     }
     this.renderOmniboxResults(result)
