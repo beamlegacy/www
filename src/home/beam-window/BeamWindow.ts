@@ -296,10 +296,14 @@ export class BeamWindow extends HTMLElement {
   private handleOmniboxInput = (e: Event): void => {
     const target = e.target as HTMLInputElement
     const tabs = Array.from(this.window?.querySelectorAll(".tab") as NodeListOf<HTMLElement>)
+    const query = target.value.toLowerCase()
     const result = tabs.map((tab: HTMLElement): BeamTab | undefined => {
       const entry = this.tabFromElement(tab)
-      return this.omniboxTabMatcher(entry, target.value.toLowerCase()) ? entry : undefined
+      return this.omniboxTabMatcher(entry, query) ? entry : undefined
     }).filter(Boolean) as BeamTab[]
+    if (query === "beam me up, scotty") {
+      result.push({label: "Download beam beta 😎", beamUrl: "https://s3.eu-west-3.amazonaws.com/downloads.beamapp.co/beta/Beam.dmg", icon: defaultOmnbiboxIcon})
+    }
     this.renderOmniboxResults(result)
   }
 
@@ -359,7 +363,11 @@ export class BeamWindow extends HTMLElement {
    * @param result
    */
   private renderOmniboxResult = (result: BeamTab): HTMLElement => {
-    const row = document.createElement("button")
+    const link = result.beamUrl.startsWith("http")
+    const row = document.createElement(link ? "a" : "button")
+    if (link) {
+      row.setAttribute("href", result.beamUrl)
+    }
     row.classList.add("row", "result")
     row.tabIndex = 0
     const icon = document.createElement("div")
