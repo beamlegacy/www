@@ -58,7 +58,7 @@ describe("BeamWindowAnimation", () => {
     document.querySelector("h1")?.dispatchEvent(createEvent("animationend", {}))
     expect(testWindow.mode).toBe(BeamWindowMode.writing)
     h1 = document.querySelector("h1")
-    expect(h1?.innerHTML).toBe(testAnimation.titles[2])
+    expect(h1?.innerHTML).toBe(testAnimation.titles[3])
   })
 
   test("Clicking the switcher moves through the animation", () => {
@@ -71,7 +71,7 @@ describe("BeamWindowAnimation", () => {
     switcher.click()
     document.querySelector("h1")?.dispatchEvent(createEvent("animationend", {}))
     h1 = document.querySelector("h1")
-    expect(h1?.innerHTML).toBe(testAnimation.titles[2])
+    expect(h1?.innerHTML).toBe(testAnimation.titles[3])
   })
 
   test("Changing tab while capturing the last element continues through the animation", () => {

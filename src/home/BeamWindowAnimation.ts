@@ -10,7 +10,8 @@ export class BeamWindowAnimation {
   titles = [
     "A <br><strong class=\"in\">powerful note</strong> app…",
     "So you can <br><strong class=\"in\">capture</strong> the web…",
-    "And make it <br><strong class=\"in\">your own</strong>"
+    "Make it <br><strong class=\"in\">your own</strong>",
+    "And <br><strong class=\"in\">share it</strong> with the world"
   ]
 
   constructor() {
@@ -81,7 +82,6 @@ export class BeamWindowAnimation {
   private returnToJournal = (): void => {
     const {win} = this
     this.rotateBack()
-    this.changeTitle()
     this.cancelAnimation() // cancel previous animation if any
     this.timeout = setTimeout(() => {
       const prevSwitches = this.switches
@@ -96,14 +96,18 @@ export class BeamWindowAnimation {
 
       if (this.switches !== prevSwitches) {
         this.timeout = setTimeout(() => {
-          this.forceCurrentWritingPage("note")
+          this.switches++
+          this.changeTitle()
           this.timeout = setTimeout(() => {
-            const button = win.querySelector("[is=beam-button-reveal]") as RevealButton
-            if (button) {
-              button.open = !button.open
-              button.dispatchEvent(new FocusEvent("focus"))
-              this.timeout = setTimeout(() => button.click(), 1000)
-            }
+            this.forceCurrentWritingPage("note")
+            this.timeout = setTimeout(() => {
+              const button = win.querySelector("[is=beam-button-reveal]") as RevealButton
+              if (button) {
+                button.open = !button.open
+                button.dispatchEvent(new FocusEvent("focus"))
+                this.timeout = setTimeout(() => button.click(), 1000)
+              }
+            }, 1350)
           }, 1350)
         }, 2000)
       }
@@ -158,7 +162,7 @@ export class BeamWindowAnimation {
                 this.timeout = setTimeout(() => {
                   win.captureTarget()
                   this.timeout = setTimeout(() => {
-                    this.switches++
+                    this.changeTitle()
                     this.returnToJournal()
                   }, 250)
                 }, 500)
