@@ -126,6 +126,57 @@
       }
     }
 
+    .note-page {
+      .view {
+        font-size: 0.875em;
+        list-style-type: none;
+        margin: 45px auto 0;
+        max-width: 28.18181818em;
+        padding: 0 20px 0 25px;
+        text-align: left;
+
+        h1 {
+          font-size: 1.27272727em;
+          margin: 2.18181818em 0 0.72727273em;
+        }
+
+        > li {
+          margin: 0 0 4.36363636em;
+        }
+
+        ul {
+          list-style-type: none;
+          margin: 0;
+          padding: 0;
+
+          li {
+            position: relative;
+
+            &::before {
+              background-color: var(--color-bullet);
+              border-radius: 50%;
+              content: "";
+              display: inline-block;
+              height: 0.3125em;
+              left: -1.25454545em;
+              position: absolute;
+              top: 0.65em;
+              width: 0.3125em;
+            }
+          }
+        }
+
+        *[contenteditable="true"] {
+          caret-color: var(--color-text-caret-color);
+
+          &:focus {
+            border: 0;
+            outline: none;
+          }
+        }
+      }
+    }
+
     .note {
       .note-content {
         li {

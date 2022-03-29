@@ -88,6 +88,7 @@ class HomeMessages_en {
   tabs = {
     journal: "Journal",
     allNotes: "All notes",
+    note: "Note",
     bmail: "Welcome to beam! - bmail",
     beamTimes: "The beam Times - Breaking News",
     youtube: "You On Kazoo! - YouTube"
@@ -152,6 +153,7 @@ class HomeMessages_fr {
   tabs = {
     journal: "Journal",
     allNotes: "Toutes les notes",
+    note: "Note",
     bmail: "Bienvenue sur beam ! - bmail",
     beamTimes: "The beam Times - Actualités",
     youtube: "You On Kazoo! - YouTube"

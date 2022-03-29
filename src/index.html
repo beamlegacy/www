@@ -269,6 +269,8 @@
                       <button class="tab current" data-page="journal" disabled><%= htmlWebpackPlugin.options.messages.tabs.journal %></button>
                       <span class="separator"></span>
                       <button class="tab" data-page="all-notes" disabled><%= htmlWebpackPlugin.options.messages.tabs.allNotes %></button>
+                      <span class="separator"></span>
+                      <button class="tab" data-page="note" disabled><%= htmlWebpackPlugin.options.messages.tabs.note %></button>
                     </div>
                   </div>
                   <div class="controls">
@@ -415,6 +417,19 @@
                               <span class="placeholder large"></span>
                             </div>
                           </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="note-page" data-page="note">
+                      <div class="view">
+                        <div class="note">
+                          <h1><%= htmlWebpackPlugin.options.messages.journal.today.title %></h1>
+                          <ul class="note-content" contenteditable="true" spellcheck="false">
+                            <li><%= htmlWebpackPlugin.options.messages.journal.today.line1 %></li>
+                            <li><%= htmlWebpackPlugin.options.messages.journal.today.line2 %></li>
+                            <li><%= htmlWebpackPlugin.options.messages.journal.today.line3 %></li>
+                            <li><%= htmlWebpackPlugin.options.messages.journal.today.line4 %></li>
+                          </ul>
                         </div>
                       </div>
                     </div>
