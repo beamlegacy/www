@@ -6,17 +6,13 @@ import {IconEditorUnpublish} from "home/beam-window/widget/icons/IconEditorUnpub
 import {IconEditorPublish} from "home/beam-window/widget/icons/IconEditorPublish"
 
 export class PublishButton {
-  private publishButton: RevealButton
-
-  private isPublished: boolean
-
   private timeout: ReturnType<typeof setTimeout> | undefined
 
   constructor(
-    private messages: PublishButtonMessages
+    public messages: PublishButtonMessages,
+    private publishButton = html`<button is="beam-button-reveal"/>` as unknown as RevealButton,
+    private isPublished = false
   ) {
-    this.publishButton = html`<button is="beam-button-reveal"/>` as unknown as RevealButton
-    this.isPublished = false
   }
 
   getPublishHandler(): () => Promise<void> {
@@ -27,9 +23,10 @@ export class PublishButton {
       try {
         if (this.isPublished) {
           // unpublish
+          await new Promise(resolve => setTimeout(resolve, 500))
         } else {
           // publish
-          this.isPublished = true
+          await new Promise(resolve => setTimeout(resolve, 750))
         }
       } catch (e) {
         error = e as Error // we will throw after the publish callback

@@ -1,7 +1,8 @@
 import "./index.scss"
 import {Cookie} from "util/cookie/Cookie"
 import {BeamWindow} from "home/beam-window/BeamWindow"
-import {IconWithLabelRevealButton} from "home/beam-window/widget/button/IconWithLabelRevealButton"
+import {IconWithLabelRevealButton, RevealButton} from "home/beam-window/widget/button/IconWithLabelRevealButton"
+import {PublishButton} from "home/beam-window/widget/button/PublishButton"
 
 const pages = require("../pages.js")
 
@@ -22,6 +23,13 @@ class App {
     this.sizeVh()
     window.customElements.define("beam-window", BeamWindow)
     window.customElements.define("beam-button-reveal", IconWithLabelRevealButton, {extends: "button"})
+    const btns = document.querySelectorAll("[is=beam-button-reveal]") as unknown as NodeListOf<RevealButton>
+    const messages = (window as any).messages
+    btns.forEach(b => {
+      const publishButton = new PublishButton(messages.note.publish, b, false)
+      const publishHandler = publishButton.getPublishHandler()
+      b.addEventListener("click", publishHandler)
+    })
     this.initEventListeners()
   }
 
