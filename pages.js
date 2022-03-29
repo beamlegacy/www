@@ -109,6 +109,10 @@ class HomeMessages_en {
       line3: "Hold ⌥ & click to capture everything on the web"
     }
   }
+
+  note = {
+    title: "Note"
+  }
 }
 
 class HomeMessages_fr {
@@ -173,6 +177,10 @@ class HomeMessages_fr {
       line2: "⌘D pour basculer entre le web et vos notes",
       line3: "Appuyez sur ⌥ & cliquez pour capturer du contenu web"
     }
+  }
+
+  note = {
+    title: "Note"
   }
 }
 
