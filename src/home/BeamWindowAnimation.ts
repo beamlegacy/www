@@ -10,7 +10,7 @@ export class BeamWindowAnimation {
   titles = [
     "A <br><strong class=\"in\">powerful note</strong> app…",
     "So you can <br><strong class=\"in\">capture</strong> the web…",
-    "Make it <br><strong class=\"in\">your own</strong>",
+    "Make it <br><strong class=\"in\">your own</strong>…",
     "And <br><strong class=\"in\">share it</strong> with the world"
   ]
 
