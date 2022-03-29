@@ -4,7 +4,20 @@
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
   <title><%= htmlWebpackPlugin.options.messages.metas.title %></title>
-  <meta content="<%= htmlWebpackPlugin.options.messages.metas.description %>" name="description"/>
+  <meta name="description" content="<%= htmlWebpackPlugin.options.messages.metas.description %>"/>
+
+  <meta property="og:title" content="<%= htmlWebpackPlugin.options.messages.metas.ogTitle %>"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="<%= htmlWebpackPlugin.options.messages.metas.ogUrl %>"/>
+  <meta property="og:image" content="<%= htmlWebpackPlugin.options.messages.metas.ogImage %>"/>
+  <meta property="og:description" content="<%= htmlWebpackPlugin.options.messages.metas.ogDescription %>"/>
+
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:site" content="<%= htmlWebpackPlugin.options.messages.metas.twitterSite %>"/>
+  <meta name="twitter:title" content="<%= htmlWebpackPlugin.options.messages.metas.twitterTitle %>"/>
+  <meta name="twitter:description" content="<%= htmlWebpackPlugin.options.messages.metas.twitterDescription %>"/>
+  <meta name="twitter:image" content="<%= htmlWebpackPlugin.options.messages.metas.twitterImage %>"/>
+
   <meta name="theme-color" content="">
   <link href="https://fonts.gstatic.com" rel="preconnect">
   <!--suppress Stylelint -->

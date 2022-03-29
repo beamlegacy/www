@@ -26,6 +26,14 @@
     "lint",
     "test"
   ],
+  "targets": {
+    "browser": {
+      "source": [
+        "src/index.html"
+      ],
+      "sourceMap": false
+    }
+  },
   "devDependencies": {
     "@babel/core": "^7.16.0",
     "@babel/plugin-proposal-class-properties": "^7.16.0",

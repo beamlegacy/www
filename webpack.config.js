@@ -51,6 +51,7 @@ function config(mode, env) {
   const isDevelopment = mode === "development"
   const plugins = [
     new webpack.DefinePlugin({
+      "process.env.CANONICAL_HOST": JSON.stringify(process.env.CANONICAL_HOST),
       "process.env.API_HOST": JSON.stringify(process.env.API_HOST),
       "process.env.SUBSCRIBE_LINK_URL": JSON.stringify(process.env.SUBSCRIBE_LINK_URL),
 
@@ -150,7 +151,13 @@ function config(mode, env) {
       modules: [
         path.resolve("./node_modules"),
         path.resolve("./src")
-      ]
+      ],
+      fallback: {
+        "fs": false,
+        "os": false,
+        "path": false,
+        "process": require.resolve("process/browser"),
+      }
     },
     output: {
       filename: `[chunkhash]${env !== "production" ? "-[name]" : ""}.js`,
