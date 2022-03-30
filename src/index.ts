@@ -233,8 +233,8 @@ class App {
     const betaSignup = this.betaSignup as HTMLElement
     if (!this.requestPending) {
       if (form.checkValidity()) {
-        this.requestPending = true
         betaSignup?.classList.remove("error")
+        this.requestPending = true
         betaSignup.classList.add("pending")
         const email = form.elements.namedItem("zXmAeBqfd") as HTMLInputElement
         const output = this.betaSignupOutput as HTMLElement
@@ -245,10 +245,7 @@ class App {
             const url = await this.generateSecureSubscribeLink(email.value)
             if (url) {
               await this.sendEmailToCreateSend(url, email.value)
-              const icon = `<svg class="icn checkmark" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M2 7.5L6.5 12.5L13.5 2.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>`
-              output.innerHTML = `${icon}<small>${this.messages.header.betaSignupSuccess}</small>`
+              this.renderSuccess(output)
             } else {
               throw new Error("No secure subscribe url was returned")
             }
@@ -278,10 +275,17 @@ class App {
 
   private renderError(output: HTMLElement) {
     const icon = `<svg class="icn error" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M3 3L13 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M13 3L3 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>`
+      <path d="M3 3L13 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M13 3L3 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>`
     output.innerHTML = `${icon}<small>${this.messages.header.betaSignupError}</small>`
+  }
+
+  private renderSuccess(output: HTMLElement) {
+    const icon = `<svg class="icn checkmark" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M2 7.5L6.5 12.5L13.5 2.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>`
+    output.innerHTML = `${icon}<small>${this.messages.header.betaSignupSuccess}</small>`
   }
 
   private getCurrentPage(): LocalizedPage | undefined {
@@ -308,6 +312,7 @@ class App {
     console.assert(page)
     return page
   }
+
 }
 
 new App()
