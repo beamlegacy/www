@@ -56,6 +56,7 @@ function config(mode, env) {
       "process.env.CANONICAL_HOST": JSON.stringify(process.env.CANONICAL_HOST),
       "process.env.API_HOST": JSON.stringify(process.env.API_HOST),
       "process.env.SUBSCRIBE_LINK_URL": JSON.stringify(process.env.SUBSCRIBE_LINK_URL),
+      "process.env.SECURE_SUBSCRIBE_TOKEN": JSON.stringify(process.env.SECURE_SUBSCRIBE_TOKEN),
 
     }),
     new FaviconsWebpackPlugin({

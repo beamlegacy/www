@@ -90,7 +90,7 @@ class App {
       method: "POST",
       body: new URLSearchParams({
         email: email,
-        data: "2BE4EF332AA2E32596E38B640E90561943B7209F892F8B9FEEDA29EC0ADCD1A97FB4D140E71DAED8BD8055A91B5C943EF17A6DA263A0A43CA53C175E28C9C6CF"
+        data: process.env.SECURE_SUBSCRIBE_TOKEN || ""
       }),
       headers: {
         "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
