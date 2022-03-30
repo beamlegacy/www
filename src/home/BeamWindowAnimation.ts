@@ -99,7 +99,7 @@ export class BeamWindowAnimation {
           this.switches++
           this.changeTitle()
           this.timeout = setTimeout(() => {
-            this.forceCurrentWritingPage("note")
+            win.url = "writing/note"
             this.timeout = setTimeout(() => {
               const button = win.querySelector("[is=beam-button-reveal]") as RevealButton
               if (button) {

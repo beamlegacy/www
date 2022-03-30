@@ -5,6 +5,7 @@ import {IconCheckmark} from "home/beam-window/widget/icons/IconCheckmark"
 import {IconEditorUnpublish} from "home/beam-window/widget/icons/IconEditorUnpublish"
 import {IconEditorPublish} from "home/beam-window/widget/icons/IconEditorPublish"
 import {IconLink} from "home/beam-window/widget/icons/IconLink"
+import {Tooltip} from "home/beam-window/widget/tooltip/Tooltip"
 
 export class PublishButton {
   private timeout: ReturnType<typeof setTimeout> | undefined
@@ -42,7 +43,7 @@ export class PublishButton {
 
   render(): RevealButton {
     this.setupButton()
-    // new Tooltip(this.publishButton)
+    new Tooltip(this.publishButton)
     return this.publishButton
   }
 
@@ -52,7 +53,8 @@ export class PublishButton {
     // as it feels flaky when the error pops right away after clicking
     if (!this.isPublished) {
       if (!error) {
-        this.isPublished = true // !this.isPublished
+        this.isPublished = true
+        // this.isPublished = !this.isPublished
       }
       this.timeout && clearTimeout(this.timeout)
       this.timeout = setTimeout(this.getAfterPublishCallback(error), 250)
@@ -71,6 +73,7 @@ export class PublishButton {
         this.publishButton.label = this.isPublished ? this.messages.published : this.messages.unpublished
         if (this.isPublished) {
           this.publishButton.setAttribute("data-tooltip", this.messages.url_copied)
+          this.publishButton.dispatchEvent(new MouseEvent("mouseenter"))
         }
       }
       // Restore button to its normal state (publish or unpublish)

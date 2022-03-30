@@ -65,3 +65,14 @@
     @content;
   }
 }
+
+/**
+ * Returns comma separated transitions values to use for theme transitions
+ */
+@function theme-transition($properties...) {
+  $transitions: ();
+  @each $property in $properties {
+    $transitions: append($transitions, $property 0.2s ease-in-out, comma);
+  }
+  @return $transitions;
+}

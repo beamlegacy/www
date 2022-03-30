@@ -18,6 +18,7 @@ export class Homepage {
     const messages = (window as any).messages
     this.publishButtons = Array.from(btns).map((b: RevealButton): PublishButton => {
       const publishButton = new PublishButton(messages.note.publish, b, false)
+      publishButton.render()
       const publishHandler = publishButton.getPublishHandler()
       b.addEventListener("click", publishHandler)
       return publishButton

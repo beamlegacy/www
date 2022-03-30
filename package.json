@@ -41,6 +41,7 @@
     "@babel/preset-env": "^7.16.0",
     "@babel/preset-typescript": "^7.16.0",
     "@babel/runtime-corejs3": "^7.16.0",
+    "@types/debounce": "^1.2.1",
     "@types/html": "^1.0.1",
     "@types/jest": "^27.0.3",
     "@typescript-eslint/eslint-plugin": "^4.28.4",
@@ -82,6 +83,7 @@
     "workbox-webpack-plugin": "^6.2.4"
   },
   "dependencies": {
+    "debounce": "^1.2.1",
     "lottie-web": "^5.8.1"
   }
 }

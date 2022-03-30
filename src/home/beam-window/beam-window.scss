@@ -15,6 +15,8 @@
 @use "widget/icons/Icon";
 
 beam-window {
+  --tooltip-offset: 3px;
+
   height: var(--height, 36.25em);
   max-height: var(--max-height, var(--height, initial));
   max-width: var(--width, 58.75em);
