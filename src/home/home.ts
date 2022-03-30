@@ -29,6 +29,12 @@ export class Homepage {
       return publishButton
     })
 
+    const search = this.win.querySelector(".controls .search") as HTMLButtonElement
+    search?.addEventListener("click", () => {
+      this.clearTimeout()
+      this.animation.cancelAnimation()
+    })
+
     if (demo) {
       this.observer = new IntersectionObserver((entries: IntersectionObserverEntry[]) => {
         const ratio = entries[0].intersectionRatio
