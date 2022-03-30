@@ -117,9 +117,9 @@ class HomeMessages_en {
       publish: "Publish",
       publishing: "Publishing...",
       published: "Published!",
-      unpublish: "Unpublish",
-      unpublishing: "Unpublishing...",
-      unpublished: "Unpublished",
+      unpublish: "",
+      unpublishing: "",
+      unpublished: "",
       url_copied: "URL copied"
     }
   }
@@ -196,9 +196,9 @@ class HomeMessages_fr {
       publish: "Publish",
       publishing: "Publishing...",
       published: "Published!",
-      unpublish: "Unpublish",
-      unpublishing: "Unpublishing...",
-      unpublished: "Unpublished",
+      unpublish: "",
+      unpublishing: "",
+      unpublished: "",
       url_copied: "URL copied"
     }
   }

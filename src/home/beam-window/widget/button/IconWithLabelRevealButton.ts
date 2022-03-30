@@ -94,7 +94,7 @@ export class IconWithLabelRevealButton extends window.HTMLButtonElement implemen
       this.labelElem = html`<span class="label" tabindex="-1"/>` as HTMLElement
     }
     this.labelElem.textContent = this._label
-    if (this._icon && this._label) {
+    if (this._icon && (this._label || this._label === "")) {
       this.render()
       if (this.isVisible) {
         this.measureLabel()
@@ -137,7 +137,7 @@ export class IconWithLabelRevealButton extends window.HTMLButtonElement implemen
 
   render(): void {
     console.assert(this._icon, "IconWithLabelRevealButton should have an icon property, set it using: `buttonInstance.icon = yourIconHTMLElement`")
-    console.assert(this._label, "IconWithLabelRevealButton should have a label property, set it using: `buttonInstance.label = yourLabelString`")
+    console.assert(this._label || this._label === "", "IconWithLabelRevealButton should have a label property, set it using: `buttonInstance.label = yourLabelString`")
     this.classList.add("icon-with-label-reveal-button")
     if (this._open) {
       this.classList.add("active")
@@ -165,7 +165,7 @@ export class IconWithLabelRevealButton extends window.HTMLButtonElement implemen
   private measureLabel(): void {
     const span = html`<span class="icon-with-label-reveal-button-label">&nbsp;${this.label}</span>` as HTMLElement
     const dimensions = HtmlUtils.measureHtmlElement(span)
-    this.labelWidth = dimensions.width + 1 // + 1 for safari, of course...
+    this.labelWidth = this.label ? dimensions.width + 1 : 0 // + 1 for safari, of course...
   }
 
   private updateVariables(): void {

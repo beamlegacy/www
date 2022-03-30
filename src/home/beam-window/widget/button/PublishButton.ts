@@ -4,6 +4,7 @@ import {html} from "util/html/Html"
 import {IconCheckmark} from "home/beam-window/widget/icons/IconCheckmark"
 import {IconEditorUnpublish} from "home/beam-window/widget/icons/IconEditorUnpublish"
 import {IconEditorPublish} from "home/beam-window/widget/icons/IconEditorPublish"
+import {IconLink} from "home/beam-window/widget/icons/IconLink"
 
 export class PublishButton {
   private timeout: ReturnType<typeof setTimeout> | undefined
@@ -23,7 +24,7 @@ export class PublishButton {
       try {
         if (this.isPublished) {
           // unpublish
-          await new Promise(resolve => setTimeout(resolve, 500))
+          // await new Promise(resolve => setTimeout(resolve, 500))
         } else {
           // publish
           await new Promise(resolve => setTimeout(resolve, 750))
@@ -49,11 +50,15 @@ export class PublishButton {
     // TODO move to a Promise based timeout so we can sync the toast and the error feedback in button
     // the timeout is to make sure the "Publishing..." or "Unpublishing..." message had time to animate in
     // as it feels flaky when the error pops right away after clicking
-    if (!error) {
-      this.isPublished = !this.isPublished
+    if (!this.isPublished) {
+      if (!error) {
+        this.isPublished = true // !this.isPublished
+      }
+      this.timeout && clearTimeout(this.timeout)
+      this.timeout = setTimeout(this.getAfterPublishCallback(error), 250)
+    } else {
+      this.publishButton.open = false
     }
-    this.timeout && clearTimeout(this.timeout)
-    this.timeout = setTimeout(this.getAfterPublishCallback(error), 250)
   }
 
   private getAfterPublishCallback(error?: Error) {
@@ -80,11 +85,16 @@ export class PublishButton {
 
   private setupButton() {
     if (this.isPublished) {
-      this.publishButton.icon = new IconEditorUnpublish().element
+      this.publishButton.icon = new IconLink().element
       this.publishButton.label = this.messages.unpublish
     } else {
       this.publishButton.icon = new IconEditorPublish().element
       this.publishButton.label = this.messages.publish
     }
+  }
+
+  reset() {
+    this.isPublished = false
+    this.render()
   }
 }

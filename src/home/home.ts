@@ -1,7 +1,8 @@
 import {BeamWindow, BeamWindowMode} from "home/beam-window/BeamWindow"
 import {BeamWindowAnimation} from "home/BeamWindowAnimation"
 import {NumberUtil} from "util/NumberUtil"
-import {RevealButton} from "home/beam-window/widget/button/IconWithLabelRevealButton"
+import {IconWithLabelRevealButton, RevealButton} from "home/beam-window/widget/button/IconWithLabelRevealButton"
+import {PublishButton} from "home/beam-window/widget/button/PublishButton"
 
 export class Homepage {
   private observer: IntersectionObserver | undefined
@@ -9,8 +10,19 @@ export class Homepage {
   private timeout: ReturnType<typeof setTimeout> | undefined
   private readonly win: BeamWindow
   private footerObserver: IntersectionObserver | undefined
+  private publishButtons: PublishButton[]
 
   constructor() {
+    window.customElements.define("beam-button-reveal", IconWithLabelRevealButton, {extends: "button"})
+    const btns = document.querySelectorAll("[is=beam-button-reveal]") as unknown as NodeListOf<RevealButton>
+    const messages = (window as any).messages
+    this.publishButtons = Array.from(btns).map((b: RevealButton): PublishButton => {
+      const publishButton = new PublishButton(messages.note.publish, b, false)
+      const publishHandler = publishButton.getPublishHandler()
+      b.addEventListener("click", publishHandler)
+      return publishButton
+    })
+
     this.animation = new BeamWindowAnimation()
     const demo = this.demo
     this.win = document.querySelector("beam-window") as BeamWindow
@@ -125,6 +137,7 @@ export class Homepage {
       strong?.classList.remove("in")
       title.style.setProperty("opacity", "0")
     }
+    this.publishButtons.forEach(p => p.reset())
   }
 
   private step2 = (): void => {
