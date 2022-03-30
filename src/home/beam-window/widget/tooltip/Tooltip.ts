@@ -53,7 +53,7 @@ export class Tooltip {
   }
 
   /**
-   * Call this to remove the tooltip events should you remove the element from the DOM
+   * Call this to remove the tooltip events, should you remove the element from the DOM
    * and not plan to attach it back later
    */
   destroy(): void {
