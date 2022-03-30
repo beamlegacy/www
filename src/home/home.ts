@@ -30,10 +30,7 @@ export class Homepage {
     })
 
     const search = this.win.querySelector(".controls .search") as HTMLButtonElement
-    search?.addEventListener("click", () => {
-      this.clearTimeout()
-      this.animation.cancelAnimation()
-    })
+    search?.addEventListener("click", this.stopAnimations)
 
     if (demo) {
       this.observer = new IntersectionObserver((entries: IntersectionObserverEntry[]) => {
@@ -204,6 +201,11 @@ export class Homepage {
     if (resetSwitches) {
       this.animation.switches = 0
     }
+  }
+
+  private stopAnimations = (): void => {
+    this.clearTimeout()
+    this.animation.cancelAnimation()
   }
 }
 
