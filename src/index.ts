@@ -234,41 +234,45 @@ class App {
     if (!this.requestPending) {
       if (form.checkValidity()) {
         betaSignup?.classList.remove("error")
-        this.requestPending = true
-        betaSignup.classList.add("pending")
-        const email = form.elements.namedItem("zXmAeBqfd") as HTMLInputElement
-        const output = this.betaSignupOutput as HTMLElement
-        console.assert(email)
-        if (email.checkValidity()) {
-          this.sendEmailToBeamApi(email.value) // this one can fail without it being an issue
-          try {
-            const url = await this.generateSecureSubscribeLink(email.value)
-            if (url) {
-              await this.sendEmailToCreateSend(url, email.value)
-              this.renderSuccess(output)
-            } else {
-              throw new Error("No secure subscribe url was returned")
-            }
-          } catch (_err) {
-            this.renderError(output)
-          } finally {
-            betaSignup?.classList.remove("pending", "show-input")
-            betaSignup?.classList.add("show-output")
-
-            setTimeout(() => {
-              betaSignup?.classList.remove("show-output")
-              this.requestPending = false
-              const active = document.activeElement as HTMLElement
-              if (form && form.contains(active)) {
-                active.blur()
-              }
-            }, 2500)
-          }
-        }
+        await this.sendRequest(betaSignup, form)
       } else {
         betaSignup?.classList.remove("error", "pending")
         betaSignup?.offsetTop
         betaSignup?.classList.add("error")
+      }
+    }
+  }
+
+  private async sendRequest(betaSignup: HTMLElement, form: HTMLFormElement) {
+    this.requestPending = true
+    betaSignup.classList.add("pending")
+    const email = form.elements.namedItem("zXmAeBqfd") as HTMLInputElement
+    const output = this.betaSignupOutput as HTMLElement
+    console.assert(email)
+    if (email.checkValidity()) {
+      this.sendEmailToBeamApi(email.value) // this one can fail without it being an issue
+      try {
+        const url = await this.generateSecureSubscribeLink(email.value)
+        if (url) {
+          await this.sendEmailToCreateSend(url, email.value)
+          this.renderSuccess(output)
+        } else {
+          throw new Error("No secure subscribe url was returned")
+        }
+      } catch (_err) {
+        this.renderError(output)
+      } finally {
+        betaSignup?.classList.remove("pending", "show-input")
+        betaSignup?.classList.add("show-output")
+
+        setTimeout(() => {
+          betaSignup?.classList.remove("show-output")
+          this.requestPending = false
+          const active = document.activeElement as HTMLElement
+          if (form && form.contains(active)) {
+            active.blur()
+          }
+        }, 2500)
       }
     }
   }
