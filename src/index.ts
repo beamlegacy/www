@@ -16,10 +16,10 @@ class App {
   private requestPending = false
 
   constructor() {
+    window.customElements.define("beam-window", BeamWindow)
     this.messages = (window as any).messages
     this.initLang()
     this.sizeVh()
-    window.customElements.define("beam-window", BeamWindow)
     this.initEventListeners()
   }
 
