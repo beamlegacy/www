@@ -10,20 +10,18 @@ export class Homepage {
   private timeout: ReturnType<typeof setTimeout> | undefined
   private readonly win: BeamWindow
   private footerObserver: IntersectionObserver | undefined
-  private publishButtons: PublishButton[]
+  private publishButtons: PublishButton[] = []
 
   constructor() {
     window.customElements.define("beam-button-reveal", IconWithLabelRevealButton, {extends: "button"})
 
     this.animation = new BeamWindowAnimation()
-    const demo = this.demo
     this.win = document.querySelector("beam-window") as BeamWindow
 
     this.initPublishButtons()
+    this.initSearch()
 
-    const search = this.win.querySelector(".controls .search") as HTMLButtonElement
-    search?.addEventListener("click", this.stopAnimations)
-
+    const demo = this.demo
     if (demo) {
       this.observer = new IntersectionObserver((entries: IntersectionObserverEntry[]) => {
         const ratio = entries[0].intersectionRatio
@@ -77,6 +75,11 @@ export class Homepage {
       })
       this.footerObserver.observe(footer)
     }
+  }
+
+  private initSearch() {
+    const search = this.win.querySelector(".controls .search") as HTMLButtonElement
+    search?.addEventListener("click", this.stopAnimations)
   }
 
   private initPublishButtons() {
