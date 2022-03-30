@@ -19,15 +19,7 @@ export class Homepage {
     const demo = this.demo
     this.win = document.querySelector("beam-window") as BeamWindow
 
-    const buttons = this.win.querySelectorAll("[is=beam-button-reveal]") as unknown as NodeListOf<RevealButton>
-    const messages = (window as any).messages
-    this.publishButtons = Array.from(buttons).map((b: RevealButton): PublishButton => {
-      const publishButton = new PublishButton(messages.note.publish, b, false)
-      publishButton.render()
-      const publishHandler = publishButton.getPublishHandler()
-      b.addEventListener("click", publishHandler)
-      return publishButton
-    })
+    this.initPublishButtons()
 
     const search = this.win.querySelector(".controls .search") as HTMLButtonElement
     search?.addEventListener("click", this.stopAnimations)
@@ -85,6 +77,18 @@ export class Homepage {
       })
       this.footerObserver.observe(footer)
     }
+  }
+
+  private initPublishButtons() {
+    const buttons = this.win.querySelectorAll("[is=beam-button-reveal]") as unknown as NodeListOf<RevealButton>
+    const messages = (window as any).messages
+    this.publishButtons = Array.from(buttons).map((b: RevealButton): PublishButton => {
+      const publishButton = new PublishButton(messages.note.publish, b, false)
+      publishButton.render()
+      const publishHandler = publishButton.getPublishHandler()
+      b.addEventListener("click", publishHandler)
+      return publishButton
+    })
   }
 
   get demo(): HTMLElement | null {
