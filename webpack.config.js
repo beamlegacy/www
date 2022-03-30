@@ -11,6 +11,8 @@ const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPl
 
 const packageJson = require("./package.json")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const HTMLInlineCSSWebpackPlugin = require("html-inline-css-webpack-plugin").default;
+
 const pages = require("./pages.js")
 
 const version = packageJson.version
@@ -75,7 +77,7 @@ function config(mode, env) {
     }),
     new MiniCssExtractPlugin({
       filename: "css/[chunkhash].css"
-    })
+    }),
     /*    new WorkboxPlugin.GenerateSW({
           // these options encourage the ServiceWorkers to get in there fast
           // and not allow any straggling "old" SWs to hang around
@@ -83,6 +85,9 @@ function config(mode, env) {
           skipWaiting: true,
         }),*/
   ]
+  if (!isDevelopment) {
+    plugins.push(new HTMLInlineCSSWebpackPlugin())
+  }
   if (analyzeBundle) {
     plugins.push(new BundleAnalyzerPlugin({mode: analyzeBundle ? "static" : "disabled", openAnalyzer: false}))
   }
