@@ -243,14 +243,14 @@ class App {
     }
   }
 
-  private async sendRequest(betaSignup: HTMLElement, form: HTMLFormElement) {
+  private async sendRequest(betaSignup: HTMLElement, form: HTMLFormElement): Promise<void> {
     this.requestPending = true
     betaSignup.classList.add("pending")
     const email = form.elements.namedItem("zXmAeBqfd") as HTMLInputElement
     const output = this.betaSignupOutput as HTMLElement
     console.assert(email)
     if (email.checkValidity()) {
-      this.sendEmailToBeamApi(email.value) // this one can fail without it being an issue
+      this.sendEmailToBeamApi(email.value) // this one can fail without it being an issue, and we don't need to await it
       try {
         const url = await this.generateSecureSubscribeLink(email.value)
         if (url) {
@@ -277,7 +277,7 @@ class App {
     }
   }
 
-  private renderError(output: HTMLElement) {
+  private renderError(output: HTMLElement): void {
     const icon = `<svg class="icn error" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M3 3L13 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
       <path d="M13 3L3 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -285,7 +285,7 @@ class App {
     output.innerHTML = `${icon}<small>${this.messages.header.betaSignupError}</small>`
   }
 
-  private renderSuccess(output: HTMLElement) {
+  private renderSuccess(output: HTMLElement): void {
     const icon = `<svg class="icn checkmark" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M2 7.5L6.5 12.5L13.5 2.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>`
