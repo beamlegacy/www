@@ -42,7 +42,7 @@ body {
 
 .beam-site {
   --header-height: 2em;
-  --hero-height: calc(100 * var(--vh) - var(--header-height));
+  --hero-height: calc(100 * var(--vh, 1vh) - var(--header-height));
   --site-padding: 2em;
 
   align-items: center;
