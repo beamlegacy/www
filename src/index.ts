@@ -108,7 +108,7 @@ class App {
     return fetch(secureUrl, {
       method: "POST",
       body: new URLSearchParams({
-        "cm-ykdjjuh-ykdjjuh": email
+        [process.env.SUBSCRIBE_EMAIL_KEY || "email"]: email
       }),
       headers: {
         "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
