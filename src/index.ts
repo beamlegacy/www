@@ -252,12 +252,8 @@ class App {
             } else {
               throw new Error("No secure subscribe url was returned")
             }
-          } catch (e) {
-            const icon = `<svg class="icn error" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M3 3L13 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M13 3L3 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>`
-            output.innerHTML = `${icon}<small>${this.messages.header.betaSignupError}</small>`
+          } catch (_err) {
+            this.renderError(output)
           } finally {
             betaSignup?.classList.remove("pending", "show-input")
             betaSignup?.classList.add("show-output")
@@ -278,6 +274,14 @@ class App {
         betaSignup?.classList.add("error")
       }
     }
+  }
+
+  private renderError(output: HTMLElement) {
+    const icon = `<svg class="icn error" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 3L13 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M13 3L3 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>`
+    output.innerHTML = `${icon}<small>${this.messages.header.betaSignupError}</small>`
   }
 
   private getCurrentPage(): LocalizedPage | undefined {
