@@ -65,7 +65,7 @@ export class Tooltip {
    * Update tooltip variables and position
    */
   private update = (): void => {
-    if (this.element.isConnected) { // make sure the element is within the DOM (whether or not in nested shadow DOMs)
+    if (this.element.isConnected) { // make sure the element is within the DOM (whether in nested shadow DOMs or not)
       const style = getComputedStyle(this.element)
       const elementStyle = this.element.style
       elementStyle.setProperty("--tooltip-padding-left", style.getPropertyValue("padding-left"))
