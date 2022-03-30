@@ -14,9 +14,14 @@ export class Homepage {
 
   constructor() {
     window.customElements.define("beam-button-reveal", IconWithLabelRevealButton, {extends: "button"})
-    const btns = document.querySelectorAll("[is=beam-button-reveal]") as unknown as NodeListOf<RevealButton>
+
+    this.animation = new BeamWindowAnimation()
+    const demo = this.demo
+    this.win = document.querySelector("beam-window") as BeamWindow
+
+    const buttons = this.win.querySelectorAll("[is=beam-button-reveal]") as unknown as NodeListOf<RevealButton>
     const messages = (window as any).messages
-    this.publishButtons = Array.from(btns).map((b: RevealButton): PublishButton => {
+    this.publishButtons = Array.from(buttons).map((b: RevealButton): PublishButton => {
       const publishButton = new PublishButton(messages.note.publish, b, false)
       publishButton.render()
       const publishHandler = publishButton.getPublishHandler()
@@ -24,9 +29,6 @@ export class Homepage {
       return publishButton
     })
 
-    this.animation = new BeamWindowAnimation()
-    const demo = this.demo
-    this.win = document.querySelector("beam-window") as BeamWindow
     if (demo) {
       this.observer = new IntersectionObserver((entries: IntersectionObserverEntry[]) => {
         const ratio = entries[0].intersectionRatio
