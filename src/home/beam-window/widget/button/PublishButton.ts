@@ -19,24 +19,33 @@ export class PublishButton {
 
   getPublishHandler(): () => Promise<void> {
     return async () => {
-      let error: Error | undefined
       this.publishButton.open = true
-      this.publishButton.label = this.isPublished ? this.messages.unpublishing : this.messages.publishing
-      try {
-        if (this.isPublished) {
-          // unpublish
-          // await new Promise(resolve => setTimeout(resolve, 500))
-        } else {
-          // publish
-          await new Promise(resolve => setTimeout(resolve, 750))
+      if (!this.isPublished) {
+        let error: Error | undefined
+        this.publishButton.label = this.isPublished ? this.messages.unpublishing : this.messages.publishing
+        try {
+          if (this.isPublished) {
+            // unpublish
+            // await new Promise(resolve => setTimeout(resolve, 500))
+          } else {
+            // publish
+            await new Promise(resolve => setTimeout(resolve, 750))
+          }
+        } catch (e) {
+          error = e as Error // we will throw after the publish callback
         }
-      } catch (e) {
-        error = e as Error // we will throw after the publish callback
-      }
-      this.afterPublish(error) // see TODO
-      // last but not least, throw error if any
-      if (error) {
-        throw error
+        this.afterPublish(error) // see TODO
+        // last but not least, throw error if any
+        if (error) {
+          throw error
+        }
+      } else {
+        this.publishButton.setAttribute("data-tooltip", this.messages.url_copied)
+        this.publishButton.dispatchEvent(new MouseEvent("mouseenter"))
+        this.timeout = setTimeout(() => {
+          this.publishButton.open = false
+          this.publishButton.removeAttribute("data-tooltip")
+        }, 2000)
       }
     }
   }
@@ -58,8 +67,6 @@ export class PublishButton {
       }
       this.timeout && clearTimeout(this.timeout)
       this.timeout = setTimeout(this.getAfterPublishCallback(error), 250)
-    } else {
-      this.publishButton.open = false
     }
   }
 

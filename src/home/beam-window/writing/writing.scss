@@ -229,7 +229,7 @@
               .icon {
                 --animation-grow-in-transform: scale(2.5);
                 --animation-grow-out-transform: scale(1);
-                animation: bump-link 0.2s ease-in-out, squareify 0.2s ease-in-out, color 0.2s ease-in-out forwards;
+                animation: bump-link 0.2s ease-in-out, squareify 0.2s ease-in-out, color 0.2s ease-in-out both;
                 display: inline-block;
               }
 

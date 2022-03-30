@@ -52,6 +52,10 @@
   --color-text-caret-color: #{ rgba(#3700ff, 0.7) };
 
   --color-bullet: #{ palette.$light-alpha-gray };
+
+  --color-tooltip-background: #{palette.$light-nero};
+  --color-tooltip-color: #{palette.$light-corduroy};
+  --color-tooltip-shadow: rgba(0, 0, 0, 0.08);
 }
 
 @mixin dark-mode {
@@ -106,6 +110,10 @@
   --color-text-caret-color: #{ rgba(#7373ff, 0.9) };
 
   --color-bullet: #{ palette.$dark-alpha-gray };
+
+  --color-tooltip-background: #{palette.$dark-nero};
+  --color-tooltip-color: #{palette.$dark-corduroy};
+  --color-tooltip-shadow: rgba(0, 0, 0, 0.24);
 }
 
 beam-window {

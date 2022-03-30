@@ -7,8 +7,8 @@
 .tooltip-container {
   --tooltip-offset: inherit;
   --width: 100%;
-  --padding-v: 7px;
-  --padding-h: 7px;
+  --padding-v: 0.4375em;
+  --padding-h: 0.4375em;
   --tooltip-scroll: var(--scroll, 0px); // keep the unit, otherwise subsequent calcs will not work
 
   &::after,
@@ -26,7 +26,7 @@
     color: var(--color-tooltip-color);
     content: attr(data-tooltip);
     display: block;
-    font-size: 13px;
+    font-size: 0.8125em;
     left: auto;
     margin-left: calc(-1 * var(--tooltip-padding-left) + var(--tooltip-parent-width) / 2 + var(--tooltip-horizontal-shift));
     margin-top: calc(-1 * var(--tooltip-parent-height) + var(--tooltip-padding-top) - var(--tooltip-offset) - var(--tooltip-scroll));
