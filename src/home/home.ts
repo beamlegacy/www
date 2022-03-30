@@ -24,6 +24,26 @@ export class Homepage {
     this.initFooterObserver()
   }
 
+  get demo(): HTMLElement | null {
+    return document.querySelector(".demo")
+  }
+
+  get footer(): HTMLElement | null {
+    return document.querySelector(".beam-site > footer")
+  }
+
+  get title(): HTMLElement | null {
+    return document.querySelector(".demo .title")
+  }
+
+  get hero(): HTMLElement | null {
+    return document.querySelector(".hero")
+  }
+
+  get titleContainer(): HTMLElement | null {
+    return document.querySelector(".title-container")
+  }
+
   private initFooterObserver() {
     const footer = this.footer
     if (footer) {
@@ -98,26 +118,6 @@ export class Homepage {
       b.addEventListener("click", publishHandler)
       return publishButton
     })
-  }
-
-  get demo(): HTMLElement | null {
-    return document.querySelector(".demo")
-  }
-
-  get footer(): HTMLElement | null {
-    return document.querySelector(".beam-site > footer")
-  }
-
-  get title(): HTMLElement | null {
-    return document.querySelector(".demo .title")
-  }
-
-  get hero(): HTMLElement | null {
-    return document.querySelector(".hero")
-  }
-
-  get titleContainer(): HTMLElement | null {
-    return document.querySelector(".title-container")
   }
 
   private handleFullyVisible = (): void => {
