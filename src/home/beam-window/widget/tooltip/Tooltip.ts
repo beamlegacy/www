@@ -114,7 +114,7 @@ export class Tooltip {
     const yPosWhenOnBottom = () => containerRect.y + containerRect.height + tooltipOffset + rect.height
     const yPosWhenOnTop = () => containerRect.y - rect.height - tooltipOffset
     const fitsOnRight = () => xPosWhenOnRight() <= window.innerWidth - this.margin
-    const fitsOnLeft = () => xPosWhenOnLeft() >= 0 + this.margin
+    const fitsOnLeft = () => xPosWhenOnLeft() >= this.margin
     const fitsOnBottom = () => yPosWhenOnBottom() <= window.innerHeight - this.margin
     const fitsOnTop = () => yPosWhenOnTop() > headerHeight + this.margin
 
