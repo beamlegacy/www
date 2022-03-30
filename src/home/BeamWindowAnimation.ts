@@ -162,7 +162,7 @@ export class BeamWindowAnimation {
                 this.timeout = setTimeout(() => {
                   win.captureTarget()
                   this.timeout = setTimeout(() => {
-                    this.changeTitle()
+                    this.changeTitle(this.titles[Math.min(this.switches, this.titles.length - 1)])
                     this.returnToJournal()
                   }, 250)
                 }, 500)
