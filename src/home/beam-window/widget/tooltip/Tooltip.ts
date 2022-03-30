@@ -100,7 +100,7 @@ export class Tooltip {
   }
 
   /**
-   * Reposition tooltip in the opposite direction if it doesn't fit in it's default position
+   * Reposition tooltip in the opposite direction if it doesn't fit in its default position
    * @param containerStyle - the computed style of the container element
    * @param containerRect - the DOMrect for the container element
    */
