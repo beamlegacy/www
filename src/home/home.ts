@@ -20,7 +20,25 @@ export class Homepage {
 
     this.initPublishButtons()
     this.initSearch()
+    this.initMainObserver()
 
+    const footer = this.footer
+    if (footer) {
+      this.footerObserver = new IntersectionObserver((entries: IntersectionObserverEntry[]) => {
+        const ratio = entries[0].intersectionRatio
+        const mapped = NumberUtil.map(ratio, 0, 1)
+        const content = footer.querySelector(".content") as HTMLElement
+        content?.style.setProperty("transform", `scale(${mapped})`)
+        content?.style.setProperty("opacity", `${mapped}`)
+      }, {
+        rootMargin: "0px 0px -25px 0px",
+        threshold: new Array(1000).fill(0).map((v, i) => (i + 1) / 1000)
+      })
+      this.footerObserver.observe(footer)
+    }
+  }
+
+  private initMainObserver() {
     const demo = this.demo
     if (demo) {
       this.observer = new IntersectionObserver((entries: IntersectionObserverEntry[]) => {
@@ -59,21 +77,6 @@ export class Homepage {
         threshold: new Array(1000).fill(0).map((v, i) => (i + 1) / 1000)
       })
       this.observer.observe(demo)
-    }
-
-    const footer = this.footer
-    if (footer) {
-      this.footerObserver = new IntersectionObserver((entries: IntersectionObserverEntry[]) => {
-        const ratio = entries[0].intersectionRatio
-        const mapped = NumberUtil.map(ratio, 0, 1)
-        const content = footer.querySelector(".content") as HTMLElement
-        content?.style.setProperty("transform", `scale(${mapped})`)
-        content?.style.setProperty("opacity", `${mapped}`)
-      }, {
-        rootMargin: "0px 0px -25px 0px",
-        threshold: new Array(1000).fill(0).map((v, i) => (i + 1) / 1000)
-      })
-      this.footerObserver.observe(footer)
     }
   }
 
