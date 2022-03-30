@@ -21,7 +21,10 @@ export class Homepage {
     this.initPublishButtons()
     this.initSearch()
     this.initMainObserver()
+    this.initFooterObserver()
+  }
 
+  private initFooterObserver() {
     const footer = this.footer
     if (footer) {
       this.footerObserver = new IntersectionObserver((entries: IntersectionObserverEntry[]) => {
