@@ -24,7 +24,7 @@ export class Tooltip {
 
   /**
    * Call on elements to which you did, or will, add `data-tooltip` attribute to,
-   * apply one any TooltipDirection as a class to the element to set the direction of the tooltip
+   * apply any TooltipDirection as a class to the element to set the direction of the tooltip
    * @param element
    */
   constructor(private element: HTMLElement) {
