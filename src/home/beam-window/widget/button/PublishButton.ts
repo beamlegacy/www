@@ -87,9 +87,11 @@ export class PublishButton {
     if (this.isPublished) {
       this.publishButton.icon = new IconLink().element
       this.publishButton.label = this.messages.unpublish
+      this.publishButton.classList.add("published")
     } else {
       this.publishButton.icon = new IconEditorPublish().element
       this.publishButton.label = this.messages.publish
+      this.publishButton.classList.remove("published")
     }
   }
 

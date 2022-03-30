@@ -24,6 +24,8 @@
   --color-beam-window-controls-color-hover: #{ palette.$light-niobium };
   --color-beam-window-controls-color-active: #{ palette.$light-niobium };
   --color-beam-window-controls-background-active: #{ rgba(palette.$light-alpha-gray, 0.4) };
+  --color-beam-window-controls-color-published: #{ palette.$light-bluetiful };
+  --color-beam-window-controls-background-published: #{ rgba(palette.$light-bluetiful, 0.1) };
 
   --color-beam-window-placeholder-background: #{ rgba(#ced2d9, 0.5) };
 
@@ -77,6 +79,8 @@
   --color-beam-window-controls-color-hover: #{ palette.$dark-niobium };
   --color-beam-window-controls-color-active: #{ palette.$dark-niobium };
   --color-beam-window-controls-background-active: #{ palette.$dark-alpha-gray };
+  --color-beam-window-controls-color-published: #{ palette.$dark-bluetiful };
+  --color-beam-window-controls-background-published: #{ rgba(palette.$dark-bluetiful, 0.14) };
 
   --color-beam-window-placeholder-background: #{ rgba(#ced2d9, 0.05) };
 

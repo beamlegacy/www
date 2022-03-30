@@ -193,6 +193,11 @@
             svg {
               vertical-align: middle;
             }
+
+            &.published {
+              background-color: var(--color-beam-window-controls-background-published);
+              color: var(--color-beam-window-controls-color-published);
+            }
           }
         }
 
