@@ -133,7 +133,7 @@ export class BeamWindowAnimation {
     }, 1500)
   }
 
-  rotateBack = () => {
+  rotateBack = (): void => {
     const {win, clone} = this
     clone?.style.setProperty("--tZ", "-1px")
     clone?.style.setProperty("--rotate", "0")
@@ -143,7 +143,7 @@ export class BeamWindowAnimation {
     win.parentElement?.style.setProperty("--tX", "0")
   }
 
-  private rotate = () => {
+  private rotate = (): void => {
     const {win, clone} = this
     clone?.style.setProperty("--tZ", "-9em")
     clone?.style.setProperty("--rotate", "0")
@@ -153,7 +153,7 @@ export class BeamWindowAnimation {
     win.parentElement?.style.setProperty("--tX", "-37%")
   }
 
-  private updateFooter(newText: string) {
+  private updateFooter(newText: string): void {
     const footer = document.querySelector("footer")
     if (footer) {
       const lastChildNode = Array.from(footer.childNodes).pop()
@@ -169,7 +169,7 @@ export class BeamWindowAnimation {
     }
   }
 
-  private returnToWeb = () => {
+  private returnToWeb = (): void => {
     debug && console.log("Return to web", {switches: this.switches, playing: this.playing})
     let {clone} = this
     const {win} = this
@@ -204,7 +204,7 @@ export class BeamWindowAnimation {
     }, 250)
   }
 
-  private initClone() {
+  private initClone(): BeamWindow {
     let {clone} = this
     const {win} = this
     if (clone) {
