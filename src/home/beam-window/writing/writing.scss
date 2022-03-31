@@ -23,8 +23,12 @@
     transform: scale(1);
   }
 
-  25% {
-    transform: scale(var(--animation-bump-scale, 2));
+  15% {
+    transform: scale(1);
+  }
+
+  45% {
+    transform: scale(var(--animation-bump-scale, 2.75));
   }
 
   100% {
@@ -227,14 +231,12 @@
 
             &.published {
               .icon {
-                --animation-grow-in-transform: scale(2.5);
-                --animation-grow-out-transform: scale(1);
-                animation: bump-link 0.2s ease-in-out, squareify 0.2s ease-in-out, color 0.2s ease-in-out both;
+                animation: bump-link 0.4s ease-in-out, squareify 0.2s ease-in-out, color 0.2s ease-in-out both;
                 display: inline-block;
               }
 
               .label {
-                transition: none;
+                //transition: none;
               }
             }
           }
