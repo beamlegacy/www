@@ -1,3 +1,5 @@
+@use "mixins";
+
 @keyframes pending {
   0% {
     opacity: 0.5;
@@ -50,7 +52,13 @@
     stroke-dashoffset: 0;
   }
 }
+
 @mixin header {
+  --form-distance: 2em;
+  --form-distance-out: calc(-1 * var(--form-distance, 0));
+  --form-transition: transform 0.5s var(--form-transform-easing), opacity 0.5s ease-in-out;
+  --form-transform-easing: cubic-bezier(0.68, -0.59, 0.06, 1.64);
+
   > header {
     display: flex;
     flex-direction: row;
@@ -66,10 +74,28 @@
     display: flex;
     flex-direction: row;
     flex-grow: 1;
-    font-size: 1.875em;
+    font-size: 1.6em;
     font-weight: 600;
     gap: 0.2em;
     line-height: 1;
+    transform: none;
+    transition: var(--form-transition);
+
+    &.out {
+      opacity: 0;
+      //transform: translateX(calc(-1 * var(--form-distance, 0) / 1.875));
+      transform: translateX(-100%);
+    }
+
+    @include mixins.above-small {
+      font-size: 1.875em;
+      transform: none;
+
+      &.out {
+        opacity: 1;
+        transform: none;
+      }
+    }
 
     svg {
       --size: 1.06666667em;
@@ -115,11 +141,11 @@
     }
 
     .beta-signup {
-      --transform-easing: cubic-bezier(0.68, -0.59, 0.06, 1.64);
+
       position: relative;
 
       > button {
-        transition: transform 0.5s var(--transform-easing), opacity 0.5s ease-in-out;
+        transition: transform 0.5s var(--form-transform-easing), opacity 0.5s ease-in-out;
       }
 
       .input {
@@ -134,7 +160,7 @@
         right: 0;
         top: 0;
         transform: translateY(100%);
-        transition: transform 0.5s var(--transform-easing), opacity 0.5s ease-in-out;
+        transition: transform 0.5s var(--form-transform-easing), opacity 0.5s ease-in-out;
 
         &::before,
         &::after {
@@ -204,7 +230,7 @@
           > *:not(.button-close) {
             position: absolute;
             top: 0;
-            transform: translateY(2em);
+            transform: translateY(var(--form-distance));
           }
         }
 
@@ -223,8 +249,8 @@
         right: 0;
         text-align: right;
         top: 0;
-        transform: translateY(2em);
-        transition: transform 0.5s var(--transform-easing), opacity 0.5s ease-in-out;
+        transform: translateY(var(--form-distance));
+        transition: var(--form-transition);
         width: 25em;
 
         small {
@@ -264,7 +290,7 @@
       &.show-input {
         > button {
           opacity: 0;
-          transform: translateY(-2em);
+          transform: translateY(var(--form-distance-out));
         }
 
         .input {
@@ -276,12 +302,12 @@
       &.show-output {
         > button {
           opacity: 0;
-          transform: translateY(-2em);
+          transform: translateY(var(--form-distance-out));
         }
 
         .input {
           opacity: 0;
-          transform: translateY(-2em);
+          transform: translateY(var(--form-distance-out));
         }
 
         .output {

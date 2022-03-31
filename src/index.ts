@@ -27,6 +27,10 @@ class App {
     return `/${this.lang}`
   }
 
+  get logo(): Element | null {
+    return document.querySelector(".beam-logo")
+  }
+
   get betaSignup(): Element | null {
     return document.querySelector(".beta-signup")
   }
@@ -172,6 +176,7 @@ class App {
     const input = this.betaSignupInput as HTMLInputElement
     betaSignup?.classList.add("show-input")
     betaSignup?.classList.remove("show-output")
+    this.logo?.classList.add("out")
     input?.focus()
   }
 
@@ -179,6 +184,8 @@ class App {
     const betaSignup = this.betaSignup as HTMLElement
     betaSignup?.classList.remove("show-input")
     betaSignup?.classList.remove("pending")
+    this.logo?.classList.remove("out")
+    console.log(this.logo)
   }
 
   private handleSignupInputContainerBlur = (e: FocusEvent): void => {
@@ -194,6 +201,7 @@ class App {
         const betaSignup = this.betaSignup
         betaSignup?.classList.remove("show-input")
         betaSignup?.classList.remove("show-output")
+        this.logo?.classList.remove("out")
       }
     }
   }
