@@ -40,6 +40,7 @@ describe("BeamWindowAnimation", () => {
     main.appendChild(testWindow)
     document.body.appendChild(container)
     testAnimation = new BeamWindowAnimation()
+    testAnimation.playing = true
     setTimeoutSpy = jest.spyOn(window, "setTimeout")
     setTimeoutSpy.mockImplementation(cb => cb() && 1)
   })

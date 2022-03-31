@@ -7,6 +7,7 @@ export class BeamWindowAnimation {
   switches = 0
   private timeout: ReturnType<typeof setTimeout> | undefined
   private lastReturn?: number
+  playing = false
   titles = [
     "A <br><strong class=\"in\">powerful note</strong> app…",
     "So you can <br><strong class=\"in\">capture</strong> the web…",
@@ -14,7 +15,7 @@ export class BeamWindowAnimation {
     "And <br><strong class=\"in\">share it</strong> with the world"
   ]
 
-  constructor() {
+  constructor(private handleToggleMode?: (newMode: BeamWindowMode) => void) {
     this.win = document.querySelector("beam-window") as BeamWindow
     this.win.onNewMode(this.onNewMode)
     this.win.onTabClick(this.onTabClick)
@@ -61,13 +62,16 @@ export class BeamWindowAnimation {
   }
 
   onNewMode = (mode: BeamWindowMode): void => {
-    this.switches++
-    this.cancelAnimation()
-    if (mode === BeamWindowMode.writing) {
-      this.onWritingMode()
-    } else {
-      this.onWebMode()
+    if (this.playing) {
+      this.switches++
+      this.cancelAnimation()
+      if (mode === BeamWindowMode.writing) {
+        this.onWritingMode()
+      } else {
+        this.onWebMode()
+      }
     }
+    this.handleToggleMode && this.handleToggleMode(mode)
   }
 
   onWritingMode = (): void => {

@@ -15,7 +15,7 @@ export class Homepage {
   constructor() {
     window.customElements.define("beam-button-reveal", IconWithLabelRevealButton, {extends: "button"})
 
-    this.animation = new BeamWindowAnimation()
+    this.animation = new BeamWindowAnimation(this.handleNewMode)
     this.win = document.querySelector("beam-window") as BeamWindow
 
     this.initPublishButtons()
@@ -42,6 +42,18 @@ export class Homepage {
 
   get titleContainer(): HTMLElement | null {
     return document.querySelector(".title-container")
+  }
+
+  private handleNewMode = (newMode: BeamWindowMode): void => {
+    if (newMode === BeamWindowMode.web) {
+      this.resetPublishButtons()
+    }
+  }
+
+  private resetPublishButtons = () => {
+    setTimeout(() => {
+      this.publishButtons.forEach(p => p.reset())
+    }, 150)
   }
 
   private initFooterObserver() {
@@ -74,6 +86,7 @@ export class Homepage {
         this.updateHero(1 - mappedRatio)
 
         if (ratio <= 0.9) {
+          this.animation.playing = false
           this.clearTimeout()
           this.resetAnimation(false)
         }
@@ -121,6 +134,7 @@ export class Homepage {
   }
 
   private handleFullyVisible = (): void => {
+    this.animation.playing = true
     const title = this.title
     title?.style.setProperty("opacity", "1")
     title?.classList.add("in")
@@ -156,7 +170,7 @@ export class Homepage {
       strong?.classList.remove("in")
       title.style.setProperty("opacity", "0")
     }
-    this.publishButtons.forEach(p => p.reset())
+    this.resetPublishButtons()
   }
 
   private step2 = (): void => {
