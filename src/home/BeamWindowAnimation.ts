@@ -1,6 +1,7 @@
 import {BeamWindow, BeamWindowMode} from "./beam-window/BeamWindow"
 import {RevealButton} from "home/beam-window/widget/button/IconWithLabelRevealButton"
 
+// If you want to debug the animation / timeouts of this module, set this to true
 const debug = false
 
 export class BeamWindowAnimation {
