@@ -53,7 +53,7 @@ export class Homepage {
     }
   }
 
-  private resetPublishButtons = () => {
+  private resetPublishButtons = (): void => {
     const writing = this.win.querySelector(".content .writing") as HTMLElement
     const transitionEnd = () => {
       this.publishButtons.forEach(p => p.reset())
@@ -68,7 +68,7 @@ export class Homepage {
     writing.addEventListener("transitioncancel", transitionCancel)
   }
 
-  private initFooterObserver() {
+  private initFooterObserver(): void {
     const footer = this.footer
     if (footer) {
       this.footerObserver = new IntersectionObserver((entries: IntersectionObserverEntry[]) => {
@@ -85,7 +85,7 @@ export class Homepage {
     }
   }
 
-  private initMainObserver() {
+  private initMainObserver(): void {
     const demo = this.demo
     if (demo) {
       this.observer = new IntersectionObserver((entries: IntersectionObserverEntry[]) => {
@@ -128,12 +128,12 @@ export class Homepage {
     }
   }
 
-  private initSearch() {
+  private initSearch(): void{
     const search = this.win.querySelector(".controls .search") as HTMLButtonElement
     search?.addEventListener("click", this.stopAnimations)
   }
 
-  private initPublishButtons() {
+  private initPublishButtons(): void {
     const buttons = this.win.querySelectorAll("[is=beam-button-reveal]") as unknown as NodeListOf<RevealButton>
     const messages = (window as any).messages
     this.publishButtons = Array.from(buttons).map((b: RevealButton): PublishButton => {
