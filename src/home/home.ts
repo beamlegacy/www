@@ -51,9 +51,18 @@ export class Homepage {
   }
 
   private resetPublishButtons = () => {
-    setTimeout(() => {
+    const writing = this.win.querySelector(".content .writing") as HTMLElement
+    const transitionEnd = () => {
       this.publishButtons.forEach(p => p.reset())
-    }, 150)
+      writing.removeEventListener("transitionend", transitionEnd)
+      writing.removeEventListener("transitionend", transitionCancel)
+    }
+    const transitionCancel = () => {
+      writing.removeEventListener("transitionend", transitionEnd)
+      writing.removeEventListener("transitionend", transitionCancel)
+    }
+    writing.addEventListener("transitionend", transitionEnd)
+    writing.addEventListener("transitioncancel", transitionCancel)
   }
 
   private initFooterObserver() {
