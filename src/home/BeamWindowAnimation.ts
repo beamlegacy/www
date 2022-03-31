@@ -92,9 +92,9 @@ export class BeamWindowAnimation {
     const {win} = this
     this.rotateBack()
     this.cancelAnimation() // cancel previous animation if any
+    const prevSwitches = this.switches
     this.timeout = setTimeout(() => {
       debug && console.log("Return to journal - Timeout 1", {switches: this.switches, playing: this.playing})
-      const prevSwitches = this.switches
       if (win.mode === BeamWindowMode.web) {
         win.url = "writing/journal"
       }
