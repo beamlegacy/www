@@ -11,7 +11,7 @@ export class BeamWindowAnimation {
   private timeout: ReturnType<typeof setTimeout> | undefined
   private lastReturn?: number
   playing = false
-  titles = [
+  titles = (window as any).messages?.animation?.titles || [
     "A <br><strong class=\"in\">powerful note</strong> app…",
     "So you can <br><strong class=\"in\">capture</strong> the web…",
     "Make it <br><strong class=\"in\">your own</strong>…",

@@ -123,6 +123,15 @@ class HomeMessages_en {
       url_copied: "URL copied"
     }
   }
+
+  animation = {
+    titles: [
+      "A new <br><strong class=\"in\">powerful note</strong> app…",
+      "So you can <br><strong class=\"in\">capture</strong> the web…",
+      "Make it <br><strong class=\"in\">your own</strong>…",
+      "And <strong class=\"in\">share it</strong> <br>with the world"
+    ]
+  }
 }
 
 class HomeMessages_fr {
@@ -201,6 +210,15 @@ class HomeMessages_fr {
       unpublished: "",
       url_copied: "URL copied"
     }
+  }
+
+  animation = {
+    titles: [
+      "A new <br><strong class=\"in\">powerful note</strong> app…",
+      "So you can <br><strong class=\"in\">capture</strong> the web…",
+      "Make it <br><strong class=\"in\">your own</strong>…",
+      "And <strong class=\"in\">share it</strong> <br>with the world"
+    ]
   }
 }
 
