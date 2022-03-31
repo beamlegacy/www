@@ -1,5 +1,11 @@
+@use "/src/style/mixins";
+
 @mixin html-doc {
   .html-doc {
+    justify-content: flex-start;
+    flex-shrink: 1;
+    max-height: 100%;
+    overflow-y: auto;
     padding: 1.45454545em;
 
     .circle {
@@ -29,23 +35,35 @@
 
     .img {
       &.large {
-        height: 13.55em;
+        height: 7.55em;
+
+        @include mixins.above-small {
+          height: 13.55em;
+        }
       }
 
       &.medium {
-        height: 12.09090909em;
+        height: 5.09090909em;
         width: 60%;
+
+        @include mixins.above-small {
+          height: 12.09090909em;
+        }
       }
 
       &.small {
-        height: 5.09090909em;
+        height: 3.09090909em;
+
+        @include mixins.above-small {
+          height: 5.09090909em;
+        }
       }
     }
 
     &.beam-times {
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: flex-start;
 
 
       .header {
@@ -121,7 +139,11 @@
 
           &:first-child {
             max-width: 20%;
-            min-width: 7.27272727em;
+            min-width: 5.27272727em;
+
+            @include mixins.above-small {
+              min-width: 7.27272727em;
+            }
           }
 
           &:nth-child(2) {
@@ -182,7 +204,11 @@
             flex-grow: 1;
 
             .img.large {
-              height: 17em;
+              height: 8em;
+
+              @include mixins.above-small {
+                height: 17em;
+              }
             }
 
             p.medium {

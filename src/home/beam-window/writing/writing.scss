@@ -95,6 +95,7 @@
 
     .all-notes {
       height: 100%;
+      margin-bottom: 4.36363636em;
 
       .view {
         display: flex;
@@ -166,6 +167,8 @@
     }
 
     .note-page {
+      margin-bottom: 4.36363636em;
+
       .view {
         font-size: 0.875em;
         list-style-type: none;
