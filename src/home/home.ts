@@ -209,9 +209,11 @@ export class Homepage {
   private step4 = (): void => {
     debug && console.log("Home - Step 4", {switches: this.animation.switches})
     const win = this.win
-    if (win.mode === BeamWindowMode.web) {
+    if (this.animation.switches < 3) {
       this.timeout = setTimeout(() => {
+        win.toggleMode()
         win.url = "writing/journal"
+        this.animation.switches--
       }, 1350)
     }
   }
