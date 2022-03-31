@@ -23,11 +23,7 @@
     transform: scale(1);
   }
 
-  15% {
-    transform: scale(1);
-  }
-
-  45% {
+  35% {
     transform: scale(var(--animation-bump-scale, 2.75));
   }
 
@@ -234,7 +230,7 @@
 
             &.published {
               .icon {
-                animation: bump-link 0.4s ease-in-out, squareify 0.2s ease-in-out, color 0.2s ease-in-out both;
+                animation: bump-link 0.35s ease-in-out, squareify 0.2s ease-in-out, color 0.2s ease-in-out both;
                 display: inline-block;
               }
 
