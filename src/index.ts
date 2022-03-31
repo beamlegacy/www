@@ -185,7 +185,6 @@ class App {
     betaSignup?.classList.remove("show-input")
     betaSignup?.classList.remove("pending")
     this.logo?.classList.remove("out")
-    console.log(this.logo)
   }
 
   private handleSignupInputContainerBlur = (e: FocusEvent): void => {

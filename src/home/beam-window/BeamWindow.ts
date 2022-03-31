@@ -96,14 +96,16 @@ export class BeamWindow extends HTMLElement {
    */
   set url(newUrl: string) {
     const [mode, page] = newUrl.split("/")
-    const tab = this.window?.querySelector(
-      `.tab[data-page=${page}]`
-    ) as HTMLButtonElement
-    if (tab) {
-      this.mode = mode as BeamWindowMode
-      tab.click()
-      const tabs = this.window?.querySelector(".tabs") as HTMLElement
-      tabs.scrollTop = 0
+    if (mode && page) {
+      const tab = this.window?.querySelector(
+        `.tab[data-page=${page}]`
+      ) as HTMLButtonElement
+      if (tab) {
+        this.mode = mode as BeamWindowMode
+        tab.click()
+        const tabs = this.window?.querySelector(".tabs") as HTMLElement
+        tabs.scrollTop = 0
+      }
     }
   }
 

@@ -1,6 +1,8 @@
 import {BeamWindow, BeamWindowMode} from "./beam-window/BeamWindow"
 import {RevealButton} from "home/beam-window/widget/button/IconWithLabelRevealButton"
 
+const debug = false
+
 export class BeamWindowAnimation {
   private win: BeamWindow
   private clone: BeamWindow | undefined
@@ -15,7 +17,7 @@ export class BeamWindowAnimation {
     "And <br><strong class=\"in\">share it</strong> with the world"
   ]
 
-  constructor(private handleToggleMode?: (newMode: BeamWindowMode) => void) {
+  constructor(private handleToggleMode?: (newMode: BeamWindowMode) => void, private handleCancelAnimation?: () => void) {
     this.win = document.querySelector("beam-window") as BeamWindow
     this.win.onNewMode(this.onNewMode)
     this.win.onTabClick(this.onTabClick)
@@ -59,12 +61,13 @@ export class BeamWindowAnimation {
 
   cancelAnimation = (): void => {
     this.timeout && clearTimeout(this.timeout)
+    this.handleCancelAnimation && this.handleCancelAnimation()
   }
 
   onNewMode = (mode: BeamWindowMode): void => {
+    this.cancelAnimation()
+    this.switches++
     if (this.playing) {
-      this.switches++
-      this.cancelAnimation()
       if (mode === BeamWindowMode.writing) {
         this.onWritingMode()
       } else {
@@ -84,36 +87,48 @@ export class BeamWindowAnimation {
   }
 
   private returnToJournal = (): void => {
+    debug && console.log("Return to journal", {switches: this.switches, playing: this.playing})
     const {win} = this
     this.rotateBack()
     this.cancelAnimation() // cancel previous animation if any
     this.timeout = setTimeout(() => {
+      debug && console.log("Return to journal - Timeout 1", {switches: this.switches, playing: this.playing})
       const prevSwitches = this.switches
       if (win.mode === BeamWindowMode.web) {
         win.url = "writing/journal"
       }
+      const newSwitch = this.switches !== prevSwitches
 
       if (this.switches > 1) {
         // this.updateFooter(" to learn how to beam")
         win.captureTarget()
       }
 
-      if (this.switches !== prevSwitches) {
+      if (newSwitch) {
         this.timeout = setTimeout(() => {
+          debug && console.log("Return to journal - Timeout 2", {switches: this.switches, playing: this.playing})
           this.switches++
           this.changeTitle()
           this.timeout = setTimeout(() => {
+            debug && console.log("Return to journal - Timeout 3", {switches: this.switches, playing: this.playing})
             win.url = "writing/note"
             this.timeout = setTimeout(() => {
+              debug && console.log("Return to journal - Timeout 4", {switches: this.switches, playing: this.playing})
               const button = win.querySelector("[is=beam-button-reveal]") as RevealButton
               if (button) {
                 button.open = !button.open
                 button.dispatchEvent(new FocusEvent("focus"))
-                this.timeout = setTimeout(() => button.click(), 1000)
+                this.timeout = setTimeout(() => {
+                  debug && console.log("Return to journal - Timeout 5", {switches: this.switches, playing: this.playing})
+                  button.click()
+                }, 1000)
               }
             }, 1350)
           }, 1350)
         }, 2000)
+      } else {
+        console.assert(newSwitch)
+        debug && console.log({switches: this.switches, prevSwitches})
       }
     }, 1500)
   }
@@ -149,35 +164,44 @@ export class BeamWindowAnimation {
   }
 
   onWebMode = (): void => {
+    if (this.switches > 1) {
+      this.returnToWeb()
+    }
+  }
+
+  private returnToWeb = () => {
+    debug && console.log("Return to web", {switches: this.switches, playing: this.playing})
     let {clone} = this
     const {win} = this
-    if (this.switches > 1) {
-      this.changeTitle()
-      this.timeout = setTimeout(() => {
-        if (win) {
-          clone = this.initClone()
-          clone.url = "writing/journal"
-          win.querySelector(".capture-frame .highlight")?.classList.remove("shoot")
+    this.changeTitle()
+    this.timeout = setTimeout(() => {
+      debug && console.log("Return to web - Timeout 1", {switches: this.switches, playing: this.playing})
+      if (win) {
+        clone = this.initClone()
+        clone.url = "writing/journal"
+        win.querySelector(".capture-frame .highlight")?.classList.remove("shoot")
 
-          this.capturePage(win.url, () => {
-            this.timeout = setTimeout(() => {
-
-              this.capturePage(this.getAnotherWebPage(), () => {
+        this.capturePage(win.url, () => {
+          debug && console.log("Return to web - Capture page is done", {url: win.url, switches: this.switches, playing: this.playing})
+          this.timeout = setTimeout(() => {
+            debug && console.log("Return to web - Timeout 2", {switches: this.switches, playing: this.playing})
+            this.capturePage(this.getAnotherWebPage(), () => {
+              this.timeout = setTimeout(() => {
+                debug && console.log("Return to web - Timeout 3", {switches: this.switches, playing: this.playing})
+                win.captureTarget()
                 this.timeout = setTimeout(() => {
-                  win.captureTarget()
-                  this.timeout = setTimeout(() => {
-                    this.changeTitle(this.titles[Math.min(this.switches, this.titles.length - 1)])
-                    this.returnToJournal()
-                  }, 250)
-                }, 500)
-              })
+                  debug && console.log("Return to web - Timeout 4", {switches: this.switches, playing: this.playing})
+                  this.changeTitle(this.titles[Math.min(this.switches, this.titles.length - 1)])
+                  this.returnToJournal()
+                }, 250)
+              }, 500)
+            })
 
-            }, 1000)
-          })
+          }, 1000)
+        })
 
-        }
-      }, 250)
-    }
+      }
+    }, 250)
   }
 
   private initClone() {

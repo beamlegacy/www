@@ -4,6 +4,8 @@ import {NumberUtil} from "util/NumberUtil"
 import {IconWithLabelRevealButton, RevealButton} from "home/beam-window/widget/button/IconWithLabelRevealButton"
 import {PublishButton} from "home/beam-window/widget/button/PublishButton"
 
+const debug = false
+
 export class Homepage {
   private observer: IntersectionObserver | undefined
   private animation: BeamWindowAnimation
@@ -15,7 +17,7 @@ export class Homepage {
   constructor() {
     window.customElements.define("beam-button-reveal", IconWithLabelRevealButton, {extends: "button"})
 
-    this.animation = new BeamWindowAnimation(this.handleNewMode)
+    this.animation = new BeamWindowAnimation(this.handleNewMode, this.clearTimeout)
     this.win = document.querySelector("beam-window") as BeamWindow
 
     this.initPublishButtons()
@@ -183,6 +185,7 @@ export class Homepage {
   }
 
   private step2 = (): void => {
+    debug && console.log("Home - Step 2")
     const win = this.win
     this.animation.changeTitle(this.animation.titles[Math.min(this.animation.switches, this.animation.titles.length - 1)])
     this.timeout = setTimeout(() => {
@@ -192,20 +195,24 @@ export class Homepage {
   }
 
   private step3 = (): void => {
+    debug && console.log("Home - Step 3")
     const win = this.win
     if (win.mode === BeamWindowMode.writing) {
       this.animation.changeTitle(this.animation.titles[Math.min(this.animation.switches, this.animation.titles.length - 1)])
+      this.timeout = setTimeout(() => {
+        win.mode = BeamWindowMode.web
+      }, 1350)
     }
-    this.timeout = setTimeout(() => {
-      win.mode = BeamWindowMode.web
-    }, 1350)
   }
 
   private step4 = (): void => {
+    debug && console.log("Home - Step 4")
     const win = this.win
-    this.timeout = setTimeout(() => {
-      win.url = "writing/journal"
-    }, 1350)
+    if (win.mode === BeamWindowMode.web) {
+      this.timeout = setTimeout(() => {
+        win.url = "writing/journal"
+      }, 1350)
+    }
   }
 
   private clearTimeout = (): void => {
