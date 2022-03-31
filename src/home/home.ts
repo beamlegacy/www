@@ -186,7 +186,7 @@ export class Homepage {
   }
 
   private step2 = (): void => {
-    debug && console.log("Home - Step 2")
+    debug && console.log("Home - Step 2", {switches: this.animation.switches})
     const win = this.win
     this.animation.changeTitle(this.animation.titles[Math.min(this.animation.switches, this.animation.titles.length - 1)])
     this.timeout = setTimeout(() => {
@@ -196,7 +196,7 @@ export class Homepage {
   }
 
   private step3 = (): void => {
-    debug && console.log("Home - Step 3")
+    debug && console.log("Home - Step 3", {switches: this.animation.switches})
     const win = this.win
     if (win.mode === BeamWindowMode.writing) {
       this.animation.changeTitle(this.animation.titles[Math.min(this.animation.switches, this.animation.titles.length - 1)])
@@ -207,7 +207,7 @@ export class Homepage {
   }
 
   private step4 = (): void => {
-    debug && console.log("Home - Step 4")
+    debug && console.log("Home - Step 4", {switches: this.animation.switches})
     const win = this.win
     if (win.mode === BeamWindowMode.web) {
       this.timeout = setTimeout(() => {
