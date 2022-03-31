@@ -7,6 +7,7 @@
     max-height: 100%;
     overflow-y: auto;
     padding: 1.45454545em;
+    transition: opacity 0.15s ease-in-out;
 
     .circle {
       --size: 2.90909091em;
