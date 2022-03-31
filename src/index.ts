@@ -21,6 +21,7 @@ class App {
     this.initLang()
     this.sizeVh()
     this.initEventListeners()
+    this.initLogoLink()
   }
 
   get langUrlPrefix(): string {
@@ -324,6 +325,13 @@ class App {
     return page
   }
 
+  private initLogoLink() {
+    const logo = this.logo
+    const beta = logo?.querySelector(".beta")
+    beta?.addEventListener("dblclick", () => {
+      window.location.replace("https://s3.eu-west-3.amazonaws.com/downloads.beamapp.co/beta/Beam.dmg")
+    })
+  }
 }
 
 new App()
