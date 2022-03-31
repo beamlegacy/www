@@ -122,7 +122,7 @@ export class IconWithLabelRevealButton extends window.HTMLButtonElement implemen
       }
     })
 
-    const callback = (entries: IntersectionObserverEntry[]) => {
+    const callback = (entries: IntersectionObserverEntry[]): void => {
       for (const entry of entries) {
         this.isVisible = entry.isIntersecting
         if (this.isVisible) {
