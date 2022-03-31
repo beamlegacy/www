@@ -128,8 +128,7 @@ export class BeamWindowAnimation {
           }, 1350)
         }, 2000)
       } else {
-        console.assert(newSwitch)
-        debug && console.log({switches: this.switches, prevSwitches})
+        debug && console.log("Didn't switch to web before going back to journal", {switches: this.switches, prevSwitches})
       }
     }, 1500)
   }
