@@ -57,4 +57,17 @@ describe("IconWithLabelRevealButton", () => {
     expect(button.querySelector(`.${testClass}`)).toBe(icon)
     expect(button.textContent?.indexOf(testText)).not.toBe(-1)
   })
+
+  test("RevealButton is closed by default", () => {
+    const testText = "test text"
+    const testClass = "test-class"
+    const button = html`<button is="beam-button-reveal"/>` as RevealButton
+    document.body.appendChild(button)
+    const icon = document.createElement("span")
+    icon.classList.add(testClass)
+    button.icon =  icon
+    button.label = testText
+    expect(button.open).toBe(false)
+    expect(button.classList.contains("active")).toBe(false)
+  })
 })
