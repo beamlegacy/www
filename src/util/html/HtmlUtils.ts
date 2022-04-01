@@ -25,19 +25,19 @@ export class HtmlUtils {
     return {width, height}
   }
 
-  /**
-   * Sanitize HTML input to be displayed as text
-   * @param str
-   */
-  static sanitize(str: string) {
-    // we can't use the following as the dom engine converts &#60 into named entity &lt;
-    // and removes the " ' escaping since it's not really necessary
-    // return str.replace(/[<>&"']/g, (char) => `&#${char.charCodeAt(0)};`)
-    return str
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&apos;")
-  }
+  // /**
+  //  * Sanitize HTML input to be displayed as text
+  //  * @param str
+  //  */
+  // static sanitize(str: string) {
+  //   // we can't use the following as the dom engine converts &#60 into named entity &lt;
+  //   // and removes the " ' escaping since it's not really necessary
+  //   // return str.replace(/[<>&"']/g, (char) => `&#${char.charCodeAt(0)};`)
+  //   return str
+  //     .replace(/&/g, "&amp;")
+  //     .replace(/</g, "&lt;")
+  //     .replace(/>/g, "&gt;")
+  //     .replace(/"/g, "&quot;")
+  //     .replace(/'/g, "&apos;")
+  // }
 }
