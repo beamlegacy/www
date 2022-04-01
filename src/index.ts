@@ -90,12 +90,13 @@ class App {
 
   private generateSecureSubscribeLink = (email: string): Promise<string | void> => {
     const url = process.env.SUBSCRIBE_LINK_URL || ""
+    const token = process.env.SECURE_SUBSCRIBE_TOKEN || ""
     console.assert(url, "No SUBSCRIBE_LINK_URL found in env")
     return fetch(url, {
       method: "POST",
       body: new URLSearchParams({
         email: email,
-        data: process.env.SECURE_SUBSCRIBE_TOKEN || ""
+        data: token
       }),
       headers: {
         "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
@@ -110,10 +111,11 @@ class App {
   }
 
   private sendEmailToCreateSend = (secureUrl: string, email: string): Promise<void> => {
+    const key = process.env.SUBSCRIBE_EMAIL_KEY || "email"
     return fetch(secureUrl, {
       method: "POST",
       body: new URLSearchParams({
-        [process.env.SUBSCRIBE_EMAIL_KEY || "email"]: email
+        [key]: email
       }),
       headers: {
         "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
