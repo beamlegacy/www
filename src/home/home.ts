@@ -14,6 +14,7 @@ export class Homepage {
   private readonly win: BeamWindow
   private footerObserver: IntersectionObserver | undefined
   private publishButtons: PublishButton[] = []
+  private bumpWithDelay = true
 
   constructor() {
     window.customElements.define("beam-button-reveal", IconWithLabelRevealButton, {extends: "button"})
@@ -235,9 +236,13 @@ export class Homepage {
   }
 
   private updateWin(t: number): void {
+    const bumpThreshold = 0.35
     const w = this.win?.querySelector(".beam-window") as HTMLElement
     w?.style.setProperty("--transform", `scale(${0.9 + NumberUtil.map(t, 0.375, 1) * 0.1})`)
-    w?.style.setProperty("animation", t <= 0.35 ? "bump 0.5s ease-in-out" : "")
+    w?.style.setProperty("animation", t <= bumpThreshold ? `bump 0.5s ease-in-out${this.bumpWithDelay ? " 0.5s" : ""}` : "")
+    if (t <= bumpThreshold) {
+      this.bumpWithDelay = false
+    }
   }
 
   private resetAnimation(resetSwitches = true): void {
