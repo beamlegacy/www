@@ -175,7 +175,7 @@ export class IconWithLabelRevealButton extends window.HTMLButtonElement implemen
   private handleBlur(e: FocusEvent): void {
     const relatedTarget = e.relatedTarget as HTMLElement
     // Make sure we don't close when giving focus to a text copy-container
-    if (!relatedTarget || !relatedTarget.classList.contains("copy-container")) {
+    if (!relatedTarget || !relatedTarget.classList || !relatedTarget.classList.contains("copy-container")) {
       this.isFocused = false
       this.close()
     }
