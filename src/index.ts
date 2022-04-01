@@ -184,11 +184,12 @@ export default class App {
     input?.focus()
   }
 
-  private handleSignupCloseButtonClick = (_e: Event): void => {
+  private handleSignupCloseButtonClick = (e: Event): void => {
+    e.preventDefault()
     const betaSignup = this.betaSignup as HTMLElement
-    betaSignup?.classList.remove("show-input")
     betaSignup?.classList.remove("pending")
-    this.logo?.classList.remove("out")
+    const target = document.activeElement as HTMLElement
+    target?.blur()
   }
 
   private handleSignupInputContainerBlur = (e: FocusEvent): void => {
