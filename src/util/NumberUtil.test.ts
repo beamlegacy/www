@@ -36,7 +36,7 @@ describe("NumberUtil", () => {
       expect(NumberUtil.map(1, 0, 1, 0, 1)).toBe(1)
     })
 
-    test("Mapping is clamped to the [inputMax, outputMax] interval", () => {
+    test("Mapping is clamped to the [outputMax, outputMax] interval", () => {
       expect(NumberUtil.map(-10, 0, 1, 0, 10)).toBe(0)
       expect(NumberUtil.map(20, 0, 1, 0, 10)).toBe(10)
     })
