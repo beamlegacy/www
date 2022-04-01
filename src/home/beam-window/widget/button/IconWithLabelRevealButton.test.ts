@@ -89,4 +89,19 @@ describe("IconWithLabelRevealButton", () => {
     expect(button.open).toBe(false)
     expect(button.classList.contains("active")).toBe(false)
   })
+
+  test("Blurring from an open RevealButton closes it", () => {
+    const testText = "test text"
+    const testClass = "test-class"
+    const button = html`<button is="beam-button-reveal"/>` as RevealButton
+    document.body.appendChild(button)
+    const icon = document.createElement("span")
+    icon.classList.add(testClass)
+    button.icon =  icon
+    button.label = testText
+    button.classList.add("active")
+    expect(button.classList.contains("active")).toBe(true)
+    button.dispatchEvent(new FocusEvent("blur"))
+    expect(button.classList.contains("active")).toBe(false)
+  })
 })
