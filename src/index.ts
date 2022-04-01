@@ -92,7 +92,7 @@ class App {
     const url = process.env.SUBSCRIBE_LINK_URL || ""
     const token = process.env.SECURE_SUBSCRIBE_TOKEN || ""
     console.assert(url, "No SUBSCRIBE_LINK_URL found in env")
-    console.assert(url, "No SECURE_SUBSCRIBE_TOKEN found in env")
+    console.assert(token, "No SECURE_SUBSCRIBE_TOKEN found in env")
     return fetch(url, {
       method: "POST",
       body: new URLSearchParams({
