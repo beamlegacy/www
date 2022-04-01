@@ -153,16 +153,6 @@ export class BeamWindowAnimation {
     win.parentElement?.style.setProperty("--tX", "-37%")
   }
 
-  private updateFooter(newText: string): void {
-    const footer = document.querySelector("footer")
-    if (footer) {
-      const lastChildNode = Array.from(footer.childNodes).pop()
-      if (lastChildNode) {
-        lastChildNode.textContent = newText
-      }
-    }
-  }
-
   onWebMode = (): void => {
     if (this.switches > 1) {
       this.returnToWeb()
