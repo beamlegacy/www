@@ -91,4 +91,17 @@ describe("Beam Website App", () => {
     expect(app.lang).toBe("fr")
     expect(window.location.replace).toHaveBeenCalled()
   })
+
+  test("Expected selectors are returning a valid Element", () => {
+    const app = new App()
+    expect(app.logo instanceof Element).toBe(true)
+    expect(app.betaSignup instanceof Element).toBe(true)
+    expect(app.betaSignupInput instanceof Element).toBe(true)
+    expect(app.betaSignupButton instanceof Element).toBe(true)
+    expect(app.betaSignupCloseButton instanceof Element).toBe(true)
+    expect(app.betaSignupForm instanceof Element).toBe(true)
+    expect(app.betaSignupInputContainer instanceof Element).toBe(true)
+    expect(app.betaSignupOutput instanceof Element).toBe(true)
+    expect(app.betaSignupSubmitButton instanceof Element).toBe(true)
+  })
 })
