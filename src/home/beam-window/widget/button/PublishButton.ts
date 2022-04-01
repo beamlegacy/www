@@ -2,7 +2,6 @@ import {RevealButton} from "home/beam-window/widget/button/IconWithLabelRevealBu
 import {PublishButtonMessages} from "home/beam-window/widget/button/PublishButtonMessages"
 import {html} from "util/html/Html"
 import {IconCheckmark} from "home/beam-window/widget/icons/IconCheckmark"
-import {IconEditorUnpublish} from "home/beam-window/widget/icons/IconEditorUnpublish"
 import {IconEditorPublish} from "home/beam-window/widget/icons/IconEditorPublish"
 import {IconLink} from "home/beam-window/widget/icons/IconLink"
 import {Tooltip} from "home/beam-window/widget/tooltip/Tooltip"
