@@ -14,7 +14,13 @@ describe("NumberUtil", () => {
       expect(NumberUtil.clamp(-100, 0, 100)).toBe(0)
       expect(NumberUtil.clamp(-Infinity, 0, 100)).toBe(0)
     })
-  })
 
+    test("Clamping a value higher than bounds returns the higher boundary", () => {
+      expect(NumberUtil.clamp(110, 0, 100)).toBe(100)
+      expect(NumberUtil.clamp(150, 0, 100)).toBe(100)
+      expect(NumberUtil.clamp(1100, 0, 100)).toBe(100)
+      expect(NumberUtil.clamp(Infinity, 0, 100)).toBe(100)
+    })
+  })
 
 })
