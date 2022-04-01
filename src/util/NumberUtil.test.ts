@@ -29,5 +29,11 @@ describe("NumberUtil", () => {
       expect(NumberUtil.map(0.5, 0, 1, 0, 10)).toBe(5)
       expect(NumberUtil.map(1, 0, 1, 0, 10)).toBe(10)
     })
+
+    test("Mapping to the same interval returns the original value", () => {
+      expect(NumberUtil.map(0, 0, 1, 0, 1)).toBe(0)
+      expect(NumberUtil.map(0.5, 0, 1, 0, 1)).toBe(0.5)
+      expect(NumberUtil.map(1, 0, 1, 0, 1)).toBe(1)
+    })
   })
 })
