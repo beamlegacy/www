@@ -10,14 +10,29 @@ describe("IconWithLabelRevealButton", () => {
     window.customElements.define("beam-button-reveal", IconWithLabelRevealButton, {extends: "button"})
 
     // Mock IntersectionObserver
-    const observe = jest.fn();
-    const unobserve = jest.fn();
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    window.IntersectionObserver = jest.fn(() => ({
-      observe,
-      unobserve,
-    }))
+    window.IntersectionObserver = jest.fn(
+      (callback: (e: IntersectionObserverEntry[]) => void) => {
+        const observe = jest.fn((element) => callback([
+          {
+            target: element,
+            boundingClientRect: {},
+            intersectionRatio: 1,
+            intersectionRect: {},
+            isIntersecting: true,
+            rootBounds: {},
+            time: 0
+          } as IntersectionObserverEntry
+        ]));
+        const unobserve = jest.fn();
+
+        return {
+          observe,
+          unobserve,
+        }
+      }
+    )
   })
 
   beforeEach(() => {
