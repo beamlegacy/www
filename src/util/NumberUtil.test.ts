@@ -1,7 +1,7 @@
 import {NumberUtil} from "util/NumberUtil"
 
 describe("NumberUtil", () => {
-  describe("NumberUtil.clamp", () => {
+  describe("NumberUtil.clamp: Constrain a value to an interval", () => {
     test("Clamping a value within bounds returns the same value", () => {
       expect(NumberUtil.clamp(0, 0, 100)).toBe(0)
       expect(NumberUtil.clamp(50, 0, 100)).toBe(50)
