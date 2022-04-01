@@ -23,4 +23,11 @@ describe("NumberUtil", () => {
     })
   })
 
+  describe("NumberUtil.map: Map a number within an interval to its corresponding value in another interval", () => {
+    test("Mapping to another interval", () => {
+      expect(NumberUtil.map(0, 0, 1, 0, 10)).toBe(0)
+      expect(NumberUtil.map(0.5, 0, 1, 0, 10)).toBe(5)
+      expect(NumberUtil.map(1, 0, 1, 0, 10)).toBe(10)
+    })
+  })
 })
