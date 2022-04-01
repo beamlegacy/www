@@ -8,7 +8,7 @@ interface LocalizedPage {
   url: string
 }
 
-class App {
+export default class App {
   supportedLang = ["en", "fr"]
   defaultLang = "en"
   lang = "en"
@@ -16,7 +16,7 @@ class App {
   private requestPending = false
 
   constructor() {
-    window.customElements.define("beam-window", BeamWindow)
+    window.customElements.get("beam-window") || window.customElements.define("beam-window", BeamWindow)
     this.messages = (window as any).messages
     this.initLang()
     this.sizeVh()
@@ -169,10 +169,10 @@ class App {
     betaSignupInputContainer?.addEventListener("blur", this.handleSignupInputContainerBlur, true)
     input?.addEventListener("input", this.handleSignupInput)
     input?.addEventListener("keydown", this.handleBetaSignupKeydown)
-    form.addEventListener("submit", this.handleBetaSignupFormSubmit)
+    form?.addEventListener("submit", this.handleBetaSignupFormSubmit)
     window.addEventListener("resize", this.sizeVh)
     window.addEventListener("scroll", this.sizeVh)
-    window.visualViewport.addEventListener("resize", this.sizeVh)
+    window.visualViewport?.addEventListener("resize", this.sizeVh)
   }
 
   private handleSignupButtonClick = (_e: Event): void => {
