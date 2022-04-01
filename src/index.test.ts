@@ -34,7 +34,7 @@ describe("Beam Website App", () => {
         <div class="beta-signup">
           <button class="underline"><%= htmlWebpackPlugin.options.messages.header.betaSignup %></button>
           <form class="input" novalidate>
-            <input type="email" required name="zXmAeBqfd" autocomplte="off" placeholder="<%= htmlWebpackPlugin.options.messages.header.betaSignupPlaceholder %>">
+            <input type="email" required name="zXmAeBqfd" autocomplete="off" placeholder="<%= htmlWebpackPlugin.options.messages.header.betaSignupPlaceholder %>">
             <div class="action-container">
               <button type="button" class="button-close">×</button>
               <button type="submit" class="button-arrow">-></button>
