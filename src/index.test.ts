@@ -84,3 +84,11 @@ describe("Beam Website App", () => {
     expect(app.lang).toBe("fr")
     expect(window.location.replace).toHaveBeenCalled()
   })
+
+  test("Setting lang via navigator.language", () => {
+    languageGetter.mockReturnValue('fr')
+    const app = new App()
+    expect(app.lang).toBe("fr")
+    expect(window.location.replace).toHaveBeenCalled()
+  })
+})
