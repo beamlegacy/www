@@ -104,4 +104,11 @@ describe("Beam Website App", () => {
     expect(app.betaSignupOutput instanceof Element).toBe(true)
     expect(app.betaSignupSubmitButton instanceof Element).toBe(true)
   })
+
+  test("Clicking the sign up button focuses the input", () => {
+    const app = new App()
+    const button = app.betaSignupButton as HTMLElement
+    button?.click()
+    expect(document.activeElement).toBe(app.betaSignupInput)
+  })
 })
