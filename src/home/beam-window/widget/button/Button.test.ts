@@ -9,8 +9,8 @@ describe("button", () => {
 
   test("Creating a button with text content", () => {
     const button = new Button()
-    const rendered = button.render()
     button.content = "test"
+    const rendered = button.render()
     expect(rendered instanceof HTMLButtonElement).toBe(true)
     expect(rendered.childNodes[0].nodeType).toBe(Node.TEXT_NODE)
     expect(rendered.textContent).toBe("test")
@@ -18,10 +18,10 @@ describe("button", () => {
 
   test("Creating a button with HTMLElement content", () => {
     const button = new Button()
-    const rendered = button.render()
     const span = document.createElement("span")
     span.textContent = "test"
     button.content = span
+    const rendered = button.render()
     expect(rendered instanceof HTMLButtonElement).toBe(true)
     const childNode = rendered.childNodes[0] as HTMLElement
     expect(childNode.nodeType).toBe(Node.ELEMENT_NODE)
