@@ -129,7 +129,7 @@ describe("Beam Website App", () => {
     expect(betaSignup.classList.contains("show-input")).toBe(true)
   })
 
-  test("Clicking the close button blurs from the input container", async () => {
+  test("Clicking the close button blurs from the input container", () => {
     const app = new App()
     const button = app.betaSignupButton as HTMLElement
     button?.click()
@@ -139,7 +139,7 @@ describe("Beam Website App", () => {
     expect(container?.contains(document.activeElement)).toBe(false)
   })
 
-  test("Blurring from the input container closes the form", async () => {
+  test("Blurring from the input container closes the form", () => {
     const app = new App()
     const button = app.betaSignupButton as HTMLElement
     const container = app.betaSignupInputContainer as HTMLElement
