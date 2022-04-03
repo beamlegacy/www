@@ -103,4 +103,17 @@ describe("IconWithLabelRevealButton", () => {
     button.dispatchEvent(new FocusEvent("blur"))
     expect(button.classList.contains("active")).toBe(false)
   })
+
+  test("Hovering with mouse on RevealButton focuses it", () => {
+    const testText = "test text"
+    const testClass = "test-class"
+    const button = html`<button is="beam-button-reveal"/>` as RevealButton
+    document.body.appendChild(button)
+    const icon = document.createElement("span")
+    icon.classList.add(testClass)
+    button.icon =  icon
+    button.label = testText
+    button.dispatchEvent(new Event("mouseenter"))
+    expect(document.activeElement).toBe(button)
+  })
 })
