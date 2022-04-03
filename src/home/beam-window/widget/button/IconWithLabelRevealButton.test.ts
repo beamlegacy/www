@@ -1,6 +1,5 @@
 import {IconWithLabelRevealButton, RevealButton} from "home/beam-window/widget/button/IconWithLabelRevealButton"
 import {html} from "util/html/Html"
-import {IconLink} from "home/beam-window/widget/icons/IconLink"
 import SpyInstance = jest.SpyInstance
 
 describe("IconWithLabelRevealButton", () => {
@@ -24,8 +23,8 @@ describe("IconWithLabelRevealButton", () => {
             rootBounds: {},
             time: 0
           } as IntersectionObserverEntry
-        ]));
-        const unobserve = jest.fn();
+        ]))
+        const unobserve = jest.fn()
 
         return {
           observe,
