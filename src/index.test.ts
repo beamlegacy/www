@@ -1,6 +1,14 @@
 import App from "index"
 import SpyInstance = jest.SpyInstance
 
+function createEvent(type: string, dic: Record<string, any>, target?: any): Event {
+  const ev = Object.assign(new Event(type), dic)
+  Object.defineProperty(ev, "target", {
+    get: () => target
+  })
+  return ev
+}
+
 describe("Beam Website App", () => {
   let languageGetter: SpyInstance
   let setTimeoutSpy: SpyInstance
@@ -192,5 +200,18 @@ describe("Beam Website App", () => {
     testValidEmail("test")
     testValidEmail("")
     testValidEmail("test@test@test")
+  })
+
+  describe("Keyboard events", () => {
+    test("Pressing escape in the input blurs it and closes the form", () => {
+      const app = new App()
+      const input = app.betaSignupInput as HTMLInputElement
+      const betaSignup = app.betaSignup as HTMLElement
+      input.focus()
+      expect(betaSignup.classList.contains("show-input")).toBe(true)
+      input.dispatchEvent(createEvent("keydown", {key: "Escape"}))
+      expect(document.activeElement).not.toBe(input)
+      expect(betaSignup.classList.contains("show-input")).toBe(false)
+    })
   })
 })
