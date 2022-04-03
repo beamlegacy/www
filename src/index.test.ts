@@ -3,6 +3,7 @@ import SpyInstance = jest.SpyInstance
 
 describe("Beam Website App", () => {
   let languageGetter: SpyInstance
+  let setTimeoutSpy: SpyInstance
 
   beforeAll(() => {
     Object.defineProperty(window, "location", {
@@ -20,6 +21,9 @@ describe("Beam Website App", () => {
   })
 
   beforeEach(() => {
+    setTimeoutSpy = jest.spyOn(window, "setTimeout")
+    setTimeoutSpy.mockImplementation(cb => cb() && 1)
+
     document.body.innerHTML = `
 <div class="beam-site home">
     <header>
@@ -78,6 +82,11 @@ describe("Beam Website App", () => {
     languageGetter = jest.spyOn(window.navigator, 'language', 'get')
   })
 
+  afterEach(() => {
+    document.body.innerHTML = ""
+    setTimeoutSpy.mockRestore()
+  })
+
   test("Setting lang with nf_lang cookie", () => {
     document.cookie = "nf_lang=fr"
     const app = new App()
@@ -110,5 +119,15 @@ describe("Beam Website App", () => {
     const button = app.betaSignupButton as HTMLElement
     button?.click()
     expect(document.activeElement).toBe(app.betaSignupInput)
+  })
+
+  test("Clicking the close button blurs from the input container", async () => {
+    const app = new App()
+    const button = app.betaSignupButton as HTMLElement
+    button?.click()
+    const buttonClose = app.betaSignupCloseButton as HTMLElement
+    buttonClose?.click()
+    const container = app.betaSignupInputContainer as HTMLElement
+    expect(container?.contains(document.activeElement)).toBe(false)
   })
 })
