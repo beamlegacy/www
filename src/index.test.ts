@@ -167,7 +167,7 @@ describe("Beam Website App", () => {
   })
 
   describe("Inputting valid email", () => {
-    const testValidEmail = (email: string): void => {
+    const testWithEmail = (email: string): void => {
       test(`Valid email "${email}"`, () => {
         const app = new App()
         const button = app.betaSignupButton as HTMLElement
@@ -179,13 +179,13 @@ describe("Beam Website App", () => {
         expect(betaSignup.classList.contains("valid")).toBe(true)
       })
     }
-    testValidEmail("mat@mat")
-    testValidEmail("mathieu@beamapp.co")
-    testValidEmail("mathieu+test@beamapp.co")
+    testWithEmail("mat@mat")
+    testWithEmail("mathieu@beamapp.co")
+    testWithEmail("mathieu+test@beamapp.co")
   })
 
   describe("Inputting invalid email", () => {
-    const testValidEmail = (email: string): void => {
+    const testWithEmail = (email: string): void => {
       test(`Invalid email "${email}"`, () => {
         const app = new App()
         const button = app.betaSignupButton as HTMLElement
@@ -197,9 +197,9 @@ describe("Beam Website App", () => {
         expect(betaSignup.classList.contains("valid")).toBe(false)
       })
     }
-    testValidEmail("test")
-    testValidEmail("")
-    testValidEmail("test@test@test")
+    testWithEmail("test")
+    testWithEmail("")
+    testWithEmail("test@test@test")
   })
 
   describe("Keyboard events", () => {
