@@ -231,5 +231,23 @@ describe("Beam Website App", () => {
       testWithEmail("mathieu@beamapp.co")
       testWithEmail("mathieu+test@beamapp.co")
     })
+
+    describe("Pressing return with invalid email in the input triggers error feedback", () => {
+      const testWithEmail = (email: string): void => {
+        test(`Valid email "${email}"`, () => {
+          const app = new App()
+          const input = app.betaSignupInput as HTMLInputElement
+          const betaSignup = app.betaSignup as HTMLElement
+          input.focus()
+          expect(betaSignup.classList.contains("show-input")).toBe(true)
+          input.value = email
+          input.dispatchEvent(createEvent("keydown", {key: "enter"}))
+          expect(betaSignup.classList.contains("error")).toBe(true)
+        })
+      }
+      testWithEmail("test")
+      testWithEmail("")
+      testWithEmail("test@test@test")
+    })
   })
 })
