@@ -84,6 +84,7 @@
     "workbox-webpack-plugin": "^6.2.4"
   },
   "dependencies": {
+    "@ungap/custom-elements": "^1.0.2",
     "debounce": "^1.2.1",
     "lottie-web": "^5.8.1"
   }

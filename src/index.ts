@@ -1,4 +1,5 @@
 import "./index.scss"
+import "@ungap/custom-elements"
 import {Cookie} from "util/cookie/Cookie"
 import {BeamWindow} from "home/beam-window/BeamWindow"
 
@@ -159,11 +160,15 @@ export default class App {
   }
 
   private initEventListeners = (): void => {
+    const submitButton = this.betaSignupSubmitButton as HTMLButtonElement
     const betaSignupButton = this.betaSignupButton as HTMLButtonElement
     const closeButton = this.betaSignupCloseButton as HTMLButtonElement
     const betaSignupInputContainer = this.betaSignupInputContainer as HTMLElement
     const input = this.betaSignupInput as HTMLInputElement
     const form = this.betaSignupForm as HTMLFormElement
+    submitButton?.addEventListener("click", () => {
+      setTimeout(() => input.focus())
+    })
     betaSignupButton?.addEventListener("click", this.handleSignupButtonClick)
     closeButton?.addEventListener("click", this.handleSignupCloseButtonClick)
     betaSignupInputContainer?.addEventListener("blur", this.handleSignupInputContainerBlur, true)
@@ -195,7 +200,7 @@ export default class App {
   private handleSignupInputContainerBlur = (e: FocusEvent): void => {
     const related = e.relatedTarget as HTMLElement
     const betaSignupInputContainer = this.betaSignupInputContainer as HTMLButtonElement
-    if (!e.relatedTarget || !betaSignupInputContainer.contains(related)) {
+    if (!related || !betaSignupInputContainer.contains(related)) {
       const windows = document.querySelectorAll("beam-window") as NodeListOf<BeamWindow>
       const inWindow = Array.from(windows).some(w => w.contains(related))
       if (inWindow && related.tagName.toLowerCase() !== "input") {
