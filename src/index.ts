@@ -171,6 +171,7 @@ export default class App {
     closeButton?.addEventListener("click", this.handleSignupCloseButtonClick)
     betaSignupInputContainer?.addEventListener("blur", this.handleSignupInputContainerBlur, true)
     input?.addEventListener("input", this.handleSignupInput)
+    input?.addEventListener("focus", this.handleSignupInputFocus)
     input?.addEventListener("keydown", this.handleBetaSignupKeydown)
     form?.addEventListener("submit", this.handleBetaSignupFormSubmit)
     window.addEventListener("resize", this.sizeVh)
@@ -179,12 +180,15 @@ export default class App {
   }
 
   private handleSignupButtonClick = (_e: Event): void => {
-    const betaSignup = this.betaSignup as HTMLElement
     const input = this.betaSignupInput as HTMLInputElement
+    input?.focus()
+  }
+
+  private handleSignupInputFocus = (_e: FocusEvent): void => {
+    const betaSignup = this.betaSignup as HTMLElement
     betaSignup?.classList.add("show-input")
     betaSignup?.classList.remove("show-output")
     this.logo?.classList.add("out")
-    input?.focus()
   }
 
   private handleSignupCloseButtonClick = (e: Event): void => {
