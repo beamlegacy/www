@@ -156,7 +156,6 @@ describe("Beam Website App", () => {
       test(`Valid email "${email}"`, () => {
         const app = new App()
         const button = app.betaSignupButton as HTMLElement
-        const container = app.betaSignupInputContainer as HTMLElement
         const betaSignup = app.betaSignup as HTMLElement
         const input = app.betaSignupInput as HTMLInputElement
         button?.click()
@@ -175,7 +174,6 @@ describe("Beam Website App", () => {
       test(`Invalid email "${email}"`, () => {
         const app = new App()
         const button = app.betaSignupButton as HTMLElement
-        const container = app.betaSignupInputContainer as HTMLElement
         const betaSignup = app.betaSignup as HTMLElement
         const input = app.betaSignupInput as HTMLInputElement
         button?.click()
