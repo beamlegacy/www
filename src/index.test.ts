@@ -1,5 +1,6 @@
 import App from "index"
 import SpyInstance = jest.SpyInstance
+import fetchMock from "jest-fetch-mock"
 
 function createEvent(type: string, dic: Record<string, any>, target?: any): Event {
   const ev = Object.assign(new Event(type), dic)
@@ -249,5 +250,37 @@ describe("Beam Website App", () => {
       testWithEmail("")
       testWithEmail("test@test@test")
     })
+  })
+
+  describe("Submitting form with valid email", () => {
+    console.log({API_HOST: process.env.API_HOST, SUBSCRIBE_LINK_URL: process.env.SUBSCRIBE_LINK_URL})
+
+    beforeAll(() => {
+      fetchMock.enableMocks()
+    })
+
+    beforeEach(() => {
+      fetchMock.mockReset()
+      fetchMock.mockResponse("https://fakeSubscribeUrl.com")
+    })
+
+    const testWithEmail = (email: string): void => {
+      test(`Valid email "${email}"`, async () => {
+        const app = new App()
+        const button = app.betaSignupButton as HTMLElement
+        const input = app.betaSignupInput as HTMLInputElement
+        const form = app.betaSignupForm as HTMLFormElement
+        button?.click()
+        input.value = email
+        form.dispatchEvent(new Event("submit"))
+        expect(fetchMock.mock.calls.length).toEqual(2)
+        setTimeoutSpy.mockRestore()
+        await new Promise(r => setTimeout(r))
+        expect(fetchMock.mock.calls.length).toEqual(3)
+      })
+    }
+    testWithEmail("mat@mat")
+    testWithEmail("mathieu@beamapp.co")
+    testWithEmail("mathieu+test@beamapp.co")
   })
 })
