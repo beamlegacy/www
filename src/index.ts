@@ -166,9 +166,7 @@ export default class App {
     const betaSignupInputContainer = this.betaSignupInputContainer as HTMLElement
     const input = this.betaSignupInput as HTMLInputElement
     const form = this.betaSignupForm as HTMLFormElement
-    submitButton?.addEventListener("click", () => {
-      setTimeout(() => input.focus())
-    })
+    submitButton?.addEventListener("mousedown", this.forceFocus)
     betaSignupButton?.addEventListener("click", this.handleSignupButtonClick)
     closeButton?.addEventListener("click", this.handleSignupCloseButtonClick)
     betaSignupInputContainer?.addEventListener("blur", this.handleSignupInputContainerBlur, true)
@@ -340,6 +338,18 @@ export default class App {
     beta?.addEventListener("dblclick", () => {
       window.location.replace("https://s3.eu-west-3.amazonaws.com/downloads.beamapp.co/beta/Beam.dmg")
     })
+  }
+
+  /**
+   * Force focus on elements that have a tabIndex attribute
+   * (this is done for browsers like safari which don't give focus to button by default)
+   */
+  private forceFocus = (e: MouseEvent): void => {
+    const target = e.target as HTMLElement
+    if (target.tabIndex || target.tabIndex === 0) {
+      e.preventDefault()
+      target.focus()
+    }
   }
 }
 
