@@ -123,8 +123,8 @@ describe("Beam Website App", () => {
 
   test("Focusing the input reveals the form", () => {
     const app = new App()
-    const button = app.betaSignupButton as HTMLElement
-    button?.click()
+    const input = app.betaSignupInput as HTMLInputElement
+    input.focus()
     const betaSignup = app.betaSignup as HTMLElement
     expect(betaSignup.classList.contains("show-input")).toBe(true)
   })
