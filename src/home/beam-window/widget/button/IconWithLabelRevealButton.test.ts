@@ -116,4 +116,19 @@ describe("IconWithLabelRevealButton", () => {
     button.dispatchEvent(new Event("mouseenter"))
     expect(document.activeElement).toBe(button)
   })
+  
+  test("Hovering out of RevealButton blurs it", () => {
+    const testText = "test text"
+    const testClass = "test-class"
+    const button = html`<button is="beam-button-reveal"/>` as RevealButton
+    document.body.appendChild(button)
+    const icon = document.createElement("span")
+    icon.classList.add(testClass)
+    button.icon =  icon
+    button.label = testText
+    button.dispatchEvent(new Event("mouseenter"))
+    expect(document.activeElement).toBe(button)
+    button.dispatchEvent(new Event("mouseleave"))
+    expect(document.activeElement).not.toBe(button)
+  })
 })
