@@ -9,7 +9,7 @@ const debug = false
 
 export class Homepage {
   private observer: IntersectionObserver | undefined
-  private animation: BeamWindowAnimation
+  animation: BeamWindowAnimation
   private timeout: ReturnType<typeof setTimeout> | undefined
   private readonly win: BeamWindow
   private footerObserver: IntersectionObserver | undefined
