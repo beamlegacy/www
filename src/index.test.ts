@@ -169,4 +169,23 @@ describe("Beam Website App", () => {
     testValidEmail("mathieu@beamapp.co")
     testValidEmail("mathieu+test@beamapp.co")
   })
+
+  describe("Inputting invalid email", () => {
+    const testValidEmail = (email: string): void => {
+      test(`Invalid email "${email}"`, () => {
+        const app = new App()
+        const button = app.betaSignupButton as HTMLElement
+        const container = app.betaSignupInputContainer as HTMLElement
+        const betaSignup = app.betaSignup as HTMLElement
+        const input = app.betaSignupInput as HTMLInputElement
+        button?.click()
+        input.value = email
+        input.dispatchEvent(new Event("input"))
+        expect(betaSignup.classList.contains("valid")).toBe(false)
+      })
+    }
+    testValidEmail("test")
+    testValidEmail("")
+    testValidEmail("test@test@test")
+  })
 })
