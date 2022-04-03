@@ -2,11 +2,20 @@ import {Homepage} from "home/Homepage"
 import SpyInstance = jest.SpyInstance
 import {BeamWindow} from "home/beam-window/BeamWindow"
 import {testWindowContent} from "home/beam-window/TestWindowContent"
+import Mock = jest.Mock
 const pages = require("../../pages.js")
 
 describe("Home page", () => {
   let setTimeoutSpy: SpyInstance
   const originalSetTimeout = window.setTimeout
+  let intersectioObserverMockedObserveValues = {
+    boundingClientRect: {},
+    intersectionRatio: 0,
+    intersectionRect: {},
+    isIntersecting: false,
+    rootBounds: {},
+    time: 0
+  }
 
   beforeAll(() => {
     (window as any).messages = pages[0].messages
@@ -20,12 +29,7 @@ describe("Home page", () => {
         const observe = jest.fn((element) => callback([
           {
             target: element,
-            boundingClientRect: {},
-            intersectionRatio: 0,
-            intersectionRect: {},
-            isIntersecting: false,
-            rootBounds: {},
-            time: 0
+            ...intersectioObserverMockedObserveValues
           } as IntersectionObserverEntry
         ]))
         const unobserve = jest.fn()
@@ -107,8 +111,16 @@ describe("Home page", () => {
   })
 
 
-  test("Instantiate", () => {
+  test("Animation is not playing when window is not fully visible", () => {
+    intersectioObserverMockedObserveValues = {
+      boundingClientRect: {},
+      intersectionRatio: 0,
+      intersectionRect: {},
+      isIntersecting: false,
+      rootBounds: {},
+      time: 0
+    }
     const home = new Homepage()
-    expect(document.body.innerHTML).not.toBe("")
+    expect(home.animation.playing).toBe(false)
   })
 })
