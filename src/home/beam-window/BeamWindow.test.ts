@@ -1,5 +1,6 @@
 import {BeamWindow, BeamWindowMode} from "./BeamWindow"
 import {testWindowContent} from "./TestWindowContent"
+import SpyInstance = jest.SpyInstance
 
 const createWebComponent = (): BeamWindow => {
   const component = document.createElement("beam-window") as BeamWindow
@@ -20,6 +21,8 @@ function createEvent(type: string, dic: Record<string, any>, target?: any, relat
 
 describe("BeamWindow", () => {
   let testWindow: BeamWindow
+  let setTimeoutSpy: SpyInstance
+
   beforeAll(() => {
     window.customElements.define("beam-window", BeamWindow)
   })
@@ -27,10 +30,13 @@ describe("BeamWindow", () => {
   beforeEach(() => {
     testWindow = createWebComponent()
     document.body.appendChild(testWindow)
+    setTimeoutSpy = jest.spyOn(window, "setTimeout")
+    setTimeoutSpy.mockImplementation(cb => cb() && 1)
   })
 
   afterEach(() => {
     document.body.innerHTML = ""
+    setTimeoutSpy.mockRestore()
   })
 
   test("Rendering component", () => {
