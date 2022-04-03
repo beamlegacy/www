@@ -15,6 +15,7 @@ describe("Beam Website App", () => {
   let setTimeoutSpy: SpyInstance
 
   beforeAll(() => {
+
     Object.defineProperty(window, "location", {
       value: Object.defineProperties(
         {},
@@ -282,5 +283,34 @@ describe("Beam Website App", () => {
     testWithEmail("mat@mat")
     testWithEmail("mathieu@beamapp.co")
     testWithEmail("mathieu+test@beamapp.co")
+  })
+
+  describe("Submitting form with invalid email doesn't trigger any fetch request", () => {
+    console.log({API_HOST: process.env.API_HOST, SUBSCRIBE_LINK_URL: process.env.SUBSCRIBE_LINK_URL})
+
+    beforeAll(() => {
+      fetchMock.enableMocks()
+      fetchMock.mockResponse("https://fakeSubscribeUrl.com")
+    })
+
+    beforeEach(() => {
+      fetchMock.mockReset()
+    })
+
+    const testWithEmail = (email: string): void => {
+      test(`Valid email "${email}"`, async () => {
+        const app = new App()
+        const button = app.betaSignupButton as HTMLElement
+        const input = app.betaSignupInput as HTMLInputElement
+        const form = app.betaSignupForm as HTMLFormElement
+        button?.click()
+        input.value = email
+        form.dispatchEvent(new Event("submit"))
+        expect(fetchMock.mock.calls.length).toEqual(0)
+      })
+    }
+    testWithEmail("test")
+    testWithEmail("")
+    testWithEmail("test@test@test")
   })
 })
