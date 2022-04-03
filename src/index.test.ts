@@ -254,8 +254,6 @@ describe("Beam Website App", () => {
   })
 
   describe("Submitting form with valid email", () => {
-    console.log({API_HOST: process.env.API_HOST, SUBSCRIBE_LINK_URL: process.env.SUBSCRIBE_LINK_URL})
-
     beforeAll(() => {
       fetchMock.enableMocks()
     })
@@ -286,8 +284,6 @@ describe("Beam Website App", () => {
   })
 
   describe("Submitting form with invalid email doesn't trigger any fetch request", () => {
-    console.log({API_HOST: process.env.API_HOST, SUBSCRIBE_LINK_URL: process.env.SUBSCRIBE_LINK_URL})
-
     beforeAll(() => {
       fetchMock.enableMocks()
       fetchMock.mockResponse("https://fakeSubscribeUrl.com")
