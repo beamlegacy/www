@@ -25,22 +25,11 @@ export class PublishButton {
       if (!this.isPublished) {
         let error: Error | undefined
         this.publishButton.label = this.isPublished ? this.messages.unpublishing : this.messages.publishing
-        try {
-          if (this.isPublished) {
-            // unpublish
-            // await new Promise(resolve => setTimeout(resolve, 500))
-          } else {
-            // publish
-            await new Promise(resolve => setTimeout(resolve, 750))
-          }
-        } catch (e) {
-          error = e as Error // we will throw after the publish callback
+        if (!this.isPublished) {
+          await new Promise(resolve => setTimeout(resolve, 750))
         }
-        this.afterPublish(error) // see TODO
+        this.afterPublish() // see TODO
         // last but not least, throw error if any
-        if (error) {
-          throw error
-        }
       } else {
         this.publishButton.setAttribute("data-tooltip", this.messages.url_copied)
         this.publishButton.dispatchEvent(new MouseEvent("mouseenter"))
