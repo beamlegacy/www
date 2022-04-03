@@ -138,4 +138,16 @@ describe("Beam Website App", () => {
     const container = app.betaSignupInputContainer as HTMLElement
     expect(container?.contains(document.activeElement)).toBe(false)
   })
+
+  test("Blurring from the input container closes the form", async () => {
+    const app = new App()
+    const button = app.betaSignupButton as HTMLElement
+    const container = app.betaSignupInputContainer as HTMLElement
+    const betaSignup = app.betaSignup as HTMLElement
+    button?.click()
+    const active = document.activeElement as HTMLElement
+    expect(container.contains(active)).toBe(true)
+    active.blur()
+    expect(betaSignup.classList.contains("show-input")).toBe(false)
+  })
 })
