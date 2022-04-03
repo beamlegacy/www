@@ -17,7 +17,6 @@ export class Homepage {
   private bumpWithDelay = true
 
   constructor() {
-    console.log(`"${document.body.innerHTML}", "${window.document.body.innerHTML}"`)
     window.customElements.get("beam-button-reveal") || window.customElements.define("beam-button-reveal", IconWithLabelRevealButton, {extends: "button"})
 
     this.animation = new BeamWindowAnimation(this.handleNewMode, this.clearTimeout)
