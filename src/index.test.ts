@@ -13,6 +13,7 @@ function createEvent(type: string, dic: Record<string, any>, target?: any): Even
 describe("Beam Website App", () => {
   let languageGetter: SpyInstance
   let setTimeoutSpy: SpyInstance
+  const originalSetTimeout = window.setTimeout
 
   beforeAll(() => {
 
@@ -273,8 +274,7 @@ describe("Beam Website App", () => {
         input.value = email
         form.dispatchEvent(new Event("submit"))
         expect(fetchMock.mock.calls.length).toEqual(2)
-        setTimeoutSpy.mockRestore()
-        await new Promise(r => setTimeout(r))
+        await new Promise(r => originalSetTimeout(r))
         expect(fetchMock.mock.calls.length).toEqual(3)
       })
     }
