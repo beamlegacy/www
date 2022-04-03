@@ -6,6 +6,7 @@ import {BeamWindow} from "home/beam-window/BeamWindow"
 const pages = require("../pages.js")
 
 interface LocalizedPage {
+  messages: any
   url: string
 }
 
@@ -13,8 +14,8 @@ export default class App {
   supportedLang = ["en", "fr"]
   defaultLang = "en"
   lang = "en"
-  private messages: any
   private requestPending = false
+  private messages: any
 
   constructor() {
     window.customElements.get("beam-window") || window.customElements.define("beam-window", BeamWindow)
@@ -152,6 +153,7 @@ export default class App {
     // Redirect if necessary
     const page = this.getCurrentPage()
     if (page) {
+      this.messages = page.messages
       const url = this.lang === this.defaultLang ? this.removeUrlPrefix(page.url) : page.url
       if (location.pathname.replace(/\/$/, "") !== url) {
         window.location.replace(url)
