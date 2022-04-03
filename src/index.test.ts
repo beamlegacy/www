@@ -121,6 +121,14 @@ describe("Beam Website App", () => {
     expect(document.activeElement).toBe(app.betaSignupInput)
   })
 
+  test("Focusing the input reveals the form", () => {
+    const app = new App()
+    const button = app.betaSignupButton as HTMLElement
+    button?.click()
+    const betaSignup = app.betaSignup as HTMLElement
+    expect(betaSignup.classList.contains("show-input")).toBe(true)
+  })
+
   test("Clicking the close button blurs from the input container", async () => {
     const app = new App()
     const button = app.betaSignupButton as HTMLElement
