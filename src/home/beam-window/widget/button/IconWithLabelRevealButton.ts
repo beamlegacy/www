@@ -15,8 +15,6 @@ export interface RevealButton extends HTMLButtonElement {
   new(): any
 
   render(): void
-
-  restoreFocus(): void
 }
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -146,12 +144,6 @@ export class IconWithLabelRevealButton extends window.HTMLButtonElement implemen
     }
     this.innerHTML = ""
     this.appendChild(html`${this.iconElem}${this.labelElem}` as HTMLElement)
-  }
-
-  restoreFocus(): void {
-    if (this.isFocused) {
-      this.focus()
-    }
   }
 
   private close(): void {
