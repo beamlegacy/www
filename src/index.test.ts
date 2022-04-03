@@ -150,4 +150,23 @@ describe("Beam Website App", () => {
     active.blur()
     expect(betaSignup.classList.contains("show-input")).toBe(false)
   })
+
+  describe("Inputting valid email", () => {
+    const testValidEmail = (email: string): void => {
+      test(`Valid email "${email}"`, () => {
+        const app = new App()
+        const button = app.betaSignupButton as HTMLElement
+        const container = app.betaSignupInputContainer as HTMLElement
+        const betaSignup = app.betaSignup as HTMLElement
+        const input = app.betaSignupInput as HTMLInputElement
+        button?.click()
+        input.value = email
+        input.dispatchEvent(new Event("input"))
+        expect(betaSignup.classList.contains("valid")).toBe(true)
+      })
+    }
+    testValidEmail("mat@mat")
+    testValidEmail("mathieu@beamapp.co")
+    testValidEmail("mathieu+test@beamapp.co")
+  })
 })
