@@ -123,4 +123,17 @@ describe("Home page", () => {
     const home = new Homepage()
     expect(home.animation.playing).toBe(false)
   })
+
+  test("Animation plays when window is fully visible", () => {
+    intersectioObserverMockedObserveValues = {
+      boundingClientRect: {},
+      intersectionRatio: 1,
+      intersectionRect: {},
+      isIntersecting: false,
+      rootBounds: {},
+      time: 0
+    }
+    const home = new Homepage()
+    expect(home.animation.playing).toBe(true)
+  })
 })
