@@ -320,4 +320,13 @@ describe("Beam Website App", () => {
     submitButton.dispatchEvent(new Event("mousedown"))
     expect(document.activeElement).toBe(submitButton)
   })
+
+  test("Double clicking `beta` in the logo trigger download", () => {
+    const app = new App()
+    const logo = app.logo as HTMLElement
+    const beta = logo.querySelector(".beta") as HTMLElement
+    expect(beta).toBeDefined()
+    beta.dispatchEvent(new Event("dblclick"))
+    expect(window.location.replace).toHaveBeenCalledWith("https://s3.eu-west-3.amazonaws.com/downloads.beamapp.co/beta/Beam.dmg")
+  })
 })
