@@ -158,5 +158,26 @@ describe("Home page", () => {
       <path d="M13.25 2.75L7.5 8.5M13.25 2.75H9.25M13.25 2.75V6.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
     </svg></span></span><span class="label" tabindex="-1">Publish</span></div>`)
     })
+
+    test("Keeps publish button state when transition is canceled", () => {
+      const home = new Homepage()
+      const win = home.win
+      win.url = "writing/note"
+      const button = win.querySelector(`${win.containerSelector} > .current button`) as HTMLButtonElement
+      const writing = win.querySelector(".content .writing") as HTMLElement
+      expect(button).toBeDefined()
+      expect(writing).toBeDefined()
+      button.click()
+      expect(button.innerHTML).toBe(`<div><span class="icon"><span><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" class="icn common">
+      <path d="M6.25 2.75H4.25C3.42157 2.75 2.75 3.42157 2.75 4.25V11.75C2.75 12.5784 3.42157 13.25 4.25 13.25H11.75C12.5784 13.25 13.25 12.5784 13.25 11.75V9.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+      <path d="M13.25 2.75L7.5 8.5M13.25 2.75H9.25M13.25 2.75V6.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+    </svg></span></span><span class="label" tabindex="-1">Publishing...</span></div>`)
+      win.mode = BeamWindowMode.web
+      writing.dispatchEvent(new Event("transitioncancel"))
+      expect(button.innerHTML).toBe(`<div><span class="icon"><span><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" class="icn common">
+      <path d="M6.25 2.75H4.25C3.42157 2.75 2.75 3.42157 2.75 4.25V11.75C2.75 12.5784 3.42157 13.25 4.25 13.25H11.75C12.5784 13.25 13.25 12.5784 13.25 11.75V9.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+      <path d="M13.25 2.75L7.5 8.5M13.25 2.75H9.25M13.25 2.75V6.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+    </svg></span></span><span class="label" tabindex="-1">Publishing...</span></div>`)
+    })
   })
 })
