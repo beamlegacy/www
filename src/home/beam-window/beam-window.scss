@@ -82,7 +82,7 @@ beam-window {
     .html-doc {
       opacity: 0;
       pointer-events: none;
-      transform: translateY(0.5em) scale(0.95);
+      transform: translate3d(0, 0.5em, 0) scale(0.95);
     }
   }
 
