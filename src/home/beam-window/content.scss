@@ -5,9 +5,9 @@
     overflow-y: hidden;
     position: relative;
 
-    > * {
+    > :is(.html-doc, .writing) {
       transition: opacity 0.3s ease-in-out, transform 0.15s ease-in-out;
-      will-change: opacity, transform;
+      will-change: opacity, transform, position;
     }
   }
 
