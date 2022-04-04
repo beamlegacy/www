@@ -2,6 +2,8 @@ import {Homepage} from "home/Homepage"
 import {BeamWindow, BeamWindowMode} from "home/beam-window/BeamWindow"
 import {testWindowContent} from "home/beam-window/TestWindowContent"
 import SpyInstance = jest.SpyInstance
+import {IconWithLabelRevealButton} from "home/beam-window/widget/button/IconWithLabelRevealButton"
+import {BeamWindowAnimation} from "home/BeamWindowAnimation"
 
 const pages = require("../../pages.js")
 
@@ -16,38 +18,7 @@ describe("Home page", () => {
     rootBounds: {},
     time: 0
   }
-
-  beforeAll(() => {
-    (window as any).messages = pages[0].messages
-    window.customElements.get("beam-window") || window.customElements.define("beam-window", BeamWindow)
-
-    // Mock IntersectionObserver
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    window.IntersectionObserver = jest.fn(
-      (callback: (e: IntersectionObserverEntry[]) => void) => {
-        const observe = jest.fn((element) => callback([
-          {
-            target: element,
-            ...intersectioObserverMockedObserveValues
-          } as IntersectionObserverEntry
-        ]))
-        const unobserve = jest.fn()
-
-        return {
-          observe,
-          unobserve,
-        }
-      }
-    )
-
-  })
-
-  beforeEach(() => {
-    setTimeoutSpy = jest.spyOn(window, "setTimeout")
-    setTimeoutSpy.mockImplementation(cb => cb() && 1)
-
-    document.body.innerHTML = `
+  const resetContent = () => document.body.innerHTML = `
 <div class="beam-site home">
     <header>
       <span class="beam-logo">
@@ -103,6 +74,37 @@ describe("Home page", () => {
     </footer>
   </div>
     `
+
+  beforeAll(() => {
+    (window as any).messages = pages[0].messages
+    window.customElements.get("beam-window") || window.customElements.define("beam-window", BeamWindow)
+
+    // Mock IntersectionObserver
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    window.IntersectionObserver = jest.fn(
+      (callback: (e: IntersectionObserverEntry[]) => void) => {
+        const observe = jest.fn((element) => callback([
+          {
+            target: element,
+            ...intersectioObserverMockedObserveValues
+          } as IntersectionObserverEntry
+        ]))
+        const unobserve = jest.fn()
+
+        return {
+          observe,
+          unobserve,
+        }
+      }
+    )
+
+  })
+
+  beforeEach(() => {
+    setTimeoutSpy = jest.spyOn(window, "setTimeout")
+    setTimeoutSpy.mockImplementation(cb => cb() && 1)
+    resetContent()
   })
 
   afterEach(() => {
@@ -180,4 +182,11 @@ describe("Home page", () => {
     </svg></span></span><span class="label" tabindex="-1">Publishing...</span></div>`)
     })
   })
-})
+})class SteppedHomepage extends Homepage {
+  constructor(step = 0) {
+    super()
+    this.animation.switches = step
+    this.initMainObserver()
+    this.initFooterObserver()
+  }
+}
