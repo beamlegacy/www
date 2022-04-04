@@ -214,4 +214,16 @@ describe("BeamWindow", () => {
     const win = testWindow.querySelector(".beam-window") as HTMLElement
     expect(win.classList.contains("open-omnibox")).toBe(false)
   })
+
+  test("Typing `beam me up` reveals a secret link to download beam", () => {
+    const searchBtn = testWindow.querySelector(".controls .search") as HTMLButtonElement
+    searchBtn?.click()
+    const omnibox = testWindow.querySelector(".omnibox") as HTMLElement
+    const input = omnibox.querySelector("input") as HTMLInputElement
+    input.value = "beam me up"
+    input.dispatchEvent(new Event("input"))
+    const results = omnibox.querySelectorAll(".row.result") as NodeListOf<HTMLAnchorElement>
+    expect(results.length).toBe(1)
+    expect(results[0].href.endsWith(".dmg")).toBe(true)
+  })
 })
