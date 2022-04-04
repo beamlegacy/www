@@ -198,6 +198,21 @@ describe("Home page", () => {
       title.children[0].dispatchEvent(new Event("animationend"))
       expect(title.children[0].innerHTML).toBe(home.animation.titles[home.animation.titles.length - 1])
     })
+
+    test("Resuming from second step", () => {
+      intersectioObserverMockedObserveValues = {
+        boundingClientRect: {},
+        intersectionRatio: 1,
+        intersectionRect: {},
+        isIntersecting: true,
+        rootBounds: {},
+        time: 0
+      }
+      const home = new SteppedHomepage(1)
+      const title = home.titleContainer as HTMLElement
+      title.children[0].dispatchEvent(new Event("animationend"))
+      expect(title.children[0].innerHTML).toBe(home.animation.titles[home.animation.titles.length - 1])
+    })
   })
 })
 
