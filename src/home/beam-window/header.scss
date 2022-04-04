@@ -10,7 +10,7 @@
     transition: background-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
     -webkit-user-select: none; // stylelint-disable-line
     user-select: none;
-    will-change: background-color, box-shadow;
+    //will-change: background-color, box-shadow;
 
     .traffic-lights,
     .tabs,
