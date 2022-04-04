@@ -215,7 +215,7 @@ describe("BeamWindow", () => {
     expect(win.classList.contains("open-omnibox")).toBe(false)
   })
 
-  test("Typing `beam me up` reveals a secret link to download beam", () => {
+  test("Typing `beam me up` in the omnibox reveals a secret link to download beam", () => {
     const searchBtn = testWindow.querySelector(".controls .search") as HTMLButtonElement
     searchBtn?.click()
     const omnibox = testWindow.querySelector(".omnibox") as HTMLElement
