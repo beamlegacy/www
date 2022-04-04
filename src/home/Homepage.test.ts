@@ -182,7 +182,26 @@ describe("Home page", () => {
     </svg></span></span><span class="label" tabindex="-1">Publishing...</span></div>`)
     })
   })
-})class SteppedHomepage extends Homepage {
+
+  describe("Resuming animation from previous step plays the animation until the end", () => {
+    test("Resuming from initial step", () => {
+      intersectioObserverMockedObserveValues = {
+        boundingClientRect: {},
+        intersectionRatio: 1,
+        intersectionRect: {},
+        isIntersecting: true,
+        rootBounds: {},
+        time: 0
+      }
+      const home = new SteppedHomepage(1)
+      const title = home.titleContainer as HTMLElement
+      title.children[0].dispatchEvent(new Event("animationend"))
+      expect(title.children[0].innerHTML).toBe(home.animation.titles[home.animation.titles.length - 1])
+    })
+  })
+})
+
+class SteppedHomepage extends Homepage {
   constructor(step = 0) {
     super()
     this.animation.switches = step
