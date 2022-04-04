@@ -226,4 +226,20 @@ describe("BeamWindow", () => {
     expect(results.length).toBe(1)
     expect(results[0].href.endsWith(".dmg")).toBe(true)
   })
+
+  test("Clicking omnibox results navigates to their corresponding page", () => {
+    const searchBtn = testWindow.querySelector(".controls .search") as HTMLButtonElement
+    searchBtn?.click()
+    const omnibox = testWindow.querySelector(".omnibox") as HTMLElement
+    const input = omnibox.querySelector("input") as HTMLInputElement
+    input.value = ""
+    input.dispatchEvent(new Event("input"))
+    const results = omnibox.querySelectorAll(".row.result") as NodeListOf<HTMLAnchorElement>
+    expect(results.length).toBe(6)
+    const journal = Array.from(results).find(r => r?.textContent?.toLowerCase() === "journal")
+    expect(journal).toBeDefined()
+    expect(testWindow.url).not.toBe("writing/journal")
+    journal?.click()
+    expect(testWindow.url).toBe("writing/journal")
+  })
 })
