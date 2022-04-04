@@ -1,5 +1,3 @@
-import "./beam-window.scss"
-
 export enum BeamWindowMode {
   web = "web",
   writing = "writing"

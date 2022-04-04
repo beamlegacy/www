@@ -1,5 +1,6 @@
 @use "/src/style/mixins";
 @use "/src/home/hero";
+@use "beam-window/beam-window";
 
 @mixin home {
   @keyframes bump {
