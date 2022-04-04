@@ -283,6 +283,35 @@ describe("Beam Website App", () => {
     testWithEmail("mathieu+test@beamapp.co")
   })
 
+  describe("Response error during submit", () => {
+    beforeAll(() => {
+      fetchMock.enableMocks()
+    })
+
+    beforeEach(() => {
+      fetchMock.mockReset()
+      fetchMock.mockResponse("", {status: 404})
+    })
+
+    const testWithEmail = (email: string): void => {
+      test(`Valid email "${email}"`, async () => {
+        const app = new App()
+        const button = app.betaSignupButton as HTMLElement
+        const input = app.betaSignupInput as HTMLInputElement
+        const form = app.betaSignupForm as HTMLFormElement
+        button?.click()
+        input.value = email
+        form.dispatchEvent(new Event("submit"))
+        expect(fetchMock.mock.calls.length).toEqual(2)
+        await new Promise(r => originalSetTimeout(r))
+        expect(fetchMock.mock.calls.length).toEqual(2)
+      })
+    }
+    testWithEmail("mat@mat")
+    testWithEmail("mathieu@beamapp.co")
+    testWithEmail("mathieu+test@beamapp.co")
+  })
+
   describe("Submitting form with invalid email doesn't trigger any fetch request", () => {
     beforeAll(() => {
       fetchMock.enableMocks()
