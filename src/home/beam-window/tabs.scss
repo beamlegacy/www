@@ -8,6 +8,7 @@
 
     > * {
       transition: opacity 0.15s ease-in-out, transform 0.2s cubic-bezier(0.34, 0, 0.24, 1);
+      will-change: opacity, transform;
     }
   }
 
@@ -56,12 +57,13 @@
 
       > * {
         transition: opacity 0.15s ease-in-out, transform 0.2s cubic-bezier(0.29, -0.13, 0.34, 1.44);
+        will-change: opacity, transform;
       }
 
       &:not(.pinned):hover {
         > * {
           opacity: 0;
-          transform: translateY(-1.25em);
+          transform: translate3d(0, -1.25em, 0);
         }
 
         .url {
@@ -188,7 +190,7 @@
     .tabs {
       > * {
         opacity: 0;
-        transform: translateY(-1.25em);
+        transform: translate3d(0, -1.25em, 0);
       }
 
       .tabs-writing {
