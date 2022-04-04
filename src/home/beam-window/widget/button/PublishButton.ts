@@ -14,6 +14,7 @@ export class PublishButton {
     private publishButton = html`<button is="beam-button-reveal"/>` as unknown as RevealButton,
     private isPublished = false
   ) {
+    new Tooltip(this.publishButton)
   }
 
   getPublishHandler(): () => Promise<void> {
@@ -40,7 +41,6 @@ export class PublishButton {
 
   render(): RevealButton {
     this.setupButton()
-    new Tooltip(this.publishButton)
     return this.publishButton
   }
 
