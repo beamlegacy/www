@@ -62,4 +62,11 @@ describe("Html tagged template literal helper", () => {
     expect(result.childNodes.length).toBe(0)
     expect(result.textContent).toBe("Test with a simple string")
   })
+
+  test("Returns neutral node when empty", () => {
+    const result = html``
+    expect(result.nodeType).toBe(Node.TEXT_NODE)
+    expect(result.childNodes.length).toBe(0)
+    expect(result.textContent).toBe("")
+  })
 })
