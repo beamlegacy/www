@@ -69,7 +69,7 @@ export class Homepage {
     writing.addEventListener("transitioncancel", transitionCancel)
   }
 
-  private initFooterObserver(): void {
+  protected initFooterObserver(): void {
     const footer = this.footer
     if (footer) {
       this.footerObserver = new IntersectionObserver((entries: IntersectionObserverEntry[]) => {
@@ -86,7 +86,7 @@ export class Homepage {
     }
   }
 
-  private initMainObserver(): void {
+  protected initMainObserver(): void {
     const demo = this.demo
     if (demo) {
       this.observer = new IntersectionObserver((entries: IntersectionObserverEntry[]) => {
@@ -129,12 +129,12 @@ export class Homepage {
     }
   }
 
-  private initSearch(): void{
+  protected initSearch(): void{
     const search = this.win.querySelector(".controls .search") as HTMLButtonElement
     search?.addEventListener("click", this.stopAnimations)
   }
 
-  private initPublishButtons(): void {
+  protected initPublishButtons(): void {
     const buttons = this.win.querySelectorAll("[is=beam-button-reveal]") as unknown as NodeListOf<RevealButton>
     const messages = (window as any).messages
     this.publishButtons = Array.from(buttons).map((b: RevealButton): PublishButton => {
