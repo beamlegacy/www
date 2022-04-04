@@ -7,7 +7,7 @@
     position: relative;
 
     > * {
-      transition: opacity 0.15s ease-in-out, transform 0.2s cubic-bezier(0.34, -0.04, 0.24, 1);
+      transition: opacity 0.15s ease-in-out, transform 0.2s cubic-bezier(0.34, 0, 0.24, 1);
     }
   }
 
