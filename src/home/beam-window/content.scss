@@ -6,7 +6,7 @@
     position: relative;
 
     > :is(.html-doc, .writing) {
-      //transition: opacity 0.3s ease-in-out, transform 0.15s ease-in-out;
+      transition: opacity 0.15s ease-in-out, transform 0.15s ease-in-out;
       //will-change: opacity, transform, position;
     }
   }
@@ -23,7 +23,7 @@
     .writing {
       opacity: 0;
       pointer-events: none;
-      //transform: translate3d(0, 0.25em, 0) scale3d(0.95, 0.95, 0);
+      transform: translate3d(0, 0.25em, 0) scale3d(0.95, 0.95, 0);
     }
   }
 
@@ -35,7 +35,7 @@
     .html-doc {
       opacity: 0;
       pointer-events: none;
-      //transform: translate3d(0, 0.5em, 0) scale3d(0.95, 0.95, 1);
+      transform: translate3d(0, 0.5em, 0) scale3d(0.95, 0.95, 1);
     }
   }
 
