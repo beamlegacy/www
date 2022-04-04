@@ -1,3 +1,5 @@
+@use "/src/style/mixins";
+
 @keyframes squareify {
   0% {
     border-radius: var(--animation-squareify-in-radius, 1em);
@@ -208,9 +210,13 @@
             border-radius: 4px;
             color: var(--color-beam-window-controls-color-accent);
             display: inline-block;
-            font-size: 0.82em;
+            font-size: 0.86em;
             margin: 0;
             padding: 0.25em;
+
+            @include mixins.above-large {
+              font-size: 0.8em;
+            }
 
             &:hover {
               color: var(--color-beam-window-controls-color-hover);
