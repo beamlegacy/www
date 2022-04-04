@@ -309,4 +309,15 @@ describe("Beam Website App", () => {
     testWithEmail("")
     testWithEmail("test@test@test")
   })
+
+  test("Submit button receives focus on mousedown", () => {
+    const app = new App()
+    const button = app.betaSignupButton as HTMLElement
+    const betaSignup = app.betaSignup as HTMLElement
+    const input = app.betaSignupInput as HTMLInputElement
+    button?.click()
+    const submitButton = app.betaSignupSubmitButton as HTMLButtonElement
+    submitButton.dispatchEvent(new Event("mousedown"))
+    expect(document.activeElement).toBe(submitButton)
+  })
 })
