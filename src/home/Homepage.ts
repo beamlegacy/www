@@ -59,11 +59,11 @@ export class Homepage {
     const transitionEnd = () => {
       this.publishButtons.forEach(p => p.reset())
       writing.removeEventListener("transitionend", transitionEnd)
-      writing.removeEventListener("transitionend", transitionCancel)
+      writing.removeEventListener("transitioncancel", transitionCancel)
     }
     const transitionCancel = () => {
       writing.removeEventListener("transitionend", transitionEnd)
-      writing.removeEventListener("transitionend", transitionCancel)
+      writing.removeEventListener("transitioncancel", transitionCancel)
     }
     writing.addEventListener("transitionend", transitionEnd)
     writing.addEventListener("transitioncancel", transitionCancel)
