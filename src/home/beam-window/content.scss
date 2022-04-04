@@ -6,7 +6,7 @@
     position: relative;
 
     > :is(.html-doc, .writing) {
-      transition: opacity 0.15s ease-in-out, transform 0.15s ease-in-out;
+      transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
       //will-change: opacity, transform, position;
     }
   }
