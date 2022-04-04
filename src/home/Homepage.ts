@@ -147,13 +147,13 @@ export class Homepage {
   }
 
   private handleFullyVisible = (): void => {
+    this.clearTimeout()
     this.animation.playing = true
     const title = this.title
     title?.style.setProperty("opacity", "1")
     title?.classList.add("in")
     const strong = title?.querySelector("strong")
     strong?.classList.add("in")
-    this.clearTimeout()
     switch (this.animation.switches) {
       case 0:
         this.timeout = setTimeout(this.step2, 1350)
