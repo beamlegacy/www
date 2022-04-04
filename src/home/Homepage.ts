@@ -11,7 +11,7 @@ export class Homepage {
   private observer: IntersectionObserver | undefined
   animation: BeamWindowAnimation
   private timeout: ReturnType<typeof setTimeout> | undefined
-  private readonly win: BeamWindow
+  readonly win: BeamWindow
   private footerObserver: IntersectionObserver | undefined
   private publishButtons: PublishButton[] = []
   private bumpWithDelay = true
