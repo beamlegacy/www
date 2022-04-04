@@ -6,11 +6,8 @@ import {IconEditorPublish} from "home/beam-window/widget/icons/IconEditorPublish
 import {IconLink} from "home/beam-window/widget/icons/IconLink"
 import {Tooltip} from "home/beam-window/widget/tooltip/Tooltip"
 
-const setTimeout = window.setTimeout
-const clearTimeout = window.clearTimeout
-
 export class PublishButton {
-  private timeout: number | undefined
+  private timeout: ReturnType<typeof window.setTimeout> | undefined
 
   constructor(
     public messages: PublishButtonMessages,
