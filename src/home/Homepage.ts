@@ -269,11 +269,9 @@ export class Homepage {
   }
 
   private handleLastTitleClick = (e: MouseEvent) => {
-    console.log("click")
     const target = e.currentTarget as HTMLElement
     if (target) {
       const form = target.querySelector("form")
-      console.log({target, form})
       // wrap and clone form if not already there
       if (!form || form.tagName.toLowerCase() !== "form") {
         const cloned = document.querySelector(".beta-signup")?.cloneNode(true)
