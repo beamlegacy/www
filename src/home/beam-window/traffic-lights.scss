@@ -1,9 +1,9 @@
 @mixin traffic-lights {
   .traffic-lights {
-    gap: 5px;
+    gap: 0.45em;
 
     button {
-      --size: 0.75em;
+      --size: 0.65em;
       background-color: var(--color);
       border: 0;
       border-radius: 50%;
