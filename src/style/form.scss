@@ -36,7 +36,7 @@
     position: absolute;
     right: 0;
     top: 0;
-    transform: translateY(100%);
+    transform: translateY(100%) translateX(var(--t-x, 0));
     transition: transform 0.5s var(--form-transform-easing), opacity 0.5s ease-in-out;
 
     &::before,
@@ -126,7 +126,7 @@
     right: 0;
     text-align: right;
     top: 0;
-    transform: translateY(var(--form-distance));
+    transform: translateY(var(--form-distance)) translateX(var(--t-x, 0));;
     transition: var(--form-transition);
     width: 25em;
 
@@ -172,7 +172,7 @@
 
     .input {
       opacity: 1;
-      transform: translateY(0);
+      transform: translateY(0) translateX(var(--t-x, 0));
     }
   }
 
@@ -184,12 +184,12 @@
 
     .input {
       opacity: 0;
-      transform: translateY(var(--form-distance-out));
+      transform: translateY(var(--form-distance-out)) translateX(var(--t-x, 0));
     }
 
     .output {
       opacity: 1;
-      transform: translateY(0);
+      transform: translateY(0) translateX(var(--t-x, 0));
     }
 
     .icn {

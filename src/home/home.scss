@@ -72,29 +72,15 @@
         }
 
         &.beta-signup {
-          .input {
+          .input,
+          .output {
             font-size: 0.9em;
             right: 50%;
-            transform: translate(50%, 100%);
+            --t-x: 50%;
           }
 
-          &.show-input,
-          &.show-output {
-            .button {
-              pointer-events: none;
-            }
-          }
-
-          &.show-input {
-            > .input {
-              transform: translate(50%, 0);
-            }
-          }
-
-          &.show-output {
-            > .input {
-              transform: translate(50%, var(--form-distance-out));
-            }
+          .output {
+            text-align: center;
           }
         }
 
