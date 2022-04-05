@@ -72,6 +72,32 @@
           }
         }
 
+        &.beta-signup {
+          .input {
+            right: 50%;
+            transform: translate(50%, 100%);
+          }
+
+          &.show-input,
+          &.show-output {
+            .button {
+              pointer-events: none;
+            }
+          }
+          
+          &.show-input {
+            > .input {
+              transform: translate(50%, 0);
+            }
+          }
+
+          &.show-output {
+            > .input {
+              transform: translate(50%, var(--form-distance-out));
+            }
+          }
+        }
+
         strong {
           color: var(--color-text);
           display: inline-block;
