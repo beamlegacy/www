@@ -3,6 +3,7 @@ import {BeamWindowAnimation} from "home/BeamWindowAnimation"
 import {NumberUtil} from "util/NumberUtil"
 import {IconWithLabelRevealButton, RevealButton} from "home/beam-window/widget/button/IconWithLabelRevealButton"
 import {PublishButton} from "home/beam-window/widget/button/PublishButton"
+import {BetaSignupForm} from "widget/BetaSignupForm"
 
 // If you want to debug the animation / timeouts of this module, set this to true
 const debug = false
@@ -268,18 +269,24 @@ export class Homepage {
   }
 
   private handleLastTitleClick = (e: MouseEvent) => {
-    // const target = e.target as HTMLElement
-    // if (target) {
-    //   const form = target.nextElementSibling
-    //   // wrap and clone form if not already there
-    //   if (form && form.tagName.toLowerCase() !== "form") {
-    //     const cloned = document.querySelector(".beta-signup form")?.cloneNode(true)
-    //     if (cloned) {
-    //       const output = document.createElement("div")
-    //       output.classList.add("output")
-    //       target.append(cloned, output)
-    //     }
-    //   }
-    // }
+    console.log("click")
+    const target = e.currentTarget as HTMLElement
+    if (target) {
+      const form = target.querySelector("form")
+      console.log({target, form})
+      // wrap and clone form if not already there
+      if (!form || form.tagName.toLowerCase() !== "form") {
+        const cloned = document.querySelector(".beta-signup")?.cloneNode(true)
+        if (cloned) {
+          const button = document.createElement("div")
+          button.classList.add("button")
+          button.append(...Array.from(target.childNodes))
+          const output = document.createElement("div")
+          output.classList.add("output")
+          target.append(button, cloned, output)
+          new BetaSignupForm(target, (window as any).messages)
+        }
+      }
+    }
   }
 }
