@@ -287,27 +287,30 @@ export class BeamWindowAnimation {
     immediate = false
   ): void => {
     const oldH1 = document.querySelector(".beam-site .demo .title") as HTMLElement
-    const newH1 = document.createElement(oldH1.tagName)
-    newH1.classList.add("title")
-    newH1.classList.add("in")
-    newH1.innerHTML = newInnerHtml
-    if (oldH1.innerHTML !== newH1.innerHTML) {
-      const h1 = oldH1.cloneNode(true) as HTMLElement // make a clone to cancel previous events
-      if (h1) {
-        const newTitle = () => {
-          h1.removeEventListener("animationend", newTitle)
-          h1.replaceWith(newH1)
+    const form = oldH1.querySelector("form")
+    if (!form) {
+      const newH1 = document.createElement(oldH1.tagName)
+      newH1.classList.add("title")
+      newH1.classList.add("in")
+      newH1.innerHTML = newInnerHtml
+      if (oldH1.innerHTML !== newH1.innerHTML) {
+        const h1 = oldH1.cloneNode(true) as HTMLElement // make a clone to cancel previous events
+        if (h1) {
+          const newTitle = () => {
+            h1.removeEventListener("animationend", newTitle)
+            h1.replaceWith(newH1)
+          }
+          const inElements = h1.querySelectorAll(".in") as NodeListOf<HTMLElement>
+          inElements.forEach(el => el.classList.remove("in"))
+          h1.classList.remove("in")
+          h1.classList.add("out")
+          h1.addEventListener("animationend", newTitle)
+          const replacement = immediate ? newH1 : h1
+          if (newInnerHtml === this.titles[this.titles.length - 1] && this.onLastTitleClick) {
+            newH1.addEventListener("click", this.onLastTitleClick)
+          }
+          oldH1.replaceWith(replacement)
         }
-        const inElements = h1.querySelectorAll(".in") as NodeListOf<HTMLElement>
-        inElements.forEach(el => el.classList.remove("in"))
-        h1.classList.remove("in")
-        h1.classList.add("out")
-        h1.addEventListener("animationend", newTitle)
-        const replacement = immediate ? newH1 : h1
-        if (newInnerHtml === this.titles[this.titles.length - 1 ] && this.onLastTitleClick) {
-          newH1.addEventListener("click", this.onLastTitleClick)
-        }
-        oldH1.replaceWith(replacement)
       }
     }
   }
