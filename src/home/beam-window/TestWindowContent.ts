@@ -24,10 +24,10 @@ export const testWindowContent = `
         <ul class="view">
           <li class="note">
             <h1>Today</h1>
-            <ul class="note-content" contenteditable="true" spellcheck="false"><li>Markdown support</li><li>Backlinks</li><li>Encrypted end-to-end</li><li>Organized around your Journal</li></ul>
+            <ul class="note-content" spellcheck="false"><li>Markdown support</li><li>Backlinks</li><li>Encrypted end-to-end</li><li>Organized around your Journal</li></ul>
           </li>
           <li class="note">
-            <h1>Yesterday</h1><ul class="note-content" contenteditable="true" spellcheck="false"><li>⌘K to search the web &amp; your notes</li><li>⌘D to toggle between the web &amp; your notes</li><li>Hold ⌥ &amp; click to capture everything on the web</li></ul>
+            <h1>Yesterday</h1><ul class="note-content" spellcheck="false"><li>⌘K to search the web &amp; your notes</li><li>⌘D to toggle between the web &amp; your notes</li><li>Hold ⌥ &amp; click to capture everything on the web</li></ul>
           </li>
         </ul>
       </div>
@@ -40,7 +40,7 @@ export const testWindowContent = `
       <div class="note-page" data-page="note">
         <div class="view">
           <div class="note">
-            <div class="header"><h1>Note</h1><div><button is="beam-button-reveal" class="icon-with-label-reveal-button tooltip-container tooltip-top" tabindex="0"><div><span class="icon"><span><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" class="icn common"><path d="M6.25 2.75H4.25C3.42157 2.75 2.75 3.42157 2.75 4.25V11.75C2.75 12.5784 3.42157 13.25 4.25 13.25H11.75C12.5784 13.25 13.25 12.5784 13.25 11.75V9.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path><path d="M13.25 2.75L7.5 8.5M13.25 2.75H9.25M13.25 2.75V6.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></span></span><span class="label" tabindex="-1">Publish</span></div></button></div></div><ul class="note-content" contenteditable="true" spellcheck="false"><li><p class="placeholder large"></p></li><li><p class="placeholder large"></p></li><li><p class="placeholder small"></p></li><li class="media"><div class="img placeholder large"></div></li><li><p class="placeholder medium"></p></li><li><p class="placeholder small"></p></li></ul></div>
+            <div class="header"><h1>Note</h1><div><button is="beam-button-reveal" class="icon-with-label-reveal-button tooltip-container tooltip-top" tabindex="0"><div><span class="icon"><span><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" class="icn common"><path d="M6.25 2.75H4.25C3.42157 2.75 2.75 3.42157 2.75 4.25V11.75C2.75 12.5784 3.42157 13.25 4.25 13.25H11.75C12.5784 13.25 13.25 12.5784 13.25 11.75V9.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path><path d="M13.25 2.75L7.5 8.5M13.25 2.75H9.25M13.25 2.75V6.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></span></span><span class="label" tabindex="-1">Publish</span></div></button></div></div><ul class="note-content" spellcheck="false"><li><p class="placeholder large"></p></li><li><p class="placeholder large"></p></li><li><p class="placeholder small"></p></li><li class="media"><div class="img placeholder large"></div></li><li><p class="placeholder medium"></p></li><li><p class="placeholder small"></p></li></ul></div>
           </div>
         </div>
       </div>
