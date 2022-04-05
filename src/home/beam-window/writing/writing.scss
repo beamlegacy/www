@@ -46,11 +46,14 @@
       height: 100%;
     }
 
+    .view {
+      margin: 7% auto;
+    }
+
     .journal {
       .view {
         font-size: 0.875em;
         list-style-type: none;
-        margin: 45px auto 0;
         max-width: 28.18181818em;
         padding: 0 20px 0 25px;
         text-align: left;
@@ -99,12 +102,10 @@
 
     .all-notes {
       height: 100%;
-      margin-bottom: 4.36363636em;
 
       .view {
         display: flex;
         flex-direction: column;
-        margin: 0 auto;
         max-width: 27.27272727em;
         min-height: 100%;
         padding: 0 1.45454545em;
@@ -113,7 +114,6 @@
         .header {
           border-bottom: 1px solid var(--color-beam-window-placeholder-background);
           flex-grow: 0;
-          margin-top: 2.90909091em;
           padding-bottom: 0.35em;
           margin-bottom: 0.35em;
           text-align: left;
@@ -176,7 +176,6 @@
       .view {
         font-size: 0.875em;
         list-style-type: none;
-        margin: 45px auto 0;
         max-width: 28.18181818em;
         padding: 0 20px 0 25px;
         text-align: left;
@@ -191,7 +190,7 @@
           display: flex;
           flex-direction: row;
           font-size: 1.27272727em;
-          margin: 2.7768595em 0 0.92561984em;
+          margin: 0 0 0.92561984em;
 
           h1 {
             flex-grow: 1;
