@@ -279,6 +279,8 @@ export class Homepage {
           const button = document.createElement("div")
           button.classList.add("button")
           button.append(...Array.from(target.childNodes))
+          const inElements = button.querySelectorAll(".in")
+          inElements.forEach(e => e.classList.remove("in"))
           const output = document.createElement("div")
           output.classList.add("output")
           target.append(button, cloned, output)
