@@ -37,11 +37,13 @@
 @mixin writing {
   .writing {
     inset: 0;
-    overflow-y: auto;
+    overflow-y: hidden;
     position: absolute;
 
     > * {
       transition: opacity 0.15s ease-in-out;
+      overflow-y: auto;
+      height: 100%;
     }
 
     .journal {
