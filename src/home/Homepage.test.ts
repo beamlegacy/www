@@ -30,7 +30,7 @@ describe("Home page", () => {
 
       <div class="nav">
         <div class="beta-signup">
-          <button class="underline"><%= htmlWebpackPlugin.options.messages.header.betaSignup %></button>
+          <button class="button underline"><%= htmlWebpackPlugin.options.messages.header.betaSignup %></button>
           <form class="input" novalidate>
             <input type="email" required name="zXmAeBqfd" autocomplete="off" placeholder="<%= htmlWebpackPlugin.options.messages.header.betaSignupPlaceholder %>">
             <div class="action-container">
@@ -228,6 +228,30 @@ describe("Home page", () => {
       title.children[0].dispatchEvent(new Event("animationend"))
       expect(title.children[0].innerHTML).toBe(home.animation.titles[home.animation.titles.length - 1])
     })
+  })
+
+  test("Clicking the last title focuses a beta signup", () => {
+    intersectioObserverMockedObserveValues = {
+      boundingClientRect: {},
+      intersectionRatio: 1,
+      intersectionRect: {},
+      isIntersecting: true,
+      rootBounds: {},
+      time: 0
+    }
+    const home = new SteppedHomepage(2)
+    const titleContainer = home.titleContainer as HTMLElement
+    let title = titleContainer.children[0] as HTMLElement
+    title.dispatchEvent(new Event("animationend"))
+    title = titleContainer.children[0] as HTMLElement
+    expect(title.innerHTML).toBe(home.animation.titles[home.animation.titles.length - 1])
+    title.click()
+    const button = title.querySelector(".button") as HTMLElement
+    button.click()
+    expect(document.activeElement?.tagName.toLowerCase()).toBe("input")
+    const betaSignup = titleContainer.querySelector(".beta-signup") as HTMLElement
+    expect(betaSignup).toBeDefined()
+    expect(betaSignup.contains(document.activeElement)).toBe(true)
   })
 })
 

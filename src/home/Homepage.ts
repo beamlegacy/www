@@ -284,6 +284,7 @@ export class Homepage {
           target.append(button, cloned, output)
           new BetaSignupForm(target, (window as any).messages)
           target.classList.add("beta-signup")
+          button.click()
         }
       }
     }
