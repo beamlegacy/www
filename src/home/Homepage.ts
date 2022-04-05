@@ -274,7 +274,7 @@ export class Homepage {
       const form = target.querySelector("form")
       // wrap and clone form if not already there
       if (!form || form.tagName.toLowerCase() !== "form") {
-        const cloned = document.querySelector(".beta-signup")?.cloneNode(true)
+        const cloned = document.querySelector(".beta-signup form")?.cloneNode(true)
         if (cloned) {
           const button = document.createElement("div")
           button.classList.add("button")
@@ -283,6 +283,7 @@ export class Homepage {
           output.classList.add("output")
           target.append(button, cloned, output)
           new BetaSignupForm(target, (window as any).messages)
+          target.classList.add("beta-signup")
         }
       }
     }
