@@ -2,7 +2,10 @@ import "./index.scss"
 import "@ungap/custom-elements"
 import {Cookie} from "util/cookie/Cookie"
 import {BeamWindow} from "home/beam-window/BeamWindow"
+import {MOTD} from "util/MOTD"
+import packageJson from "../package.json"
 
+const {version} = packageJson
 const pages = require("../pages.js")
 
 interface LocalizedPage {
@@ -18,6 +21,7 @@ export default class App {
   private messages: any
 
   constructor() {
+    MOTD({version})
     window.customElements.get("beam-window") || window.customElements.define("beam-window", BeamWindow)
     this.messages = (window as any).messages
     this.initLang()
