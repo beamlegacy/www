@@ -14,7 +14,7 @@
 
   .tab {
     --border-color: var(--color-beam-window-tab-border);
-    --background-color: transparent;
+    --background-color: rgba(0,0,0,0);
 
     align-items: center;
     background-color: var(--background-color);
@@ -31,6 +31,7 @@
     overflow: hidden;
     padding: 0.54545455em 0.72727273em;
     position: relative;
+    transform: translateZ(0);
 
     &.pinned {
       flex-grow: 0;
