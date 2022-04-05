@@ -63,7 +63,6 @@
         font-weight: 400;
         margin: 0 -1em calc(6 * var(--vh, 1vh));
 
-
         @include mixins.above-small {
           font-size: 28px;
 
@@ -74,6 +73,7 @@
 
         &.beta-signup {
           .input {
+            font-size: 0.9em;
             right: 50%;
             transform: translate(50%, 100%);
           }
@@ -84,7 +84,7 @@
               pointer-events: none;
             }
           }
-          
+
           &.show-input {
             > .input {
               transform: translate(50%, 0);
@@ -95,6 +95,17 @@
             > .input {
               transform: translate(50%, var(--form-distance-out));
             }
+          }
+        }
+
+        .arrow {
+          display: inline-block;
+          transition: transform 0.2s cubic-bezier(0.42, 0, 0.27, 1.73);
+        }
+
+        &:hover {
+          .arrow {
+            transform: translateX(0.25em);
           }
         }
 
