@@ -130,7 +130,7 @@ class HomeMessages_en {
       "So you can <br><strong class=\"in\">capture</strong> the web…",
       "Make it <br><strong class=\"in\">your own</strong>…",
       "And <strong class=\"in\">share it</strong> <br>with the world",
-      "<strong class=\"in\">Sign up</strong> <br>for the beta now",
+      "<strong class=\"in\">Sign up</strong> <br>for the beta now <span class=\"arrow\">-&gt;</span>",
     ]
   }
 }
@@ -219,7 +219,7 @@ class HomeMessages_fr {
       "So you can <br><strong class=\"in\">capture</strong> the web…",
       "Make it <br><strong class=\"in\">your own</strong>…",
       "And <strong class=\"in\">share it</strong> <br>with the world",
-      "<strong class=\"in\">Sign up</strong> <br>for the beta now",
+      "<strong class=\"in\">Sign up</strong> <br>for the beta now <span class=\"arrow\">-&gt;</span>",
     ]
   }
 }
