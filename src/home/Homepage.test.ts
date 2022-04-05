@@ -193,10 +193,10 @@ describe("Home page", () => {
         rootBounds: {},
         time: 0
       }
-      const home = new SteppedHomepage(1)
+      const home = new SteppedHomepage(0)
       const title = home.titleContainer as HTMLElement
       title.children[0].dispatchEvent(new Event("animationend"))
-      expect(title.children[0].innerHTML).toBe(home.animation.titles[home.animation.titles.length - 1])
+      expect(title.children[0].innerHTML).toBe(home.animation.titles[0])
     })
 
     test("Resuming from second step", () => {
@@ -211,7 +211,7 @@ describe("Home page", () => {
       const home = new SteppedHomepage(1)
       const title = home.titleContainer as HTMLElement
       title.children[0].dispatchEvent(new Event("animationend"))
-      expect(title.children[0].innerHTML).toBe(home.animation.titles[home.animation.titles.length - 1])
+      expect(title.children[0].innerHTML).toBe(home.animation.titles[3])
     })
 
     test("Resuming from last step", () => {

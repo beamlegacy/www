@@ -12,7 +12,8 @@ export class PublishButton {
   constructor(
     public messages: PublishButtonMessages,
     private publishButton = html`<button is="beam-button-reveal"/>` as unknown as RevealButton,
-    private isPublished = false
+    private isPublished = false,
+    private onPublishStateChange?: (published: boolean) => void
   ) {
     new Tooltip(this.publishButton)
   }
@@ -23,9 +24,7 @@ export class PublishButton {
       if (!this.isPublished) {
         let error: Error | undefined
         this.publishButton.label = this.isPublished ? this.messages.unpublishing : this.messages.publishing
-        if (!this.isPublished) {
-          await new Promise(resolve => setTimeout(resolve, 750))
-        }
+        await new Promise(resolve => setTimeout(resolve, 750))
         this.afterPublish() // see TODO
         // last but not least, throw error if any
       } else {
@@ -55,6 +54,7 @@ export class PublishButton {
       }
       this.timeout && clearTimeout(this.timeout)
       this.timeout = setTimeout(this.getAfterPublishCallback(error), 250)
+      this.onPublishStateChange && this.onPublishStateChange(this.isPublished)
     }
   }
 

@@ -138,7 +138,7 @@ export class Homepage {
     const buttons = this.win.querySelectorAll("[is=beam-button-reveal]") as unknown as NodeListOf<RevealButton>
     const messages = (window as any).messages
     this.publishButtons = Array.from(buttons).map((b: RevealButton): PublishButton => {
-      const publishButton = new PublishButton(messages.note.publish, b, false)
+      const publishButton = new PublishButton(messages.note.publish, b, false, this.stepAfterPublish)
       publishButton.render()
       const publishHandler = publishButton.getPublishHandler()
       b.addEventListener("click", publishHandler)
@@ -217,6 +217,14 @@ export class Homepage {
         this.animation.switches--
       }, 1350)
     }
+  }
+
+  private stepAfterPublish = (): void => {
+    debug && console.log("Home - After publish step", {switches: this.animation.switches})
+    this.timeout = setTimeout(() => {
+      const title = this.animation.titles[Math.min(this.animation.switches, this.animation.titles.length - 1)]
+      this.animation.changeTitle(title)
+    }, 2350)
   }
 
   private clearTimeout = (): void => {

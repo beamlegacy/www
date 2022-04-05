@@ -15,7 +15,8 @@ export class BeamWindowAnimation {
     "A <br><strong class=\"in\">powerful note</strong> app…",
     "So you can <br><strong class=\"in\">capture</strong> the web…",
     "Make it <br><strong class=\"in\">your own</strong>…",
-    "And <br><strong class=\"in\">share it</strong> with the world"
+    "And <br><strong class=\"in\">share it</strong> with the world",
+    "<strong class=\"in\">Sign up</strong> <br>for the beta now",
   ]
 
   constructor(private handleToggleMode?: (newMode: BeamWindowMode) => void, private handleCancelAnimation?: () => void) {

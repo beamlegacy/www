@@ -129,7 +129,8 @@ class HomeMessages_en {
       "A <br><strong class=\"in\">powerful note</strong> app…",
       "So you can <br><strong class=\"in\">capture</strong> the web…",
       "Make it <br><strong class=\"in\">your own</strong>…",
-      "And <strong class=\"in\">share it</strong> <br>with the world"
+      "And <strong class=\"in\">share it</strong> <br>with the world",
+      "<strong class=\"in\">Sign up</strong> <br>for the beta now",
     ]
   }
 }
@@ -217,7 +218,8 @@ class HomeMessages_fr {
       "A <br><strong class=\"in\">powerful note</strong> app…",
       "So you can <br><strong class=\"in\">capture</strong> the web…",
       "Make it <br><strong class=\"in\">your own</strong>…",
-      "And <strong class=\"in\">share it</strong> <br>with the world"
+      "And <strong class=\"in\">share it</strong> <br>with the world",
+      "<strong class=\"in\">Sign up</strong> <br>for the beta now",
     ]
   }
 }
