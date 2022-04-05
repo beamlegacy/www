@@ -446,17 +446,17 @@ export class BeamWindow extends HTMLElement {
    * @param e
    */
   private handleBeamWindowClick = (e: Event): void => {
-    // this.resetClicked()
-    // const targetEl = e.target as HTMLElement
-    // if (targetEl instanceof HTMLButtonElement) {
-    //   targetEl.focus()
-    //   targetEl.classList.add("clicked")
-    // }
-    // const search = this.controls?.querySelector(".search")
-    // const omnibox = this.window?.querySelector(".omnibox-frame .omnibox")
-    // if (!search?.contains(targetEl) && !omnibox?.contains(targetEl)) {
-    //   this.window?.classList.remove("open-omnibox")
-    // }
+    this.resetClicked()
+    const targetEl = e.target as HTMLElement
+    if (targetEl instanceof HTMLButtonElement) {
+      // targetEl.focus()
+      targetEl.classList.add("clicked")
+    }
+    const search = this.controls?.querySelector(".search")
+    const omnibox = this.window?.querySelector(".omnibox-frame .omnibox")
+    if (!search?.contains(targetEl) && !omnibox?.contains(targetEl)) {
+      this.window?.classList.remove("open-omnibox")
+    }
   }
 
   /**
