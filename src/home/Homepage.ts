@@ -19,7 +19,7 @@ export class Homepage {
   constructor() {
     window.customElements.get("beam-button-reveal") || window.customElements.define("beam-button-reveal", IconWithLabelRevealButton, {extends: "button"})
 
-    this.animation = new BeamWindowAnimation(this.handleNewMode, this.clearTimeout)
+    this.animation = new BeamWindowAnimation(this.handleNewMode, this.clearTimeout, this.handleLastTitleClick)
     this.win = document.querySelector("beam-window") as BeamWindow
 
     this.initPublishButtons()
@@ -265,5 +265,21 @@ export class Homepage {
   private stopAnimations = (): void => {
     this.clearTimeout()
     this.animation.cancelAnimation()
+  }
+
+  private handleLastTitleClick = (e: MouseEvent) => {
+    // const target = e.target as HTMLElement
+    // if (target) {
+    //   const form = target.nextElementSibling
+    //   // wrap and clone form if not already there
+    //   if (form && form.tagName.toLowerCase() !== "form") {
+    //     const cloned = document.querySelector(".beta-signup form")?.cloneNode(true)
+    //     if (cloned) {
+    //       const output = document.createElement("div")
+    //       output.classList.add("output")
+    //       target.append(cloned, output)
+    //     }
+    //   }
+    // }
   }
 }

@@ -19,7 +19,11 @@ export class BeamWindowAnimation {
     "<strong class=\"in\">Sign up</strong> <br>for the beta now <span class=\"arrow\">-&gt;</span>",
   ]
 
-  constructor(private handleToggleMode?: (newMode: BeamWindowMode) => void, private handleCancelAnimation?: () => void) {
+  constructor(
+    private handleToggleMode?: (newMode: BeamWindowMode) => void,
+    private handleCancelAnimation?: () => void,
+    private onLastTitleClick?: (e: MouseEvent) => void
+  ) {
     this.win = document.querySelector("beam-window") as BeamWindow
     this.win.onNewMode(this.onNewMode)
     this.win.onTabClick(this.onTabClick)
@@ -300,11 +304,8 @@ export class BeamWindowAnimation {
         h1.classList.add("out")
         h1.addEventListener("animationend", newTitle)
         const replacement = immediate ? newH1 : h1
-        if (newInnerHtml === this.titles[this.titles.length - 1 ]) {
-          newH1.addEventListener("click", () => {
-            const button = document.querySelector(".beta-signup > button") as HTMLButtonElement
-            button.click()
-          })
+        if (newInnerHtml === this.titles[this.titles.length - 1 ] && this.onLastTitleClick) {
+          newH1.addEventListener("click", this.onLastTitleClick)
         }
         oldH1.replaceWith(replacement)
       }
