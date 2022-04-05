@@ -40,9 +40,9 @@
     overflow-y: auto;
     position: absolute;
 
-    //> * {
-    //  transition: opacity 0.15s ease-in-out;
-    //}
+    > * {
+      transition: opacity 0.15s ease-in-out;
+    }
 
     .journal {
       .view {
