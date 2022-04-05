@@ -17,7 +17,7 @@ export class BetaSignupForm {
   }
 
   get betaSignupButton(): Element | null {
-    return this.element.querySelector(":scope > button")
+    return this.element.querySelector(":scope > .button")
   }
 
   get betaSignupCloseButton(): Element | null {
@@ -42,7 +42,7 @@ export class BetaSignupForm {
 
   private initEventListeners = (): void => {
     const submitButton = this.betaSignupSubmitButton as HTMLButtonElement
-    const betaSignupButton = this.betaSignupButton as HTMLButtonElement
+    const betaSignupButton = this.betaSignupButton as HTMLElement
     const closeButton = this.betaSignupCloseButton as HTMLButtonElement
     const betaSignupInputContainer = this.betaSignupInputContainer as HTMLElement
     const input = this.betaSignupInput as HTMLInputElement
@@ -145,7 +145,7 @@ export class BetaSignupForm {
       const windows = document.querySelectorAll("beam-window") as NodeListOf<BeamWindow>
       const inWindow = Array.from(windows).some(w => w.contains(related))
       if (inWindow && related.tagName.toLowerCase() !== "input") {
-        const betaSignupButton = this.betaSignupButton as HTMLButtonElement
+        const betaSignupButton = this.betaSignupButton as HTMLElement
         betaSignupButton.click()
       } else {
         const betaSignup = this.betaSignup

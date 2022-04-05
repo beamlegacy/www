@@ -17,7 +17,7 @@ function createEvent(type: string, dic: Record<string, any>, target?: any): Even
 const newForm = (): BetaSignupForm => {
   const element = html`
     <div class="beta-signup">
-      <button class="underline"><%= htmlWebpackPlugin.options.messages.header.betaSignup %></button>
+      <button class="button underline"><%= htmlWebpackPlugin.options.messages.header.betaSignup %></button>
       <form class="input" novalidate>
         <input type="email" required name="zXmAeBqfd" autocomplete="off" placeholder="<%= htmlWebpackPlugin.options.messages.header.betaSignupPlaceholder %>">
         <div class="action-container">
