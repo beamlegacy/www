@@ -1,1 +1,8 @@
 @use "style/style";
+
+.loading {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}

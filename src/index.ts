@@ -179,6 +179,9 @@ export default class App {
     window.addEventListener("resize", this.sizeVh)
     window.addEventListener("scroll", this.sizeVh)
     window.visualViewport?.addEventListener("resize", this.sizeVh)
+    window.addEventListener("load", () => {
+      document.body.classList.remove("loading")
+    })
   }
 
   private handleSignupButtonClick = (_e: Event): void => {
