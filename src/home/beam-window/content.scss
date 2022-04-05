@@ -16,6 +16,10 @@
     display: inline-block;
     height: 0.72727273em;
     width: 100%;
+
+    &:not(:empty) {
+      width: 100% !important;
+    }
   }
 
   &.web {
