@@ -180,7 +180,7 @@ export default class App {
     window.addEventListener("scroll", this.sizeVh)
     window.visualViewport?.addEventListener("resize", this.sizeVh)
     window.addEventListener("load", () => {
-      document.body.classList.remove("loading")
+      setTimeout(() => document.body.classList.remove("loading"))
     })
   }
 
