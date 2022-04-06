@@ -288,6 +288,7 @@ export class BeamWindowAnimation {
   ): void => {
     const oldH1 = document.querySelector(".beam-site .demo .title") as HTMLElement
     const form = oldH1.querySelector("form")
+    const lastTitle = newInnerHtml === this.titles[this.titles.length - 1]
     if (!form) {
       const newH1 = document.createElement(oldH1.tagName)
       newH1.classList.add("title")
@@ -306,8 +307,11 @@ export class BeamWindowAnimation {
           h1.classList.add("out")
           h1.addEventListener("animationend", newTitle)
           const replacement = immediate ? newH1 : h1
-          if (newInnerHtml === this.titles[this.titles.length - 1] && this.onLastTitleClick) {
-            newH1.addEventListener("click", this.onLastTitleClick)
+          if (lastTitle) {
+            newH1.classList.add("last")
+            if (this.onLastTitleClick) {
+              newH1.addEventListener("click", this.onLastTitleClick)
+            }
           }
           oldH1.replaceWith(replacement)
         }
