@@ -18,8 +18,7 @@ export class Button {
 
     console.assert(
       this._content,
-      `Button ${this.element} should have a string or HTMLElement content defined, to set content use \`buttonInstance.content = yourContent\``
-        + "Setting content re-renders the button, so you don't need to call .render() afterwards"
+      `Button ${this.element} must have a content"
     )
     this.element.append(this._content)
 
