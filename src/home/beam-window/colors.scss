@@ -1,0 +1,159 @@
+@use "/src/style/palette";
+
+@mixin light-mode {
+  --color-beam-window-background: #{ palette.$white };
+  --color-beam-window-border: #{ rgba(palette.$black, 0.17) };
+  --color-beam-window-outer-border: transparent;
+  --color-beam-window-header-border: #{ rgba(palette.$black, 0.17) };
+  --color-beam-window-header-background: #{rgba(#f0f0f2, 0.8)};
+  --color-beam-window-top-gradient-start: #{rgba(palette.$white, 0.3)};
+  --color-beam-window-top-gradient-end: #{rgba(palette.$white, 0)};
+
+  --color-beam-window-tab-border: transparent;
+  --color-beam-window-tab-border-hover: #{ rgba(palette.$black, 0.1) };
+  --color-beam-window-tab-background-hover: transparent;
+  --color-beam-window-tab-border-active: #{ rgba(palette.$black, 0.1) };
+  --color-beam-window-tab-background-active: #{ palette.$white };
+  --color-beam-window-tab-border-current: #{ rgba(palette.$black, 0.1) };
+  --color-beam-window-tab-background-current: #{ palette.$white };
+
+  --color-beam-window-writing-tab-color: #{ palette.$light-corduroy };
+  --color-beam-window-writing-tab-color-active: #{ palette.$light-niobium };
+
+  --color-beam-window-controls-color: #{ palette.$light-stone-gray };
+  --color-beam-window-controls-color-accent: #{ palette.$light-corduroy };
+  --color-beam-window-controls-color-hover: #{ palette.$light-niobium };
+  --color-beam-window-controls-color-active: #{ palette.$light-niobium };
+  --color-beam-window-controls-background-active: #{ rgba(palette.$light-alpha-gray, 0.4) };
+
+  --color-beam-window-placeholder-background: #{ rgba(#ced2d9, 0.5) };
+
+  --color-beam-window-capture-highlight: #{ rgba(#3700ff, 0.14) };
+
+  --color-beam-window-omnibox-background: #{ palette.$white };
+  --color-beam-window-omnibox-border: #{ rgba(palette.$black, 0.15)};
+  --color-beam-window-omnibox-shadow: rgba(0, 0, 0, 0.36);
+  --color-beam-window-omnibox-icon: #{ palette.$light-stone-gray };
+  --color-beam-window-omnibox-placeholder: #{ palette.$light-alpha-gray };
+  --color-beam-window-omnibox-selected: #{ rgba(palette.$light-bluetiful, 0.1) };
+
+  --color-beam-window-menu-background: var(--color-background);
+  --color-beam-window-menu-icon: #{ palette.$light-stone-gray };
+  --color-beam-window-menu-open: #{ palette.$light-mercury };
+  --color-beam-window-menu-open-text-color: var(--color-text);
+  --color-beam-window-menu-hover: #{ palette.$light-mercury };
+  --color-beam-window-menu-hover-text-color: var(--color-text);
+  --color-beam-window-menu-shadow: rgba(0, 0, 0, 0.1);
+  --color-beam-window-menu-header: #{ palette.$light-alpha-gray };
+  --color-beam-window-menu-divider: #{ palette.$light-mercury };
+
+  --color-text-selection-background: #{ rgba(#3700ff, 0.14) };
+  --color-text-selection-color: #{ palette.$light-niobium };
+  --color-text-caret-color: #{ rgba(#3700ff, 0.7) };
+
+  --color-bullet: #{ palette.$light-alpha-gray };
+
+  --color-tooltip-background: #{palette.$light-nero};
+  --color-tooltip-color: #{palette.$light-corduroy};
+  --color-tooltip-shadow: rgba(0, 0, 0, 0.08);
+}
+
+@mixin dark-mode {
+  --color-beam-window-background: #1c1c1f;
+  --color-beam-window-border: #{ rgba(#474747, 0.75) };
+  --color-beam-window-outer-border: #{ rgba(#1c1c1f, 1)};
+  --color-beam-window-header-border: #{ rgba(palette.$black, 0.5) };
+  --color-beam-window-header-background: #{rgba(#2a2a2e, 0.8)};
+  --color-beam-window-top-gradient-start: #{rgba(palette.$white, 0.02)};
+  --color-beam-window-top-gradient-end: #{rgba(palette.$white, 0)};
+
+  --color-beam-window-tab-border: transparent;
+  --color-beam-window-tab-border-hover: #{ rgba(palette.$white, 0.125) };
+  --color-beam-window-tab-background-hover: #{ rgba(palette.$white, 0.05) };
+  --color-beam-window-tab-border-active: #{ rgba(palette.$white, 0.25) };
+  --color-beam-window-tab-background-active: #{ rgba(palette.$white, 0.05) };
+  --color-beam-window-tab-border-current: #{ rgba(palette.$white, 0.125) };
+  --color-beam-window-tab-background-current: #{ rgba(palette.$white, 0.085) };
+
+  --color-beam-window-writing-tab-color: #{ palette.$dark-corduroy };
+  --color-beam-window-writing-tab-color-active: #{ palette.$dark-niobium };
+
+  --color-beam-window-controls-color: #{ palette.$dark-stone-gray };
+  --color-beam-window-controls-color-accent: #{ palette.$dark-corduroy };
+  --color-beam-window-controls-color-hover: #{ palette.$dark-niobium };
+  --color-beam-window-controls-color-active: #{ palette.$dark-niobium };
+  --color-beam-window-controls-background-active: #{ palette.$dark-alpha-gray };
+
+  --color-beam-window-placeholder-background: #{ rgba(#ced2d9, 0.05) };
+
+  --color-beam-window-capture-highlight: #{ rgba(#7373ff, 0.32) };
+
+  --color-beam-window-omnibox-background: #{ palette.$dark-mercury };
+  --color-beam-window-omnibox-border: #{ rgba(palette.$white, 0.15)};
+  --color-beam-window-omnibox-shadow: rgba(0, 0, 0, 0.7);
+  --color-beam-window-omnibox-icon: #{ palette.$dark-stone-gray };
+  --color-beam-window-omnibox-placeholder: #{ palette.$dark-alpha-gray };
+  --color-beam-window-omnibox-selected: #{ rgba(palette.$dark-bluetiful, 0.14) };
+
+  --color-beam-window-menu-background: #{ palette.$dark-nero };
+  --color-beam-window-menu-icon: #{ palette.$dark-stone-gray };
+  --color-beam-window-menu-open: #{ palette.$dark-mercury };
+  --color-beam-window-menu-open-text-color: var(--color-text);
+  --color-beam-window-menu-hover: #{ palette.$dark-mercury };
+  --color-beam-window-menu-hover-text-color: var(--color-text);
+  --color-beam-window-menu-shadow: rgba(0, 0, 0, 0.35);
+  --color-beam-window-menu-header: #{ palette.$dark-alpha-gray };
+  --color-beam-window-menu-divider: #{ palette.$dark-mercury };
+
+  --color-text-selection-background: #{ rgba(#7373ff, 0.32) };
+  --color-text-selection-color: #{ palette.$dark-niobium };
+  --color-text-caret-color: #{ rgba(#7373ff, 0.9) };
+
+  --color-bullet: #{ palette.$dark-alpha-gray };
+
+  --color-tooltip-background: #{palette.$dark-nero};
+  --color-tooltip-color: #{palette.$dark-corduroy};
+  --color-tooltip-shadow: rgba(0, 0, 0, 0.24);
+}
+
+beam-window {
+  @include light-mode();
+}
+
+@media (prefers-color-scheme: light) {
+  beam-window {
+    .dark-only {
+      display: none !important;
+    }
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  beam-window {
+    @include dark-mode();
+
+    .light-only {
+      display: none !important;
+    }
+  }
+}
+
+.dark {
+  beam-window {
+    @include dark-mode();
+
+    .light-only {
+      display: none !important;
+    }
+  }
+}
+
+.light {
+  beam-window {
+    @include light-mode();
+
+    .dark-only {
+      display: none !important;
+    }
+  }
+}

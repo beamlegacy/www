@@ -1,0 +1,9 @@
+::selection {
+  background-color: var(--color-text-selection-background);
+  color: var(--color-text-selection-color);
+}
+
+*[contenteditable],
+input {
+  caret-color: var(--color-text-caret-color);
+}

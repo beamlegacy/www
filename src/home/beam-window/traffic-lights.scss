@@ -1,0 +1,29 @@
+@mixin traffic-lights {
+  .traffic-lights {
+    gap: 0.45em;
+
+    button {
+      --size: 0.65em;
+      background-color: var(--color);
+      border: 0;
+      border-radius: 50%;
+      display: inline-block;
+      font-size: 1em;
+      height: var(--size);
+      padding: 0;
+      width: var(--size);
+    }
+
+    .traffic-close {
+      --color: #fc605c;
+    }
+
+    .traffic-minimize {
+      --color: #fcbb40;
+    }
+
+    .traffic-expand {
+      --color: #34c648;
+    }
+  }
+}

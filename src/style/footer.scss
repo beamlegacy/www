@@ -1,0 +1,31 @@
+@use "mixins";
+
+footer {
+  color: var(--color-text-secondary);
+  font-size: 0.75em;
+  padding-bottom: 0.75em;
+  text-align: center;
+  transition: padding-bottom 0.2s ease-in-out;
+
+  @include mixins.above-medium {
+    font-size: 0.875em;
+  }
+
+  @include mixins.height-below-default {
+    padding-bottom: 0.5em;
+  }
+
+  strong {
+    color: var(--color-text);
+  }
+
+  a {
+    color: inherit;
+    font-size: inherit;
+
+    &:hover,
+    &:focus {
+      color: var(--color-text);
+    }
+  }
+}

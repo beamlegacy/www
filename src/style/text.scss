@@ -1,0 +1,58 @@
+@use "mixins";
+
+:root {
+  // we need to set this in :root otherwise variables expressed in relative units wont inherit
+  font-family: "Inter", -apple-system, system-ui,  sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+
+  @include mixins.above-medium {
+    font-size: 16px;
+  }
+}
+
+::selection {
+  background-color: var(--color-text-selection-background);
+  color: var(--color-text);
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+}
+
+h1 {
+  $margin-bottom: 0.2em;
+  font-size: 30px;
+  font-weight: 500;
+  margin-bottom: $margin-bottom;
+
+  + * {
+    margin-top: $margin-bottom;
+  }
+}
+
+strong {
+  font-style: normal;
+  font-weight: 500;
+}
+
+.primary {
+  color: var(--color-text);
+}
+
+.secondary {
+  color: var(--color-text-secondary);
+}
+
+.system-symbol {
+  font-family: system-ui, sans-serif;
+}
+
+p {
+  max-width: 25em;
+  text-align: left;
+}
+
+.center {
+  text-align: center;
+}

@@ -1,0 +1,36 @@
+{
+  "compilerOptions": {
+    "module": "ES2020",
+    "target": "ES2015",
+    "allowJs": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "lib": [
+      "es2020",
+      "dom"
+    ],
+    "outDir": "./dist/",
+    "sourceMap": true,
+    "inlineSources": true,
+    "sourceRoot": "/",
+    "baseUrl": ".",
+    "paths": {
+      "*": [
+        "./*",
+        "src/*"
+      ]
+    },
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true
+  },
+  "include": [
+    "src",
+    "test",
+    "tool"
+  ],
+  "exclude": [
+    "**/node_modules"
+  ]
+}

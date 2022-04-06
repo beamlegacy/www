@@ -1,50 +1,91 @@
 {
-  "name": "beam-www",
+  "name": "welcome-tour",
   "private": true,
-  "description": "Beta signup page for Beam app (2022 - Q1).",
-  "version": "0.1.4",
-  "contributors": [
-    {
-      "name": "Matthew Govaere",
-      "email": "matthew.govaere@gmail.com"
-    },
-    {
-      "name": "Robert Lenz",
-      "email": "robert@robertlenz.com"
-    }
-  ],
-  "scripts": {
-    "start": "yarn watch & yarn serve:dev",
-    "watch": "webpack --mode=development --watch",
-    "build": "webpack --mode=production",
-    "serve:dev": "yarn serve www -l 8000"
+  "version": "0.2.0",
+  "repository": "https://gitlab.com/beamgroup/beam-www",
+  "description": "Beam website",
+  "author": "beam",
+  "engines": {
+    "node": "^16.13.0"
   },
-  "dependencies": {
-    "@babel/core": "^7.16.12",
-    "@babel/preset-env": "^7.16.11",
-    "babel-loader": "^8.2.3",
-    "clean-webpack-plugin": "^4.0.0",
-    "copy-webpack-plugin": "^10.2.1",
-    "core-js": "^3.20.3",
-    "css-loader": "^6.5.1",
-    "dotenv": "^14.3.0",
-    "file-loader": "^6.2.0",
-    "gsap": "^3.9.1",
-    "html-webpack-plugin": "^5.5.0",
-    "imagemin-webpack-plugin": "^2.4.2",
-    "jquery": "^3.6.0",
-    "mini-css-extract-plugin": "^2.5.3",
-    "node-bourbon": "^4.2.8",
-    "node-sass": "^7.0.1",
-    "optimize-css-assets-webpack-plugin": "^6.0.1",
-    "raw-loader": "^4.0.2",
-    "sass-loader": "^12.4.0",
-    "string-replace-loader": "^3.1.0",
-    "style-loader": "^3.3.1",
-    "webpack": "^5.67.0",
-    "webpack-cli": "^4.9.2"
+  "scripts": {
+    "clean": "rm -Rf node_modules && rm -rf dist",
+    "prebuild": "yarn install",
+    "watch": "webpack --watch --mode=development",
+    "start": "webpack serve",
+    "build": "webpack --mode=development",
+    "dist": "webpack --mode=production",
+    "lint": "eslint . --ext .ts --format gitlab .",
+    "test": "jest --passWithNoTests",
+    "test-watch": "jest --watchAll --passWithNoTests",
+    "test-ci": "jest --ci --reporters=default --reporters=jest-junit --coverage --passWithNoTests",
+    "release-patch": "yarn version --patch && git push --follow-tags",
+    "release-feature": "yarn version --minor && git push --follow-tags"
+  },
+  "pre-commit": [
+    "lint",
+    "test"
+  ],
+  "targets": {
+    "browser": {
+      "source": [
+        "src/index.html"
+      ],
+      "sourceMap": false
+    }
   },
   "devDependencies": {
-    "serve": "^13.0.2"
+    "@babel/core": "^7.16.0",
+    "@babel/plugin-proposal-class-properties": "^7.16.0",
+    "@babel/plugin-transform-runtime": "^7.16.0",
+    "@babel/preset-env": "^7.16.0",
+    "@babel/preset-typescript": "^7.16.0",
+    "@babel/runtime-corejs3": "^7.16.0",
+    "@types/debounce": "^1.2.1",
+    "@types/html": "^1.0.1",
+    "@types/jest": "^27.0.3",
+    "@typescript-eslint/eslint-plugin": "^4.28.4",
+    "@typescript-eslint/parser": "^4.28.4",
+    "copy-webpack-plugin": "^9.0.1",
+    "css-loader": "^5.2.4",
+    "dotenv": "^10.0.0",
+    "eslint": "^7.31.0",
+    "eslint-formatter-gitlab": "^2.2.0",
+    "favicons": "^6.2.2",
+    "favicons-webpack-plugin": "^5.0.2",
+    "html": "^1.0.0",
+    "html-inline-css-webpack-plugin": "^1.11.1",
+    "html-webpack-plugin": "^5.3.2",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "27.3.1",
+    "jest-canvas-mock": "^2.3.1",
+    "jest-css-modules": "^2.1.0",
+    "jest-fetch-mock": "^3.0.3",
+    "jest-junit": "^13.0.0",
+    "jsdom-global": "^3.0.2",
+    "mini-css-extract-plugin": "^2.5.3",
+    "posthtml-expressions": "^1.7.1",
+    "pre-commit": "^1.2.2",
+    "sass": "1.32.8",
+    "sass-loader": "^11.0.1",
+    "source-map-loader": "^3.0.0",
+    "style-loader": "^2.0.0",
+    "stylelint": "^13.13.1",
+    "stylelint-config-sass-guidelines": "^8.0.0",
+    "ts-jest": "^27.0.7",
+    "ts-loader": "^9.1.0",
+    "ts-node": "^10.4.0",
+    "tsconfig-paths": "^3.11.0",
+    "typescript": "^4.3.2",
+    "webpack": "^5.52.0",
+    "webpack-bundle-analyzer": "^4.4.2",
+    "webpack-cli": "4.9.1",
+    "webpack-dev-server": "^4.1.1",
+    "workbox-webpack-plugin": "^6.2.4"
+  },
+  "dependencies": {
+    "@ungap/custom-elements": "^1.0.2",
+    "debounce": "^1.2.1",
+    "lottie-web": "^5.8.1"
   }
 }
