@@ -82,7 +82,11 @@ class HomeMessages_en {
     jobsUrl: "https://angel.co/company/beam-app-1/jobs",
     jobs: "Jobs",
     whyUrl: "https://public.beamapp.co/beam/note/c5ef3f23-5864-45ad-943e-b75b093555e1/Bright-Paper",
-    why: "Why beam?"
+    why: "Why beam?",
+    privacyPolicyUrl: "https://beamapp.co/privacy",
+    privacyPolicy: "Privacy policy",
+    termsAndConditionsUrl: "https://beamapp.co/tos",
+    termsAndConditions: "Terms & conditions",
   }
 
   tabs = {
@@ -171,7 +175,11 @@ class HomeMessages_fr {
     jobsUrl: "https://angel.co/company/beam-app-1/jobs",
     jobs: "Jobs",
     whyUrl: "https://public.beamapp.co/beam/note/c5ef3f23-5864-45ad-943e-b75b093555e1/Bright-Paper",
-    why: "Why beam?"
+    why: "Why beam?",
+    privacyPolicyUrl: "https://beamapp.co/privacy",
+    privacyPolicy: "Privacy policy",
+    termsAndConditionsUrl: "https://beamapp.co/tos",
+    termsAndConditions: "Terms & conditions",
   }
 
   tabs = {
