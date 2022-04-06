@@ -1,3 +1,5 @@
+import {debounce} from "debounce"
+
 export enum BeamWindowMode {
   web = "web",
   writing = "writing"
@@ -277,6 +279,14 @@ export class BeamWindow extends HTMLElement {
     this.window?.addEventListener("blur", this.handleBeamWindowBlur, true)
     this.window?.removeEventListener("animationend", this.handleAnimationEnd)
     this.window?.addEventListener("animationend", this.handleAnimationEnd)
+    this.content?.addEventListener("scroll", debounce((e: Event) => {
+      const target = e.target as HTMLElement
+      const classList = target?.classList
+      if (classList?.contains("html-doc") && classList?.contains("current")) {
+        const current = target
+        this.updateScroll(current)
+      }
+    }, 1000 / 120, true), true)
     const omnibox = this.window?.querySelector(".omnibox")
     const input = omnibox?.querySelector("input")
     omnibox?.removeEventListener("keydown", this.handleOmniboxKeydown)
@@ -505,12 +515,13 @@ export class BeamWindow extends HTMLElement {
     const tabContainerSelector = this.tabsContainerSelector
     const page = tab.dataset.page
     if (page) {
-      const target = this.querySelector(`${containerSelector} > [data-page=${page}]`)
+      const target = this.querySelector(`${containerSelector} > [data-page=${page}]`) as HTMLElement
       if (target) {
         this.querySelector(`${containerSelector} > .current`)?.classList.remove("current")
         this.querySelector(`${tabContainerSelector} > .current`)?.classList.remove("current")
         target.classList.add("current")
         tab.classList.add("current")
+        this.updateScroll(target)
       }
     }
     this.tabClickHandler && this.tabClickHandler()
@@ -533,5 +544,10 @@ export class BeamWindow extends HTMLElement {
     if (e.target instanceof HTMLButtonElement) {
       e.target.focus()
     }
+  }
+
+  private updateScroll = (current: HTMLElement): void => {
+    const highlight = this.content?.querySelector(".capture-frame .highlight") as HTMLElement
+    highlight?.style.setProperty("--scroll", `${current.scrollTop}px`)
   }
 }
