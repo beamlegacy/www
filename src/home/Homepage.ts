@@ -225,7 +225,7 @@ export class Homepage {
     this.timeout = setTimeout(() => {
       const title = this.animation.titles[Math.min(this.animation.switches, this.animation.titles.length - 1)]
       this.animation.changeTitle(title)
-    }, 2350)
+    }, 3350)
   }
 
   private clearTimeout = (): void => {
