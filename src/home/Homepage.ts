@@ -1,9 +1,10 @@
 import {BeamWindow, BeamWindowMode} from "home/beam-window/BeamWindow"
 import {BeamWindowAnimation} from "home/BeamWindowAnimation"
 import {NumberUtil} from "util/NumberUtil"
-import {IconWithLabelRevealButton, RevealButton} from "home/beam-window/widget/button/IconWithLabelRevealButton"
+import {IconWithLabelRevealButton} from "home/beam-window/widget/button/IconWithLabelRevealButton"
 import {PublishButton} from "home/beam-window/widget/button/PublishButton"
 import {BetaSignupForm} from "widget/BetaSignupForm"
+import {RevealButton} from "home/beam-window/widget/button/RevealButton"
 
 // If you want to debug the animation / timeouts of this module, set this to true
 const debug = false

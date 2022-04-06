@@ -1,8 +1,9 @@
-import {IconWithLabelRevealButton, RevealButton} from "home/beam-window/widget/button/IconWithLabelRevealButton"
+import {IconWithLabelRevealButton} from "home/beam-window/widget/button/IconWithLabelRevealButton"
 import SpyInstance = jest.SpyInstance
 import {PublishButton} from "home/beam-window/widget/button/PublishButton"
 import {PublishButtonMessages} from "home/beam-window/widget/button/PublishButtonMessages"
 import {html} from "util/html/Html"
+import {RevealButton} from "home/beam-window/widget/button/RevealButton"
 
 const messages: PublishButtonMessages = {
   error: "Error",

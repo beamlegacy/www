@@ -1,21 +1,6 @@
 import {html} from "util/html/Html"
 import {HtmlUtils} from "util/html/HtmlUtils"
-
-export interface RevealButton extends HTMLButtonElement {
-  icon: Element | null
-
-  label: string | null
-
-  open: boolean
-
-  content: string | HTMLElement
-
-  element?: HTMLButtonElement
-
-  new(): any
-
-  render(): void
-}
+import {RevealButton} from "home/beam-window/widget/button/RevealButton"
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore

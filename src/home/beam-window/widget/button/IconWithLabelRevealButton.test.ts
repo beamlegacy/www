@@ -1,6 +1,7 @@
-import {IconWithLabelRevealButton, RevealButton} from "home/beam-window/widget/button/IconWithLabelRevealButton"
+import {IconWithLabelRevealButton} from "home/beam-window/widget/button/IconWithLabelRevealButton"
 import {html} from "util/html/Html"
 import SpyInstance = jest.SpyInstance
+import {RevealButton} from "home/beam-window/widget/button/RevealButton"
 
 describe("IconWithLabelRevealButton", () => {
   let setTimeoutSpy: SpyInstance
