@@ -1,7 +1,7 @@
 {
   "name": "welcome-tour",
   "private": true,
-  "version": "0.1.4",
+  "version": "0.2.0",
   "repository": "https://gitlab.com/beamgroup/beam-www",
   "description": "Beam website",
   "author": "beam",
