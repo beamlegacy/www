@@ -1,0 +1,33 @@
+@use "/src/style/mixins";
+
+.icn {
+  height: 1em;
+  width: 1em;
+}
+
+.icn,
+.icn.error {
+  color: var(--color-icons);
+  display: inline-block;
+
+  &.desktop {
+    display: none;
+  }
+
+  @include mixins.above-medium() {
+    &.mobile {
+      display: none;
+    }
+
+    &.desktop {
+      display: inline-block;
+    }
+  }
+}
+
+:hover,
+:focus {
+  > .icn {
+    color: var(--color-text);
+  }
+}

@@ -1,0 +1,186 @@
+@use "/src/style/mixins";
+@use "/src/home/hero";
+@use "beam-window/beam-window";
+
+@mixin home {
+  @keyframes bump {
+    0% {
+      transform: translateY(0) var(--transform);
+    }
+
+    50% {
+      transform: translateY(-1em) var(--transform);
+    }
+
+    100% {
+      transform: translateY(0) var(--transform);
+    }
+  }
+
+  .home {
+    @include hero.hero;
+
+    .win .beam-window {
+      --transform: scale(1);
+      transform: var(--transform);
+    }
+
+    > main {
+      --margin-top: calc(56 * var(--vh, 1vh) - var(--header-height));
+      height: calc(90 * var(--vh, 1vh) - var(--header-height));
+      margin-top: var(--margin-top);
+      padding: 0;
+
+    }
+
+    > header {
+      left: var(--site-padding);
+      position: fixed;
+      right: var(--site-padding);
+      top: var(--site-padding);
+      width: initial;
+    }
+
+    .demo,
+    .perspective-container {
+      align-items: center;
+      display: flex;
+      justify-content: center;
+      width: 100%;
+    }
+
+    .demo {
+      flex-direction: column;
+      padding: 5em 0;
+      position: relative;
+
+      .title {
+        --animation-slide-out-transform: translateY(0);
+        --animation-slide-in-transform: translateY(0);
+
+        color: var(--color-text-secondary);
+        font-size: 26px;
+        font-weight: 400;
+        margin: 0 -1em calc(6 * var(--vh, 1vh));
+
+        @include mixins.above-small {
+          font-size: 28px;
+
+          br {
+            display: none;
+          }
+        }
+
+        &.last {
+          cursor: pointer;
+        }
+
+        &.beta-signup {
+          .input,
+          .output {
+            --t-x: 50%;
+            font-size: 0.9em;
+            right: 50%;
+          }
+
+          .output {
+            text-align: center;
+          }
+        }
+
+        .arrow {
+          display: inline-block;
+          transition: transform 0.2s cubic-bezier(0.42, 0, 0.27, 1.73);
+        }
+
+        &:hover {
+          .arrow {
+            transform: translateX(0.25em);
+          }
+        }
+
+        strong {
+          color: var(--color-text);
+          display: inline-block;
+          font-weight: 600;
+
+          &.in,
+          &.out {
+            --animation-slide-easing: cubic-bezier(0, 1.05, 0.52, 1.5);
+            --animation-slide-in-transform: translateY(30px);
+
+            animation:
+              slide-in var(--animation-slide-duration) var(--animation-slide-easing) both,
+              fade-in var(--animation-fade-duration) var(--animation-fade-easing) both
+            ;
+            animation-delay: 0.05s;
+          }
+
+          &.out {
+            animation-name: slide-out, fade-out;
+          }
+        }
+
+        &.in,
+        &.out {
+          animation: fade-in var(--animation-fade-duration) var(--animation-fade-easing) backwards, slide-in var(--animation-fade-duration) var(--animation-fade-easing) backwards;
+          animation-delay: 0.05s;
+        }
+
+        &.out {
+          animation-name: fade-out, slide-out;
+        }
+      }
+    }
+
+    .perspective-container {
+      perspective: 150vw;
+      perspective-origin: center;
+    }
+
+    //noinspection CssInvalidFunction
+    .beam-window-container {
+      --height: 24.25em;
+      --max-height: calc(100 * var(--vh, 1vh) - var(--site-padding) * 2 - var(--header-height) - 10em);
+      --min-height: 15em;
+      --width: 47.5em;
+
+      font-size: 12px;
+      height: var(--height);
+      max-height: var(--max-height, var(--height, initial));
+      max-width: var(--width);
+      min-height: var(--min-height, var(--height, initial));
+      position: relative;
+      transform: translate3d(var(--tX, 0), var(--tY, 0), var(--tZ, 0)) rotateY(var(--rotate, 0)) scale(var(--scale, 1)) translateX(calc(var(--tX, 0) * -1.85));
+      transform-style: preserve-3d;
+      transition: transform 0.5s cubic-bezier(0.37, 1.51, 0.61, 0.99), font-size 0.2s ease-in-out;
+      width: 100%;
+
+      @include mixins.above-small {
+        --height: 31.25em;
+      }
+
+      @include mixins.above-medium {
+        font-size: 14px;
+      }
+
+      @include mixins.above-large {
+        --width: 52.5em;
+        --height: 33em;
+        font-size: 18px;
+      }
+
+      @include mixins.height-below-normal {
+        --height: 24.25em;
+        --width: 47.5em;
+        font-size: 12px;
+      }
+    }
+
+    @include mixins.above-small {
+      br {
+        display: none;
+      }
+    }
+  }
+}

@@ -1,0 +1,53 @@
+@mixin capture-frame {
+  .capture-frame {
+    inset: 0;
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    transition: opacity 0.2s ease-in-out;
+
+    .highlight {
+      --padding: 5px;
+      --x: 50%;
+      --y: 50%;
+      --width: 0px;
+      --height: 0px;
+      --ease: cubic-bezier(0.42, 0, 0.4, 1.17);
+      --translateY: calc(var(--scroll, 0px) * -1);
+
+      background-color: var(--color-beam-window-capture-highlight);
+      border-radius: 3px;
+      box-sizing: content-box;
+      height: var(--height);
+      left: calc(var(--x) + var(--padding) * -1);
+      //opacity: 0;
+      padding: 5px;
+      pointer-events: none;
+      position: absolute;
+      top: calc(var(--y) + var(--padding) * -1);
+      transform: translateY(var(--translateY));
+      transition:
+        opacity 0.2s ease-in-out,
+        left 0.2s var(--ease),
+        top 0.2s var(--ease),
+        width 0.2s var(--ease),
+        height 0.2s var(--ease)
+    ;
+      width: var(--width);
+    }
+  }
+
+  &.capturing {
+    .capture-frame {
+      opacity: 1;
+
+      .highlight {
+        opacity: 1;
+
+        &.shoot {
+          animation: beam-window-shoot 0.2s ease-in-out;
+        }
+      }
+    }
+  }
+}
