@@ -18,7 +18,7 @@ export class Button {
 
     console.assert(
       this._content,
-      `Button ${this.element} must have a content"
+      `Button ${this.element} must have a content`
     )
     this.element.append(this._content)
 
