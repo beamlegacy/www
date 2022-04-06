@@ -115,6 +115,30 @@ describe("BeamWindow", () => {
     currentPage.dispatchEvent(createEvent("scroll", {}, currentPage))
     expect(highlight.style.getPropertyValue("--scroll")).toBe("10px")
   })
+
+  test("Web page navigation when capturing updates / restores `.highlight --scroll` property", () => {
+    const targetCssClass = "capture-first"
+    const page = "beam-times"
+    testWindow.url = `web/${page}`
+    const win = testWindow.querySelector(".beam-window") as HTMLElement
+    const highlight = testWindow.querySelector(".capture-frame .highlight") as HTMLElement
+    const currentPage = testWindow.querySelector(`${testWindow.containerSelector} > .current`) as HTMLElement
+    expect(currentPage.dataset.page).toBe(page)
+    expect(win.classList.contains("capturing")).toBe(false)
+    expect(highlight.style.getPropertyValue("--scroll")).toBe("0px")
+    testWindow.captureTarget(`.${targetCssClass}`)
+    expect(win.classList.contains("capturing")).toBe(true)
+    currentPage.scrollTop = 10
+    setTimeoutSpy.mockRestore() // we have to restore because we're debouncing
+    currentPage.dispatchEvent(createEvent("scroll", {}, currentPage))
+    expect(highlight.style.getPropertyValue("--scroll")).toBe("10px")
+    const page2 = "bmail"
+    testWindow.url = `web/${page2}`
+    expect(highlight.style.getPropertyValue("--scroll")).toBe("0px")
+    testWindow.url = `web/${page}`
+    expect(highlight.style.getPropertyValue("--scroll")).toBe("10px")
+  })
+
   test("Shoot content", () => {
     const targetCssClass = "capture-first"
     const page = "beam-times"
