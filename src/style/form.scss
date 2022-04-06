@@ -22,6 +22,7 @@
   }
 
   > .button {
+    cursor: pointer;
     transition: transform 0.5s var(--form-transform-easing), opacity 0.5s ease-in-out;
   }
 
@@ -70,6 +71,7 @@
       background-color: transparent;
       border: 0;
       color: inherit;
+      cursor: default;
       font-size: 1em;
       padding: 0.25em 0;
       text-align: left;
@@ -174,6 +176,10 @@
     .input {
       opacity: 1;
       transform: translateY(0) translateX(var(--t-x, 0));
+
+      input {
+        cursor: initial;
+      }
     }
   }
 
