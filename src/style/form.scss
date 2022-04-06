@@ -1,0 +1,240 @@
+.beta-signup {
+  position: relative;
+
+  button,
+  a {
+    appearance: none;
+    background-color: transparent;
+    border: 0;
+    color: var(--color-text-secondary);
+    font-size: 1em;
+    margin: 0;
+    padding: 0.25em 0;
+
+    &:focus {
+      outline: none;
+    }
+
+    &:hover,
+    &:focus {
+      color: var(--color-text);
+    }
+  }
+
+  > .button {
+    cursor: pointer;
+    transition: transform 0.5s var(--form-transform-easing), opacity 0.5s ease-in-out;
+  }
+
+  .input {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    gap: 0.25em;
+    justify-content: center;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transform: translateY(100%) translateX(var(--t-x, 0));
+    transition: transform 0.5s var(--form-transform-easing), opacity 0.5s ease-in-out;
+
+    &::before,
+    &::after {
+      background-color: currentColor;
+      bottom: 0;
+      content: "";
+      height: 0.0625em;
+      left: 0;
+      opacity: 0.5;
+      position: absolute;
+      right: 0;
+      transform: scaleX(0);
+      transform-origin: 0 center;
+      transition: transform 0.4s cubic-bezier(1, 0, 0, 1), color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+    }
+
+    &::before {
+      opacity: 0.25;
+      transition-delay: 0.15s;
+    }
+
+    &:focus-within {
+      &::before {
+        transform: scaleX(1);
+      }
+    }
+
+    input {
+      appearance: none;
+      background-color: transparent;
+      border: 0;
+      color: inherit;
+      cursor: default;
+      font-size: 1em;
+      padding: 0.25em 0;
+      text-align: left;
+      width: 13em;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    .action-container {
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      height: 1em;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+      width: 1em;
+
+      > * {
+        align-items: center;
+        display: flex;
+        height: 100%;
+        justify-content: center;
+        transition: transform 0.2s ease-in-out;
+        width: 100%;
+      }
+
+      .button-close {
+        font-size: 1.35em;
+        margin-top: -3px;
+      }
+
+      > *:not(.button-close) {
+        position: absolute;
+        top: 0;
+        transform: translateY(var(--form-distance));
+      }
+    }
+
+    button {
+      font-family: inherit;
+      font-weight: 400;
+      padding: 0;
+      white-space: nowrap;
+    }
+  }
+
+  .output {
+    opacity: 0;
+    padding: 0.25em 0;
+    position: absolute;
+    right: 0;
+    text-align: right;
+    top: 0;
+    transform: translateY(var(--form-distance)) translateX(var(--t-x, 0));
+    transition: var(--form-transition);
+    width: 25em;
+
+    small {
+      font-size: 0.875em;
+    }
+
+    .icn {
+      color: var(--color-text-secondary);
+      display: inline-block;
+      height: 1em;
+      margin-right: 0.25em;
+      transform: scale(0);
+      transition: transform 0.15s ease-in-out;
+      vertical-align: middle;
+      width: 1em;
+
+      &.checkmark {
+        > path {
+          animation: drawCheckbox 0.25s ease-in-out 0.25s both;
+          stroke-dasharray: 130%;
+        }
+      }
+
+      &.error {
+        > path {
+          animation: drawError 0.3s ease-in-out both;
+          stroke-dasharray: 130%;
+        }
+
+        > path:nth-child(2) {
+          animation-delay: calc(0.2s + 0.025s);
+        }
+      }
+    }
+  }
+
+  &.show-input {
+    > .button {
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(var(--form-distance-out));
+    }
+
+    .input {
+      opacity: 1;
+      transform: translateY(0) translateX(var(--t-x, 0));
+
+      input {
+        cursor: initial;
+      }
+    }
+  }
+
+  &.show-output {
+    > .button {
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(var(--form-distance-out));
+    }
+
+    .input {
+      opacity: 0;
+      transform: translateY(var(--form-distance-out)) translateX(var(--t-x, 0));
+    }
+
+    .output {
+      opacity: 1;
+      transform: translateY(0) translateX(var(--t-x, 0));
+    }
+
+    .icn {
+      transform: scale(1);
+    }
+  }
+
+  &.valid {
+    .input {
+      &::after {
+        transform: scaleX(1);
+      }
+    }
+
+    .action-container {
+      .button-close {
+        transform: translateY(-2em);
+      }
+
+      > *:not(.button-close) {
+        transform: translateY(0);
+      }
+    }
+  }
+
+  &.error {
+    .input {
+      animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97);
+    }
+  }
+
+  &.pending {
+    .input {
+      &::after {
+        animation: pending 1.2s linear infinite both;
+        transition: none;
+      }
+    }
+  }
+}

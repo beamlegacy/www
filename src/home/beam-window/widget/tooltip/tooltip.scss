@@ -1,0 +1,121 @@
+@use "/src/style/mixins";
+
+// add to any element: data-tooltip="Test tooltip to check how it works"
+
+// The .tooltip-container class allows to measure and reposition tooltips before they are defined
+[data-tooltip],
+.tooltip-container {
+  --tooltip-offset: inherit;
+  --width: 100%;
+  --padding-v: 0.4375em;
+  --padding-h: 0.4375em;
+  --tooltip-scroll: var(--scroll, 0px); // keep the unit, otherwise subsequent calcs will not work
+
+  &::after,
+  .tooltip {
+    --in-translate-x: -50%;
+    --in-translate-y: -100%;
+    --in-transform: translate(var(--in-translate-x), var(--in-translate-y));
+    --out-translate-x: -50%;
+    --out-translate-y: -75%;
+    --out-transform: translate(var(--out-translate-x), var(--out-translate-y)) scale(0.5);
+
+    background-color: var(--color-tooltip-background) !important;
+    border-radius: 0.3em;
+    box-shadow: 0 0 4px var(--color-tooltip-shadow);
+    color: var(--color-tooltip-color);
+    content: attr(data-tooltip);
+    display: block;
+    font-size: 0.8125em;
+    left: auto;
+    margin-left: calc(-1 * var(--tooltip-padding-left) + var(--tooltip-parent-width) / 2 + var(--tooltip-horizontal-shift));
+    margin-top: calc(-1 * var(--tooltip-parent-height) + var(--tooltip-padding-top) - var(--tooltip-offset) - var(--tooltip-scroll));
+    opacity: 0;
+    padding: var(--padding-v) var(--padding-h);
+    pointer-events: none;
+    position: absolute;
+    top: auto;
+    transform: var(--out-transform) !important;
+    transform-origin: 50% 50%;
+    // @formatter:off
+    transition:
+      mixins.theme-transition(background-color, color, box-shadow),
+      transform 0.15s var(--easing-bounce),
+      opacity 0.15s var(--easing-bounce)
+    ;
+    // @formatter:on
+    white-space: nowrap;
+    z-index: 3;
+  }
+
+  &.tooltip-bottom {
+    &::after,
+    .tooltip {
+      --in-translate-y: 0;
+      --out-translate-y: -75%;
+
+      margin-top: calc(var(--tooltip-padding-bottom) + var(--tooltip-offset) - var(--tooltip-scroll));
+    }
+  }
+
+  &.tooltip-left {
+    &::after,
+    .tooltip {
+      --in-translate-x: -100%;
+      --out-translate-x: -75%;
+      --in-translate-y: -50%;
+      --out-translate-y: -50%;
+
+      margin-left: calc(-1 * var(--tooltip-padding-left) - var(--tooltip-offset));
+      margin-top: calc(-1 * var(--tooltip-parent-height) / 2 + var(--tooltip-padding-top) - var(--tooltip-scroll));
+    }
+  }
+
+  &.tooltip-right {
+    &::after,
+    .tooltip {
+      --in-translate-x: 0;
+      --out-translate-x: -25%;
+      --in-translate-y: -50%;
+      --out-translate-y: -50%;
+
+      margin-left: calc(var(--tooltip-parent-width) - var(--tooltip-padding-right) + var(--tooltip-offset));
+      margin-top: calc(-1 * var(--tooltip-parent-height) / 2 + var(--tooltip-padding-top) - var(--tooltip-scroll));
+    }
+  }
+
+  &[data-tooltip] {
+    &:hover,
+    &.active {
+      &::after,
+      .tooltip {
+        opacity: 1;
+        pointer-events: all;
+        transform: var(--in-transform) !important;
+      }
+    }
+  }
+
+  // measuring class doesn't transition so we can measure instantly the final position
+  .tooltip.measure {
+    --tooltip-horizontal-shift: 0px; // make sure to keep the unit otherwise calcs would fail
+
+    transform: var(--in-transform) !important;
+    transition: none !important;
+  }
+}
+
+.dropdown > nav {
+  [data-tooltip],
+  .tooltip {
+    &::after {
+      display: none;
+    }
+
+    @include mixins.above-medium() {
+      &::after {
+        display: block;
+      }
+    }
+  }
+}

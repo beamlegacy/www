@@ -1,0 +1,5 @@
+@use "mixins";
+
+.a11y {
+  @include mixins.visually-hidden();
+}

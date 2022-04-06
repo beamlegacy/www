@@ -1,25 +1,19 @@
-# General
-*.DS_Store
-Thumbs.db
-
-# Public
-/www
-
-# Configuration
-/conf
-.env
-.env.*
-!.env.example
-
-# Development
-/data
-.sass-cache
-.tmp
-dev-app-update.yml
-
-# Packages
+.parcel-cache/
+dist
 node_modules
-npm-debug.log
+/coverage/
+*.patch
+/test/e2e/screenshots/
+*.env
+/junit.xml
+/.env.prod
+/.env.staging
+/.env.develop
+.nvmrc
 
-# Build
-/dist
+# Local Netlify folder
+.netlify
+/.env.beam
+/.env.mat
+
+.DS_Store

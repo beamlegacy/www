@@ -1,209 +1,178 @@
-const fs = require('fs');
+/* eslint-env node */
 
-if (fs.existsSync('./env.json')) {
-  const webpack = require('webpack');
-  const path = require('path');
-  const TerserPlugin = require("terser-webpack-plugin");
-  const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-  const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-  const CopyWebpackPlugin = require('copy-webpack-plugin');
-  const ImageminPlugin = require('imagemin-webpack-plugin').default;
-  const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-  const HtmlWebpackPlugin = require('html-webpack-plugin')
-  const bourbon = require('node-bourbon').includePaths;
-  const envConfig = require('./env.json');
+const path = require("path")
+const webpack = require("webpack")
 
-  module.exports = (env, argv) => {
-    var plugins = [],
-        build = process.env.APP_ENV || argv.mode,
-        production = build === 'production' || argv.mode === 'production',
-        path_theme = envConfig[build].path || 'www',
-        path_assets = path_theme + '/assets'
-        filename = (production) ? '[name]' : '[name]',
-        replacePatterns = {};
+const HtmlWebpackPlugin = require("html-webpack-plugin")
+const FaviconsWebpackPlugin = require("favicons-webpack-plugin")
+const CopyPlugin = require("copy-webpack-plugin")
+const WorkboxPlugin = require("workbox-webpack-plugin")  // For service worker
+const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin
 
-    for (var i in envConfig) {
-      if (i === build) {
-        var environment = envConfig[i];
+const packageJson = require("./package.json")
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const HTMLInlineCSSWebpackPlugin = require("html-inline-css-webpack-plugin").default;
 
-        replacePatterns[i] = [];
+const pages = require("./pages.js")
 
-        envConfig.global.replacements.config = envConfig.global.replacements.config || {};
-        envConfig.global.replacements.config.version = process.env.npm_package_version;
-        envConfig.global.replacements.config.env = build;
+const version = packageJson.version
 
-        if (envConfig.global) {
-          if (envConfig.global.replacements) {
-            for (var j in envConfig.global.replacements) {
-              var main = envConfig.global.replacements[j];
+// Initialize dotenv support, the earlier the better
+require("dotenv").config()
 
-              for (var k in main) {
-                replacePatterns[i].push({
-                  search: '@@' + j + '.' + k,
-                  replace: main[k],
-                  flags: 'g',
-                });
-              }
-            }
-          }
-        }
+const minifyOptions = {
+  collapseWhitespace: true,
+  keepClosingSlash: true,
+  removeComments: true,
+  removeRedundantAttributes: true,
+  removeScriptTypeAttributes: true,
+  removeStyleLinkTypeAttributes: true,
+  useShortDoctype: true
+}
 
-        if (environment.replacements) {
-          var replacements = environment.replacements;
+function createHtmlPlugins(pages, mode) {
+  return pages.map((template, i) => {
+    const {title, srcPath, messages, filename, ...rest} = template
+    return new HtmlWebpackPlugin({
+      ...rest,
+      messages,
+      title: `${title}${mode !== "production" ? ` [${mode}]` : ""}`,
+      template: `src/${srcPath}`,
+      minify: minifyOptions,
+      filename,
+      js: ["[chunkhash].js"],
+      chunks: template.chunks ?? ["index"]
+    })
+  })
+}
 
-          replacePatterns[i].push({
-            search: '@@environment',
-            replace: i,
-            flags: 'g',
-          });
-
-          for (var j in replacements) {
-            var main = replacements[j];
-
-            for (var k in main) {
-              replacePatterns[i].push({
-                search: '@@' + j + '.' + k,
-                replace: main[k],
-                flags: 'g',
-              });
-            }
-          }
-        }
-
-        if (environment.filenames) {
-          for (var j in environment.filenames) {
-            filenames[j] = environment.filenames[j];
-          }
-        }
-      }
-    }
-
-    plugins.push(new HtmlWebpackPlugin({
-      template: './src/templates/index.html',
-      filename: './../../index.html',
-      inject: false,
-      minify: production
-    }));
-
-    plugins.push(new webpack.DefinePlugin({
-      ENV: {
-        debug: (production === false),
-        version: JSON.stringify(process.env.npm_package_version)
-      }
-    }));
-
-    plugins.push(new CopyWebpackPlugin({
+function config(mode, env) {
+  console.log("Building for", mode)
+  const analyzeBundle = false
+  console.log("Env is", env, process.env.API_HOST, process.env.SUBSCRIBE_LINK_URL)
+  const isDevelopment = mode === "development"
+  const plugins = [
+    new webpack.DefinePlugin({
+      "process.env.CANONICAL_HOST": JSON.stringify(process.env.CANONICAL_HOST),
+      "process.env.API_HOST": JSON.stringify(process.env.API_HOST),
+      "process.env.SUBSCRIBE_LINK_URL": JSON.stringify(process.env.SUBSCRIBE_LINK_URL),
+      "process.env.SECURE_SUBSCRIBE_TOKEN": JSON.stringify(process.env.SECURE_SUBSCRIBE_TOKEN),
+      "process.env.SUBSCRIBE_EMAIL_KEY": JSON.stringify(process.env.SUBSCRIBE_EMAIL_KEY),
+    }),
+    new FaviconsWebpackPlugin({
+      logo: `./src/favicon${isDevelopment ? "-dev" : ""}-32x32.png`,
+      mode: "light",
+      publicPath: "/",
+    }),
+    ...createHtmlPlugins(pages, mode),
+    new CopyPlugin({
       patterns: [
         {
-          from: path.resolve(__dirname, 'src/assets/images'),
-          to: path.resolve(__dirname, path_assets + '/images'),
+          from: path.resolve(__dirname, 'static'),
+          to: "",
           globOptions: {
             ignore: ['.DS_Store']
           }
+        }
+      ]
+    }),
+    new MiniCssExtractPlugin({
+      filename: "css/[chunkhash].css"
+    }),
+    /*    new WorkboxPlugin.GenerateSW({
+          // these options encourage the ServiceWorkers to get in there fast
+          // and not allow any straggling "old" SWs to hang around
+          clientsClaim: true,
+          skipWaiting: true,
+        }),*/
+  ]
+  if (!isDevelopment) {
+    plugins.push(new HTMLInlineCSSWebpackPlugin())
+  }
+  if (analyzeBundle) {
+    plugins.push(new BundleAnalyzerPlugin({mode: analyzeBundle ? "static" : "disabled", openAnalyzer: false}))
+  }
+  return {
+    mode,
+    entry: {
+      index: {
+        import: "./src/index.ts"
+        // dependOn: "service_worker"
+      },
+      home: {
+        import: "./src/home/home"
+      }
+      //   service_worker: "./src/service-worker.js"
+    },
+    devtool: isDevelopment ? 'source-map' : false,
+    devServer: {
+      https: false,                      // Required by service workers if we don't use localhost
+      host: "0.0.0.0",
+      allowedHosts: [".lvh.me"],
+      historyApiFallback: true
+    },
+    plugins,
+    module: {
+      rules: [
+        {
+          test: /\.tsx?$/,
+          use: "ts-loader",
+          exclude: /node_modules/
         },
         {
-          from: path.resolve(__dirname, 'static'),
-          to: path.resolve(__dirname, path_theme),
-          globOptions: {
-            ignore: ['.DS_Store']
-          }
+          test: /\.worker\.js$/,
+          use: {loader: "worker-loader"}
+        },
+        {
+          test: [/\.js$/],
+          enforce: "pre",
+          exclude: /node_modules/,
+          use: ["source-map-loader"]
+        },
+        {
+          test: /(?<!\.wc)\.scss$/,
+          use: [
+            isDevelopment && process.env.HOT_RELOAD_CSS === "true" ? "style-loader" : {loader: MiniCssExtractPlugin.loader},
+            "css-loader",     // Translates CSS into CommonJS
+            "sass-loader"     // Compiles Sass to CSS
+          ],
+          exclude: /node_modules/
+        },
+        {
+          test: /\.wc\.scss$/,
+          type: "asset/source",
+          use: [
+            "sass-loader"     // Compiles Sass to CSS
+          ],
+          exclude: /node_modules/
+        },
+        {
+          test: /\.svg$/i,
+          type: "asset/resource"
         }
       ]
-    }));
-
-    plugins.push(new MiniCssExtractPlugin({
-      filename: '../css/style.css'
-    }));
-
-    plugins.push(new webpack.ProvidePlugin({
-      $: "jquery",
-      jQuery: "jquery",
-    }));
-
-    plugins.push(new CleanWebpackPlugin({
-      cleanOnceBeforeBuildPatterns: [
-        path.resolve(__dirname, path_theme + '/**/*')
-      ]
-    }));
-
-    return {
-      optimization: {
-        minimize: production,
-        minimizer: [
-          new TerserPlugin(),
-        ],
-        splitChunks: {
-          chunks: 'async'
-        }
-      },
-      entry: {
-        './../css/style': './src/scss/app.scss',
-        'script': './src/js/app.js',
-      },
-      output: {
-        filename: filename + '.js',
-        path: path.resolve(__dirname, path_assets + '/js'),
-      },
-      module: {
-        rules: [
-          {
-            test: /\.js$/,
-            exclude: /(node_modules|bower_components)/,
-            use: {
-              loader: 'babel-loader',
-            }
-          },
-          {
-            test: /.*\.html$/,
-            loader: 'raw-loader',
-          },
-          {
-            test: /.*\.html$/,
-            loader: 'string-replace-loader',
-            options: {
-              multiple: replacePatterns[build]
-            }
-          },
-          {
-            test: /app\.scss$/,
-            use: [
-              {
-                loader: MiniCssExtractPlugin.loader,
-                options: {
-                    publicPath: 'images/'
-                }
-              },
-              {
-                loader: "css-loader",
-                options: {
-                  url: false,
-                }
-              },
-              {
-                loader: "sass-loader",
-                options: {
-                  sassOptions: {
-                    outputPath: 'images/'
-                  }
-                },
-              },
-            ],
-          },
-          {
-            test: /\.(woff|woff2|eot|ttf|svg|otf)$/,
-            exclude: [/images/],
-            use: [{
-              loader: 'file-loader',
-              options: {
-                outputPath: './../css/fonts/',
-              }
-            }],
-          },
-        ]
-      },
-      plugins: plugins
-    };
+    },
+    resolve: {
+      extensions: [".tsx", ".ts", ".js"],
+      modules: [
+        path.resolve("./node_modules"),
+        path.resolve("./src")
+      ],
+      fallback: {
+        "fs": false,
+        "os": false,
+        "path": false,
+        "process": require.resolve("process/browser"),
+      }
+    },
+    output: {
+      filename: `[chunkhash]${env !== "production" ? "-[name]" : ""}.js`,
+      path: path.resolve(__dirname, "dist")
+    }
   }
-} else {
-  console.log('Missing env.json file'); process.exit(0);
+}
+
+module.exports = (env, argv) => {
+  const mode = argv.mode || process.env.NODE_ENV
+  return config(mode, env)
 }

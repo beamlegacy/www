@@ -1,0 +1,64 @@
+.beam-site {
+  --animation-slide-duration: 0.3s;
+  --animation-slide-easing: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --animation-fade-duration: 0.2s;
+  --animation-fade-easing: ease-in-out;
+  --animation-slide-in-transform: translateY(40px);
+  --animation-slide-out-transform: translateY(-40px);
+  --animation-fade-in-start-opacity: 0.001; // make sure lighthouse sees a LCP
+  --animation-fade-in-end-opacity: 1;
+  --animation-fade-out-start-opacity: 1;
+  --animation-fade-out-end-opacity: 0;
+
+  &.in,
+  &.out {
+    animation:
+      slide-in var(--animation-slide-duration) var(--animation-slide-easing) both,
+      fade-in var(--animation-fade-duration) var(--animation-fade-easing) both
+  ;
+
+    footer {
+      animation:
+        slide-in var(--animation-slide-duration) var(--animation-slide-easing) both,
+        fade-in var(--animation-fade-duration) var(--animation-fade-easing) both
+    ;
+      animation-delay: calc(var(--animation-slide-duration) * 2);
+    }
+  }
+
+  &.out {
+    animation-name: slide-out, fade-out;
+  }
+
+  &.in:not(.reverse) {
+    animation-delay: 200ms;
+  }
+
+  &.out:is(.reverse) {
+    --animation-slide-easing: cubic-bezier(0.75, 0, 0.75, 0.9);
+    animation-delay: 200ms;
+  }
+
+  &.reverse {
+    animation-direction: reverse;
+  }
+}
+
+.icn {
+  &.beam {
+    > g:first-child {
+      --animation-grow-initial-scale: 0.5;
+      --easing: cubic-bezier(0.25, 0.1, 0.27, 1.21);
+      animation: grow 0.3s var(--easing) 0.1s both;
+      transform-origin: center;
+    }
+
+    > g:not(:first-child),
+    > path {
+      --animation-grow-initial-scale: 0;
+      --easing: cubic-bezier(0.25, 0.1, 0.25, 1);
+      animation: grow 0.2s var(--easing) 0.5s both;
+      transform-origin: 28.125% 71.09375%;
+    }
+  }
+}

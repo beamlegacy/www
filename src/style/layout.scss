@@ -1,0 +1,75 @@
+@use "mixins";
+@use "header";
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+html {
+  padding-left: calc(100vw - 100%); // https://css-tricks.com/elegant-fix-jumping-scrollbar-issue/
+}
+
+body {
+  --gradient-opacity: 0.2;
+
+  background-color: var(--color-background);
+  color: var(--color-text);
+
+  &::before {
+    --gradient1: calc(30% + var(--gradient-grow, 0%));
+    --gradient2: calc(50% + var(--gradient-grow, 0%));
+    --gradient3: calc(45% + var(--gradient-grow, 0%));
+    --gradient4: calc(35% + var(--gradient-grow, 0%));
+    background-image:
+      radial-gradient(circle at 0% 0%, var(--color-logo-spotlight-start) 10%, var(--color-logo-spotlight-end) 40%),
+      radial-gradient(circle at 0% 60%, var(--color-background-gradient1-start), var(--color-background-gradient1-end) var(--gradient1)),
+      radial-gradient(circle at 20% 100%, var(--color-background-gradient2-start) 10%, var(--color-background-gradient2-end) var(--gradient2)),
+      radial-gradient(circle at 70% 100%, var(--color-background-gradient3-start), var(--color-background-gradient3-end) var(--gradient3)),
+      radial-gradient(circle at 100% 60%, var(--color-background-gradient4-start), var(--color-background-gradient4-end) var(--gradient4))
+    ;
+    bottom: 0;
+    content: "";
+    height: 100vh;
+    left: 0;
+    opacity: var(--gradient-opacity);
+    position: fixed;
+    width: 100%;
+    will-change: height;
+  }
+}
+
+.beam-site {
+  --header-height: 2em;
+  --hero-height: calc(100 * var(--vh, 1vh) - var(--header-height));
+  --site-padding: 2em;
+
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100%;
+  overflow: hidden;
+  padding: var(--site-padding);
+
+  > main {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: center;
+    margin: auto;
+    max-width: 1300px;
+    padding: 40px 0 50px;
+    text-align: center;
+    transition: padding 0.2s ease-in-out;
+    width: 100%;
+
+    @include mixins.height-below-default {
+      padding: 0 0 20px;
+    }
+  }
+
+  @include header.header;
+}
