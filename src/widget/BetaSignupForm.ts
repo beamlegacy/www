@@ -64,7 +64,7 @@ export class BetaSignupForm {
       method: "POST",
       mode: "no-cors",
       headers: {
-        "Content-Type": "application/json"
+        "Content-type": "application/json"
       },
       body: JSON.stringify({email})
     })
