@@ -62,10 +62,7 @@ export class BetaSignupForm {
     console.assert(url, "No API_HOST found in env")
     return fetch(`${url}/api/v1/emails`, {
       method: "POST",
-      mode: "no-cors",
-      headers: {
-        "Content-type": "application/json"
-      },
+      headers: new Headers({"content-type": "application/json"}),
       body: JSON.stringify({email})
     })
       .then((_response: Response) => {
