@@ -5,6 +5,7 @@ import {IconWithLabelRevealButton} from "home/beam-window/widget/button/IconWith
 import {PublishButton} from "home/beam-window/widget/button/PublishButton"
 import {BetaSignupForm} from "widget/BetaSignupForm"
 import {RevealButton} from "home/beam-window/widget/button/RevealButton"
+import {GoogleAnalytics} from "util/GoogleAnalytics"
 
 // If you want to debug the animation / timeouts of this module, set this to true
 const debug = false
@@ -80,6 +81,10 @@ export class Homepage {
         const content = footer.querySelector(".content") as HTMLElement
         content?.style.setProperty("transform", `scale(${mapped})`)
         content?.style.setProperty("opacity", `${mapped}`)
+
+        if (mapped > 0 && !GoogleAnalytics.eventFired("scroll_bottom")) {
+          GoogleAnalytics.trackEvent("scroll_bottom")
+        }
       }, {
         rootMargin: "0px 0px -25px 0px",
         threshold: new Array(1000).fill(0).map((v, i) => (i + 1) / 1000)

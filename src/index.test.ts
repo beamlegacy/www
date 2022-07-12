@@ -1,4 +1,5 @@
 import App from "index"
+import DownloadApp from "./util/DownloadApp"
 import SpyInstance = jest.SpyInstance
 
 describe("Beam Website App", () => {
@@ -107,6 +108,6 @@ describe("Beam Website App", () => {
     const beta = logo.querySelector(".beta") as HTMLElement
     expect(beta).toBeDefined()
     beta.dispatchEvent(new Event("dblclick"))
-    expect(window.location.replace).toHaveBeenCalledWith("https://s3.eu-west-3.amazonaws.com/downloads.beamapp.co/beta/Beam.dmg")
+    expect(window.location.replace).toHaveBeenCalledWith(DownloadApp.getUrl())
   })
 })

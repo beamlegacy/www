@@ -1,4 +1,6 @@
 import {debounce} from "debounce"
+import {GoogleAnalytics} from "util/GoogleAnalytics"
+import DownloadApp from "util/DownloadApp"
 
 export enum BeamWindowMode {
   web = "web",
@@ -312,7 +314,7 @@ export class BeamWindow extends HTMLElement {
       return this.omniboxTabMatcher(entry, query) ? entry : undefined
     }).filter(Boolean) as BeamTab[]
     if (query.replace(/[^a-z]/g, "").match(/^beammeup/)) {
-      result.push({label: "Download beam beta 😎", beamUrl: "https://s3.eu-west-3.amazonaws.com/downloads.beamapp.co/beta/Beam.dmg", icon: defaultOmnbiboxIcon})
+      result.push({label: "Download beam beta 😎", beamUrl: DownloadApp.getUrl(), icon: defaultOmnbiboxIcon})
     }
     this.renderOmniboxResults(result)
   }
@@ -361,6 +363,9 @@ export class BeamWindow extends HTMLElement {
       const row = this.renderOmniboxResult(result)
       row.addEventListener("click", (e: Event): void => {
         this.url = result.beamUrl
+        if (result.beamUrl === DownloadApp.getUrl()) {
+          GoogleAnalytics.trackEvent("app_download")
+        }
         const target = e.target as HTMLElement
         setTimeout(() => target.blur())
       })

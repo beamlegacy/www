@@ -253,6 +253,42 @@ describe("Home page", () => {
     expect(betaSignup).toBeDefined()
     expect(betaSignup.contains(document.activeElement)).toBe(true)
   })
+
+  describe("when the user scrolls to bottom", () => {
+    test("should fire a google analytics event", () => {
+      window.dataLayer = []
+      intersectioObserverMockedObserveValues = {
+        boundingClientRect: {},
+        intersectionRatio: 1,
+        intersectionRect: {},
+        isIntersecting: false,
+        rootBounds: {},
+        time: 0
+      }
+      new Homepage()
+      expect(window.dataLayer[0][0]).toEqual("event")
+      expect(window.dataLayer[0][1]).toEqual("scroll_bottom")
+    })
+    test("should not fire a google analytics event twice", () => {
+      window.dataLayer = []
+      intersectioObserverMockedObserveValues = {
+        boundingClientRect: {},
+        intersectionRatio: 1,
+        intersectionRect: {},
+        isIntersecting: false,
+        rootBounds: {},
+        time: 0
+      }
+      
+      // fire it once
+      new Homepage()
+      expect(window.dataLayer.length).toBe(1)
+
+      // should not fire it again
+      new Homepage()
+      expect(window.dataLayer.length).toBe(1)
+    })
+  })
 })
 
 class SteppedHomepage extends Homepage {

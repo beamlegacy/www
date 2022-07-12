@@ -41,7 +41,10 @@ function createHtmlPlugins(pages, mode) {
       minify: minifyOptions,
       filename,
       js: ["[chunkhash].js"],
-      chunks: template.chunks ?? ["index"]
+      chunks: template.chunks ?? ["index"],
+      tracking: {
+        googleAnalytics: process.env.GA_MEASUREMENT_ID,
+      }
     })
   })
 }
