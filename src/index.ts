@@ -5,6 +5,8 @@ import {BeamWindow} from "home/beam-window/BeamWindow"
 import {MOTD} from "util/MOTD"
 import {BetaSignupForm} from "widget/BetaSignupForm"
 import packageJson from "../package.json"
+import {GoogleAnalytics} from "util/GoogleAnalytics"
+import DownloadApp from "util/DownloadApp"
 
 const {version} = packageJson
 const pages = require("../pages.js")
@@ -114,7 +116,8 @@ export default class App {
     const logo = this.logo
     const beta = logo?.querySelector(".beta")
     beta?.addEventListener("dblclick", () => {
-      window.location.replace("https://s3.eu-west-3.amazonaws.com/downloads.beamapp.co/beta/Beam.dmg")
+      GoogleAnalytics.trackEvent("app_download")
+      window.location.replace(DownloadApp.getUrl())
     })
   }
 }
