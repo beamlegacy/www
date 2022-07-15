@@ -2,6 +2,7 @@ import {BeamWindow, BeamWindowMode} from "./beam-window/BeamWindow"
 import SpyInstance = jest.SpyInstance
 import {BeamWindowAnimation} from "./BeamWindowAnimation"
 import {testWindowContent} from "./beam-window/TestWindowContent"
+import FeatureFlagsClient from "../util/FeatureFlagsClient"
 
 const createWebComponent = (): BeamWindow => {
   const component = document.createElement("beam-window") as BeamWindow
@@ -82,5 +83,20 @@ describe("BeamWindowAnimation", () => {
     document.querySelector("h1")?.dispatchEvent(createEvent("animationend", {}))
     const h1 = document.querySelector("h1")
     expect(h1?.innerHTML).toBe(testAnimation.titles[0])
+  })
+
+  describe("when the beta is available for download", () => {
+    let mockFeatureFlagsCheck: SpyInstance
+    beforeAll(() => {
+      mockFeatureFlagsCheck = jest
+        .spyOn(FeatureFlagsClient, "isEnabled")
+        .mockImplementation((feature) => feature === "download beta app" ? true : false)
+    })
+    afterAll(() => {
+      mockFeatureFlagsCheck.mockRestore()
+    })
+    it("should show the download button", () => {
+      expect(testAnimation.titles[4]).toBe("<button class=\"beam-button large download-app\" data-from=\"prototype\">Download beam</button>")
+    })
   })
 })

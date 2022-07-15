@@ -32,23 +32,40 @@ describe("Beam Website App", () => {
       </span>
 
       <div class="nav">
-        <div class="beta-signup">
-          <button class="button underline"><%= htmlWebpackPlugin.options.messages.header.betaSignup %></button>
-          <form class="input" novalidate>
-            <input type="email" required name="zXmAeBqfd" autocomplete="off" placeholder="<%= htmlWebpackPlugin.options.messages.header.betaSignupPlaceholder %>">
-            <div class="action-container">
-              <button type="button" class="button-close">×</button>
-              <button type="submit" class="button-arrow">-></button>
-            </div>
-          </form>
-          <div class="output"></div>
-        </div>
+        <% if (htmlWebpackPlugin.options.featureFlagEnabled("download beta app")) { %>
+          <button class="beam-button pulse-on-load download-app" data-from="header">
+            <%= htmlWebpackPlugin.options.messages.header.tryBeam %>
+          </button>
+        <% } else { %>
+          <div class="beta-signup">
+            <button class="button underline">
+              <%= htmlWebpackPlugin.options.messages.header.betaSignup %>
+            </button>
+            <form class="input" novalidate>
+              <input type="email" required name="zXmAeBqfd" autocomplete="off" placeholder="<%= htmlWebpackPlugin.options.messages.header.betaSignupPlaceholder %>">
+              <div class="action-container">
+                <button type="button" class="button-close" tabindex="0">×</button>
+                <button type="submit" class="button-arrow" tabindex="0">-></button>
+              </div>
+            </form>
+            <div class="output"></div>
+          </div>
+        <% } %>
       </div>
     </header>
     <main>
       <div class="hero">
         <h1><%= htmlWebpackPlugin.options.messages.title %></h1>
         <p><%= htmlWebpackPlugin.options.messages.subtitle %></p>
+
+        <% if (htmlWebpackPlugin.options.featureFlagEnabled("download beta app")) { %>
+          <button class="beam-button large download-app" data-from="hero">
+            <%= htmlWebpackPlugin.options.messages.download %>
+          </button>
+          <small class="os-version">
+            <%= htmlWebpackPlugin.options.messages.macOSVerion %>
+          </small>
+        <% } %>
       </div>
       <div class="demo">
         <div class="title-container">
@@ -109,5 +126,23 @@ describe("Beam Website App", () => {
     expect(beta).toBeDefined()
     beta.dispatchEvent(new Event("dblclick"))
     expect(window.location.replace).toHaveBeenCalledWith(DownloadApp.getUrl())
+  })
+
+  describe("when the user clicks on the header download button", () => {
+    test("it should download the app", () => {
+      const downloadButton = document.querySelector(".nav .beam-button") as HTMLElement
+      expect(downloadButton).toBeDefined()
+      downloadButton.dispatchEvent(new Event("click"))
+      expect(window.location.replace).toHaveBeenCalledWith(DownloadApp.getUrl())
+    })
+  })
+
+  describe("when the user clicks on the hero download button", () => {
+    test("it should download the app", () => {
+      const downloadButton = document.querySelector(".hero .beam-button") as HTMLElement
+      expect(downloadButton).toBeDefined()
+      downloadButton.dispatchEvent(new Event("click"))
+      expect(window.location.replace).toHaveBeenCalledWith(DownloadApp.getUrl())
+    })
   })
 })

@@ -1,0 +1,67 @@
+.beam-site {
+  button.beam-button,
+  a.beam-button {
+    --animation-slide-easing: cubic-bezier(0, 1.05, 0.52, 1.5);
+    --animation-slide-in-transform: translateY(30px);
+    background-color: var(--color-primary);
+    border: 1px solid transparent;
+    border-radius: 6px;
+
+    color: var(--color-light);
+    cursor: pointer;
+
+    display: block;
+
+    font-family: "Inter";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+
+    height: 37px;
+    line-height: 21px;
+    min-width: 96px;
+    padding: 8px;
+
+    text-align: center;
+    
+    transition: all 0.1s ease-in-out;
+
+    &:hover {
+      box-shadow: 0 4px 16px var(--color-primary-shadow);
+      color: var(--color-light);
+      transform: scale(1.05);
+    }
+
+    &:active {
+      background-color: var(--color-primary-active);
+      box-shadow: none;
+      color: var(--color-light);
+      transform: scale(1);
+    }
+
+    &:focus {
+      color: var(--color-light);
+    }
+
+    &.pulse-on-load {
+      animation: pulse 0.8s;
+      animation-delay: 0.2s;
+    }
+
+    &.large {
+      border-radius: 10px;
+      font-size: 20px;
+      height: 56px;
+      line-height: 28px;
+      min-width: 220px;
+      padding: 14px 24px;
+    }
+
+    &.link {
+      background-color: transparent !important;
+      box-shadow: none;
+      color: var(--color-primary);
+      transition: all 0.3s ease-in-out;
+    }
+  }
+}

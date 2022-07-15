@@ -12,6 +12,7 @@ const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPl
 const packageJson = require("./package.json")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HTMLInlineCSSWebpackPlugin = require("html-inline-css-webpack-plugin").default;
+const FeatureFlagsClient = require("./src/util/FeatureFlagsClient.js")
 
 const pages = require("./pages.js")
 
@@ -44,7 +45,8 @@ function createHtmlPlugins(pages, mode) {
       chunks: template.chunks ?? ["index"],
       tracking: {
         googleAnalytics: process.env.GA_MEASUREMENT_ID,
-      }
+      },
+      featureFlagEnabled: FeatureFlagsClient.isEnabled
     })
   })
 }

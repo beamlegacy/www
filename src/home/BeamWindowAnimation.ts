@@ -1,5 +1,6 @@
 import {BeamWindow, BeamWindowMode} from "./beam-window/BeamWindow"
 import {RevealButton} from "home/beam-window/widget/button/RevealButton"
+import FeatureFlagsClient from "../util/FeatureFlagsClient"
 
 // If you want to debug the animation / timeouts of this module, set this to true
 const debug = false
@@ -16,7 +17,9 @@ export class BeamWindowAnimation {
     "So you can <br><strong class=\"in\">capture</strong> the web…",
     "Make it <br><strong class=\"in\">your own</strong>…",
     "And <br><strong class=\"in\">share it</strong> with the world",
-    "<strong class=\"in\">Sign up</strong> <br>for the beta now <span class=\"arrow\">-&gt;</span>",
+    FeatureFlagsClient.isEnabled("download beta app")
+      ? "<button class=\"beam-button large download-app\" data-from=\"prototype\">Download beam</button>"
+      : "<strong class=\"in\">Sign up</strong> <br>for the beta now <span class=\"arrow\">-&gt;</span>"
   ]
 
   constructor(
