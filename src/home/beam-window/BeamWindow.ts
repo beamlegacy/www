@@ -364,7 +364,7 @@ export class BeamWindow extends HTMLElement {
       row.addEventListener("click", (e: Event): void => {
         this.url = result.beamUrl
         if (result.beamUrl === DownloadApp.getUrl()) {
-          GoogleAnalytics.trackEvent("app_download")
+          GoogleAnalytics.trackEvent("app_download", {from: "omnibox"})
         }
         const target = e.target as HTMLElement
         setTimeout(() => target.blur())

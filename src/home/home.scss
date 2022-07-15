@@ -51,7 +51,6 @@
 
     .demo {
       flex-direction: column;
-      padding: 5em 0;
       position: relative;
 
       .title {
@@ -73,6 +72,10 @@
 
         &.last {
           cursor: pointer;
+        }
+
+        .beam-button {
+          margin-top: -14px;
         }
 
         &.beta-signup {

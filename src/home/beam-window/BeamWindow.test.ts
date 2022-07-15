@@ -284,7 +284,7 @@ describe("BeamWindow", () => {
     expect(testWindow.url).toBe("writing/journal")
   })
 
-  describe("when clicking on the download button", () => {
+  describe("when clicking on the beam me up button", () => {
     test("it downloads the beam app", () => {
       window.dataLayer = []
       const searchBtn = testWindow.querySelector(".controls .search") as HTMLButtonElement
@@ -298,6 +298,7 @@ describe("BeamWindow", () => {
       results[0].click()
       expect(window.dataLayer[0][0]).toBe("event")
       expect(window.dataLayer[0][1]).toBe("app_download")
+      expect(window.dataLayer[0][2]).toEqual({from:"omnibox"})
     })
   })
 })

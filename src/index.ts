@@ -34,6 +34,7 @@ export default class App {
     if (form) {
       new BetaSignupForm(form, this.messages, this.logo ?? undefined)
     }
+    this.initDownloadButtons()
   }
 
   get langUrlPrefix(): string {
@@ -116,8 +117,37 @@ export default class App {
     const logo = this.logo
     const beta = logo?.querySelector(".beta")
     beta?.addEventListener("dblclick", () => {
-      GoogleAnalytics.trackEvent("app_download")
-      window.location.replace(DownloadApp.getUrl())
+      GoogleAnalytics.trackEvent("app_download", {from: "beta_logo"})
+      DownloadApp.startDownload()
+    })
+  }
+
+  private handleDownload(button: Element): void {
+    const from = button.getAttribute("data-from") as string
+    DownloadApp.startDownload()
+    GoogleAnalytics.trackEvent("app_download", {from})
+
+    if (from === "header") {
+      return
+    }
+
+    button.classList.add("link", "no-pointer-events")
+    button.classList.remove("pulse-on-load")
+    button.setAttribute("data-cta", button.textContent as string)
+    button.textContent = this.messages.downloadSuccess
+
+    setTimeout(() => {
+      button.classList.remove("link", "no-pointer-events")
+      button.textContent = button.getAttribute("data-cta")
+    }, 2000)
+  }
+
+  private initDownloadButtons() {
+    document.addEventListener("click", (e) => {
+      const target = e.target as HTMLElement
+      if (target.classList.contains("download-app")) {
+        this.handleDownload(target)
+      }
     })
   }
 }

@@ -11,7 +11,7 @@
 - clone the repo
 - run `yarn install`
 - run `cp .env.example .env`
-- run `yarn start`
+- run `yarn start:dev`
 
 You will now have a dev server running with hot reloading, always enabled for js, and for styles, based on your preferred env setting
 

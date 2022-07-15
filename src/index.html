@@ -200,23 +200,40 @@
       </span>
 
       <div class="nav">
-        <div class="beta-signup">
-          <button class="button underline"><%= htmlWebpackPlugin.options.messages.header.betaSignup %></button>
-          <form class="input" novalidate>
-            <input type="email" required name="zXmAeBqfd" autocomplete="off" placeholder="<%= htmlWebpackPlugin.options.messages.header.betaSignupPlaceholder %>">
-            <div class="action-container">
-              <button type="button" class="button-close" tabindex="0">×</button>
-              <button type="submit" class="button-arrow" tabindex="0">-></button>
-            </div>
-          </form>
-          <div class="output"></div>
-        </div>
+        <% if (htmlWebpackPlugin.options.featureFlagEnabled("download beta app")) { %>
+          <button class="beam-button pulse-on-load download-app" data-from="header">
+            <%= htmlWebpackPlugin.options.messages.header.tryBeam %>
+          </button>
+        <% } else { %>
+          <div class="beta-signup">
+            <button class="button underline">
+              <%= htmlWebpackPlugin.options.messages.header.betaSignup %>
+            </button>
+            <form class="input" novalidate>
+              <input type="email" required name="zXmAeBqfd" autocomplete="off" placeholder="<%= htmlWebpackPlugin.options.messages.header.betaSignupPlaceholder %>">
+              <div class="action-container">
+                <button type="button" class="button-close" tabindex="0">×</button>
+                <button type="submit" class="button-arrow" tabindex="0">-></button>
+              </div>
+            </form>
+            <div class="output"></div>
+          </div>
+        <% } %>
       </div>
     </header>
     <main>
       <div class="hero">
         <h1><%= htmlWebpackPlugin.options.messages.title %></h1>
         <p><%= htmlWebpackPlugin.options.messages.subtitle %></p>
+
+        <% if (htmlWebpackPlugin.options.featureFlagEnabled("download beta app")) { %>
+          <button class="beam-button large download-app" data-from="hero">
+            <%= htmlWebpackPlugin.options.messages.download %>
+          </button>
+          <small class="os-version">
+            <%= htmlWebpackPlugin.options.messages.macOSVerion %>
+          </small>
+        <% } %>
       </div>
       <div class="demo">
         <div class="title-container">
@@ -614,15 +631,20 @@
     <footer>
       <div class="content">
         © <%= htmlWebpackPlugin.options.messages.footer.year %> beam
-        <a class="underline" href="<%= htmlWebpackPlugin.options.messages.footer.twitterUrl %>" target="_blank" rel="noopener"><%= htmlWebpackPlugin.options.messages.footer.twitter %></a>
-        /
-        <a class="underline" href="<%= htmlWebpackPlugin.options.messages.footer.aboutUrl %>" target="_blank" rel="noopener"><%= htmlWebpackPlugin.options.messages.footer.about %></a>
-        /
+        <ul class="social-list">
+          <% for (const social of htmlWebpackPlugin.options.messages.footer.social) {
+            %>
+            <li>
+              <a href="<%= social.url %>" target="_blank" rel="noopener" title="<%= social.name %>"><%= social.icon %></a>
+            </li>
+            <%
+          }
+          %>
+        </ul>
         <a class="underline" href="<%= htmlWebpackPlugin.options.messages.footer.jobsUrl %>" target="_blank" rel="noopener"><%= htmlWebpackPlugin.options.messages.footer.jobs %></a>
-        /
-        <a class="underline" href="<%= htmlWebpackPlugin.options.messages.footer.whyUrl %>" target="_blank" rel="noopener"><%= htmlWebpackPlugin.options.messages.footer.why %></a>
-        /
-        <a class="underline" href="<%= htmlWebpackPlugin.options.messages.footer.privacyPolicyUrl %>" target="_blank" rel="noopener"><%= htmlWebpackPlugin.options.messages.footer.privacyPolicy %></a>
+        / <a class="underline" href="<%= htmlWebpackPlugin.options.messages.footer.whyUrl %>" target="_blank" rel="noopener"><%= htmlWebpackPlugin.options.messages.footer.why %></a>
+        / <a class="underline" href="<%= htmlWebpackPlugin.options.messages.footer.supportUrl %>" target="_blank" rel="noopener"><%= htmlWebpackPlugin.options.messages.footer.support %></a>
+        / <a class="underline" href="<%= htmlWebpackPlugin.options.messages.footer.privacyPolicyUrl %>" target="_blank" rel="noopener"><%= htmlWebpackPlugin.options.messages.footer.privacyPolicy %></a>
       </div>
     </footer>
   </div>

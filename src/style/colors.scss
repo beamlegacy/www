@@ -2,10 +2,16 @@
 
 
 @mixin light-mode {
+  --color-light: #{palette.$white};
+
   --color-background: #{ rgba(palette.$light-mercury, 0.8) };
   --color-text: #{ palette.$light-niobium };
   --color-text-secondary: #{ palette.$light-corduroy };
+  --color-text-details: #{ palette.$light-stone-gray };
 
+  --color-primary: #{ palette.$light-beam };
+  --color-primary-active: #{ palette.$light-beam-active };
+  --color-primary-shadow: #{ rgba(palette.$light-beam, 0.25) };
   --color-link: #{ palette.$light-beam };
 
   --color-kbd-background: #{ palette.$white };
@@ -43,10 +49,16 @@
 }
 
 @mixin dark-mode {
+  --color-light: #{palette.$white};
+
   --color-background: #{ palette.$dark-mercury };
   --color-text: #{ palette.$dark-niobium };
   --color-text-secondary: #{ palette.$dark-corduroy };
+  --color-text-details: #{ palette.$dark-stone-gray };
 
+  --color-primary: #{ palette.$dark-beam };
+  --color-primary-active: #{ palette.$dark-beam-active };
+  --color-primary-shadow: #{ rgba(palette.$dark-beam, 0.25) };
   --color-link: #{ palette.$dark-beam };
 
   --color-kbd-background: #{ rgba(palette.$white, 0.5) };
