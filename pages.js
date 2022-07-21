@@ -72,7 +72,7 @@ class HomeMessages_en {
   subtitle = "Browse.  Capture.  Write.  Publish."
   download = "Download"
   downloadSuccess = "Enjoy!"
-  macOSVerion = "for macOS 12.3"
+  macOSVersion = "for macOS 12.3+"
 
   demo = {
     title: "Beneath your&nbsp;<br/><strong class=\"in\">browser</strong>…"
@@ -194,7 +194,7 @@ class HomeMessages_fr {
   subtitle = "Browse.  Capture.  Write.  Publish."
   download = "Download"
   downloadSuccess = "Enjoy!"
-  macOSVerion = "for macOS 12.3"
+  macOSVersion = "for macOS 12.3+"
 
   demo = {
     title: "Beneath your&nbsp;<br/><strong>browser</strong>…"
