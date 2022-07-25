@@ -98,6 +98,8 @@
 html,
 body {
   @include light-mode();
+
+  color-scheme: light dark;
 }
 
 @media (prefers-color-scheme: light) {
