@@ -122,7 +122,7 @@
       white-space: nowrap;
 
       strong {
-        font-weight: 800;
+        font-weight: 600;
         color: var(--color-primary);
       }
       @include mixins.break-below("large") {

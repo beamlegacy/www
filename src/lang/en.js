@@ -28,7 +28,7 @@ class en extends Language {
       },
       {
         title: "Sign in",
-        url: "#",
+        url: "https://app.beamapp.co",
         classes: "is-desktop"
       },
       {
@@ -69,17 +69,7 @@ class en extends Language {
       name: "Twitter",
       url: "https://twitter.com/getonbeam",
       icon: require('./../assets/svg/social/twitter.ts')
-    },
-    {
-      name: "LinkedIn",
-      url: "https://www.linkedin.com/company/beam-app",
-      icon: require('./../assets/svg/social/linkedin.ts')
-    },
-    {
-      name: "Slack",
-      url: "https://beambeta.slack.com/",
-      icon: require('./../assets/svg/social/slack.ts')
-    },
+    }
   ]
 
   team = [

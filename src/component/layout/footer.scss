@@ -43,6 +43,10 @@
         display: inline-block;
         margin-right: 12px;
 
+        &:last-of-type {
+          margin-right: 0;
+        }
+
         a {
           color: inherit;
           font-size: inherit;
