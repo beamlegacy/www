@@ -1,0 +1,41 @@
+@use "/src/style/mixins";
+@use "home/background";
+@use "home/hero";
+@use "home/features";
+
+@mixin home {
+  .home {
+    @include background.background;
+    @include hero.hero;
+    @include features.features;
+
+    > header {
+      left: var(--site-padding);
+      position: fixed;
+      right: var(--site-padding);
+      top: var(--site-padding);
+      width: initial;
+    }
+  }
+}
+
+.svg-beam-logo-light {
+  opacity: 0.5;
+  transform: scaleY(1);
+  animation:
+    shake-opacity 0.5s ease-in-out infinite,
+    shake-scaleY 3s ease-in-out infinite
+  ;
+}
+
+$glow-color: lighten(#5e2bff, 20%);
+
+.glowtext {
+  font-weight: 800;
+  white-space: nowrap;
+  transition: color 0.8s, opacity 0.8s, text-shadow 0.8s;
+  opacity: 0.5;
+  .glow & {
+    color: $glow-color;
+  }
+}

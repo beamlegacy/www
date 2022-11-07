@@ -1,0 +1,77 @@
+@use "/src/style/mixins";
+@use "/src/style/palette";
+
+@mixin card-stack {
+  .card-stack {
+    display: block;
+    margin: 0 auto;
+    padding: 0;
+    position: relative;
+    z-index: 4;
+    --space-unit: 1em;
+    --card-stack-gap: calc(4 * var(--space-unit));
+
+    .card-stack-item {
+      background: var(--color-card-background);
+      color: var(--color-text);
+      border-radius: 20px;
+      display: block;
+      width: 100%;
+      position: relative;
+      height: 0;
+      padding: 0 20px 50% 20px;
+      -webkit-transform-origin: center top;
+      transform-origin: center top;
+      overflow: hidden;
+      box-shadow: 0 20px 40px 20px rgba(palette.$black, 0.02);
+      &:not(:first-child) {
+        position: relative;
+        height: 100%;
+        margin-top:-45%;
+      }
+
+      > * {
+        // position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      .darken {
+        background: rgba(palette.$black, 20%);
+        z-index: 3;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        // transition: opacity 0.5s;
+        @media (prefers-color-scheme: dark) {
+          background: rgba(palette.$black, 80%);
+        }
+      }
+
+      img {
+        display: block;
+        width: 100%;
+        height: auto;
+        position: absolute;
+        top: 0;
+        left: 0;
+        &.light {
+           @media (prefers-color-scheme: dark) {
+            display: none;
+           }
+        }
+        &.dark {
+          display: none;
+           @media (prefers-color-scheme: dark) {
+            display: block;
+           }
+        }
+      }
+    }
+  }
+}

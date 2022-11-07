@@ -28,6 +28,9 @@
         "argsIgnorePattern": "^_"
       }
     ],
+    "@typescript-eslint/no-inferrable-types": [
+      "off"
+    ],
     "semi": [
       "warn",
       "never"

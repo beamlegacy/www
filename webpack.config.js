@@ -33,10 +33,12 @@ const minifyOptions = {
 
 function createHtmlPlugins(pages, mode) {
   return pages.map((template, i) => {
-    const {title, srcPath, messages, filename, ...rest} = template
+    const {title, srcPath, messages, filename, svg, ...rest} = template
+
     return new HtmlWebpackPlugin({
       ...rest,
       messages,
+      svg,
       title: `${title}${mode !== "production" ? ` [${mode}]` : ""}`,
       template: `src/${srcPath}`,
       minify: minifyOptions,
@@ -55,14 +57,14 @@ function config(mode, env) {
   console.log("Building for", mode)
   const analyzeBundle = false
   console.log("Env is", env, process.env.API_HOST, process.env.SUBSCRIBE_LINK_URL)
-  const isDevelopment = mode === "development"
+  const isDevelopment = mode === "development" || "staging"
   const plugins = [
     new webpack.DefinePlugin({
       "process.env.CANONICAL_HOST": JSON.stringify(process.env.CANONICAL_HOST),
       "process.env.API_HOST": JSON.stringify(process.env.API_HOST),
       "process.env.SUBSCRIBE_LINK_URL": JSON.stringify(process.env.SUBSCRIBE_LINK_URL),
       "process.env.SECURE_SUBSCRIBE_TOKEN": JSON.stringify(process.env.SECURE_SUBSCRIBE_TOKEN),
-      "process.env.SUBSCRIBE_EMAIL_KEY": JSON.stringify(process.env.SUBSCRIBE_EMAIL_KEY),
+      "process.env.SUBSCRIBE_EMAIL_KEY": JSON.stringify(process.env.SUBSCRIBE_EMAIL_KEY)
     }),
     new FaviconsWebpackPlugin({
       logo: `./src/favicon${isDevelopment ? "-dev" : ""}-32x32.png`,
@@ -74,7 +76,7 @@ function config(mode, env) {
       patterns: [
         {
           from: path.resolve(__dirname, 'static'),
-          to: "",
+          to: "assets",
           globOptions: {
             ignore: ['.DS_Store']
           }
@@ -104,9 +106,6 @@ function config(mode, env) {
         import: "./src/index.ts"
         // dependOn: "service_worker"
       },
-      home: {
-        import: "./src/home/home"
-      }
       //   service_worker: "./src/service-worker.js"
     },
     devtool: isDevelopment ? 'source-map' : false,
@@ -114,7 +113,10 @@ function config(mode, env) {
       https: false,                      // Required by service workers if we don't use localhost
       host: "0.0.0.0",
       allowedHosts: [".lvh.me"],
-      historyApiFallback: true
+      historyApiFallback: true,
+      devMiddleware: {
+        writeToDisk: true
+      }
     },
     plugins,
     module: {
@@ -137,9 +139,18 @@ function config(mode, env) {
         {
           test: /(?<!\.wc)\.scss$/,
           use: [
-            isDevelopment && process.env.HOT_RELOAD_CSS === "true" ? "style-loader" : {loader: MiniCssExtractPlugin.loader},
-            "css-loader",     // Translates CSS into CommonJS
-            "sass-loader"     // Compiles Sass to CSS
+            {
+              loader: isDevelopment && process.env.HOT_RELOAD_CSS === "true" ? "style-loader" : MiniCssExtractPlugin.loader,
+            },
+            {
+              loader: "css-loader",
+              options: {
+                url: false,
+              },
+            },
+            {
+              loader: "sass-loader",
+            }
           ],
           exclude: /node_modules/
         },
@@ -147,9 +158,14 @@ function config(mode, env) {
           test: /\.wc\.scss$/,
           type: "asset/source",
           use: [
-            "sass-loader"     // Compiles Sass to CSS
+            {
+              loader: "sass-loader",
+              options: {
+                url: false,
+              },
+            }
           ],
-          exclude: /node_modules/
+          exclude: /node_modules/,
         },
         {
           test: /\.svg$/i,

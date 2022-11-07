@@ -1,0 +1,173 @@
+@use "/src/style/mixins";
+@use "/src/style/palette";
+
+@mixin background {
+  .background {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+
+    .bg-lightsource {
+      display: block;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--color-background)
+        radial-gradient(
+          at 50% bottom,
+          #fff380 30%,
+          #ffe600 40%,
+          #df6da3 50%,
+          #1813c6 60%
+        )
+        no-repeat;
+      background-position: 50% 10%;
+      background-size: 300vw 300vw;
+      tranform-origin: 50% 100%;
+      transform: scale(1);
+      @include mixins.break-below("mini") {
+        height: calc(100% + 100px);
+      }
+      .is-transitioning & {
+        transition: background-size 1s, background-position 1s, opacity 0.5s,background 1s;
+      }
+      &:after {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 100%;
+        background-color: var(--color-light);
+        opacity: 0.55;
+        // transition: opacity 1s, background 1s;
+        @media (prefers-color-scheme: dark) {
+          background-color: var(--color-background);
+          opacity: 0.2;
+        }
+      }
+      .is-over & {
+        transition: background-size 1s, background-position 1s, opacity 0.5s,background 1s;
+      
+        &:after {
+          transition: opacity 1s, background 1s;
+        }
+      }
+      .is-transition & {
+         background-position: 50% 20%;
+        background-size: 300vw 300vw;
+      }
+      .glow.is-transition & {
+        opacity: 1;
+        background: var(--color-background) radial-gradient(at 50% bottom, #fff 30%, #ffe600 40%, #df6da3 50%, #1813c6 60%);
+        background-size: 200vw 200vh;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        background-position: 50% 60%;
+        &:after {
+          opacity: 0.6;
+        }
+        // background: var(--color-background) 
+        // radial-gradient(at 50% bottom, 
+        //   #fff 30%, 
+        //   #ffe600 40%, 
+        //   #df6da3 50%, 
+        //   #1813c6 60%) no-repeat fixed !important;
+      }
+      .glow:not(.is-transition) & {
+        background-size: 300vw 250vh;
+        background-position: 50% 20%;
+        &:after {
+          opacity: 0.4;
+        }
+      }
+      .glow & {
+
+        // opacity: 1 !important;
+        background-size: 300vw 300vw;
+        background-position: 50% 20%;
+        &:after {
+          opacity: 0.75;
+          background-color: #FFF;
+          @media (prefers-color-scheme: dark) {
+            opacity: 0.2;
+          }
+        }
+      }
+    }
+
+    .bg-video {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 1;
+      @include mixins.break-below("mini") {
+        height: calc(100% + 100px);
+      }
+      .glow.is-transition & {
+        opacity: 0;
+      }
+      .is-over & {
+        transition: opacity 1s;
+      }
+
+      video {
+        position: relative;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        margin: 0 auto;
+        min-width: 100vw;
+        min-height: 100vh;
+        overflow: hidden;
+        opacity: 0.15;
+      }
+
+      .fade {
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 200px;
+        left: 0;
+        bottom: 0;
+        z-index: 1;
+        background: rgb(240,240,242);
+        background: linear-gradient(180deg, rgba(240,240,242,0) 0%, rgba(240,240,242,1) 100%);
+        @media (prefers-color-scheme: dark) {
+          background: rgb(0,0,0);
+          background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 100%);
+        }
+      }
+    }
+
+    .bg-gradient {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      opacity: 1;
+      @include mixins.gradient-bg();
+      @include mixins.break-below("mini") {
+        height: calc(100% + 100px);
+      }
+      .glow & {
+        opacity: 0 !important;
+        @media (prefers-color-scheme: dark) {
+
+        }
+      }
+      .is-over & {
+        transition: opacity 1s;
+      }
+    }
+  }
+}

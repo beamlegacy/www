@@ -54,6 +54,32 @@
   }
 }
 
+$breakpoints: (
+  "tiny": 400px,
+  "mini": 568px,
+  "smaller": 600px,
+  "small": 767px,
+  "medium": 992px,
+  "large": 1200px
+) !default;
+
+@mixin break-below($breakpoint) {
+  // If the key exists in the map
+  @if map-has-key($breakpoints, $breakpoint) {
+    // Prints a media query based on the value
+    @media (max-width: map-get($breakpoints, $breakpoint)) {
+      @content;
+    }
+  }
+
+  // If the key doesn't exist in the map
+  @else {
+    @media (max-width: $breakpoint) {
+      @content;
+    }
+  }
+}
+
 @mixin height-below-default() {
   @media (max-height: 650px) {
     @content;
@@ -75,4 +101,44 @@
     $transitions: append($transitions, $property 0.2s ease-in-out, comma);
   }
   @return $transitions;
+}
+
+@mixin gradient-bg() {
+  --gradient1: calc(30% + var(--gradient-grow, 0%));
+  --gradient2: calc(50% + var(--gradient-grow, 0%));
+  --gradient3: calc(45% + var(--gradient-grow, 0%));
+  --gradient4: calc(35% + var(--gradient-grow, 0%));
+  background-image:
+    radial-gradient(circle at 0% 0%, var(--color-logo-spotlight-start) 10%, var(--color-logo-spotlight-end) 40%),
+    radial-gradient(circle at 0% 60%, var(--color-background-gradient1-start), var(--color-background-gradient1-end) var(--gradient1)),
+    radial-gradient(circle at 20% 100%, var(--color-background-gradient2-start) 10%, var(--color-background-gradient2-end) var(--gradient2)),
+    radial-gradient(circle at 70% 100%, var(--color-background-gradient3-start), var(--color-background-gradient3-end) var(--gradient3)),
+    radial-gradient(circle at 100% 60%, var(--color-background-gradient4-start), var(--color-background-gradient4-end) var(--gradient4))
+  ;
+  bottom: 0;
+  content: "";
+  height: 100vh;
+  left: 0;
+  opacity: var(--gradient-opacity);
+  position: fixed;
+  width: 100%;
+  // will-change: height;
+  pointer-events: none;
+}
+
+
+@mixin respond-to($breakpoint) {
+  // If the key exists in the map
+  @if map-has-key($breakpoints, $breakpoint) {
+    // Prints a media query based on the value
+    @media (max-width: map-get($breakpoints, $breakpoint)) {
+      @content;
+    }
+  }
+
+  // If the key doesn't exist in the map
+  @else {
+    @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
+        + "Available breakpoints are: #{map-keys($breakpoints)}.";
+  }
 }
