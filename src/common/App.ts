@@ -136,6 +136,9 @@ export default class App {
   private initLogoLink() {
     const logo = this.logo
     const beta = logo?.querySelector(".beta")
+    beta?.addEventListener("click", (event) => {
+      event.preventDefault()
+    })
     beta?.addEventListener("dblclick", () => {
       GoogleAnalytics.trackEvent("app_download", {from: "beta_logo"})
       DownloadApp.startDownload()
