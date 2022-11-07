@@ -1,0 +1,273 @@
+const Language = require('./../common/Language')
+
+class en extends Language {
+
+  metas = {
+    title: "Meet the bright web – beam",
+    description: "Browse. Capture. Write. Publish – Coming soon to macOS. Join the beta now.",
+    ogTitle: "Meet the bright web – beam",
+    ogUrl: process.env.CANONICAL_HOST,
+    ogImage: `${process.env.CANONICAL_HOST}/assets/social/unfurl.jpg`,
+    ogDescription: "Browse. Capture. Write. Publish – Coming soon to macOS. Join the beta now.",
+    twitterSite: "getonbeam",
+    twitterTitle: "Meet the bright web – beam",
+    twitterImage: `${process.env.CANONICAL_HOST}/assets/social/unfurl.jpg`
+  }
+
+  header = {
+    downloadBeam: "Download beam",
+    nav: [
+      {
+        title: "Features",
+        url: '/',
+        classes: "is-mobile",
+      },
+      {
+        title: "About",
+        url: '/about.html'
+      },
+      {
+        title: "Sign in",
+        url: "#",
+        classes: "is-desktop"
+      },
+      {
+        title: "Jobs",
+        url: "https://angel.co/company/beam-app-1/jobs",
+        classes: "is-mobile",
+        target: "_blank",
+      },
+      {
+        title: "Terms",
+        url: "https://beamapp.co/tos",
+        classes: "is-mobile",
+        target: "_blank",
+      },
+      {
+        title: "Policy",
+        url: "https://beamapp.co/privacy",
+        classes: "is-mobile",
+        target: "_blank",
+      }
+    ]
+  }
+
+  footer = {
+    year: new Date().getFullYear(),
+    jobsUrl: "https://angel.co/company/beam-app-1/jobs",
+    jobs: "Jobs",
+    whyUrl: "https://public.beamapp.co/beam/note/c5ef3f23-5864-45ad-943e-b75b093555e1/Bright-Paper",
+    why: "Why beam?",
+    supportUrl: "https://beamapp.canny.io",
+    support: "Support",
+    privacyPolicyUrl: "https://beamapp.co/privacy",
+    privacyPolicy: "Privacy",
+  }
+
+  social = [
+    {
+      name: "Twitter",
+      url: "https://twitter.com/getonbeam",
+      icon: require('./../assets/svg/social/twitter.ts')
+    },
+    {
+      name: "LinkedIn",
+      url: "https://www.linkedin.com/company/beam-app",
+      icon: require('./../assets/svg/social/linkedin.ts')
+    },
+    {
+      name: "Slack",
+      url: "https://beambeta.slack.com/",
+      icon: require('./../assets/svg/social/slack.ts')
+    },
+  ]
+
+  team = [
+    {
+      name: "Dom Leca",
+      title: "CEO",
+      image: "team-dom.png"
+    },
+    {
+      name: "Sebastien Metrot",
+      title: "CTO",
+      image: "team-sebastien.png"
+    },
+    {
+      name: "Fabien Penso",
+      title: "Principal Engineer",
+      image: "team-fabien.png"
+    },
+    {
+      name: "Olivier Charavel",
+      title: "Senior Designer",
+      image: "team-olivier.png"
+    },
+    {
+      name: "Jean-Louis Darmon",
+      title: "macOS/iOS Engineer",
+      image: "team-jeanlouis.png"
+    },
+    {
+      name: "Remi Santos",
+      title: "Senior macOS/iOS Engineer",
+      image: "team-remi.png"
+    },
+    {
+      name: "Paul Lefkopoulos",
+      title: "Data Scientist",
+      image: "team-paul.png"
+    },
+    {
+      name: "Julien Plu",
+      title: "Senior ML/NLP Engineer",
+      image: "team-julien.png"
+    },
+    {
+      name: "Ludovic Ollagnier",
+      title: "Senior macOS/iOS Engineer",
+      image: "team-ludovic.png"
+    },
+    {
+      name: "Mathieu Jouhet",
+      title: "Senior Front-End Web Engineer",
+      image: "team-mathieu.png"
+    },
+    {
+      name: "Andrii Vasyliev",
+      title: "Senior QA Engineer",
+      image: "team-andrii.png"
+    },
+    {
+      name: "Stef Kors",
+      title: "Web Engineer",
+      image: "team-stef.png"
+    },
+    {
+      name: "Wilfried de Kerchove de Denterghem",
+      title: "Head of Engineering",
+      image: "team-wilfried.png"
+    },
+    {
+      name: "Quentin Valero",
+      title: "Senior QA Engineer",
+      image: "team-quentin.png"
+    },
+    {
+      name: "Jerome Blondon",
+      title: "Senior Backend Engineer",
+      image: "team-jblondon.png"
+    },
+    {
+      name: "Adam Viaud",
+      title: "Software Engineer",
+      image: "team-adam.png"
+    },
+    {
+      name: "Adrian Tofan",
+      title: "Senior Backend Engineer",
+      image: "team-adrian.png"
+    },
+    {
+      name: "Thomas Clement",
+      title: "Senior macOS/iOS Engineer",
+      image: ""
+    },
+    {
+      name: "Gabriele Venturi",
+      title: "Web Developer",
+      image: "team-gabriele.png"
+    }
+  ]
+
+  investors = [
+    {
+      name: "Bijan Sabet",
+      company: "Spark Capital",
+      title: "",
+      image: "investor-bijan.png",
+      logo: "investor-spark_logo.png",
+      logoWidth: "140px"
+    },
+    {
+      name: "Jordan Cooper",
+      company: "PACE",
+      title: "",
+      image: "investor-jordan.png",
+      logo: "investor-pace_logo.png",
+      logoWidth: "60px"
+    },
+    {
+      name: "François Meteyer",
+      company: "Alven Capital",
+      title: "",
+      image: "investor-francois.png",
+      logo: ""
+    },
+    {
+      name: "Pascal Cagni",
+      company: "C4 Ventures",
+      title: "Apple SVP EMEA",
+      image: "investor-pascal.png",
+      logo: ""
+    },
+    {
+      name: "Patrick  Murphy",
+      company: "Amaranthine",
+      title: "",
+      image: "investor-patrick.png",
+      logo: ""
+    },
+    {
+      name: "Harry Stebbings",
+      company: "20VC",
+      title: "",
+      image: "investor-harry.png",
+      logo: ""
+    },
+    {
+      name: "Andrew Wilkinson",
+      company: "Tiny Ventures",
+      title: "",
+      image: "investor-andrew.png",
+      logo: ""
+    },
+    {
+      name: "Albert Wenger",
+      company: "Eutopia - USV",
+      title: "",
+      image: "investor-albert.png",
+      logo: ""
+    },
+    {
+      name: "Christian Reber",
+      company: "Pitch",
+      title: "",
+      image: "investor-christian.png",
+      logo: ""
+    },
+    {
+      name: "Antoine Martin",
+      company: "Zenly",
+      title: "",
+      image: "investor-antoine.png",
+      logo: ""
+    },
+    {
+      name: "Nicolas Cohen",
+      company: "Ankor Store",
+      title: "",
+      image: "investor-nicolas.png",
+      logo: ""
+    },
+    {
+      name: "Simon Dawlat",
+      company: "Baatch",
+      title: "",
+      image: "investor-simon.png",
+      logo: ""
+    }
+  ]
+}
+
+module.exports = en;

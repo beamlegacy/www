@@ -3,12 +3,8 @@
 :root {
   // we need to set this in :root otherwise variables expressed in relative units wont inherit
   font-family: "Inter", -apple-system, system-ui,  sans-serif;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.5;
-
-  @include mixins.above-medium {
-    font-size: 16px;
-  }
 }
 
 ::selection {
@@ -49,7 +45,7 @@ strong {
 }
 
 p {
-  max-width: 25em;
+  // max-width: 25em;
   text-align: left;
 }
 

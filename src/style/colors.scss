@@ -2,12 +2,15 @@
 
 
 @mixin light-mode {
+  --color-body-bg: #{palette.$white};
   --color-light: #{palette.$white};
 
-  --color-background: #{ rgba(palette.$light-mercury, 0.8) };
+  --color-background: #{ rgba(palette.$light-mercury, 1) };
   --color-text: #{ palette.$light-niobium };
   --color-text-secondary: #{ palette.$light-corduroy };
   --color-text-details: #{ palette.$light-stone-gray };
+
+  --color-frame: #{palette.$white};
 
   --color-primary: #{ palette.$light-beam };
   --color-primary-active: #{ palette.$light-beam-active };
@@ -24,6 +27,11 @@
   --color-empty: #{ palette.$light-mercury };
 
   --color-pill: #{ palette.$light-mercury };
+
+  --color-nav-border: #{ rgba(palette.$black, 0.1) };
+  --color-nav-link: #{ palette.$light-blue-light };
+  --color-nav-bg: #{palette.$white};
+  --color-nav-bar: #{ palette.$black };
 
   $gradient-opacity: 1;
   --color-background-gradient1-start: #{ rgba(palette.$dark-charmed-green, $gradient-opacity * 0.75) };
@@ -46,15 +54,20 @@
   --color-text-selection-background: #{ rgba(#3700ff, 0.14) };
   --color-text-selection-color: #{ palette.$light-niobium };
   --color-text-caret-color: #{ rgba(#3700ff, 0.7) };
+
+  --color-card-background: #fafafa;
 }
 
 @mixin dark-mode {
+  --color-body-bg: #{palette.$black};
   --color-light: #{palette.$white};
 
   --color-background: #{ palette.$dark-mercury };
   --color-text: #{ palette.$dark-niobium };
   --color-text-secondary: #{ palette.$dark-corduroy };
   --color-text-details: #{ palette.$dark-stone-gray };
+
+  --color-frame: #000000;
 
   --color-primary: #{ palette.$dark-beam };
   --color-primary-active: #{ palette.$dark-beam-active };
@@ -71,6 +84,11 @@
   --color-empty: #{ rgba(palette.$dark-corduroy, 0.25) };
 
   --color-pill: #{ palette.$dark-mercury };
+
+  --color-nav-border: #{ rgba(palette.$white, 0.1) };
+  --color-nav-link: #{ palette.$dark-blue-light };
+  --color-nav-bg: #{ lighten(palette.$black, 8%) };
+  --color-nav-bar: #{ palette.$white };
 
   $gradient-opacity: 0.5;
   --color-background-gradient1-start: #{ rgba(palette.$dark-charmed-green, $gradient-opacity * 0.75) };
@@ -100,6 +118,10 @@ body {
   @include light-mode();
 
   color-scheme: light dark;
+
+  @media (prefers-color-scheme: dark) {
+    @include dark-mode();
+  }
 }
 
 @media (prefers-color-scheme: light) {

@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, viewport-fit=cover">
+
+  <title><%= htmlWebpackPlugin.options.messages.metas.title %></title>
+  <meta name="description" content="<%= htmlWebpackPlugin.options.messages.metas.description %>"/>
+
+  <meta property="og:title" content="<%= htmlWebpackPlugin.options.messages.metas.ogTitle %>"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="<%= htmlWebpackPlugin.options.messages.metas.ogUrl %>"/>
+  <meta property="og:image" content="<%= htmlWebpackPlugin.options.messages.metas.ogImage %>"/>
+  <meta property="og:description" content="<%= htmlWebpackPlugin.options.messages.metas.ogDescription %>"/>
+
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:site" content="<%= htmlWebpackPlugin.options.messages.metas.twitterSite %>"/>
+  <meta name="twitter:title" content="<%= htmlWebpackPlugin.options.messages.metas.twitterTitle %>"/>
+  <meta name="twitter:description" content="<%= htmlWebpackPlugin.options.messages.metas.twitterDescription %>"/>
+  <meta name="twitter:image" content="<%= htmlWebpackPlugin.options.messages.metas.twitterImage %>"/>
+
+  <meta name="color-scheme" content="dark light">
+
+  <script>
+    var messages = <%= JSON.stringify(htmlWebpackPlugin.options.messages) %>
+  </script>
+  <base href="/">
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=<%= htmlWebpackPlugin.options.tracking.googleAnalytics %>"></script>
+  <script>
+    window.dataLayer = window.dataLayer || []
+    function gtag(){dataLayer.push(arguments);}
+    window.gtag = gtag;
+    gtag('js', new Date());
+    gtag('config', '<%= htmlWebpackPlugin.options.tracking.googleAnalytics %>');
+  </script>
+</head>
+<body class="loading">
+  <div class="beam-site about" style="opacity:0;">
+
+    <div class="background">
+      <div class="bg-gradient"></div>
+    </div>
+
+    <div class="frame-border"></div>
+
+    <header class="header--fixed headroom headroom--pinned headroom--unpinned">
+      <a href="/" class="beam-logo">
+        <img class="light" src="/assets/common/beam-icon.png">
+        beam
+        <span class="beta">beta</span>
+      </a>
+
+      <div class="nav">
+        <div class="nav-container">
+          <div class="mobile-button">
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+
+          <div class="nav-menu">
+            <ul class="listMenu">
+              <% for (const nav of htmlWebpackPlugin.options.messages.header.nav) { %>
+                <li class="<%= nav.classes %><% if (nav.title == 'About') { %> is-active<% } %>"><a class="underline" href="<%= nav.url %>" target="<%= nav.target %>"><%= nav.title %></a></li>
+              <% } %>
+            </ul>
+
+            <div class="nav-dashboard">
+              <a href="#" target="_blank">Sign in</a>
+            </div>
+          </div>
+        </div>
+
+        <button class="button-flash download-app" data-from="header">
+          <%= htmlWebpackPlugin.options.messages.header.downloadBeam %>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <div class="container">
+        <div class="about-container">
+          <div class="about-item info">
+            <h3>
+              The Bright Web
+            </h3>
+
+            <p>
+              We believe in tools, and the people who use them. We believe in tools that foster autonomy, encourage inquisitiveness, strengthen personal agency, and drive critical inquiry. We believe knowledge is the essential human project.
+            </p>
+
+            <p>
+              We’re building beam because we think something is fundamentally broken in the way the tools at our disposal have us use the web — and thus, our minds. It feels like we have not freely chosen our online practices — that they are habits we have helplessly picked up...
+            </p>
+          </div>
+
+          <div class="about-items">
+            <div class="bg"></div>
+
+            <div class="about-item team">
+              <h3>
+                Team
+              </h3>
+
+              <ul>
+                <% for (const person of htmlWebpackPlugin.options.messages.team) { %>
+                <li>
+                  <div class="image">
+                    <div class="img" <% if (person.image) { %>style="background-image: url(/assets/about/<%= person.image %>);"<% } %>></div>
+                  </div>
+                  <div class="details">
+                    <div class="name">
+                      <%= person.name %>
+                    </div>
+                    <div class="title">
+                      <%= person.title %>
+                    </div>
+                  </div>
+                </li>
+                <% } %>
+              </ul>
+            </div>
+
+            <div class="about-item investors">
+              <h3>
+                Investors
+              </h3>
+
+              <ul>
+                <% for (const person of htmlWebpackPlugin.options.messages.investors) { %>
+                <li>
+                  <div class="image">
+                    <div class="img" <% if (person.image) { %>style="background-image: url(/assets/about/<%= person.image %>);"<% } %>></div>
+                  </div>
+                  <div class="details">
+                    <div class="name">
+                      <%= person.name %>
+                    </div>
+                    <% if (person.logo) { %>
+                    <div class="logo">
+                      <img src="/assets/about/<%= person.logo %>"  <% if (person.logoWidth) { %>style="max-width: <%= person.logoWidth %>;"<% } %>>
+                    </div>
+                    <% } else { %>
+                    <div class="company">
+                      <%= person.company %>
+                    </div>
+                    <% } %>
+                    <% if (person.image) { %>
+                    <div class="title">
+                      <%= person.title %>
+                    </div>
+                    <% } %>
+                  </div>
+                </li>
+                <% } %>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="content">
+        <span class="copyright">© <%= htmlWebpackPlugin.options.messages.footer.year %> beam</span>
+        <ul class="social-list">
+        <% for (const social of htmlWebpackPlugin.options.messages.social) {
+          %>
+          <li>
+            <a href="<%= social.url %>" target="_blank" rel="noopener" title="<%= social.name %>"><%= social.icon %></a>
+          </li>
+          <%
+        }
+        %>
+        </ul>
+        <span class="break"></span>
+        <a class="underline" href="<%= htmlWebpackPlugin.options.messages.footer.jobsUrl %>" target="_blank" rel="noopener"><%= htmlWebpackPlugin.options.messages.footer.jobs %></a>
+        <a class="underline" href="<%= htmlWebpackPlugin.options.messages.footer.whyUrl %>" target="_blank" rel="noopener"><%= htmlWebpackPlugin.options.messages.footer.why %></a>
+        <a class="underline" href="<%= htmlWebpackPlugin.options.messages.footer.supportUrl %>" target="_blank" rel="noopener"><%= htmlWebpackPlugin.options.messages.footer.support %></a>
+        <a class="underline" href="<%= htmlWebpackPlugin.options.messages.footer.privacyPolicyUrl %>" target="_blank" rel="noopener"><%= htmlWebpackPlugin.options.messages.footer.privacyPolicy %></a>
+      </div>
+    </footer>
+
+  </div>
+</body>
+</html>

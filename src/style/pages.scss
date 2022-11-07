@@ -1,5 +1,5 @@
-@use "/src/home/home";
+@use "/src/page/home";
+@use "/src/page/about";
 
 @include home.home;
-
-
+@include about.about;
