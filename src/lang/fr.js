@@ -29,6 +29,7 @@ class fr extends Language {
     this.footer.why = "Why beam?"
     this.footer.support = "Support"
     this.footer.privacyPolicy = "Privacy"
+    this.footer.terms = "Terms of Service"
   }
 }
 
