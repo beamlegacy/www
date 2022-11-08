@@ -26,9 +26,15 @@ export class Transition {
   protected timer: number = 0
 
   constructor(parent:Hero) {
-    const self = this
-
     this.parent = parent
+  }
+
+  public load():void {
+    this.setup()
+  }
+
+  private setup(): void {
+    const self = this
 
     if (this.canvas) {
       this.paperCanvas = paper.setup(this.canvas)

@@ -102,6 +102,9 @@ export default class App {
     window.addEventListener("scroll", this.sizeVh)
     window.visualViewport?.addEventListener("resize", this.sizeVh)
     window.addEventListener("load", () => {
+      if (this.page.load) {
+        this.page.load()
+      }
       setTimeout(() => document.body.classList.remove("loading"))
       const elSite = document.querySelector(".beam-site") as HTMLElement
       elSite.style.removeProperty("opacity")

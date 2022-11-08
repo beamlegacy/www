@@ -12,4 +12,8 @@ export class Hero {
     this.transition = new Transition(this)
   }
 
+  public load():void {
+    this.transition.load()
+  }
+
 }

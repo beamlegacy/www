@@ -22,6 +22,12 @@ export class Home extends Page {
     this.initFooterObserver()
   }
 
+  public load(): void {
+    if (this.hero) {
+      this.hero.load()
+    }
+  }
+
   private initFlashButtons(): void {
     const self = this
     const buttons = document.querySelectorAll(".button-flash");
