@@ -62,6 +62,8 @@ class en extends Language {
     support: "Support",
     privacyPolicyUrl: "https://beamapp.co/privacy",
     privacyPolicy: "Privacy",
+    tosUrl: "https://beamapp.co/tos",
+    tos: "Terms of service",
   }
 
   social = [
