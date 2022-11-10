@@ -36,6 +36,8 @@ export default class App {
   public header: Header = new Header()
   public footer: Footer = new Footer()
 
+  private loaded: boolean = false
+
   constructor(motd:boolean = true) {
     if (motd === true) MOTD({version})
 
@@ -43,6 +45,7 @@ export default class App {
     this.initPage()
     this.sizeVh()
     this.initEventListeners()
+    this.initPreload()
     this.initLogoLink()
     this.initDownloadButtons()
   }
@@ -101,14 +104,74 @@ export default class App {
     window.addEventListener("resize", this.sizeVh)
     window.addEventListener("scroll", this.sizeVh)
     window.visualViewport?.addEventListener("resize", this.sizeVh)
+  }
+
+  private initPreload = (): void => {
+    const self = this,
+          loaders: any = {
+            dom: false,
+            page: false,
+            fonts: false
+          },
+          totalLoaders = Object.keys(loaders).length
+
     window.addEventListener("load", () => {
+      self.ready()
+    })
+
+    window.addEventListener("DOMContentLoaded", () => {
+      loaders.dom = true
+    })
+
+    const checkFonts = setInterval(() => {
+      if (document.fonts && document.fonts.check) {
+        if (document.fonts.check("12px Inter-Web") === true) {
+          loaders.fonts = true
+        }
+      } else {
+        loaders.fonts = true
+      }
+
+      if (loaders.fonts) {
+        clearInterval(checkFonts)
+      }
+    }, 250)
+
+    const checkPreload = setInterval(() => {
+      let loaded = 0
+
+      for (const i in loaders) {
+        if (loaders[i] === true) {
+          loaded++
+        }
+      }
+
+      if (loaded === totalLoaders) {
+        clearInterval(checkPreload)
+        self.ready()
+      }
+    }, 250)
+
+    if (this.page.preload) {
+       this.page.preload(() => {
+        loaders.page = true
+       })
+    } else {
+      loaders.page = true
+    }
+  }
+
+  private ready(): void {
+    if (this.loaded === false) {
+      this.loaded = true
+
       if (this.page.load) {
         this.page.load()
       }
       setTimeout(() => document.body.classList.remove("loading"))
       const elSite = document.querySelector(".beam-site") as HTMLElement
       elSite.style.removeProperty("opacity")
-    })
+    }
   }
 
   private getCurrentPage(): LocalizedPage | undefined {

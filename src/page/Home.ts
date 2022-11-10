@@ -28,6 +28,56 @@ export class Home extends Page {
     }
   }
 
+  public preload(callback: any): void {
+    const self = this,
+          items: any = {
+            video: {
+              loader: () => {
+                function check() {
+                  if (self.background && self.background.video.el && self.background.video.el.readyState >= 3){
+                     items.video.loaded = true
+                     self.background.video.el.play()
+                   }
+                }
+
+                if (self.background && self.background.video && self.background.video.el) {
+                  self.background.video.el.addEventListener("loadeddata", () => {
+                     check()
+                  })
+                }
+
+                check()
+              },
+              loaded: false
+            }
+          }
+
+    for (const i in items) {
+      items[i].loader()
+    }
+
+    const timer = setInterval(() => {
+      const total = Object.keys(items).length
+      let loaded = 0
+
+      for (const i in items) {
+        const item: any = items[i]
+
+        if (item.loaded === true) {
+          loaded++
+        }
+      }
+
+      if (loaded === total) {
+        clearInterval(timer)
+
+        if (callback) {
+          callback()
+        }
+      }
+    }, 250)
+  }
+
   private initFlashButtons(): void {
     const self = this
     const buttons = document.querySelectorAll(".button-flash");
