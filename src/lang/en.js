@@ -78,87 +78,87 @@ class en extends Language {
     {
       name: "Dom Leca",
       title: "CEO",
-      image: "team-dom.png"
+      image: "team-dom.jpg"
     },
     {
       name: "Sebastien Metrot",
       title: "CTO",
-      image: "team-sebastien.png"
+      image: "team-sebastien.jpg"
     },
     {
       name: "Fabien Penso",
       title: "Principal Engineer",
-      image: "team-fabien.png"
+      image: "team-fabien.jpg"
     },
     {
       name: "Olivier Charavel",
       title: "Senior Designer",
-      image: "team-olivier.png"
+      image: "team-olivier.jpg"
     },
     {
       name: "Jean-Louis Darmon",
       title: "macOS/iOS Engineer",
-      image: "team-jeanlouis.png"
+      image: "team-jeanlouis.jpg"
     },
     {
       name: "Remi Santos",
       title: "Senior macOS/iOS Engineer",
-      image: "team-remi.png"
+      image: "team-remi.jpg"
     },
     {
       name: "Paul Lefkopoulos",
       title: "Data Scientist",
-      image: "team-paul.png"
+      image: "team-paul.jpg"
     },
     {
       name: "Julien Plu",
       title: "Senior ML/NLP Engineer",
-      image: "team-julien.png"
+      image: "team-julien.jpg"
     },
     {
       name: "Ludovic Ollagnier",
       title: "Senior macOS/iOS Engineer",
-      image: "team-ludovic.png"
+      image: "team-ludovic.jpg"
     },
     {
       name: "Mathieu Jouhet",
       title: "Senior Front-End Web Engineer",
-      image: "team-mathieu.png"
+      image: "team-mathieu.jpg"
     },
     {
       name: "Andrii Vasyliev",
       title: "Senior QA Engineer",
-      image: "team-andrii.png"
+      image: "team-andrii.jpg"
     },
     {
       name: "Stef Kors",
       title: "Web Engineer",
-      image: "team-stef.png"
+      image: "team-stef.jpg"
     },
     {
       name: "Wilfried de Kerchove de Denterghem",
       title: "Head of Engineering",
-      image: "team-wilfried.png"
+      image: "team-wilfried.jpg"
     },
     {
       name: "Quentin Valero",
       title: "Senior QA Engineer",
-      image: "team-quentin.png"
+      image: "team-quentin.jpg"
     },
     {
       name: "Jerome Blondon",
       title: "Senior Backend Engineer",
-      image: "team-jblondon.png"
+      image: "team-jblondon.jpg"
     },
     {
       name: "Adam Viaud",
       title: "Software Engineer",
-      image: "team-adam.png"
+      image: "team-adam.jpg"
     },
     {
       name: "Adrian Tofan",
       title: "Senior Backend Engineer",
-      image: "team-adrian.png"
+      image: "team-adrian.jpg"
     },
     {
       name: "Thomas Clement",
@@ -168,7 +168,7 @@ class en extends Language {
     {
       name: "Gabriele Venturi",
       title: "Web Developer",
-      image: "team-gabriele.png"
+      image: "team-gabriele.jpg"
     }
   ]
 
@@ -177,7 +177,7 @@ class en extends Language {
       name: "Bijan Sabet",
       company: "Spark Capital",
       title: "",
-      image: "investor-bijan.png",
+      image: "investor-bijan.jpg",
       logo: "investor-spark_logo.png",
       logoWidth: "140px"
     },
@@ -185,7 +185,7 @@ class en extends Language {
       name: "Jordan Cooper",
       company: "PACE",
       title: "",
-      image: "investor-jordan.png",
+      image: "investor-jordan.jpg",
       logo: "investor-pace_logo.png",
       logoWidth: "60px"
     },
@@ -193,70 +193,70 @@ class en extends Language {
       name: "François Meteyer",
       company: "Alven Capital",
       title: "",
-      image: "investor-francois.png",
+      image: "investor-francois.jpg",
       logo: ""
     },
     {
       name: "Pascal Cagni",
       company: "C4 Ventures",
       title: "Apple SVP EMEA",
-      image: "investor-pascal.png",
+      image: "investor-pascal.jpg",
       logo: ""
     },
     {
       name: "Patrick  Murphy",
       company: "Amaranthine",
       title: "",
-      image: "investor-patrick.png",
+      image: "investor-patrick.jpg",
       logo: ""
     },
     {
       name: "Harry Stebbings",
       company: "20VC",
       title: "",
-      image: "investor-harry.png",
+      image: "investor-harry.jpg",
       logo: ""
     },
     {
       name: "Andrew Wilkinson",
       company: "Tiny Ventures",
       title: "",
-      image: "investor-andrew.png",
+      image: "investor-andrew.jpg",
       logo: ""
     },
     {
       name: "Albert Wenger",
       company: "Eutopia - USV",
       title: "",
-      image: "investor-albert.png",
+      image: "investor-albert.jpg",
       logo: ""
     },
     {
       name: "Christian Reber",
       company: "Pitch",
       title: "",
-      image: "investor-christian.png",
+      image: "investor-christian.jpg",
       logo: ""
     },
     {
       name: "Antoine Martin",
       company: "Zenly",
       title: "",
-      image: "investor-antoine.png",
+      image: "investor-antoine.jpg",
       logo: ""
     },
     {
       name: "Nicolas Cohen",
       company: "Ankor Store",
       title: "",
-      image: "investor-nicolas.png",
+      image: "investor-nicolas.jpg",
       logo: ""
     },
     {
       name: "Simon Dawlat",
       company: "Baatch",
       title: "",
-      image: "investor-simon.png",
+      image: "investor-simon.jpg",
       logo: ""
     }
   ]

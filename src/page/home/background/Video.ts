@@ -3,7 +3,7 @@ import {Background} from "./../Background"
 export class Video {
 
   private parent: Background
-  private el: HTMLVideoElement | null
+  public el: HTMLVideoElement | null
 
   constructor(parent: Background) {
     this.parent = parent

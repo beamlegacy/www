@@ -23,7 +23,7 @@ kbd {
       color: var(--color-kbd-color);
       content: attr(data-key);
       display: flex;
-      font-family: "Inter", -apple-system, sans-serif;
+      font-family: "Inter-Web", -apple-system, sans-serif;
       font-variant: all-small-caps;
       font-weight: 600;
       inset: 0 0 0.2em 0;

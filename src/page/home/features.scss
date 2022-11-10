@@ -696,7 +696,7 @@
   }
 
   &.browse .more .more-item .visual:before {
-    background-image: url("/assets/home/browse2.jpeg") !important;
+    background-image: url("/assets/home/browse2.jpg") !important;
   }
 }
 
@@ -818,7 +818,7 @@
         opacity: 0.5 !important;
       }
       .bg:after {
-        background-image: url("/assets/home/browse2.jpeg");
+        background-image: url("/assets/home/browse2.jpg");
         background-size: cover;
         background-attachment: fixed;
         opacity: 1;
@@ -898,13 +898,13 @@
         display: flex;
         justify-content: center;
         background-color: #fff;
-        background-image: url("/assets/home/browser_light.png");
+        background-image: url("/assets/home/browser_light.jpg");
         background-repeat: no-repeat;
         background-position: 50% 50%;
         background-size: cover;
         @media (prefers-color-scheme: dark) {
           background-color: #111;
-          background-image: url("/assets/home/browser_dark.png");
+          background-image: url("/assets/home/browser_dark.jpg");
         }
 
         box-shadow: 0px 10px 30px -5px rgba(0, 0, 0, 0.2);
@@ -974,7 +974,7 @@
         opacity: 0.1;
       }
       .bg:after {
-        background-image: url("/assets/home/write4.jpeg");
+        background-image: url("/assets/home/write4.jpg");
         background-size: cover;
         background-attachment: fixed;
         opacity: 1;
@@ -1138,7 +1138,7 @@
         z-index: -1;
       }
       .bg:after {
-        background-image: url("/assets/home/capture3.jpeg");
+        background-image: url("/assets/home/capture3.jpg");
         background-size: cover;
         background-attachment: fixed;
         opacity: 0.3;
