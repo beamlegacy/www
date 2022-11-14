@@ -15,6 +15,7 @@
     "start": "webpack serve",
     "build": "webpack --mode=development",
     "dist": "webpack --mode=production",
+    "postbuild": "mv ./dist/assets/_redirects ./dist/_redirects && mv ./dist/assets/.well-known ./dist/",
     "lint": "eslint . --ext .ts --format gitlab .",
     "test": "jest --passWithNoTests",
     "test-watch": "jest --watchAll --passWithNoTests",
