@@ -56,7 +56,7 @@ class en extends Language {
     year: new Date().getFullYear(),
     jobsUrl: "https://angel.co/company/beam-app-1/jobs",
     jobs: "Jobs",
-    whyUrl: "https://public.beamapp.co/beam/note/c5ef3f23-5864-45ad-943e-b75b093555e1/Bright-Paper",
+    whyUrl: "https://beamapp.co/bright_paper.html",
     why: "Why beam?",
     supportUrl: "https://beamapp.canny.io",
     support: "Support",
