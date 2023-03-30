@@ -1,6 +1,6 @@
 export default class DownloadApp {
   static getUrl() : string {
-    return "https://s3.eu-west-3.amazonaws.com/downloads.beamapp.co/beta/Beam.dmg"
+    return "https://www.dropbox.com/s/gwliqsubg64oaf1/Beam.dmg?dl=1"
   }
 
   static startDownload() : void {
