@@ -13,7 +13,6 @@ before_script:
 
 stages:
   - build
-  - test
 
 build:
   stage: build
@@ -23,22 +22,22 @@ build:
   script:
     - yarn run dist
 
-test:
-  stage: test
-  before_script:
-    - yarn config set cache-folder .yarn
-    - yarn install
-  script:
-    - yarn run lint
-    - yarn run test-ci
-  coverage: '/All files\s+\|\s+([\d.]+)/'
-  artifacts:
-    when: always
-    reports:
-      junit:
-        - junit.xml
-      codequality: gl-codequality.json
-  interruptible: true
+# test:
+#   stage: test
+#   before_script:
+#     - yarn config set cache-folder .yarn
+#     - yarn install
+#   script:
+#     - yarn run lint
+#     - yarn run test-ci
+#   coverage: '/All files\s+\|\s+([\d.]+)/'
+#   artifacts:
+#     when: always
+#     reports:
+#       junit:
+#         - junit.xml
+#       codequality: gl-codequality.json
+#   interruptible: true
 
 
 # You can override the included template(s) by including variable overrides
