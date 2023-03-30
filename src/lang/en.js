@@ -25,29 +25,6 @@ class en extends Language {
       {
         title: "About",
         url: '/about.html'
-      },
-      {
-        title: "Sign in",
-        url: "https://app.beamapp.co",
-        classes: "is-desktop"
-      },
-      {
-        title: "Jobs",
-        url: "https://angel.co/company/beam-app-1/jobs",
-        classes: "is-mobile",
-        target: "_blank",
-      },
-      {
-        title: "Terms",
-        url: "https://beamapp.co/tos",
-        classes: "is-mobile",
-        target: "_blank",
-      },
-      {
-        title: "Policy",
-        url: "https://beamapp.co/privacy",
-        classes: "is-mobile",
-        target: "_blank",
       }
     ]
   }
@@ -254,7 +231,7 @@ class en extends Language {
     },
     {
       name: "Simon Dawlat",
-      company: "Baatch",
+      company: "Batch",
       title: "",
       image: "investor-simon.jpg",
       logo: ""
