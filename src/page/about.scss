@@ -121,7 +121,7 @@
                 background-size: cover;
                 background-repeat: no-repeat;
                 background-position: 50% 50%;
-                background-image: url(/assets/about/team-generic_light.png);
+                background-image: url(assets/about/team-generic_light.png);
                 @include mixins.break-below("mini") {
                   width: 70px;
                   height: 70px;
@@ -129,7 +129,7 @@
                 }
                 @media (prefers-color-scheme: dark) {
                   background-color: palette.$dark-mercury;
-                  background-image: url(/assets/about/team-generic_dark.png);
+                  background-image: url(assets/about/team-generic_dark.png);
                 }
                 &:after {
                   content: "";

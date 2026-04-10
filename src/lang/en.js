@@ -19,12 +19,12 @@ class en extends Language {
     nav: [
       {
         title: "Features",
-        url: '/',
+        url: './',
         classes: "is-mobile",
       },
       {
         title: "About",
-        url: '/about.html'
+        url: 'about.html'
       }
     ]
   }

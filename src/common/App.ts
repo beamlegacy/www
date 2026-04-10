@@ -1,14 +1,12 @@
+import {About} from "page/About"
 import {Cookie} from "util/cookie/Cookie"
+import DownloadApp from "util/DownloadApp"
+import {Footer} from "component/layout/Footer"
+import {GoogleAnalytics} from "util/GoogleAnalytics"
+import {Header} from "component/layout/Header"
+import {Home} from "page/Home"
 import {MOTD} from "util/MOTD"
 import packageJson from "./../../package.json"
-import {GoogleAnalytics} from "util/GoogleAnalytics"
-import DownloadApp from "util/DownloadApp"
-
-import {Header} from "component/layout/Header"
-import {Footer} from "component/layout/Footer"
-
-import {Home} from "page/Home"
-import {About} from "page/About"
 
 const {version} = packageJson
 const pages = require("./../../pages.js")
@@ -54,6 +52,40 @@ export default class App {
     return `/${this.lang}`
   }
 
+  private getPublicPath(): string {
+    const configured = (process.env.PUBLIC_PATH || "/").trim()
+    if (!configured || configured === "/") {
+      return ""
+    }
+    const withLeadingSlash = configured.startsWith("/") ? configured : `/${configured}`
+    return withLeadingSlash.replace(/\/+$/, "")
+  }
+
+  private getCurrentPathname(): string {
+    const currentPath = location.pathname.replace(/\/$/, "")
+    const publicPath = this.getPublicPath()
+
+    if (!publicPath) {
+      return currentPath
+    }
+
+    if (currentPath === publicPath) {
+      return ""
+    }
+
+    if (currentPath.startsWith(`${publicPath}/`)) {
+      return currentPath.slice(publicPath.length)
+    }
+
+    return currentPath
+  }
+
+  private withPublicPath(url: string): string {
+    const publicPath = this.getPublicPath()
+    const normalizedUrl = url ? (url.startsWith("/") ? url : `/${url}`) : "/"
+    return publicPath ? `${publicPath}${normalizedUrl}` : normalizedUrl
+  }
+
   get logo(): Element | null {
     return document.querySelector(".beam-logo")
   }
@@ -87,8 +119,8 @@ export default class App {
     if (page) {
       this.messages = page.messages
       const url = this.lang === this.defaultLang ? this.removeUrlPrefix(page.url) : page.url
-      if (location.pathname.replace(/\/$/, "") !== url) {
-        window.location.replace(url)
+      if (this.getCurrentPathname() !== url) {
+        window.location.replace(this.withPublicPath(url))
       }
 
       // Load page class
@@ -180,7 +212,7 @@ export default class App {
     // @ts-ignore
     let page = pages.find(p => {
       const pSlug = this.removeUrlPrefix(p.url)
-      const url = location.pathname.replace(/\/$/, "")
+      const url = this.getCurrentPathname()
       return p.lang === this.lang && pSlug === url
     })
 
@@ -188,7 +220,7 @@ export default class App {
       // Try to get the page using url only and then finding its lang equivalent
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
-      const currentPage = pages.find(p => p.url === location.pathname.replace(/\/$/, ""))
+      const currentPage = pages.find(p => p.url === this.getCurrentPathname())
       if (currentPage) {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore

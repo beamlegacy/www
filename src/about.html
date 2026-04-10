@@ -46,8 +46,8 @@
     <div class="frame-border"></div>
 
     <header class="header--fixed headroom headroom--pinned headroom--unpinned">
-      <a href="/" class="beam-logo">
-        <img class="light" src="/assets/common/beam-icon.png">
+      <a href="./" class="beam-logo">
+        <img class="light" src="assets/common/beam-icon.png">
         beam
         <span class="beta">beta</span>
       </a>
@@ -105,7 +105,7 @@
                 <% for (const person of htmlWebpackPlugin.options.messages.team) { %>
                 <li>
                   <div class="image">
-                    <div class="img" <% if (person.image) { %>style="background-image: url(/assets/about/<%= person.image %>);"<% } %>></div>
+                    <div class="img" <% if (person.image) { %>style="background-image: url(assets/about/<%= person.image %>);"<% } %>></div>
                   </div>
                   <div class="details">
                     <div class="name">
@@ -129,7 +129,7 @@
                 <% for (const person of htmlWebpackPlugin.options.messages.investors) { %>
                 <li>
                   <div class="image">
-                    <div class="img" <% if (person.image) { %>style="background-image: url(/assets/about/<%= person.image %>);"<% } %>></div>
+                    <div class="img" <% if (person.image) { %>style="background-image: url(assets/about/<%= person.image %>);"<% } %>></div>
                   </div>
                   <div class="details">
                     <div class="name">
@@ -137,7 +137,7 @@
                     </div>
                     <% if (person.logo) { %>
                     <div class="logo">
-                      <img src="/assets/about/<%= person.logo %>"  <% if (person.logoWidth) { %>style="max-width: <%= person.logoWidth %>;"<% } %>>
+                      <img src="assets/about/<%= person.logo %>"  <% if (person.logoWidth) { %>style="max-width: <%= person.logoWidth %>;"<% } %>>
                     </div>
                     <% } else { %>
                     <div class="company">

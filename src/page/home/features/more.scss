@@ -83,12 +83,12 @@
           background-color: rgba(#1d3eff, 0.2);
 
           .content {
-            background-image: url("/assets/home/share_tabgroup_light.jpg");
+            background-image: url("assets/home/share_tabgroup_light.jpg");
             background-repeat: no-repeat;
             background-position: 50% 50%;
             background-size: cover;
             @media (prefers-color-scheme: dark) {
-              background-image: url("/assets/home/share_tabgroup_dark.jpg");
+              background-image: url("assets/home/share_tabgroup_dark.jpg");
             }
           }
         }
@@ -106,12 +106,12 @@
           background-color: rgba(#1d3eff, 0.2);
 
           .content {
-            background-image: url("/assets/home/auto_tabgroup_light.png");
+            background-image: url("assets/home/auto_tabgroup_light.png");
             background-repeat: no-repeat;
             background-position: 50% 50%;
             background-size: cover;
             @media (prefers-color-scheme: dark) {
-              background-image: url("/assets/home/auto_tabgroup_dark.png");
+              background-image: url("assets/home/auto_tabgroup_dark.png");
             }
           }
         }
@@ -119,12 +119,12 @@
       &.calendar {
         .visual {
           .content {
-            background-image: url("/assets/home/calendar_light.jpg");
+            background-image: url("assets/home/calendar_light.jpg");
             background-repeat: no-repeat;
             background-position: 50% 50%;
             background-size: cover;
             @media (prefers-color-scheme: dark) {
-              background-image: url("/assets/home/calendar_dark.jpg");
+              background-image: url("assets/home/calendar_dark.jpg");
             }
           }
         }
@@ -132,12 +132,12 @@
       &.omnibox {
         .visual {
           .content {
-            background-image: url("/assets/home/omnibox_light.jpg");
+            background-image: url("assets/home/omnibox_light.jpg");
             background-repeat: no-repeat;
             background-position: 50% 50%;
             background-size: cover;
             @media (prefers-color-scheme: dark) {
-              background-image: url("/assets/home/omnibox_dark.jpg");
+              background-image: url("assets/home/omnibox_dark.jpg");
             }
           }
         }
@@ -145,12 +145,12 @@
       &.videocall {
         .visual {
           .content {
-            background-image: url("/assets/home/videocall_light.jpg");
+            background-image: url("assets/home/videocall_light.jpg");
             background-repeat: no-repeat;
             background-position: 50% 50%;
             background-size: cover;
             @media (prefers-color-scheme: dark) {
-              background-image: url("/assets/home/videocall_dark.jpg");
+              background-image: url("assets/home/videocall_dark.jpg");
             }
           }
         }
@@ -158,12 +158,12 @@
       &.pintabs {
         .visual {
           .content {
-            background-image: url("/assets/home/pinnedtabs_notes_light.jpg");
+            background-image: url("assets/home/pinnedtabs_notes_light.jpg");
             background-repeat: no-repeat;
             background-position: 50% 50%;
             background-size: cover;
             @media (prefers-color-scheme: dark) {
-              background-image: url("/assets/home/pinnedtabs_notes_dark.jpg");
+              background-image: url("assets/home/pinnedtabs_notes_dark.jpg");
             }
           }
         }
@@ -171,12 +171,12 @@
       &.backlinks {
         .visual {
           .content {
-            background-image: url("/assets/home/backlinksreferences_light.jpg");
+            background-image: url("assets/home/backlinksreferences_light.jpg");
             background-repeat: no-repeat;
             background-position: 50% 50%;
             background-size: cover;
             @media (prefers-color-scheme: dark) {
-              background-image: url("/assets/home/backlinksreferences_dark.jpg");
+              background-image: url("assets/home/backlinksreferences_dark.jpg");
             }
           }
         }
@@ -184,12 +184,12 @@
       &.splitview {
         .visual {
           .content {
-            background-image: url("/assets/home/splitview_light.jpg");
+            background-image: url("assets/home/splitview_light.jpg");
             background-repeat: no-repeat;
             background-position: 50% 50%;
             background-size: cover;
             @media (prefers-color-scheme: dark) {
-              background-image: url("/assets/home/splitview_dark.jpg");
+              background-image: url("assets/home/splitview_dark.jpg");
             }
           }
         }
@@ -197,12 +197,12 @@
       &.adblocker {
         .visual {
           .content {
-            background-image: url("/assets/home/adblock_light.jpg");
+            background-image: url("assets/home/adblock_light.jpg");
             background-repeat: no-repeat;
             background-position: 50% 50%;
             background-size: cover;
             @media (prefers-color-scheme: dark) {
-              background-image: url("/assets/home/adblock_dark.jpg");
+              background-image: url("assets/home/adblock_dark.jpg");
             }
           }
         }
@@ -259,7 +259,7 @@
           position: absolute;
           top: 0;
           left: 0;
-          background-image: url("/assets/home/more.jpg");
+          background-image: url("assets/home/more.jpg");
           background-size: cover;
           background-attachment: fixed;
           opacity: 0.2;

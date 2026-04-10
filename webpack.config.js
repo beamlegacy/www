@@ -62,6 +62,7 @@ function config(mode, env) {
   const plugins = [
     new webpack.DefinePlugin({
       "process.env.CANONICAL_HOST": JSON.stringify(process.env.CANONICAL_HOST),
+      "process.env.PUBLIC_PATH": JSON.stringify(process.env.PUBLIC_PATH),
       "process.env.API_HOST": JSON.stringify(process.env.API_HOST),
       "process.env.SUBSCRIBE_LINK_URL": JSON.stringify(process.env.SUBSCRIBE_LINK_URL),
       "process.env.SECURE_SUBSCRIBE_TOKEN": JSON.stringify(process.env.SECURE_SUBSCRIBE_TOKEN),
