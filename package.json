@@ -15,7 +15,7 @@
     "start": "webpack serve",
     "build": "webpack --mode=development && yarn postbuild",
     "dist": "webpack --mode=production && yarn postbuild",
-    "postbuild": "mv ./dist/assets/_redirects ./dist/_redirects && mv ./dist/assets/.well-known ./dist/",
+    "postbuild": "mv ./dist/assets/_redirects ./dist/_redirects && mv ./dist/assets/robots.txt ./dist/robots.txt && rm -rf ./dist/.well-known && mv ./dist/assets/.well-known ./dist/",
     "lint": "eslint . --ext .ts --format gitlab .",
     "test": "jest --passWithNoTests",
     "test-watch": "jest --watchAll --passWithNoTests",

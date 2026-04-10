@@ -6,12 +6,12 @@ class en extends Language {
     title: "Meet the bright web – beam",
     description: "Browse. Capture. Write. Publish – Coming soon to macOS. Join the beta now.",
     ogTitle: "Meet the bright web – beam",
-    ogUrl: process.env.CANONICAL_HOST,
-    ogImage: `${process.env.CANONICAL_HOST}/assets/social/unfurl.jpg`,
+    ogUrl: process.env.CANONICAL_HOST || '',
+    ogImage: `${process.env.CANONICAL_HOST || ''}/assets/social/unfurl.jpg`,
     ogDescription: "Browse. Capture. Write. Publish – Coming soon to macOS. Join the beta now.",
     twitterSite: "getonbeam",
     twitterTitle: "Meet the bright web – beam",
-    twitterImage: `${process.env.CANONICAL_HOST}/assets/social/unfurl.jpg`
+    twitterImage: `${process.env.CANONICAL_HOST || ''}/assets/social/unfurl.jpg`
   }
 
   header = {

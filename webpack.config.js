@@ -57,7 +57,7 @@ function config(mode, env) {
   console.log("Building for", mode)
   const analyzeBundle = false
   console.log("Env is", env, process.env.API_HOST, process.env.SUBSCRIBE_LINK_URL)
-  const isDevelopment = mode === "development" || "staging"
+  const isDevelopment = mode === "development" || mode === "staging"
   const plugins = [
     new webpack.DefinePlugin({
       "process.env.CANONICAL_HOST": JSON.stringify(process.env.CANONICAL_HOST),
