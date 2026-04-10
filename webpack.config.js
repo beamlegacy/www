@@ -48,6 +48,7 @@ function createHtmlPlugins(pages, mode) {
       tracking: {
         googleAnalytics: process.env.GA_MEASUREMENT_ID,
       },
+      publicPath: process.env.PUBLIC_PATH || "/",
       featureFlagEnabled: FeatureFlagsClient.isEnabled
     })
   })
@@ -69,7 +70,7 @@ function config(mode, env) {
     new FaviconsWebpackPlugin({
       logo: `./src/favicon${isDevelopment ? "-dev" : ""}-32x32.png`,
       mode: "light",
-      publicPath: "/",
+      publicPath: process.env.PUBLIC_PATH || "/",
     }),
     ...createHtmlPlugins(pages, mode),
     new CopyPlugin({
@@ -188,7 +189,8 @@ function config(mode, env) {
     },
     output: {
       filename: `[chunkhash]${env !== "production" ? "-[name]" : ""}.js`,
-      path: path.resolve(__dirname, "dist")
+      path: path.resolve(__dirname, "dist"),
+      publicPath: process.env.PUBLIC_PATH || "/"
     }
   }
 }
